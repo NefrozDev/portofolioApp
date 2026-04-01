@@ -1,0 +1,123 @@
+.experience-card {
+  padding: 1.25rem;
+}
+
+.experience-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.experience-card__identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.experience-card__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.5rem;
+  min-height: 4.5rem;
+  padding: 0.75rem;
+  border-radius: 0.875rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border: 1px solid var(--border-soft);
+}
+
+.experience-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.experience-card__role {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.experience-card__company {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.experience-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.experience-card__period {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.experience-card__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-soft);
+}
+
+.experience-card__chevron {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.experience-card__chevron--expanded {
+  transform: rotate(180deg);
+}
+
+.experience-card__tags {
+  margin-top: 1rem;
+}
+
+.experience-card__content {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+.experience-card__highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: var(--text-secondary);
+}
+
+.experience-card__highlights li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.experience-card__highlights li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}
+
+@media (max-width: 48rem) {
+  .experience-card__header {
+    flex-direction: column;
+  }
+
+  .experience-card__actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .experience-card__identity {
+    width: 100%;
+  }
+}

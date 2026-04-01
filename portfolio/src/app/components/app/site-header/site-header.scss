@@ -1,0 +1,112 @@
+:host {
+  display: block;
+}
+
+@media (max-width: 48rem) {
+  :host {
+    display: none;
+  }
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-header__inner {
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.site-header__link {
+  position: relative;
+  color: #94a3b8;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.site-header__link:hover,
+.site-header__link--active {
+  color: #e2e8f0;
+}
+
+.site-header__link--active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1.2rem;
+  width: 100%;
+  height: 0.1875rem;
+  border-radius: 999px;
+  background: #6366f1;
+  box-shadow: 0 0 12px rgba(124, 140, 255, 0.4);
+}
+
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-header__lang-label {
+  color: #94a3b8;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.site-header__lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-header__lang-button {
+  min-width: 2.5rem;
+  min-height: 2.25rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(30, 41, 59, 0.8);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.site-header__lang-button:hover {
+  transform: translateY(-0.0625rem);
+}
+
+.site-header__lang-button--active {
+  background: linear-gradient(
+    90deg,
+    rgba(123, 97, 255, 0.4) 0%,
+    rgba(79, 140, 255, 0.4) 100%
+  );
+  border-color: rgba(138, 180, 255, 0.9);
+  box-shadow: 0 0 1rem rgba(99, 102, 241, 0.3);
+}
+
+@media (max-width: 64rem) {
+  .site-header__nav {
+    gap: 1rem;
+  }
+}

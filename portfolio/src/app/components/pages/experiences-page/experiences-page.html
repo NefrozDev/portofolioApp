@@ -1,0 +1,33 @@
+<section class="page-shell experiences-page">
+  <div class="page-content">
+    <main class="section experiences-page__main">
+      <div class="container">
+        <app-section-hero
+          title="Experiences"
+          subtitle="My professional journey"
+        ></app-section-hero>
+
+        <div class="experiences-page__toolbar">
+          <span class="experiences-page__toolbar-label">Sort by:</span>
+          <button
+            type="button"
+            class="experiences-page__toolbar-button"
+          >
+            All
+          </button>
+        </div>
+
+        <div class="experiences-page__list">
+          @for (experience of experiences(); track experience.id) {
+            <app-experience-card
+              [experience]="experience"
+              (toggle)="toggleExperience($event)"
+            ></app-experience-card>
+          }
+        </div>
+      </div>
+    </main>
+
+    <app-mobile-bottom-nav class="mobile-only"></app-mobile-bottom-nav>
+  </div>
+</section>

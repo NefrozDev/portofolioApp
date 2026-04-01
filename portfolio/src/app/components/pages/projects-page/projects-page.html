@@ -1,0 +1,43 @@
+<section class="page-shell projects-page">
+  <div class="page-content">
+    <main class="section projects-page__main">
+      <div class="container">
+        <app-section-hero
+          title="Portfolio"
+          subtitle="Recent projects"
+        ></app-section-hero>
+
+        <div class="projects-page__toolbar">
+          <span class="projects-page__toolbar-label">Sort by:</span>
+
+          <button
+            type="button"
+            class="projects-page__toolbar-button"
+            [class.projects-page__toolbar-button--active]="selectedCategory() === 'all'"
+            (click)="selectCategory('all')"
+          >
+            All
+          </button>
+        </div>
+
+        <div class="projects-page__layout">
+          <app-project-sidebar
+            [projects]="filteredProjects()"
+            [selectedCategory]="selectedCategory()"
+            [selectedProjectId]="selectedProjectId()"
+            (categorySelected)="selectCategory($event)"
+            (projectSelected)="selectProject($event)"
+          ></app-project-sidebar>
+
+          @if (selectedProject(); as project) {
+            <app-project-detail [project]="project"></app-project-detail>
+          } @else {
+            <div class="projects-page__empty glass-card">
+              <p>No project available for this category.</p>
+            </div>
+          }
+        </div>
+      </div>
+    </main>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+<section class="contact-page">
+  <div class="contact-page__container">
+    <header class="contact-page__hero">
+      <h1 class="contact-page__title">Contact</h1>
+      <p class="contact-page__subtitle">
+        Une idée, un projet ou une opportunité ?
+        <span class="contact-page__subtitle-highlight">Parlons-en</span>
+      </p>
+      <div class="contact-page__hero-line"></div>
+    </header>
+
+    <section class="contact-page__card glass-card">
+      <div class="contact-page__links">
+        <a class="contact-page__link" href="tel:0445361218">
+          04/45.36.12.18
+        </a>
+
+        <a class="contact-page__link" href="mailto:stevendemoor@gmail.com">
+          stevendemoor@gmail.com
+        </a>
+
+        <a
+          class="contact-page__link"
+          href="#"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn
+        </a>
+      </div>
+
+      <form
+        class="contact-page__form"
+        [formGroup]="contactForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <input
+          class="contact-page__input form-control"
+          type="text"
+          formControlName="name"
+          placeholder="Nom"
+        />
+
+        <input
+          class="contact-page__input form-control"
+          type="email"
+          formControlName="email"
+          placeholder="Mail"
+        />
+
+        <textarea
+          class="contact-page__textarea form-control"
+          formControlName="message"
+          placeholder="Message"
+        ></textarea>
+
+        <button
+          class="contact-page__submit app-button app-button--primary"
+          type="submit"
+        >
+          Envoyer
+        </button>
+      </form>
+    </section>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+<div class="language-switcher">
+  @for (language of languages; track language.code) {
+    <button
+      type="button"
+      class="language-switcher__button"
+      [class.language-switcher__button--active]="isSelected(language.code)"
+      (click)="selectLanguage(language.code)"
+    >
+      {{ language.label }}
+    </button>
+  }
+</div>

@@ -1,0 +1,37 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+
+    <!-- NAV -->
+    <nav class="site-header__nav">
+      @for (item of navigationItems; track item.route) {
+        <a
+          class="site-header__link"
+          [routerLink]="getLink(item.route)"
+          routerLinkActive="site-header__link--active"
+          [routerLinkActiveOptions]="{ exact: !item.route }"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </nav>
+
+    <!-- LANGUAGES -->
+    <div class="site-header__right">
+      <span class="site-header__lang-label">Language</span>
+
+      <div class="site-header__lang-switch">
+        @for (lang of languages; track lang.code) {
+          <button
+            type="button"
+            class="site-header__lang-button"
+            [class.site-header__lang-button--active]="currentLanguage() === lang.code"
+            (click)="changeLanguage(lang.code)"
+          >
+            {{ lang.code.toUpperCase() }}
+          </button>
+        }
+      </div>
+    </div>
+
+  </div>
+</header>

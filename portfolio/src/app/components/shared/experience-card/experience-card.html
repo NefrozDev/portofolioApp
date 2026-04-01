@@ -1,0 +1,52 @@
+<article
+  class="experience-card glass-card"
+  [class.experience-card--expanded]="experience().isExpanded"
+>
+  <div class="experience-card__header">
+    <div class="experience-card__identity">
+      <div class="experience-card__logo">
+        <span>[Logo]</span>
+      </div>
+
+      <div class="experience-card__meta">
+        <h2 class="experience-card__role">{{ experience().role }}</h2>
+        <p class="experience-card__company">{{ experience().company }}</p>
+      </div>
+    </div>
+
+    <div class="experience-card__actions">
+      <span class="experience-card__period">{{ experience().period }}</span>
+
+      <button
+        type="button"
+        class="experience-card__toggle"
+        (click)="onToggle()"
+        [attr.aria-expanded]="experience().isExpanded"
+        aria-label="Toggle experience details"
+      >
+        <span
+          class="experience-card__chevron"
+          [class.experience-card__chevron--expanded]="experience().isExpanded"
+        >
+          ▼
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="tag-list experience-card__tags">
+    @for (technology of experience().technologies; track technology) {
+      <span class="tag">{{ technology }}</span>
+    }
+  </div>
+
+  @if (experience().isExpanded && experience().highlights.length) {
+    <div class="experience-card__content">
+      <ul class="experience-card__highlights">
+        @for (highlight of experience().highlights; track highlight) {
+          <li>{{ highlight }}</li>
+        }
+      </ul>
+    </div>
+  }
+</article>

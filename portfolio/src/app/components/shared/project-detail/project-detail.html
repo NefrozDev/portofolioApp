@@ -1,0 +1,47 @@
+<article class="project-detail glass-card">
+  <div class="project-detail__image-wrapper">
+    <img
+      class="project-detail__image"
+      [src]="project().imageUrl"
+      [alt]="'Preview of ' + project().title"
+    />
+  </div>
+
+  <div class="project-detail__content">
+    <h2 class="project-detail__title">{{ project().title }}</h2>
+
+    <p class="project-detail__description">
+      {{ project().description }}
+    </p>
+
+    <div class="tag-list project-detail__tags">
+      @for (technology of project().technologies; track technology) {
+        <span class="tag">{{ technology }}</span>
+      }
+    </div>
+
+    <div class="project-detail__actions">
+      @if (project().sourceUrl) {
+        <a
+          class="app-button app-button--ghost"
+          [href]="project().sourceUrl"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Source code
+        </a>
+      }
+
+      @if (project().demoUrl) {
+        <a
+          class="app-button app-button--primary"
+          [href]="project().demoUrl"
+          target="_blank"
+          rel="noreferrer"
+        >
+          View demo
+        </a>
+      }
+    </div>
+  </div>
+</article>

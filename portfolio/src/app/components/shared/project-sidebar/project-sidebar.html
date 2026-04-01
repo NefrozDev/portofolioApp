@@ -1,0 +1,27 @@
+<aside class="project-sidebar glass-card">
+  <div class="project-sidebar__categories">
+    @for (category of categories; track category.value) {
+      <button
+        type="button"
+        class="project-sidebar__category"
+        [class.project-sidebar__category--active]="isCategoryActive(category.value)"
+        (click)="selectCategory(category.value)"
+      >
+        {{ category.label }}
+      </button>
+    }
+  </div>
+
+  <div class="project-sidebar__list">
+    @for (project of projects(); track project.id) {
+      <button
+        type="button"
+        class="project-sidebar__item"
+        [class.project-sidebar__item--active]="isProjectActive(project.id)"
+        (click)="selectProject(project.id)"
+      >
+        {{ project.shortLabel }}
+      </button>
+    }
+  </div>
+</aside>
