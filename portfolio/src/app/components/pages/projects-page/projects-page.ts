@@ -1,9 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { SectionHero } from '../../shared/section-hero/section-hero';
 import { ProjectSidebar } from '../../shared/project-sidebar/project-sidebar';
 import { ProjectDetail } from '../../shared/project-detail/project-detail';
-import { Project } from '../../../../../../Common/models/project.model';
-import { PortfolioDataService } from '../../../services/portfolio-data';
+import { Project } from '@common/models/project.model';
+import { ProjectsApi } from '../../../services/api/projects-api';
 
 @Component({
   selector: 'app-projects-page',
@@ -12,10 +12,12 @@ import { PortfolioDataService } from '../../../services/portfolio-data';
   templateUrl: './projects-page.html',
   styleUrls: ['./projects-page.scss']
 })
-export class ProjectsPage {
+export class ProjectsPage implements OnInit {
   readonly selectedCategory = signal<'all' | Project['category']>('all');
   readonly selectedProjectId = signal<string>('');
   readonly projects = signal<Project[]>([]);
+  readonly isLoading = signal<boolean>(true);
+  readonly loadError = signal<string | null>(null);
 
   readonly filteredProjects = computed(() => {
     const category = this.selectedCategory();
@@ -39,16 +41,38 @@ export class ProjectsPage {
     );
   });
 
-  constructor(private readonly portfolioDataService: PortfolioDataService) {
-    const projects = this.portfolioDataService.getProjects();
-    this.projects.set(projects);
+  constructor(private readonly projectsApi: ProjectsApi) {}
 
-    if (!projects.length) {
-      console.warn('ProjectsPage: aucun projet disponible au chargement.');
-      return;
-    }
+  ngOnInit(): void {
+    this.loadProjects();
+  }
 
-    this.selectedProjectId.set(projects[0].id);
+  private loadProjects(): void {
+    this.isLoading.set(true);
+    this.loadError.set(null);
+
+    this.projectsApi.getProjects().subscribe({
+      next: (projects) => {
+        this.projects.set(projects);
+
+        if (!projects.length) {
+          console.warn('ProjectsPage: aucun projet disponible au chargement.');
+          this.selectedProjectId.set('');
+          this.isLoading.set(false);
+          return;
+        }
+
+        this.selectedProjectId.set(projects[0].id);
+        this.isLoading.set(false);
+      },
+      error: (error: unknown) => {
+        console.error('ProjectsPage: échec du chargement des projets.', error);
+        this.projects.set([]);
+        this.selectedProjectId.set('');
+        this.loadError.set('Unable to load projects.');
+        this.isLoading.set(false);
+      }
+    });
   }
 
   selectCategory(category: 'all' | Project['category']): void {

@@ -41,6 +41,16 @@
           placeholder="Nom"
         />
 
+        @if (nameControl?.touched && nameControl?.invalid) {
+          <p class="contact-page__feedback contact-page__feedback--error">
+            @if (nameControl?.errors?.['required']) {
+              Le nom est obligatoire.
+            } @else if (nameControl?.errors?.['maxlength']) {
+              Le nom ne peut pas dépasser 100 caractères.
+            }
+          </p>
+        }
+
         <input
           class="contact-page__input form-control"
           type="email"
@@ -48,17 +58,54 @@
           placeholder="Mail"
         />
 
+        @if (emailControl?.touched && emailControl?.invalid) {
+          <p class="contact-page__feedback contact-page__feedback--error">
+            @if (emailControl?.errors?.['required']) {
+              L’adresse e-mail est obligatoire.
+            } @else if (emailControl?.errors?.['email']) {
+              L’adresse e-mail est invalide.
+            }
+          </p>
+        }
+
         <textarea
           class="contact-page__textarea form-control"
           formControlName="message"
           placeholder="Message"
         ></textarea>
 
+        @if (messageControl?.touched && messageControl?.invalid) {
+          <p class="contact-page__feedback contact-page__feedback--error">
+            @if (messageControl?.errors?.['required']) {
+              Le message est obligatoire.
+            } @else if (messageControl?.errors?.['maxlength']) {
+              Le message ne peut pas dépasser 2000 caractères.
+            }
+          </p>
+        }
+
+        @if (submitSuccessMessage()) {
+          <p class="contact-page__feedback contact-page__feedback--success">
+            {{ submitSuccessMessage() }}
+          </p>
+        }
+
+        @if (submitErrorMessage()) {
+          <p class="contact-page__feedback contact-page__feedback--error">
+            {{ submitErrorMessage() }}
+          </p>
+        }
+
         <button
           class="contact-page__submit app-button app-button--primary"
           type="submit"
+          [disabled]="isSubmitting()"
         >
-          Envoyer
+          @if (isSubmitting()) {
+            Envoi...
+          } @else {
+            Envoyer
+          }
         </button>
       </form>
     </section>

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "rootDir": "..",
+    "outDir": "./dist",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@common/*": ["../Common/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "../Common/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.app = void 0;
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const health_routes_1 = require("./routes/health.routes");
+const projects_routes_1 = require("./routes/projects.routes");
+const experiences_routes_1 = require("./routes/experiences.routes");
+const contact_routes_1 = require("./routes/contact.routes");
+const app = (0, express_1.default)();
+exports.app = app;
+app.use((0, cors_1.default)());
+app.use(express_1.default.json());
+app.use('/api/health', health_routes_1.healthRouter);
+app.use('/api/projects', projects_routes_1.projectsRouter);
+app.use('/api/experiences', experiences_routes_1.experiencesRouter);
+app.use('/api/contact', contact_routes_1.contactRouter);

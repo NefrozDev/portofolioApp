@@ -7,24 +7,38 @@
           subtitle="My professional journey"
         ></app-section-hero>
 
-        <div class="experiences-page__toolbar">
-          <span class="experiences-page__toolbar-label">Sort by:</span>
-          <button
-            type="button"
-            class="experiences-page__toolbar-button"
-          >
-            All
-          </button>
-        </div>
+        @if (isLoading()) {
+          <div class="experiences-page__empty glass-card">
+            <p>Loading experiences...</p>
+          </div>
+        } @else if (loadError()) {
+          <div class="experiences-page__empty glass-card">
+            <p>{{ loadError() }}</p>
+          </div>
+        } @else {
+          <div class="experiences-page__toolbar">
+            <span class="experiences-page__toolbar-label">Sort by:</span>
+            <button
+              type="button"
+              class="experiences-page__toolbar-button"
+            >
+              All
+            </button>
+          </div>
 
-        <div class="experiences-page__list">
-          @for (experience of experiences(); track experience.id) {
-            <app-experience-card
-              [experience]="experience"
-              (toggle)="toggleExperience($event)"
-            ></app-experience-card>
-          }
-        </div>
+          <div class="experiences-page__list">
+            @for (experience of experiences(); track experience.id) {
+              <app-experience-card
+                [experience]="experience"
+                (toggle)="toggleExperience($event)"
+              ></app-experience-card>
+            } @empty {
+              <div class="experiences-page__empty glass-card">
+                <p>No experience available.</p>
+              </div>
+            }
+          </div>
+        }
       </div>
     </main>
 
