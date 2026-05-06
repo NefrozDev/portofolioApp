@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
+import { ContactApi } from '../../../services/api/contact-api';
 import { ContactPage } from './contact-page';
 
 describe('ContactPage', () => {
@@ -8,7 +10,15 @@ describe('ContactPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContactPage]
+      imports: [ContactPage],
+      providers: [
+        {
+          provide: ContactApi,
+          useValue: {
+            sendMessage: () => of({ message: 'Message sent.' })
+          }
+        }
+      ]
     })
     .compileComponents();
 

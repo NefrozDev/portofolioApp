@@ -1,6 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { Project } from '../../../../../../Common/models/project.model';
 import { ProjectSidebar } from './project-sidebar';
+
+const projects: Project[] = [
+  {
+    id: 'project-1',
+    title: 'Portfolio App',
+    shortLabel: 'Portfolio',
+    category: 'fullstack',
+    description: 'Personal portfolio application.',
+    imageUrl: '/img/project.png',
+    technologies: ['Angular'],
+    sourceUrl: '#',
+    demoUrl: '#'
+  }
+];
 
 describe('ProjectSidebar', () => {
   let component: ProjectSidebar;
@@ -14,6 +29,9 @@ describe('ProjectSidebar', () => {
 
     fixture = TestBed.createComponent(ProjectSidebar);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('projects', projects);
+    fixture.componentRef.setInput('selectedCategory', 'all');
+    fixture.componentRef.setInput('selectedProjectId', 'project-1');
     fixture.detectChanges();
   });
 

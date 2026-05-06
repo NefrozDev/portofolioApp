@@ -1,6 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
+import { Experience } from '../../../../../../Common/models/experience.model';
+import { ExperiencesApi } from '../../../services/api/experiences-api';
 import { ExperiencesPage } from './experiences-page';
+
+const experiences: Experience[] = [
+  {
+    id: 'exp-1',
+    company: 'Company',
+    role: 'Developer',
+    period: '2024 - Present',
+    technologies: ['Angular'],
+    highlights: ['Built UI'],
+    isExpanded: true
+  }
+];
 
 describe('ExperiencesPage', () => {
   let component: ExperiencesPage;
@@ -8,7 +23,15 @@ describe('ExperiencesPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExperiencesPage]
+      imports: [ExperiencesPage],
+      providers: [
+        {
+          provide: ExperiencesApi,
+          useValue: {
+            getExperiences: () => of(experiences)
+          }
+        }
+      ]
     })
     .compileComponents();
 
