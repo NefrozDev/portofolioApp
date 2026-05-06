@@ -59,6 +59,7 @@ When working inside a subproject directly:
 - Keep changes scoped to the requested area and avoid unrelated refactors.
 - Preserve the existing TypeScript style and file organization.
 - Prefer updating or adding focused tests near the code being changed.
+- When building or changing code, add or update the matching unit tests in the relevant `.spec.ts` file as part of the same change.
 - Do not edit generated build output, dependency folders, or lockfiles unless the task requires it.
 - Be careful with shared code in `Common/`; changes there can affect both frontend and backend behavior.
 
