@@ -15,6 +15,17 @@ test('POST /api/contact should accept a valid payload', async () => {
   assert.equal(typeof response.body.message, 'string');
 });
 
+test('POST /api/contact should return localized feedback', async () => {
+  const response = await request(app).post('/api/contact?lang=nl').send({
+    name: 'Test User',
+    email: 'test@example.com',
+    message: 'Hello from test.'
+  });
+
+  assert.equal(response.status, 200);
+  assert.equal(response.body.message, 'Uw bericht is verzonden.');
+});
+
 test('POST /api/contact should reject an invalid payload', async () => {
   const originalWarn = console.warn;
   console.warn = () => {};

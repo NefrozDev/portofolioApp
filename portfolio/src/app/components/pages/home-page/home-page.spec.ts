@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { HomePage } from './home-page';
 
 describe('HomePage', () => {
@@ -8,7 +9,8 @@ describe('HomePage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomePage]
+      imports: [HomePage],
+      providers: [...provideTestI18n()]
     })
     .compileComponents();
 

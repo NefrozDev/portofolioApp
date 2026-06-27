@@ -1,9 +1,11 @@
 import { Component, input, output } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Experience } from '../../../../../../Common/models/experience.model';
 
 @Component({
   selector: 'app-experience-card',
   standalone: true,
+  imports: [TranslatePipe],
   templateUrl: './experience-card.html',
   styleUrls: ['./experience-card.scss']
 })
@@ -15,7 +17,7 @@ export class ExperienceCard {
     const currentExperience = this.experience();
 
     if (!currentExperience?.id) {
-      console.warn('ExperienceCard: id expérience manquant.');
+      console.warn('ExperienceCard: missing experience id.');
       return;
     }
 

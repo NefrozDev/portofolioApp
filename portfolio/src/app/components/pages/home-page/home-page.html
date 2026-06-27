@@ -1,15 +1,15 @@
 <section class="home">
   <div class="home__image">
-    <img src="/img/userpic.png" alt="Portrait of Steven De Moor">
+    <img src="/img/userpic.png" [alt]="'home.portraitAlt' | translate">
   </div>
 
   <div class="home__content">
     <div class="home__headline">
-      <h1 class="home__name">Steven De Moor</h1>
+      <h1 class="home__name">{{ 'home.name' | translate }}</h1>
 
       <div class="home__subtitle-row">
         <span class="home__subtitle-line"></span>
-        <h2 class="home__title">Full-Stack Software Engineer</h2>
+        <h2 class="home__title">{{ 'home.position' | translate }}</h2>
         <span class="home__subtitle-line"></span>
       </div>
     </div>
@@ -17,10 +17,7 @@
     <div class="home__description-row">
       <span class="home__description-bar"></span>
 
-      <p class="home__description">
-        Je développe des applications web modernes,
-        performantes et évolutives.
-      </p>
+      <p class="home__description">{{ 'home.description' | translate }}</p>
     </div>
 
     <div class="home__languages">

@@ -20,3 +20,13 @@ test('GET /api/projects should return a project list', async () => {
   assert.equal(typeof firstProject.description, 'string');
   assert.ok(Array.isArray(firstProject.technologies));
 });
+
+test('GET /api/projects should return localized projects', async () => {
+  const response = await request(app).get('/api/projects?lang=fr');
+
+  assert.equal(response.status, 200);
+  assert.equal(
+    response.body[0].description,
+    'Application de portfolio personnelle construite avec Angular et Node.js.'
+  );
+});

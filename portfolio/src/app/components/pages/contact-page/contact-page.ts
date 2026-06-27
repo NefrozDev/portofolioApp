@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Contact } from '@common/models/contact.model';
 import { ContactApi } from '../../../services/api/contact-api';
@@ -7,7 +8,7 @@ import { ContactApi } from '../../../services/api/contact-api';
 @Component({
   selector: 'app-contact-page',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe],
   templateUrl: './contact-page.html',
   styleUrls: ['./contact-page.scss']
 })
@@ -49,7 +50,7 @@ export class ContactPage {
   onSubmit(): void {
     if (this.contactForm.invalid) {
       console.warn(
-        'ContactPage: tentative de soumission avec formulaire invalide.'
+        'ContactPage: attempted to submit an invalid form.'
       );
       console.warn('ContactPage: form errors.', {
         name: this.nameControl?.errors,
@@ -73,10 +74,8 @@ export class ContactPage {
       };
 
       this.contactApi.sendMessage(payload).subscribe({
-        next: (response: { message: string }) => {
-          this.submitSuccessMessage.set(
-            response.message || 'Votre message a bien été envoyé.'
-          );
+        next: () => {
+          this.submitSuccessMessage.set('contact.feedback.success');
           this.contactForm.reset({
             name: '',
             email: '',
@@ -86,23 +85,19 @@ export class ContactPage {
         },
         error: (error: unknown) => {
           console.error(
-            'ContactPage: erreur pendant la soumission du formulaire.',
+            'ContactPage: error while submitting the contact form.',
             error
           );
-          this.submitErrorMessage.set(
-            'Une erreur est survenue lors de l’envoi du message.'
-          );
+          this.submitErrorMessage.set('contact.feedback.submitError');
           this.isSubmitting.set(false);
         }
       });
     } catch (error) {
       console.error(
-        'ContactPage: erreur pendant la soumission du formulaire.',
+        'ContactPage: error while preparing the contact message.',
         error
       );
-      this.submitErrorMessage.set(
-        'Une erreur est survenue lors de la préparation du message.'
-      );
+      this.submitErrorMessage.set('contact.feedback.prepareError');
       this.isSubmitting.set(false);
     }
   }

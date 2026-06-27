@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PeriodLabelPipe implements PipeTransform {
   transform(value: string | null | undefined): string {
     if (!value?.trim()) {
-      return 'Période non renseignée';
+      return '-';
     }
 
     return value;

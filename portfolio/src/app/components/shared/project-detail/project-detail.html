@@ -3,7 +3,7 @@
     <img
       class="project-detail__image"
       [src]="project().imageUrl"
-      [alt]="'Preview of ' + project().title"
+      [alt]="'projects.previewAlt' | translate: { title: project().title }"
     />
   </div>
 
@@ -28,7 +28,7 @@
           target="_blank"
           rel="noreferrer"
         >
-          Source code
+          {{ 'projects.actions.sourceCode' | translate }}
         </a>
       }
 
@@ -39,7 +39,7 @@
           target="_blank"
           rel="noreferrer"
         >
-          View demo
+          {{ 'projects.actions.viewDemo' | translate }}
         </a>
       }
     </div>

@@ -6,9 +6,9 @@
     "build:front": "npm --prefix portfolio run build",
     "test:front": "npm --prefix portfolio run test",
 
-    "start:back": "npm --prefix backend run dev",
-    "build:back": "npm --prefix backend run build",
-    "test:back": "npm --prefix backend run test",
+    "start:back": "npm --prefix Backend run dev",
+    "build:back": "npm --prefix Backend run build",
+    "test:back": "npm --prefix Backend run test",
 
     "build": "npm run build:front && npm run build:back",
     "test": "npm run test:front && npm run test:back"

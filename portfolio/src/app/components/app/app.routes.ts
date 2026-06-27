@@ -17,7 +17,7 @@ export const routes: Routes = [
           import('../../components/pages/home-page/home-page').then(
             (m) => m.HomePage
           ),
-        title: 'Home'
+        title: 'app.navigation.home'
       },
       {
         path: 'experiences',
@@ -25,7 +25,7 @@ export const routes: Routes = [
           import('../../components/pages/experiences-page/experiences-page').then(
             (m) => m.ExperiencesPage
           ),
-        title: 'Experiences'
+        title: 'app.navigation.experiences'
       },
       {
         path: 'projects',
@@ -33,7 +33,7 @@ export const routes: Routes = [
           import('../../components/pages/projects-page/projects-page').then(
             (m) => m.ProjectsPage
           ),
-        title: 'Projects'
+        title: 'app.navigation.projects'
       },
       {
         path: 'contact',
@@ -41,7 +41,7 @@ export const routes: Routes = [
           import('../../components/pages/contact-page/contact-page').then(
             (m) => m.ContactPage
           ),
-        title: 'Contact'
+        title: 'app.navigation.contact'
       }
     ]
   },

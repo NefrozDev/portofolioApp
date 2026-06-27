@@ -7,7 +7,7 @@
         [class.project-sidebar__category--active]="isCategoryActive(category.value)"
         (click)="selectCategory(category.value)"
       >
-        {{ category.label }}
+        {{ category.labelKey | translate }}
       </button>
     }
   </div>

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { Project } from '@common/models/project.model';
+import { LanguageService } from '../language';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +12,20 @@ import { Project } from '@common/models/project.model';
 export class ProjectsApi {
   private readonly baseUrl = `${environment.apiUrl}/projects`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly languageService: LanguageService
+  ) {}
 
   getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.baseUrl);
+    return this.http.get<Project[]>(this.baseUrl, {
+      params: { lang: this.languageService.getLanguage() }
+    });
   }
 
   getFeaturedProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.baseUrl);
+    return this.http.get<Project[]>(this.baseUrl, {
+      params: { lang: this.languageService.getLanguage() }
+    });
   }
 }

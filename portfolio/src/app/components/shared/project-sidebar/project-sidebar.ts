@@ -1,9 +1,11 @@
 import { Component, input, output } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Project } from '../../../../../../Common/models/project.model';
 
 @Component({
   selector: 'app-project-sidebar',
   standalone: true,
+  imports: [TranslatePipe],
   templateUrl: './project-sidebar.html',
   styleUrls: ['./project-sidebar.scss']
 })
@@ -15,17 +17,17 @@ export class ProjectSidebar {
   readonly categorySelected = output<'all' | Project['category']>();
   readonly projectSelected = output<string>();
 
-  readonly categories: Array<{ label: string; value: 'all' | Project['category'] }> = [
-    { label: 'All', value: 'all' },
-    { label: 'Frontend', value: 'frontend' },
-    { label: 'Backend', value: 'backend' },
-    { label: 'Fullstack', value: 'fullstack' },
-    { label: 'UI / UX', value: 'ui-ux' }
+  readonly categories: Array<{ labelKey: string; value: 'all' | Project['category'] }> = [
+    { labelKey: 'projects.categories.all', value: 'all' },
+    { labelKey: 'projects.categories.frontend', value: 'frontend' },
+    { labelKey: 'projects.categories.backend', value: 'backend' },
+    { labelKey: 'projects.categories.fullstack', value: 'fullstack' },
+    { labelKey: 'projects.categories.uiUx', value: 'ui-ux' }
   ];
 
   selectCategory(category: 'all' | Project['category']): void {
     if (!category) {
-      console.warn('ProjectSidebar: catégorie vide ignorée.');
+      console.warn('ProjectSidebar: empty category ignored.');
       return;
     }
 
@@ -34,7 +36,7 @@ export class ProjectSidebar {
 
   selectProject(projectId: string): void {
     if (!projectId) {
-      console.warn('ProjectSidebar: projectId vide ignoré.');
+      console.warn('ProjectSidebar: empty projectId ignored.');
       return;
     }
 

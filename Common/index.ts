@@ -3,3 +3,4 @@ export * from './models/experience.model';
 export * from './models/contact.model';
 export * from './enums/app-language.enum';
 export * from './constants/navigation-items';
+export * from './i18n';

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { Router, TitleStrategy } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { appConfig } from './app.config';
@@ -24,5 +24,9 @@ describe('appConfig', () => {
 
   it('should provide ngx-translate', () => {
     expect(TestBed.inject(TranslateService)).toBeTruthy();
+  });
+
+  it('should provide localized route titles', () => {
+    expect(TestBed.inject(TitleStrategy)).toBeTruthy();
   });
 });

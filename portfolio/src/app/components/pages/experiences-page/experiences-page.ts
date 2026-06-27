@@ -1,26 +1,33 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
+import { distinctUntilChanged } from 'rxjs';
 import { MobileBottomNav } from '../../app/mobile-bottom-nav/mobile-bottom-nav';
 import { SectionHero } from '../../shared/section-hero/section-hero';
 import { ExperienceCard } from '../../shared/experience-card/experience-card';
 import { Experience } from '@common/models/experience.model';
 import { ExperiencesApi } from '../../../services/api/experiences-api';
+import { LanguageService } from '../../../services/language';
 
 @Component({
   selector: 'app-experiences-page',
   standalone: true,
-  imports: [MobileBottomNav, SectionHero, ExperienceCard],
+  imports: [MobileBottomNav, SectionHero, ExperienceCard, TranslatePipe],
   templateUrl: './experiences-page.html',
   styleUrls: ['./experiences-page.scss']
 })
-export class ExperiencesPage implements OnInit {
+export class ExperiencesPage {
   readonly experiences = signal<Experience[]>([]);
   readonly isLoading = signal<boolean>(true);
   readonly loadError = signal<string | null>(null);
 
-  constructor(private readonly experiencesApi: ExperiencesApi) {}
-
-  ngOnInit(): void {
-    this.loadExperiences();
+  constructor(
+    private readonly experiencesApi: ExperiencesApi,
+    languageService: LanguageService
+  ) {
+    toObservable(languageService.currentLanguage)
+      .pipe(distinctUntilChanged(), takeUntilDestroyed())
+      .subscribe(() => this.loadExperiences());
   }
 
   private loadExperiences(): void {
@@ -33,13 +40,13 @@ export class ExperiencesPage implements OnInit {
         this.isLoading.set(false);
 
         if (!experiences.length) {
-          console.warn('ExperiencesPage: aucune expérience disponible au chargement.');
+          console.warn('ExperiencesPage: no experiences available on load.');
         }
       },
       error: (error: unknown) => {
-        console.error('ExperiencesPage: échec du chargement des expériences.', error);
+        console.error('ExperiencesPage: failed to load experiences.', error);
         this.experiences.set([]);
-        this.loadError.set('Unable to load experiences.');
+        this.loadError.set('experiences.loadError');
         this.isLoading.set(false);
       }
     });
@@ -47,7 +54,7 @@ export class ExperiencesPage implements OnInit {
 
   toggleExperience(experienceId: string): void {
     if (!experienceId) {
-      console.warn('ExperiencesPage: experienceId vide ignoré.');
+      console.warn('ExperiencesPage: empty experienceId ignored.');
       return;
     }
 

@@ -10,14 +10,14 @@
           routerLinkActive="site-header__link--active"
           [routerLinkActiveOptions]="{ exact: !item.route }"
         >
-          {{ item.label }}
+          {{ item.labelKey | translate }}
         </a>
       }
     </nav>
 
     <!-- LANGUAGES -->
     <div class="site-header__right">
-      <span class="site-header__lang-label">Language</span>
+      <span class="site-header__lang-label">{{ 'app.language' | translate }}</span>
 
       <div class="site-header__lang-switch">
         @for (lang of languages; track lang.code) {

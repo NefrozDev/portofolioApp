@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Experience } from '../../../../../../Common/models/experience.model';
+import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { ExperienceCard } from './experience-card';
 
 const experience: Experience = {
@@ -19,7 +20,8 @@ describe('ExperienceCard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExperienceCard]
+      imports: [ExperienceCard],
+      providers: [...provideTestI18n()]
     })
     .compileComponents();
 

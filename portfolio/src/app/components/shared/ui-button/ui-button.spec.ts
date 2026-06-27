@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { UiButton } from './ui-button';
 
 describe('UiButton', () => {
@@ -8,7 +9,8 @@ describe('UiButton', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UiButton]
+      imports: [UiButton],
+      providers: [...provideTestI18n()]
     })
     .compileComponents();
 

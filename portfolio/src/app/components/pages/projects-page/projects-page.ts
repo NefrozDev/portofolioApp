@@ -1,18 +1,22 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
+import { distinctUntilChanged } from 'rxjs';
 import { SectionHero } from '../../shared/section-hero/section-hero';
 import { ProjectSidebar } from '../../shared/project-sidebar/project-sidebar';
 import { ProjectDetail } from '../../shared/project-detail/project-detail';
 import { Project } from '@common/models/project.model';
 import { ProjectsApi } from '../../../services/api/projects-api';
+import { LanguageService } from '../../../services/language';
 
 @Component({
   selector: 'app-projects-page',
   standalone: true,
-  imports: [SectionHero, ProjectSidebar, ProjectDetail],
+  imports: [SectionHero, ProjectSidebar, ProjectDetail, TranslatePipe],
   templateUrl: './projects-page.html',
   styleUrls: ['./projects-page.scss']
 })
-export class ProjectsPage implements OnInit {
+export class ProjectsPage {
   readonly selectedCategory = signal<'all' | Project['category']>('all');
   readonly selectedProjectId = signal<string>('');
   readonly projects = signal<Project[]>([]);
@@ -41,10 +45,13 @@ export class ProjectsPage implements OnInit {
     );
   });
 
-  constructor(private readonly projectsApi: ProjectsApi) {}
-
-  ngOnInit(): void {
-    this.loadProjects();
+  constructor(
+    private readonly projectsApi: ProjectsApi,
+    languageService: LanguageService
+  ) {
+    toObservable(languageService.currentLanguage)
+      .pipe(distinctUntilChanged(), takeUntilDestroyed())
+      .subscribe(() => this.loadProjects());
   }
 
   private loadProjects(): void {
@@ -56,7 +63,7 @@ export class ProjectsPage implements OnInit {
         this.projects.set(projects);
 
         if (!projects.length) {
-          console.warn('ProjectsPage: aucun projet disponible au chargement.');
+          console.warn('ProjectsPage: no projects available on load.');
           this.selectedProjectId.set('');
           this.isLoading.set(false);
           return;
@@ -66,10 +73,10 @@ export class ProjectsPage implements OnInit {
         this.isLoading.set(false);
       },
       error: (error: unknown) => {
-        console.error('ProjectsPage: échec du chargement des projets.', error);
+        console.error('ProjectsPage: failed to load projects.', error);
         this.projects.set([]);
         this.selectedProjectId.set('');
-        this.loadError.set('Unable to load projects.');
+        this.loadError.set('projects.loadError');
         this.isLoading.set(false);
       }
     });
@@ -81,9 +88,7 @@ export class ProjectsPage implements OnInit {
     const firstProject = this.filteredProjects()[0];
 
     if (!firstProject) {
-      console.warn(
-        'ProjectsPage: aucune donnée disponible pour cette catégorie.'
-      );
+      console.warn('ProjectsPage: no data available for this category.');
       this.selectedProjectId.set('');
       return;
     }
@@ -93,7 +98,7 @@ export class ProjectsPage implements OnInit {
 
   selectProject(projectId: string): void {
     if (!projectId) {
-      console.warn('ProjectsPage: projectId vide ignoré.');
+      console.warn('ProjectsPage: empty projectId ignored.');
       return;
     }
 

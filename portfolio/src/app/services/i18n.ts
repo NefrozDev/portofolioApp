@@ -9,6 +9,7 @@ import { Observable, map, take } from 'rxjs';
 
 import { LANGUAGE_OPTIONS } from '@common/constants/language-options';
 import { AppLanguage } from '@common/enums/app-language.enum';
+import { APP_TRANSLATIONS } from '@common/i18n';
 import { LanguageService } from './language';
 
 @Injectable({
@@ -24,6 +25,7 @@ export class I18nService {
 
   constructor() {
     this.translateService.addLangs(this.supportedLanguages);
+    this.registerTranslations();
     this.activateLanguage(this.languageService.getLanguage());
 
     effect(() => {
@@ -74,6 +76,12 @@ export class I18nService {
       error: (error) => {
         console.error('I18nService: failed to activate language.', error);
       }
+    });
+  }
+
+  private registerTranslations(): void {
+    this.supportedLanguages.forEach((language) => {
+      this.translateService.setTranslation(language, APP_TRANSLATIONS[language]);
     });
   }
 

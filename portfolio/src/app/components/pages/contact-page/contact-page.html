@@ -1,10 +1,12 @@
 <section class="contact-page">
   <div class="contact-page__container">
     <header class="contact-page__hero">
-      <h1 class="contact-page__title">Contact</h1>
+      <h1 class="contact-page__title">{{ 'contact.title' | translate }}</h1>
       <p class="contact-page__subtitle">
-        Une idée, un projet ou une opportunité ?
-        <span class="contact-page__subtitle-highlight">Parlons-en</span>
+        {{ 'contact.subtitle' | translate }}
+        <span class="contact-page__subtitle-highlight">
+          {{ 'contact.subtitleHighlight' | translate }}
+        </span>
       </p>
       <div class="contact-page__hero-line"></div>
     </header>
@@ -25,7 +27,7 @@
           target="_blank"
           rel="noreferrer"
         >
-          LinkedIn
+          {{ 'contact.links.linkedin' | translate }}
         </a>
       </div>
 
@@ -38,15 +40,15 @@
           class="contact-page__input form-control"
           type="text"
           formControlName="name"
-          placeholder="Nom"
+          [placeholder]="'contact.form.name.placeholder' | translate"
         />
 
         @if (nameControl?.touched && nameControl?.invalid) {
           <p class="contact-page__feedback contact-page__feedback--error">
             @if (nameControl?.errors?.['required']) {
-              Le nom est obligatoire.
+              {{ 'contact.form.name.required' | translate }}
             } @else if (nameControl?.errors?.['maxlength']) {
-              Le nom ne peut pas dépasser 100 caractères.
+              {{ 'contact.form.name.maxlength' | translate }}
             }
           </p>
         }
@@ -55,15 +57,15 @@
           class="contact-page__input form-control"
           type="email"
           formControlName="email"
-          placeholder="Mail"
+          [placeholder]="'contact.form.email.placeholder' | translate"
         />
 
         @if (emailControl?.touched && emailControl?.invalid) {
           <p class="contact-page__feedback contact-page__feedback--error">
             @if (emailControl?.errors?.['required']) {
-              L’adresse e-mail est obligatoire.
+              {{ 'contact.form.email.required' | translate }}
             } @else if (emailControl?.errors?.['email']) {
-              L’adresse e-mail est invalide.
+              {{ 'contact.form.email.invalid' | translate }}
             }
           </p>
         }
@@ -71,28 +73,28 @@
         <textarea
           class="contact-page__textarea form-control"
           formControlName="message"
-          placeholder="Message"
+          [placeholder]="'contact.form.message.placeholder' | translate"
         ></textarea>
 
         @if (messageControl?.touched && messageControl?.invalid) {
           <p class="contact-page__feedback contact-page__feedback--error">
             @if (messageControl?.errors?.['required']) {
-              Le message est obligatoire.
+              {{ 'contact.form.message.required' | translate }}
             } @else if (messageControl?.errors?.['maxlength']) {
-              Le message ne peut pas dépasser 2000 caractères.
+              {{ 'contact.form.message.maxlength' | translate }}
             }
           </p>
         }
 
         @if (submitSuccessMessage()) {
           <p class="contact-page__feedback contact-page__feedback--success">
-            {{ submitSuccessMessage() }}
+            {{ (submitSuccessMessage() ?? '') | translate }}
           </p>
         }
 
         @if (submitErrorMessage()) {
           <p class="contact-page__feedback contact-page__feedback--error">
-            {{ submitErrorMessage() }}
+            {{ (submitErrorMessage() ?? '') | translate }}
           </p>
         }
 
@@ -102,9 +104,9 @@
           [disabled]="isSubmitting()"
         >
           @if (isSubmitting()) {
-            Envoi...
+            {{ 'contact.form.submitting' | translate }}
           } @else {
-            Envoyer
+            {{ 'contact.form.submit' | translate }}
           }
         </button>
       </form>

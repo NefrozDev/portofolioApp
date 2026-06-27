@@ -24,6 +24,17 @@ describe('routes', () => {
     ]);
   });
 
+  it('should use translation keys for page titles', () => {
+    const languageRoute = routes.find((route) => route.path === ':lang');
+
+    expect(languageRoute?.children?.map((route) => route.title)).toEqual([
+      'app.navigation.home',
+      'app.navigation.experiences',
+      'app.navigation.projects',
+      'app.navigation.contact'
+    ]);
+  });
+
   it('should redirect unknown paths to English', () => {
     expect(routes.at(-1)).toEqual(
       jasmine.objectContaining({

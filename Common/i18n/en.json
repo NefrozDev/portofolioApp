@@ -1,0 +1,132 @@
+{
+  "app": {
+    "navigation": {
+      "home": "Home",
+      "experiences": "Experiences",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "language": "Language",
+    "placeholders": {
+      "mobileBottomNav": "Mobile navigation",
+      "uiButton": "Button",
+      "contactLinks": "Contact links"
+    }
+  },
+  "home": {
+    "name": "Steven De Moor",
+    "position": "Full-Stack Software Engineer",
+    "description": "I develop modern, performant and scalable web applications.",
+    "portraitAlt": "Portrait of Steven De Moor"
+  },
+  "projects": {
+    "title": "Portfolio",
+    "subtitle": "Recent projects",
+    "loading": "Loading projects...",
+    "loadError": "Unable to load projects.",
+    "emptyCategory": "No project available for this category.",
+    "sortBy": "Sort by:",
+    "categories": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullstack": "Fullstack",
+      "uiUx": "UI / UX"
+    },
+    "actions": {
+      "sourceCode": "Source code",
+      "viewDemo": "View demo"
+    },
+    "previewAlt": "Preview of {{ title }}"
+  },
+  "experiences": {
+    "title": "Experiences",
+    "subtitle": "My professional journey",
+    "loading": "Loading experiences...",
+    "loadError": "Unable to load experiences.",
+    "empty": "No experience available.",
+    "sortBy": "Sort by:",
+    "all": "All",
+    "logoPlaceholder": "Logo",
+    "toggleDetails": "Toggle experience details"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "An idea, a project or an opportunity?",
+    "subtitleHighlight": "Let's talk",
+    "links": {
+      "linkedin": "LinkedIn"
+    },
+    "form": {
+      "name": {
+        "placeholder": "Name",
+        "required": "Name is required.",
+        "maxlength": "Name cannot exceed 100 characters."
+      },
+      "email": {
+        "placeholder": "Email",
+        "required": "Email address is required.",
+        "invalid": "Email address is invalid."
+      },
+      "message": {
+        "placeholder": "Message",
+        "required": "Message is required.",
+        "maxlength": "Message cannot exceed 2000 characters."
+      },
+      "submit": "Send",
+      "submitting": "Sending..."
+    },
+    "feedback": {
+      "success": "Your message has been sent.",
+      "submitError": "An error occurred while sending the message.",
+      "prepareError": "An error occurred while preparing the message.",
+      "invalidPayload": "Invalid payload."
+    }
+  },
+  "data": {
+    "projects": {
+      "1": {
+        "title": "Portfolio App",
+        "shortLabel": "Portfolio",
+        "description": "Personal portfolio application built with Angular and Node.js."
+      },
+      "2": {
+        "title": "Task Dashboard",
+        "shortLabel": "Dashboard",
+        "description": "Interactive dashboard for managing and visualising tasks."
+      },
+      "3": {
+        "title": "DevOps Monitor",
+        "shortLabel": "DevOps Monitor",
+        "description": "Monitoring-oriented backend project for pipeline supervision, alerting and deployment visibility."
+      },
+      "4": {
+        "title": "Chat Application",
+        "shortLabel": "Chat Application",
+        "description": "Modern messaging interface focused on responsiveness, usability and real-time interactions."
+      }
+    },
+    "experiences": {
+      "1": {
+        "company": "Example Company",
+        "role": "Frontend Developer",
+        "period": "Jan 2024 - Dec 2024",
+        "highlights": [
+          "Built reusable UI components for internal products.",
+          "Improved performance and maintainability of the frontend codebase.",
+          "Collaborated with backend developers on API integration."
+        ]
+      },
+      "2": {
+        "company": "Another Studio",
+        "role": "Fullstack Developer",
+        "period": "Jan 2023 - Dec 2023",
+        "highlights": [
+          "Developed frontend and backend features for client applications.",
+          "Implemented REST APIs and integrated them with Angular services.",
+          "Contributed to deployment and CI workflows."
+        ]
+      }
+    }
+  }
+}

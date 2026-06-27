@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { Experience } from '@common/models/experience.model';
+import { LanguageService } from '../language';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +12,14 @@ import { Experience } from '@common/models/experience.model';
 export class ExperiencesApi {
   private readonly baseUrl = `${environment.apiUrl}/experiences`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly languageService: LanguageService
+  ) {}
 
   getExperiences(): Observable<Experience[]> {
-    return this.http.get<Experience[]>(this.baseUrl);
+    return this.http.get<Experience[]>(this.baseUrl, {
+      params: { lang: this.languageService.getLanguage() }
+    });
   }
 }

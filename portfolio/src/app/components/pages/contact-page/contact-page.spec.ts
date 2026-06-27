@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { ContactApi } from '../../../services/api/contact-api';
+import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { ContactPage } from './contact-page';
 
 describe('ContactPage', () => {
@@ -12,6 +13,7 @@ describe('ContactPage', () => {
     await TestBed.configureTestingModule({
       imports: [ContactPage],
       providers: [
+        ...provideTestI18n(),
         {
           provide: ContactApi,
           useValue: {

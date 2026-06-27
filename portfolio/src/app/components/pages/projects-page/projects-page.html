@@ -3,21 +3,21 @@
     <main class="section projects-page__main">
       <div class="container">
         <app-section-hero
-          title="Portfolio"
-          subtitle="Recent projects"
+          [title]="'projects.title' | translate"
+          [subtitle]="'projects.subtitle' | translate"
         ></app-section-hero>
 
         @if (isLoading()) {
           <div class="projects-page__empty glass-card">
-            <p>Loading projects...</p>
+            <p>{{ 'projects.loading' | translate }}</p>
           </div>
         } @else if (loadError()) {
           <div class="projects-page__empty glass-card">
-            <p>{{ loadError() }}</p>
+            <p>{{ (loadError() ?? '') | translate }}</p>
           </div>
         } @else {
           <div class="projects-page__toolbar">
-            <span class="projects-page__toolbar-label">Sort by:</span>
+            <span class="projects-page__toolbar-label">{{ 'projects.sortBy' | translate }}</span>
 
             <button
               type="button"
@@ -25,7 +25,7 @@
               [class.projects-page__toolbar-button--active]="selectedCategory() === 'all'"
               (click)="selectCategory('all')"
             >
-              All
+              {{ 'projects.categories.all' | translate }}
             </button>
           </div>
 
@@ -42,7 +42,7 @@
               <app-project-detail [project]="project"></app-project-detail>
             } @else {
               <div class="projects-page__empty glass-card">
-                <p>No project available for this category.</p>
+                <p>{{ 'projects.emptyCategory' | translate }}</p>
               </div>
             }
           </div>

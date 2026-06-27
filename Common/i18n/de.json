@@ -1,0 +1,132 @@
+{
+  "app": {
+    "navigation": {
+      "home": "Startseite",
+      "experiences": "Erfahrung",
+      "projects": "Projekte",
+      "contact": "Kontakt"
+    },
+    "language": "Sprache",
+    "placeholders": {
+      "mobileBottomNav": "Mobile Navigation",
+      "uiButton": "Schaltfläche",
+      "contactLinks": "Kontaktlinks"
+    }
+  },
+  "home": {
+    "name": "Steven De Moor",
+    "position": "Full-Stack Software Engineer",
+    "description": "Ich entwickle moderne, performante und skalierbare Webanwendungen.",
+    "portraitAlt": "Porträt von Steven De Moor"
+  },
+  "projects": {
+    "title": "Portfolio",
+    "subtitle": "Aktuelle Projekte",
+    "loading": "Projekte werden geladen...",
+    "loadError": "Projekte können nicht geladen werden.",
+    "emptyCategory": "Für diese Kategorie ist kein Projekt verfügbar.",
+    "sortBy": "Sortieren nach:",
+    "categories": {
+      "all": "Alle",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullstack": "Fullstack",
+      "uiUx": "UI / UX"
+    },
+    "actions": {
+      "sourceCode": "Quellcode",
+      "viewDemo": "Demo ansehen"
+    },
+    "previewAlt": "Vorschau von {{ title }}"
+  },
+  "experiences": {
+    "title": "Erfahrung",
+    "subtitle": "Mein beruflicher Weg",
+    "loading": "Erfahrung wird geladen...",
+    "loadError": "Erfahrung kann nicht geladen werden.",
+    "empty": "Keine Erfahrung verfügbar.",
+    "sortBy": "Sortieren nach:",
+    "all": "Alle",
+    "logoPlaceholder": "Logo",
+    "toggleDetails": "Erfahrungsdetails ein- oder ausblenden"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Eine Idee, ein Projekt oder eine Gelegenheit?",
+    "subtitleHighlight": "Sprechen wir darüber",
+    "links": {
+      "linkedin": "LinkedIn"
+    },
+    "form": {
+      "name": {
+        "placeholder": "Name",
+        "required": "Der Name ist erforderlich.",
+        "maxlength": "Der Name darf höchstens 100 Zeichen lang sein."
+      },
+      "email": {
+        "placeholder": "E-Mail",
+        "required": "Die E-Mail-Adresse ist erforderlich.",
+        "invalid": "Die E-Mail-Adresse ist ungültig."
+      },
+      "message": {
+        "placeholder": "Nachricht",
+        "required": "Die Nachricht ist erforderlich.",
+        "maxlength": "Die Nachricht darf höchstens 2000 Zeichen lang sein."
+      },
+      "submit": "Senden",
+      "submitting": "Senden..."
+    },
+    "feedback": {
+      "success": "Ihre Nachricht wurde gesendet.",
+      "submitError": "Beim Senden der Nachricht ist ein Fehler aufgetreten.",
+      "prepareError": "Beim Vorbereiten der Nachricht ist ein Fehler aufgetreten.",
+      "invalidPayload": "Ungültige Daten."
+    }
+  },
+  "data": {
+    "projects": {
+      "1": {
+        "title": "Portfolio App",
+        "shortLabel": "Portfolio",
+        "description": "Persönliche Portfolio-Anwendung, entwickelt mit Angular und Node.js."
+      },
+      "2": {
+        "title": "Task Dashboard",
+        "shortLabel": "Dashboard",
+        "description": "Interaktives Dashboard zum Verwalten und Visualisieren von Aufgaben."
+      },
+      "3": {
+        "title": "DevOps Monitor",
+        "shortLabel": "DevOps Monitor",
+        "description": "Backend-Projekt für Pipeline-Überwachung, Alarmierung und Deployment-Transparenz."
+      },
+      "4": {
+        "title": "Chat Application",
+        "shortLabel": "Chat Application",
+        "description": "Moderne Messaging-Oberfläche mit Fokus auf Responsivität, Benutzerfreundlichkeit und Echtzeitinteraktionen."
+      }
+    },
+    "experiences": {
+      "1": {
+        "company": "Example Company",
+        "role": "Frontend-Entwickler",
+        "period": "Jan. 2024 - Dez. 2024",
+        "highlights": [
+          "Wiederverwendbare UI-Komponenten für interne Produkte entwickelt.",
+          "Performance und Wartbarkeit der Frontend-Codebasis verbessert.",
+          "Mit Backend-Entwicklern an API-Integrationen zusammengearbeitet."
+        ]
+      },
+      "2": {
+        "company": "Another Studio",
+        "role": "Fullstack-Entwickler",
+        "period": "Jan. 2023 - Dez. 2023",
+        "highlights": [
+          "Frontend- und Backend-Funktionen für Kundenanwendungen entwickelt.",
+          "REST-APIs implementiert und mit Angular-Services integriert.",
+          "Zu Deployment- und CI-Workflows beigetragen."
+        ]
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/Backend/src/server.js",
-    "test": "node --import tsx --test src/**/*.spec.ts"
+    "test": "node scripts/run-tests.mjs"
   },
   "dependencies": {
     "cors": "^2.8.5",

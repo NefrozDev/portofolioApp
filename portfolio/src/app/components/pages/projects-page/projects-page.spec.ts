@@ -3,6 +3,7 @@ import { of } from 'rxjs';
 
 import { Project } from '../../../../../../Common/models/project.model';
 import { ProjectsApi } from '../../../services/api/projects-api';
+import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { ProjectsPage } from './projects-page';
 
 const projects: Project[] = [
@@ -27,6 +28,7 @@ describe('ProjectsPage', () => {
     await TestBed.configureTestingModule({
       imports: [ProjectsPage],
       providers: [
+        ...provideTestI18n(),
         {
           provide: ProjectsApi,
           useValue: {

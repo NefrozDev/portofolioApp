@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { MobileBottomNav } from './mobile-bottom-nav';
 
 describe('MobileBottomNav', () => {
@@ -8,7 +9,8 @@ describe('MobileBottomNav', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MobileBottomNav]
+      imports: [MobileBottomNav],
+      providers: [...provideTestI18n()]
     })
     .compileComponents();
 

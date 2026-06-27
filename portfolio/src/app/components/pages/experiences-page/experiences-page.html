@@ -3,26 +3,26 @@
     <main class="section experiences-page__main">
       <div class="container">
         <app-section-hero
-          title="Experiences"
-          subtitle="My professional journey"
+          [title]="'experiences.title' | translate"
+          [subtitle]="'experiences.subtitle' | translate"
         ></app-section-hero>
 
         @if (isLoading()) {
           <div class="experiences-page__empty glass-card">
-            <p>Loading experiences...</p>
+            <p>{{ 'experiences.loading' | translate }}</p>
           </div>
         } @else if (loadError()) {
           <div class="experiences-page__empty glass-card">
-            <p>{{ loadError() }}</p>
+            <p>{{ (loadError() ?? '') | translate }}</p>
           </div>
         } @else {
           <div class="experiences-page__toolbar">
-            <span class="experiences-page__toolbar-label">Sort by:</span>
+            <span class="experiences-page__toolbar-label">{{ 'experiences.sortBy' | translate }}</span>
             <button
               type="button"
               class="experiences-page__toolbar-button"
             >
-              All
+              {{ 'experiences.all' | translate }}
             </button>
           </div>
 
@@ -34,7 +34,7 @@
               ></app-experience-card>
             } @empty {
               <div class="experiences-page__empty glass-card">
-                <p>No experience available.</p>
+                <p>{{ 'experiences.empty' | translate }}</p>
               </div>
             }
           </div>

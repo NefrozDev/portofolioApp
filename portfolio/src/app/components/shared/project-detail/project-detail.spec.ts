@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Project } from '../../../../../../Common/models/project.model';
+import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { ProjectDetail } from './project-detail';
 
 const project: Project = {
@@ -21,7 +22,8 @@ describe('ProjectDetail', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProjectDetail]
+      imports: [ProjectDetail],
+      providers: [...provideTestI18n()]
     })
     .compileComponents();
 

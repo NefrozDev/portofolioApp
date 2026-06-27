@@ -11,7 +11,7 @@ export class LanguageService {
 
   setLanguage(language: AppLanguage): void {
     if (!language) {
-      console.warn('LanguageService: langue vide ignorée.');
+      console.warn('LanguageService: empty language ignored.');
       return;
     }
 
@@ -25,7 +25,7 @@ export class LanguageService {
       localStorage.setItem(this.storageKey, language);
     } catch (error) {
       console.error(
-        'LanguageService: erreur lors de l’écriture dans le localStorage.',
+        'LanguageService: failed to write to localStorage.',
         error
       );
     }
@@ -45,7 +45,7 @@ export class LanguageService {
 
       if (!this.isSupportedLanguage(storedLanguage)) {
         console.warn(
-          'LanguageService: langue stockée non supportée, fallback sur EN.'
+          'LanguageService: unsupported stored language, falling back to EN.'
         );
         return AppLanguage.EN;
       }
@@ -53,7 +53,7 @@ export class LanguageService {
       return storedLanguage;
     } catch (error) {
       console.error(
-        'LanguageService: erreur lors de la lecture du localStorage.',
+        'LanguageService: failed to read from localStorage.',
         error
       );
       return AppLanguage.EN;

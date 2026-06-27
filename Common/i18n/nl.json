@@ -1,0 +1,132 @@
+{
+  "app": {
+    "navigation": {
+      "home": "Home",
+      "experiences": "Ervaring",
+      "projects": "Projecten",
+      "contact": "Contact"
+    },
+    "language": "Taal",
+    "placeholders": {
+      "mobileBottomNav": "Mobiele navigatie",
+      "uiButton": "Knop",
+      "contactLinks": "Contactlinks"
+    }
+  },
+  "home": {
+    "name": "Steven De Moor",
+    "position": "Full-Stack Software Engineer",
+    "description": "Ik ontwikkel moderne, performante en schaalbare webapplicaties.",
+    "portraitAlt": "Portret van Steven De Moor"
+  },
+  "projects": {
+    "title": "Portfolio",
+    "subtitle": "Recente projecten",
+    "loading": "Projecten laden...",
+    "loadError": "Projecten kunnen niet worden geladen.",
+    "emptyCategory": "Geen project beschikbaar voor deze categorie.",
+    "sortBy": "Sorteren op:",
+    "categories": {
+      "all": "Alles",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullstack": "Fullstack",
+      "uiUx": "UI / UX"
+    },
+    "actions": {
+      "sourceCode": "Broncode",
+      "viewDemo": "Demo bekijken"
+    },
+    "previewAlt": "Preview van {{ title }}"
+  },
+  "experiences": {
+    "title": "Ervaring",
+    "subtitle": "Mijn professionele traject",
+    "loading": "Ervaring laden...",
+    "loadError": "Ervaring kan niet worden geladen.",
+    "empty": "Geen ervaring beschikbaar.",
+    "sortBy": "Sorteren op:",
+    "all": "Alles",
+    "logoPlaceholder": "Logo",
+    "toggleDetails": "Ervaringsdetails tonen of verbergen"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Een idee, project of opportuniteit?",
+    "subtitleHighlight": "Laten we praten",
+    "links": {
+      "linkedin": "LinkedIn"
+    },
+    "form": {
+      "name": {
+        "placeholder": "Naam",
+        "required": "Naam is verplicht.",
+        "maxlength": "Naam mag niet langer zijn dan 100 tekens."
+      },
+      "email": {
+        "placeholder": "E-mail",
+        "required": "E-mailadres is verplicht.",
+        "invalid": "E-mailadres is ongeldig."
+      },
+      "message": {
+        "placeholder": "Bericht",
+        "required": "Bericht is verplicht.",
+        "maxlength": "Bericht mag niet langer zijn dan 2000 tekens."
+      },
+      "submit": "Versturen",
+      "submitting": "Versturen..."
+    },
+    "feedback": {
+      "success": "Uw bericht is verzonden.",
+      "submitError": "Er is een fout opgetreden bij het verzenden van het bericht.",
+      "prepareError": "Er is een fout opgetreden bij het voorbereiden van het bericht.",
+      "invalidPayload": "Ongeldige gegevens."
+    }
+  },
+  "data": {
+    "projects": {
+      "1": {
+        "title": "Portfolio App",
+        "shortLabel": "Portfolio",
+        "description": "Persoonlijke portfolio-applicatie gebouwd met Angular en Node.js."
+      },
+      "2": {
+        "title": "Task Dashboard",
+        "shortLabel": "Dashboard",
+        "description": "Interactief dashboard om taken te beheren en te visualiseren."
+      },
+      "3": {
+        "title": "DevOps Monitor",
+        "shortLabel": "DevOps Monitor",
+        "description": "Backendproject gericht op monitoring voor pipeline-opvolging, waarschuwingen en zichtbaarheid van deployments."
+      },
+      "4": {
+        "title": "Chat Application",
+        "shortLabel": "Chat Application",
+        "description": "Moderne berichteninterface met focus op responsiviteit, gebruiksgemak en realtime interacties."
+      }
+    },
+    "experiences": {
+      "1": {
+        "company": "Example Company",
+        "role": "Frontend Developer",
+        "period": "Jan. 2024 - Dec. 2024",
+        "highlights": [
+          "Herbruikbare UI-componenten gebouwd voor interne producten.",
+          "Prestaties en onderhoudbaarheid van de frontend-codebase verbeterd.",
+          "Samengewerkt met backendontwikkelaars aan API-integraties."
+        ]
+      },
+      "2": {
+        "company": "Another Studio",
+        "role": "Fullstack Developer",
+        "period": "Jan. 2023 - Dec. 2023",
+        "highlights": [
+          "Frontend- en backendfeatures ontwikkeld voor klantapplicaties.",
+          "REST-API's geïmplementeerd en geïntegreerd met Angular-services.",
+          "Bijgedragen aan deployment- en CI-workflows."
+        ]
+      }
+    }
+  }
+}

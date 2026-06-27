@@ -3,6 +3,7 @@ import { of } from 'rxjs';
 
 import { Experience } from '../../../../../../Common/models/experience.model';
 import { ExperiencesApi } from '../../../services/api/experiences-api';
+import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { ExperiencesPage } from './experiences-page';
 
 const experiences: Experience[] = [
@@ -25,6 +26,7 @@ describe('ExperiencesPage', () => {
     await TestBed.configureTestingModule({
       imports: [ExperiencesPage],
       providers: [
+        ...provideTestI18n(),
         {
           provide: ExperiencesApi,
           useValue: {

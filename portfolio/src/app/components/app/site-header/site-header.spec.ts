@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
+import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { SiteHeader } from './site-header';
 
 describe('SiteHeader', () => {
@@ -10,7 +11,7 @@ describe('SiteHeader', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SiteHeader],
-      providers: [provideRouter([])]
+      providers: [provideRouter([]), ...provideTestI18n()]
     })
     .compileComponents();
 

@@ -5,7 +5,8 @@
     "strict": true,
     "declaration": false,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "**/*.json"]
 }

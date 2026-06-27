@@ -21,7 +21,7 @@ export class LanguageSwitcher {
 
   selectLanguage(languageCode: AppLanguage): void {
     if (!languageCode) {
-      console.warn('LanguageSwitcher: languageCode vide ignoré.');
+      console.warn('LanguageSwitcher: empty languageCode ignored.');
       return;
     }
 

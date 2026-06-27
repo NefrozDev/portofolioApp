@@ -1,5 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { AppLanguage } from '../../../../../../Common/enums/app-language.enum';
 import { NAVIGATION_ITEMS } from '../../../../../../Common/constants/navigation-items';
 import { LANGUAGE_OPTIONS } from '../../../../../../Common/constants/language-options';
@@ -10,7 +11,7 @@ import { LanguageService } from '../../../services/language';
 @Component({
   selector: 'app-site-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, TranslatePipe],
   templateUrl: './site-header.html',
   styleUrls: ['./site-header.scss']
 })
@@ -19,8 +20,7 @@ export class SiteHeader {
   private readonly languageService = inject(LanguageService);
 
   readonly navigationItems: NavItem[] = NAVIGATION_ITEMS;
-  readonly languages: LanguageOption[] = LANGUAGE_OPTIONS; // ✅ added
-  readonly AppLanguage = AppLanguage; // (optional, not needed anymore but ok to keep)
+  readonly languages: LanguageOption[] = LANGUAGE_OPTIONS;
 
   readonly currentLanguage = computed(() =>
     this.languageService.currentLanguage()
@@ -38,7 +38,7 @@ export class SiteHeader {
 
   changeLanguage(language: AppLanguage): void {
     if (!language) {
-      console.warn('SiteHeader: langue vide ignorée.');
+      console.warn('SiteHeader: empty language ignored.');
       return;
     }
 
