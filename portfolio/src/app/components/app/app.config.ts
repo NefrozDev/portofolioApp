@@ -1,7 +1,16 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  ENVIRONMENT_INITIALIZER,
+  inject,
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
+import { provideTranslateService } from '@ngx-translate/core';
 
+import { AppLanguage } from '@common/enums/app-language.enum';
+import { I18nService } from '../../services/i18n';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -9,6 +18,17 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient()
+    provideHttpClient(),
+    ...provideTranslateService({
+      fallbackLang: AppLanguage.EN,
+      lang: AppLanguage.EN
+    }),
+    {
+      provide: ENVIRONMENT_INITIALIZER,
+      multi: true,
+      useValue: () => {
+        inject(I18nService);
+      }
+    }
   ]
 };

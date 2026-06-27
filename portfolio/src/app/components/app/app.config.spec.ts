@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 import { appConfig } from './app.config';
 
 describe('appConfig', () => {
   beforeEach(() => {
+    localStorage.clear();
+
     TestBed.configureTestingModule({
       providers: appConfig.providers
     });
@@ -17,5 +20,9 @@ describe('appConfig', () => {
 
   it('should provide HttpClient', () => {
     expect(TestBed.inject(HttpClient)).toBeTruthy();
+  });
+
+  it('should provide ngx-translate', () => {
+    expect(TestBed.inject(TranslateService)).toBeTruthy();
   });
 });
