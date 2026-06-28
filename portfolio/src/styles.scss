@@ -1,5 +1,5 @@
 /* =========================
-   RESET GLOBAL
+   Global reset
    ========================= */
 *,
 *::before,
@@ -7,6 +7,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 
 html,
@@ -28,12 +29,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+input,
+textarea,
+select,
+[contenteditable='true'] {
+  user-select: text;
+}
+
 img,
 picture,
 svg,
 canvas {
   display: block;
   max-width: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 button,
@@ -71,7 +81,7 @@ router-outlet + * {
 }
 
 /* =========================
-   VARIABLES DESIGN SYSTEM
+   Design system variables
    ========================= */
 :root {
   --app-bg-start: #020617;
@@ -119,14 +129,14 @@ router-outlet + * {
 }
 
 /* =========================
-   TYPOGRAPHIE
+   Typography
    ========================= */
 h1,
 h2,
 h3,
 .section-title,
 .page-title {
-  font-family: "Space Grotesk", Inter, Arial, sans-serif;
+  font-family: 'Space Grotesk', Inter, Arial, sans-serif;
 }
 
 .page-title {
@@ -136,6 +146,7 @@ h3,
   background: linear-gradient(90deg, #e2e8f0 0%, #7b61ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .page-subtitle {
@@ -145,6 +156,7 @@ h3,
   background: linear-gradient(90deg, #cbd5f5 0%, #94a3b8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .body-muted {
@@ -156,7 +168,7 @@ h3,
 }
 
 /* =========================
-   LAYOUT
+   Layout
    ========================= */
 .page-shell {
   position: relative;
@@ -207,7 +219,7 @@ h3,
 }
 
 /* =========================
-   HEADER
+   Header
    ========================= */
 .site-header {
   position: sticky;
@@ -264,7 +276,7 @@ h3,
 }
 
 /* =========================
-   HERO / TITRES
+   Hero titles
    ========================= */
 .hero-block {
   display: flex;
@@ -290,7 +302,7 @@ h3,
 }
 
 /* =========================
-   CARTES
+   Cards
    ========================= */
 .glass-card {
   background:
@@ -321,7 +333,7 @@ h3,
 }
 
 /* =========================
-   BOUTONS
+   Buttons
    ========================= */
 .app-button {
   display: inline-flex;
@@ -359,7 +371,7 @@ h3,
 }
 
 /* =========================
-   FORMULAIRES
+   Forms
    ========================= */
 .form-grid {
   display: grid;
@@ -391,7 +403,7 @@ h3,
 }
 
 /* =========================
-   UTILITAIRES
+   Utilities
    ========================= */
 .sr-only {
   position: absolute;
@@ -414,7 +426,7 @@ h3,
 }
 
 /* =========================
-   RESPONSIVE
+   Responsive
    ========================= */
 @media (max-width: 64rem) {
   .site-header__nav {
@@ -456,7 +468,9 @@ h3,
   }
 }
 
-
+/* =========================
+   Scrollbar
+   ========================= */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   width: 0.5rem;
