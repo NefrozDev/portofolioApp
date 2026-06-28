@@ -14,10 +14,12 @@
     }
   },
   "home": {
+    "firstName": "Steven",
+    "lastName": "De Moor",
     "name": "Steven De Moor",
     "position": "Full-Stack Software Engineer",
-    "description": "Ideeën omzetten in concrete en succesvolle projecten.",
-    "descriptionBis": "Duik in mijn wereld, ontdek mijn realisaties en laten we samen praten over uw toekomstige projecten.",
+    "description": "Ideeën omzetten in concrete en performante projecten.",
+    "descriptionBis": "Duik in mijn wereld, ontdek mijn realisaties en laten we praten over je toekomstige projecten.",
     "portraitAlt": "Portret van Steven De Moor"
   },
   "projects": {

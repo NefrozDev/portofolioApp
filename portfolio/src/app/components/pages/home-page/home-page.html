@@ -5,7 +5,15 @@
 
   <div class="home__content">
     <div class="home__headline">
-      <h1 class="home__name">{{ 'home.name' | translate }}</h1>
+      <h1 class="home__name">
+        <span class="home__firstname">
+          {{ 'home.firstName' | translate }}
+        </span>
+
+        <span class="home__lastname">
+          {{ 'home.lastName' | translate }}
+        </span>
+      </h1>
 
       <div class="home__subtitle-row">
         <span class="home__subtitle-line"></span>

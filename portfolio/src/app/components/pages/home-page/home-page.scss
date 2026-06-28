@@ -81,7 +81,26 @@
   font-weight: 700;
   line-height: 1.05;
   text-align: center;
-  color: #fff;
+}
+
+.home__firstname {
+  color: #ffffff;
+}
+
+.home__lastname {
+  margin-left: 0.2em;
+
+  background: linear-gradient(
+    90deg,
+    #e2e8f0 0%,
+    #cbd5f5 35%,
+    #9aa8ff 70%,
+    #7b61ff 100%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .home__subtitle-row {
