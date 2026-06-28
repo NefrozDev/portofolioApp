@@ -1,22 +1,32 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .language-switcher {
   display: grid;
-  grid-template-columns: repeat(3, minmax(10rem, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   width: 100%;
-  max-width: 36rem;
 }
 
 .language-switcher__button {
+  width: 100%;
   min-height: 2.75rem;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1.25rem;
+
   border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
+
   background: rgba(30, 41, 59, 0.8);
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+
   color: #ffffff;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.2;
+  text-align: center;
+
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -40,8 +50,7 @@
 
 @media (max-width: 48rem) {
   .language-switcher {
-    grid-template-columns: repeat(2, minmax(8rem, 1fr));
-    max-width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .language-switcher__button {
