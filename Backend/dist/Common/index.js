@@ -19,3 +19,4 @@ __exportStar(require("./models/experience.model"), exports);
 __exportStar(require("./models/contact.model"), exports);
 __exportStar(require("./enums/app-language.enum"), exports);
 __exportStar(require("./constants/navigation-items"), exports);
+__exportStar(require("./i18n"), exports);
