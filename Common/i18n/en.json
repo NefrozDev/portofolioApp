@@ -110,24 +110,87 @@
       }
     },
     "experiences": {
-      "1": {
-        "company": "Example Company",
-        "role": "Frontend Developer",
-        "period": "Jan 2024 - Dec 2024",
+      "icgreen-lead-dev": {
+        "company": "IC GREEN",
+        "role": "Lead Developer",
+        "period": "May 2025 - Present",
         "highlights": [
-          "Built reusable UI components for internal products.",
-          "Improved performance and maintainability of the frontend codebase.",
-          "Collaborated with backend developers on API integration."
+          "Lead the development of an autonomous agricultural robotics platform designed to remove weeds without toxic herbicides.",
+          "Drive software architecture, development activities, and technical direction across the robot software ecosystem.",
+          "Coordinate developers working on robot implementation, testing, validation, and field-ready software delivery.",
+          "Develop full-stack features across an Angular operator interface and a Node.js backend deployed on the robot.",
+          "Collaborate with robotics, AI, and hardware engineers to integrate AI-powered weed detection into operational workflows."
         ]
       },
-      "2": {
-        "company": "Another Studio",
-        "role": "Fullstack Developer",
-        "period": "Jan 2023 - Dec 2023",
+      "tihange-software-engineer": {
+        "company": "Akkodis - Tihange Nuclear Power Plant",
+        "role": "Software Engineer",
+        "period": "Sep 2024 - Jun 2025",
         "highlights": [
-          "Developed frontend and backend features for client applications.",
-          "Implemented REST APIs and integrated them with Angular services.",
-          "Contributed to deployment and CI workflows."
+          "Managed the full development cycle of critical applications supporting operational processes in a regulated nuclear environment.",
+          "Designed and delivered tools for personnel accreditation, sealed source management, technical equipment requalification, and long-term operation support.",
+          "Built secure and reliable software solutions focused on efficiency, traceability, compliance, and operational continuity."
+        ]
+      },
+      "akkodis-internal-project": {
+        "company": "Akkodis - Innovation Department",
+        "role": "Software Engineering Consultant",
+        "period": "Dec 2023 - Sep 2024",
+        "highlights": [
+          "Led front-end development of an internal recruitment platform connected to a FastAPI Python backend.",
+          "Implemented AI-assisted features to process CV files, extract relevant information, and support recruiter workflows.",
+          "Defined coding standards, reusable patterns, and best practices to improve maintainability and delivery quality."
+        ]
+      },
+      "pg-lfe-consultant": {
+        "company": "Procter & Gamble - LFE Department",
+        "role": "Software Engineering Consultant",
+        "period": "May 2023 - Nov 2023",
+        "highlights": [
+          "Architected and developed an Angular application integrated with REST APIs and a C#/.NET backend.",
+          "Connected multiple data sources, including Siemens, custom, and local databases.",
+          "Built data visualization features including graphs, tables, image rendering, and analytical views.",
+          "Delivered a feature-rich application helping stakeholders retrieve filtered samples and generate actionable insights."
+        ]
+      },
+      "pg-ana-sud-consultant": {
+        "company": "Procter & Gamble - ANA & SUD Departments",
+        "role": "Software Engineering Consultant",
+        "period": "Apr 2022 - Apr 2023",
+        "highlights": [
+          "Designed and optimized C# microprocesses tailored to analytical and laboratory workflows.",
+          "Automated experiment file uploads, data extraction, calculations, and secure database integration.",
+          "Supported approximately 15 testing methodologies while improving productivity, data integrity, and process reliability."
+        ]
+      },
+      "avanade-academy": {
+        "company": "Avanade Academy Pilot Project",
+        "role": "Software Engineering Consultant",
+        "period": "Nov 2021 - Apr 2022",
+        "highlights": [
+          "Completed an intensive training program focused on the Microsoft Dynamics 365 suite.",
+          "Collaborated with a multidisciplinary team to deliver a final project based on Dynamics 365 solutions.",
+          "Strengthened consulting, delivery, and enterprise software implementation practices."
+        ]
+      },
+      "noomia-angular-ionic": {
+        "company": "Noomia",
+        "role": "Angular / Ionic Developer",
+        "period": "Jan 2021 - Mar 2021",
+        "highlights": [
+          "Maintained and enhanced mobile applications built with Angular and Ionic.",
+          "Worked on geolocation features, RxJS-based flows, NgRx state management, and mobile UI styling.",
+          "Contributed to research and development initiatives focused on user experience and application performance."
+        ]
+      },
+      "inforius-fullstack": {
+        "company": "INFORIUS",
+        "role": "Full-Stack Angular / Node.js Developer",
+        "period": "Jan 2020 - Jun 2020",
+        "highlights": [
+          "Developed a full-stack application for managing room reservations in public services.",
+          "Built the Angular front end and Node.js backend, including business logic and database interactions.",
+          "Designed user interfaces and ensured consistent integration across the full application stack."
         ]
       }
     }

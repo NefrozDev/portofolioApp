@@ -1,16 +1,16 @@
 {
   "app": {
     "navigation": {
-      "home": "Inicio",
-      "experiences": "Experiencia",
-      "projects": "Proyectos",
-      "contact": "Contacto"
+      "home": "Home",
+      "experiences": "Experiences",
+      "projects": "Projects",
+      "contact": "Contact"
     },
-    "language": "Idioma",
+    "language": "Language",
     "placeholders": {
-      "mobileBottomNav": "Navegación móvil",
-      "uiButton": "Botón",
-      "contactLinks": "Enlaces de contacto"
+      "mobileBottomNav": "Mobile navigation",
+      "uiButton": "Button",
+      "contactLinks": "Contact links"
     }
   },
   "home": {
@@ -18,72 +18,72 @@
     "lastName": "De Moor",
     "name": "Steven De Moor",
     "position": "Full-Stack Software Engineer",
-    "description": "Transformar ideas en proyectos concretos y eficientes.",
-    "descriptionBis": "Entra en mi universo, descubre mis proyectos y hablemos sobre tus futuros desarrollos.",
-    "portraitAlt": "Retrato de Steven De Moor"
+    "description": "Turning ideas into concrete, high-performing projects.",
+    "descriptionBis": "Step into my world, discover my work, and let's discuss your future projects.",
+    "portraitAlt": "Portrait of Steven De Moor"
   },
   "projects": {
     "title": "Portfolio",
-    "subtitle": "Proyectos recientes",
-    "loading": "Cargando proyectos...",
-    "loadError": "No se pueden cargar los proyectos.",
-    "emptyCategory": "No hay ningún proyecto disponible para esta categoría.",
-    "sortBy": "Ordenar por:",
+    "subtitle": "Recent projects",
+    "loading": "Loading projects...",
+    "loadError": "Unable to load projects.",
+    "emptyCategory": "No project available for this category.",
+    "sortBy": "Sort by:",
     "categories": {
-      "all": "Todos",
+      "all": "All",
       "frontend": "Frontend",
       "backend": "Backend",
       "fullstack": "Fullstack",
       "uiUx": "UI / UX"
     },
     "actions": {
-      "sourceCode": "Código fuente",
-      "viewDemo": "Ver demo"
+      "sourceCode": "Source code",
+      "viewDemo": "View demo"
     },
-    "previewAlt": "Vista previa de {{ title }}"
+    "previewAlt": "Preview of {{ title }}"
   },
   "experiences": {
-    "title": "Experiencia",
-    "subtitle": "Mi trayectoria profesional",
-    "loading": "Cargando experiencia...",
-    "loadError": "No se puede cargar la experiencia.",
-    "empty": "No hay experiencia disponible.",
-    "sortBy": "Ordenar por:",
-    "all": "Todas",
+    "title": "Experiences",
+    "subtitle": "My professional journey",
+    "loading": "Loading experiences...",
+    "loadError": "Unable to load experiences.",
+    "empty": "No experience available.",
+    "sortBy": "Sort by:",
+    "all": "All",
     "logoPlaceholder": "Logo",
-    "toggleDetails": "Mostrar u ocultar detalles de la experiencia"
+    "toggleDetails": "Toggle experience details"
   },
   "contact": {
-    "title": "Contacto",
-    "subtitle": "¿Una idea, un proyecto o una oportunidad?",
-    "subtitleHighlight": "Hablemos",
+    "title": "Contact",
+    "subtitle": "An idea, a project or an opportunity?",
+    "subtitleHighlight": "Let's talk",
     "links": {
       "linkedin": "LinkedIn"
     },
     "form": {
       "name": {
-        "placeholder": "Nombre",
-        "required": "El nombre es obligatorio.",
-        "maxlength": "El nombre no puede superar los 100 caracteres."
+        "placeholder": "Name",
+        "required": "Name is required.",
+        "maxlength": "Name cannot exceed 100 characters."
       },
       "email": {
-        "placeholder": "Correo electrónico",
-        "required": "El correo electrónico es obligatorio.",
-        "invalid": "El correo electrónico no es válido."
+        "placeholder": "Email",
+        "required": "Email address is required.",
+        "invalid": "Email address is invalid."
       },
       "message": {
-        "placeholder": "Mensaje",
-        "required": "El mensaje es obligatorio.",
-        "maxlength": "El mensaje no puede superar los 2000 caracteres."
+        "placeholder": "Message",
+        "required": "Message is required.",
+        "maxlength": "Message cannot exceed 2000 characters."
       },
-      "submit": "Enviar",
-      "submitting": "Enviando..."
+      "submit": "Send",
+      "submitting": "Sending..."
     },
     "feedback": {
-      "success": "Tu mensaje se ha enviado correctamente.",
-      "submitError": "Se produjo un error al enviar el mensaje.",
-      "prepareError": "Se produjo un error al preparar el mensaje.",
-      "invalidPayload": "Datos no válidos."
+      "success": "Your message has been sent.",
+      "submitError": "An error occurred while sending the message.",
+      "prepareError": "An error occurred while preparing the message.",
+      "invalidPayload": "Invalid payload."
     }
   },
   "data": {
@@ -91,43 +91,106 @@
       "1": {
         "title": "Portfolio App",
         "shortLabel": "Portfolio",
-        "description": "Aplicación de portfolio personal creada con Angular y Node.js."
+        "description": "Personal portfolio application built with Angular and Node.js."
       },
       "2": {
         "title": "Task Dashboard",
         "shortLabel": "Dashboard",
-        "description": "Dashboard interactivo para gestionar y visualizar tareas."
+        "description": "Interactive dashboard for managing and visualising tasks."
       },
       "3": {
         "title": "DevOps Monitor",
         "shortLabel": "DevOps Monitor",
-        "description": "Proyecto backend orientado al monitoreo de pipelines, alertas y visibilidad de despliegues."
+        "description": "Monitoring-oriented backend project for pipeline supervision, alerting and deployment visibility."
       },
       "4": {
         "title": "Chat Application",
         "shortLabel": "Chat Application",
-        "description": "Interfaz de mensajería moderna centrada en la adaptabilidad, la usabilidad y las interacciones en tiempo real."
+        "description": "Modern messaging interface focused on responsiveness, usability and real-time interactions."
       }
     },
     "experiences": {
-      "1": {
-        "company": "Example Company",
-        "role": "Desarrollador Frontend",
-        "period": "Ene. 2024 - Dic. 2024",
+      "icgreen-lead-dev": {
+        "company": "IC GREEN",
+        "role": "Lead Developer",
+        "period": "May 2025 - Presente",
         "highlights": [
-          "Creación de componentes UI reutilizables para productos internos.",
-          "Mejora del rendimiento y la mantenibilidad del código frontend.",
-          "Colaboración con desarrolladores backend en la integración de API."
+          "Lidero el desarrollo de una plataforma robótica agrícola autónoma diseñada para eliminar malas hierbas sin herbicidas tóxicos.",
+          "Defino la arquitectura de software, las actividades de desarrollo y la dirección técnica del ecosistema software del robot.",
+          "Coordino a desarrolladores encargados de la implementación robótica, pruebas, validación y entrega de software listo para campo.",
+          "Desarrollo funcionalidades full-stack para una interfaz de operador en Angular y un backend Node.js desplegado en el robot.",
+          "Colaboro con equipos de robótica, IA y hardware para integrar la detección de malas hierbas con IA en los flujos operativos."
         ]
       },
-      "2": {
-        "company": "Another Studio",
-        "role": "Desarrollador Fullstack",
-        "period": "Ene. 2023 - Dic. 2023",
+      "tihange-software-engineer": {
+        "company": "Akkodis - Tihange Nuclear Power Plant",
+        "role": "Software Engineer",
+        "period": "Sep 2024 - Jun 2025",
         "highlights": [
-          "Desarrollo de funcionalidades frontend y backend para aplicaciones de clientes.",
-          "Implementación de API REST e integración con servicios Angular.",
-          "Contribución a workflows de despliegue y CI."
+          "Gestioné el ciclo completo de desarrollo de aplicaciones críticas que dan soporte a procesos operativos en un entorno nuclear regulado.",
+          "Diseñé y entregué herramientas para acreditación de personal, gestión de fuentes selladas, recalificación de equipos técnicos y soporte a operaciones a largo plazo.",
+          "Construí soluciones software seguras y fiables centradas en eficiencia, trazabilidad, cumplimiento y continuidad operativa."
+        ]
+      },
+      "akkodis-internal-project": {
+        "company": "Akkodis - Innovation Department",
+        "role": "Software Engineering Consultant",
+        "period": "Dic 2023 - Sep 2024",
+        "highlights": [
+          "Lideré el desarrollo front-end de una plataforma interna de contratación conectada a un backend Python FastAPI.",
+          "Implementé funcionalidades asistidas por IA para procesar archivos CV, extraer información relevante y apoyar los flujos de trabajo de recruiters.",
+          "Definí estándares de código, patrones reutilizables y buenas prácticas para mejorar la mantenibilidad y la calidad de entrega."
+        ]
+      },
+      "pg-lfe-consultant": {
+        "company": "Procter & Gamble - LFE Department",
+        "role": "Software Engineering Consultant",
+        "period": "May 2023 - Nov 2023",
+        "highlights": [
+          "Arquitecté y desarrollé una aplicación Angular integrada con APIs REST y un backend C#/.NET.",
+          "Conecté múltiples fuentes de datos, incluidas Siemens, bases de datos personalizadas y locales.",
+          "Construí funcionalidades de visualización de datos como gráficos, tablas, renderizado de imágenes y vistas analíticas.",
+          "Entregué una aplicación completa que ayudó a los stakeholders a recuperar muestras filtradas y generar información accionable."
+        ]
+      },
+      "pg-ana-sud-consultant": {
+        "company": "Procter & Gamble - ANA & SUD Departments",
+        "role": "Software Engineering Consultant",
+        "period": "Abr 2022 - Abr 2023",
+        "highlights": [
+          "Diseñé y optimicé microprocesos C# adaptados a flujos analíticos y de laboratorio.",
+          "Automaticé cargas de archivos de experimentos, extracción de datos, cálculos e integración segura con bases de datos.",
+          "Di soporte a aproximadamente 15 metodologías de prueba, mejorando productividad, integridad de datos y fiabilidad de procesos."
+        ]
+      },
+      "avanade-academy": {
+        "company": "Avanade Academy Pilot Project",
+        "role": "Software Engineering Consultant",
+        "period": "Nov 2021 - Abr 2022",
+        "highlights": [
+          "Completé un programa intensivo de formación centrado en Microsoft Dynamics 365.",
+          "Colaboré con un equipo multidisciplinar para entregar un proyecto final basado en soluciones Dynamics 365.",
+          "Reforcé prácticas de consultoría, delivery e implementación de software empresarial."
+        ]
+      },
+      "noomia-angular-ionic": {
+        "company": "Noomia",
+        "role": "Angular / Ionic Developer",
+        "period": "Ene 2021 - Mar 2021",
+        "highlights": [
+          "Mantuve y mejoré aplicaciones móviles desarrolladas con Angular e Ionic.",
+          "Trabajé en funcionalidades de geolocalización, flujos RxJS, gestión de estado con NgRx y estilos de interfaces móviles.",
+          "Contribuí a iniciativas de investigación y desarrollo centradas en experiencia de usuario y rendimiento de la aplicación."
+        ]
+      },
+      "inforius-fullstack": {
+        "company": "INFORIUS",
+        "role": "Full-Stack Angular / Node.js Developer",
+        "period": "Ene 2020 - Jun 2020",
+        "highlights": [
+          "Desarrollé una aplicación full-stack para gestionar reservas de salas en servicios públicos.",
+          "Construí el front-end Angular y el backend Node.js, incluyendo lógica de negocio e interacciones con bases de datos.",
+          "Diseñé interfaces de usuario y aseguré una integración coherente en todo el stack de la aplicación."
         ]
       }
     }

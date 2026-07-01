@@ -59,13 +59,43 @@ const PROJECT_METADATA: Array<
 
 const EXPERIENCE_METADATA: Array<Pick<Experience, 'id' | 'technologies' | 'isExpanded'>> = [
   {
-    id: '1',
-    technologies: ['Angular', 'TypeScript', 'SCSS'],
+    id: 'icgreen-lead-dev',
+    technologies: ['Angular', 'TypeScript', 'Node.js', 'Docker', 'ROS / ROS2', 'MQTT', 'AI'],
+    isExpanded: true
+  },
+  {
+    id: 'tihange-software-engineer',
+    technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'SQL', 'Azure DevOps'],
     isExpanded: false
   },
   {
-    id: '2',
-    technologies: ['Angular', 'Node.js', 'Express', 'PostgreSQL'],
+    id: 'akkodis-internal-project',
+    technologies: ['Angular', 'TypeScript', 'FastAPI', 'Python', 'AI', 'Docker'],
+    isExpanded: false
+  },
+  {
+    id: 'pg-lfe-consultant',
+    technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'REST API', 'SQL'],
+    isExpanded: false
+  },
+  {
+    id: 'pg-ana-sud-consultant',
+    technologies: ['C#', '.NET', 'SQL', 'Automation', 'Data Processing'],
+    isExpanded: false
+  },
+  {
+    id: 'avanade-academy',
+    technologies: ['Microsoft Dynamics 365', 'Power Platform', 'Consulting'],
+    isExpanded: false
+  },
+  {
+    id: 'noomia-angular-ionic',
+    technologies: ['Angular', 'Ionic', 'TypeScript', 'RxJS', 'NgRx', 'SCSS'],
+    isExpanded: false
+  },
+  {
+    id: 'inforius-fullstack',
+    technologies: ['Angular', 'Node.js', 'Express', 'SQL', 'TypeScript'],
     isExpanded: false
   }
 ];
