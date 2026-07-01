@@ -1,42 +1,61 @@
 .experience-card {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   padding: 1.25rem;
   transition:
-    background 0.46s ease,
-    border-color 0.46s ease,
-    box-shadow 0.46s ease,
-    transform 0.46s ease;
+    border-color 0.58s cubic-bezier(0.45, 0, 0.2, 1),
+    box-shadow 0.58s cubic-bezier(0.45, 0, 0.2, 1),
+    transform 0.58s cubic-bezier(0.45, 0, 0.2, 1);
 }
 
 .experience-card::before {
   content: '';
   position: absolute;
   inset: 0 auto 0 0;
+  z-index: 1;
   width: 0.25rem;
   background: linear-gradient(180deg, var(--primary-2) 0%, var(--primary) 100%);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.46s ease;
+  transition: opacity 0.58s cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.experience-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(135deg, rgba(79, 140, 255, 0.16) 0%, rgba(123, 97, 255, 0.12) 45%, rgba(30, 41, 59, 0.78) 100%),
+    linear-gradient(0deg, rgba(30, 41, 59, 0.18) 0%, rgba(30, 41, 59, 0.18) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.58s cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.experience-card > * {
+  position: relative;
+  z-index: 2;
 }
 
 .experience-card.experience-card--expanded {
-  background:
-    linear-gradient(135deg, rgba(79, 140, 255, 0.16) 0%, rgba(123, 97, 255, 0.12) 45%, rgba(30, 41, 59, 0.78) 100%),
-    linear-gradient(0deg, rgba(30, 41, 59, 0.88) 0%, rgba(30, 41, 59, 0.88) 100%);
   border-color: rgba(123, 97, 255, 0.62);
   box-shadow:
     0 28px 78px rgba(79, 140, 255, 0.22),
     inset 0 0 0 1px rgba(123, 97, 255, 0.2);
   transform: translateY(-0.125rem);
   transition:
-    background 0.46s ease,
-    border-color 0.46s ease,
-    box-shadow 0.46s ease,
-    transform 0.46s ease;
+    border-color 0.58s cubic-bezier(0.45, 0, 0.2, 1),
+    box-shadow 0.58s cubic-bezier(0.45, 0, 0.2, 1),
+    transform 0.58s cubic-bezier(0.45, 0, 0.2, 1);
 }
 
 .experience-card.experience-card--expanded::before {
+  opacity: 1;
+}
+
+.experience-card.experience-card--expanded::after {
   opacity: 1;
 }
 
