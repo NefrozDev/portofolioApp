@@ -49,4 +49,14 @@ describe('ExperienceCard', () => {
 
     expect(card.classList.contains('experience-card--expanded')).toBeFalse();
   });
+
+  it('should keep the details region mounted so closing can animate', () => {
+    fixture.componentRef.setInput('experience', { ...experience, isExpanded: false });
+    fixture.detectChanges();
+
+    const content = fixture.nativeElement.querySelector('.experience-card__content') as HTMLElement;
+
+    expect(content).not.toBeNull();
+    expect(content.getAttribute('aria-hidden')).toBe('true');
+  });
 });
