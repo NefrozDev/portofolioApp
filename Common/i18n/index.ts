@@ -62,7 +62,7 @@ const EXPERIENCE_METADATA: Array<
 > = [
   {
     id: 'icgreen-lead-dev',
-    logoUrl: '/img/experiences/ic-green.svg',
+    logoUrl: '/img/experiences/ic-green.png',
     technologies: ['Angular', 'TypeScript', 'Node.js', 'Docker', 'ROS / ROS2', 'MQTT', 'AI'],
     isExpanded: true
   },
@@ -98,13 +98,13 @@ const EXPERIENCE_METADATA: Array<
   },
   {
     id: 'noomia-angular-ionic',
-    logoUrl: '/img/experiences/noomia.svg',
+    logoUrl: '/img/experiences/noomia.png',
     technologies: ['Angular', 'Ionic', 'TypeScript', 'RxJS', 'NgRx', 'SCSS'],
     isExpanded: false
   },
   {
     id: 'inforius-fullstack',
-    logoUrl: '/img/experiences/inforius.svg',
+    logoUrl: '/img/experiences/inforius.png',
     technologies: ['Angular', 'Node.js', 'Express', 'SQL', 'TypeScript'],
     isExpanded: false
   }
