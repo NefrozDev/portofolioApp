@@ -3,7 +3,8 @@ export interface Experience {
   company: string;
   role: string;
   period: string;
-  technologies: string[];
   highlights: string[];
-  isExpanded?: boolean;
+  technologies: string[];
+  isExpanded: boolean;
+  logoUrl?: string;
 }

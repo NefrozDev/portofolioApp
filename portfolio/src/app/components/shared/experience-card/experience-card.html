@@ -5,7 +5,15 @@
   <div class="experience-card__header">
     <div class="experience-card__identity">
       <div class="experience-card__logo">
-        <span>[{{ 'experiences.logoPlaceholder' | translate }}]</span>
+        @if (experience().logoUrl) {
+          <img
+            [src]="experience().logoUrl"
+            [alt]="experience().company + ' logo'"
+            (error)="onLogoError($event)"
+          />
+        } @else {
+          <span>[{{ 'experiences.logoPlaceholder' | translate }}]</span>
+        }
       </div>
 
       <div class="experience-card__meta">

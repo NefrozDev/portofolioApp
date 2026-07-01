@@ -23,4 +23,14 @@ export class ExperienceCard {
 
     this.toggle.emit(currentExperience.id);
   }
+
+  onLogoError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.style.display = 'none';
+
+    const placeholder = document.createElement('span');
+    placeholder.textContent = '[Logo]';
+
+    img.parentElement?.appendChild(placeholder);
+  }
 }

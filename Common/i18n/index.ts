@@ -57,44 +57,54 @@ const PROJECT_METADATA: Array<
   }
 ];
 
-const EXPERIENCE_METADATA: Array<Pick<Experience, 'id' | 'technologies' | 'isExpanded'>> = [
+const EXPERIENCE_METADATA: Array<
+  Pick<Experience, 'id' | 'technologies' | 'isExpanded' | 'logoUrl'>
+> = [
   {
     id: 'icgreen-lead-dev',
+    logoUrl: '/img/experiences/ic-green.svg',
     technologies: ['Angular', 'TypeScript', 'Node.js', 'Docker', 'ROS / ROS2', 'MQTT', 'AI'],
     isExpanded: true
   },
   {
     id: 'tihange-software-engineer',
+    logoUrl: '/img/experiences/akkodis.svg',
     technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'SQL', 'Azure DevOps'],
     isExpanded: false
   },
   {
     id: 'akkodis-internal-project',
+    logoUrl: '/img/experiences/akkodis.svg',
     technologies: ['Angular', 'TypeScript', 'FastAPI', 'Python', 'AI', 'Docker'],
     isExpanded: false
   },
   {
     id: 'pg-lfe-consultant',
+    logoUrl: '/img/experiences/procter-gamble.svg',
     technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'REST API', 'SQL'],
     isExpanded: false
   },
   {
     id: 'pg-ana-sud-consultant',
+    logoUrl: '/img/experiences/procter-gamble.svg',
     technologies: ['C#', '.NET', 'SQL', 'Automation', 'Data Processing'],
     isExpanded: false
   },
   {
     id: 'avanade-academy',
+    logoUrl: '/img/experiences/avanade.svg',
     technologies: ['Microsoft Dynamics 365', 'Power Platform', 'Consulting'],
     isExpanded: false
   },
   {
     id: 'noomia-angular-ionic',
+    logoUrl: '/img/experiences/noomia.svg',
     technologies: ['Angular', 'Ionic', 'TypeScript', 'RxJS', 'NgRx', 'SCSS'],
     isExpanded: false
   },
   {
     id: 'inforius-fullstack',
+    logoUrl: '/img/experiences/inforius.svg',
     technologies: ['Angular', 'Node.js', 'Express', 'SQL', 'TypeScript'],
     isExpanded: false
   }
