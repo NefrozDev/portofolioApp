@@ -34,4 +34,19 @@ describe('ExperienceCard', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should apply the expanded state class when open', () => {
+    const card = fixture.nativeElement.querySelector('.experience-card') as HTMLElement;
+
+    expect(card.classList.contains('experience-card--expanded')).toBeTrue();
+  });
+
+  it('should remove the expanded state class when closed', () => {
+    fixture.componentRef.setInput('experience', { ...experience, isExpanded: false });
+    fixture.detectChanges();
+
+    const card = fixture.nativeElement.querySelector('.experience-card') as HTMLElement;
+
+    expect(card.classList.contains('experience-card--expanded')).toBeFalse();
+  });
 });
