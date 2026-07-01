@@ -48,7 +48,7 @@
     "loading": "Loading experiences...",
     "loadError": "Unable to load experiences.",
     "empty": "No experience available.",
-    "sortBy": "Sort by:",
+    "sortBy": "Filter by:",
     "all": "All",
     "logoPlaceholder": "Logo",
     "toggleDetails": "Toggle experience details"

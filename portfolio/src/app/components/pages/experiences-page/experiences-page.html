@@ -18,16 +18,47 @@
         } @else {
           <div class="experiences-page__toolbar">
             <span class="experiences-page__toolbar-label">{{ 'experiences.sortBy' | translate }}</span>
-            <button
-              type="button"
-              class="experiences-page__toolbar-button"
-            >
-              {{ 'experiences.all' | translate }}
-            </button>
+
+            <div class="experiences-page__tag-rail">
+              <div
+                class="experiences-page__tag-scroll"
+                [class.experiences-page__tag-scroll--dragging]="isTechnologyTagRailDragging()"
+                role="group"
+                [attr.aria-label]="'experiences.sortBy' | translate"
+                (wheel)="onTechnologyTagRailWheel($event)"
+                (pointerdown)="onTechnologyTagRailPointerDown($event)"
+                (pointermove)="onTechnologyTagRailPointerMove($event)"
+                (pointerup)="onTechnologyTagRailPointerEnd($event)"
+                (pointerleave)="onTechnologyTagRailPointerEnd($event)"
+                (pointercancel)="onTechnologyTagRailPointerEnd($event)"
+              >
+                <button
+                  type="button"
+                  class="experiences-page__filter-chip"
+                  [class.experiences-page__filter-chip--active]="!selectedTechnologyTags().length"
+                  [attr.aria-pressed]="!selectedTechnologyTags().length"
+                  (click)="clearTechnologyFiltersFromClick($event)"
+                >
+                  {{ 'experiences.all' | translate }}
+                </button>
+
+                @for (technology of availableTechnologyTags(); track technology) {
+                  <button
+                    type="button"
+                    class="experiences-page__filter-chip"
+                    [class.experiences-page__filter-chip--active]="isTechnologySelected(technology)"
+                    [attr.aria-pressed]="isTechnologySelected(technology)"
+                    (click)="toggleTechnologyFilterFromClick($event, technology)"
+                  >
+                    {{ technology }}
+                  </button>
+                }
+              </div>
+            </div>
           </div>
 
           <div class="experiences-page__list">
-            @for (experience of experiences(); track experience.id) {
+            @for (experience of filteredExperiences(); track experience.id) {
               <app-experience-card
                 [experience]="experience"
                 (toggle)="toggleExperience($event)"
