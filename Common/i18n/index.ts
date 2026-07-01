@@ -63,7 +63,7 @@ const EXPERIENCE_METADATA: Array<
   {
     id: 'icgreen-lead-dev',
     logoUrl: '/img/experiences/ic-green.png',
-    technologies: ['Angular', 'TypeScript', 'Node.js', 'Docker', 'ROS / ROS2', 'MQTT', 'AI'],
+    technologies: ['Angular', 'TypeScript', 'Node.js', 'Docker', 'ROS / ROS2', 'MQTT', 'A.I.', 'Gerrit'],
     isExpanded: true
   },
   {
@@ -75,7 +75,7 @@ const EXPERIENCE_METADATA: Array<
   {
     id: 'akkodis-internal-project',
     logoUrl: '/img/experiences/akkodis.svg',
-    technologies: ['Angular', 'TypeScript', 'FastAPI', 'Python', 'AI', 'Docker'],
+    technologies: ['Angular', 'TypeScript', 'FastAPI', 'Python', 'A.I.', 'Docker'],
     isExpanded: false
   },
   {
