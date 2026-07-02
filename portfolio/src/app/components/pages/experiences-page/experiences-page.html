@@ -17,7 +17,9 @@
           </div>
         } @else {
           <div class="experiences-page__toolbar">
-            <span class="experiences-page__toolbar-label">{{ 'experiences.sortBy' | translate }}</span>
+            <span class="experiences-page__toolbar-label">
+              {{ 'experiences.sortBy' | translate }}
+            </span>
 
             <div class="experiences-page__tag-rail">
               <div
@@ -25,19 +27,20 @@
                 [class.experiences-page__tag-scroll--dragging]="isTechnologyTagRailDragging()"
                 role="group"
                 [attr.aria-label]="'experiences.sortBy' | translate"
-                (wheel)="onTechnologyTagRailWheel($event)"
-                (pointerdown)="onTechnologyTagRailPointerDown($event)"
-                (pointermove)="onTechnologyTagRailPointerMove($event)"
-                (pointerup)="onTechnologyTagRailPointerEnd($event)"
-                (pointerleave)="onTechnologyTagRailPointerEnd($event)"
-                (pointercancel)="onTechnologyTagRailPointerEnd($event)"
+                (wheel)="onTagRailWheel($event)"
+                (pointerdown)="onTagRailPointerDown($event)"
+                (pointermove)="onTagRailPointerMove($event)"
+                (pointerup)="onTagRailPointerEnd($event)"
+                (pointerleave)="onTagRailPointerEnd($event)"
+                (pointercancel)="onTagRailPointerEnd($event)"
               >
                 <button
                   type="button"
                   class="experiences-page__filter-chip"
                   [class.experiences-page__filter-chip--active]="!selectedTechnologyTags().length"
                   [attr.aria-pressed]="!selectedTechnologyTags().length"
-                  (click)="clearTechnologyFiltersFromClick($event)"
+                  (pointerdown)="$event.stopPropagation()"
+                  (click)="onClearTechnologyFiltersClick($event)"
                 >
                   {{ 'experiences.all' | translate }}
                 </button>
@@ -48,7 +51,8 @@
                     class="experiences-page__filter-chip"
                     [class.experiences-page__filter-chip--active]="isTechnologySelected(technology)"
                     [attr.aria-pressed]="isTechnologySelected(technology)"
-                    (click)="toggleTechnologyFilterFromClick($event, technology)"
+                    (pointerdown)="$event.stopPropagation()"
+                    (click)="onTechnologyFilterClick($event, technology)"
                   >
                     {{ technology }}
                   </button>

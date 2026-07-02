@@ -20,19 +20,16 @@ export class ExperiencesPage {
   readonly experiences = signal<Experience[]>([]);
   readonly isLoading = signal<boolean>(true);
   readonly loadError = signal<string | null>(null);
+
   readonly selectedTechnologyTags = signal<string[]>([]);
   readonly isTechnologyTagRailDragging = signal<boolean>(false);
+
   readonly availableTechnologyTags = computed(() => {
     const tags = this.experiences().flatMap((experience) => experience.technologies);
 
-    return [...new Set(tags)].sort((firstTag, secondTag) => firstTag.localeCompare(secondTag));
+    return [...new Set(tags)].sort((a, b) => a.localeCompare(b));
   });
-  private readonly technologyTagDragThresholdPx = 6;
-  private activeTechnologyTagPointerId: number | null = null;
-  private technologyTagDragStartX = 0;
-  private technologyTagDragStartScrollLeft = 0;
-  private didDragTechnologyTagRail = false;
-  private suppressNextTechnologyTagClick = false;
+
   readonly filteredExperiences = computed(() => {
     const selectedTags = this.selectedTechnologyTags();
 
@@ -46,6 +43,14 @@ export class ExperiencesPage {
       experience.technologies.some((technology) => selectedTagSet.has(technology))
     );
   });
+
+  private readonly dragThresholdPx = 6;
+
+  private activePointerId: number | null = null;
+  private dragStartX = 0;
+  private dragStartScrollLeft = 0;
+  private hasDragged = false;
+  private suppressNextClick = false;
 
   constructor(
     private readonly experiencesApi: ExperiencesApi,
@@ -73,6 +78,7 @@ export class ExperiencesPage {
       error: (error: unknown) => {
         console.error('ExperiencesPage: failed to load experiences.', error);
         this.experiences.set([]);
+        this.selectedTechnologyTags.set([]);
         this.loadError.set('experiences.loadError');
         this.isLoading.set(false);
       }
@@ -106,40 +112,40 @@ export class ExperiencesPage {
     );
   }
 
-  toggleTechnologyFilterFromClick(event: MouseEvent, technology: string): void {
-    if (this.shouldIgnoreTechnologyFilterClick(event)) {
-      return;
-    }
-
-    this.toggleTechnologyFilter(technology);
-  }
-
   clearTechnologyFilters(): void {
     this.selectedTechnologyTags.set([]);
-  }
-
-  clearTechnologyFiltersFromClick(event: MouseEvent): void {
-    if (this.shouldIgnoreTechnologyFilterClick(event)) {
-      return;
-    }
-
-    this.clearTechnologyFilters();
   }
 
   isTechnologySelected(technology: string): boolean {
     return this.selectedTechnologyTags().includes(technology);
   }
 
-  onTechnologyTagRailWheel(event: WheelEvent): void {
+  onTechnologyFilterClick(event: MouseEvent, technology: string): void {
+    if (this.shouldSuppressClick(event)) {
+      return;
+    }
+
+    this.toggleTechnologyFilter(technology);
+  }
+
+  onClearTechnologyFiltersClick(event: MouseEvent): void {
+    if (this.shouldSuppressClick(event)) {
+      return;
+    }
+
+    this.clearTechnologyFilters();
+  }
+
+  onTagRailWheel(event: WheelEvent): void {
     const rail = event.currentTarget as HTMLElement | null;
 
     if (!rail || rail.scrollWidth <= rail.clientWidth) {
       return;
     }
 
-    const scrollDelta = event.deltaY !== 0 ? event.deltaY : event.deltaX;
+    const scrollDelta = event.deltaY || event.deltaX;
 
-    if (scrollDelta === 0) {
+    if (!scrollDelta) {
       return;
     }
 
@@ -147,7 +153,7 @@ export class ExperiencesPage {
     rail.scrollLeft += scrollDelta;
   }
 
-  onTechnologyTagRailPointerDown(event: PointerEvent): void {
+  onTagRailPointerDown(event: PointerEvent): void {
     if (event.button !== 0) {
       return;
     }
@@ -158,15 +164,17 @@ export class ExperiencesPage {
       return;
     }
 
-    this.activeTechnologyTagPointerId = event.pointerId;
-    this.technologyTagDragStartX = event.clientX;
-    this.technologyTagDragStartScrollLeft = rail.scrollLeft;
-    this.didDragTechnologyTagRail = false;
-    rail.setPointerCapture?.(event.pointerId);
+    this.activePointerId = event.pointerId;
+    this.dragStartX = event.clientX;
+    this.dragStartScrollLeft = rail.scrollLeft;
+    this.hasDragged = false;
+    this.suppressNextClick = false;
+
+    rail.setPointerCapture(event.pointerId);
   }
 
-  onTechnologyTagRailPointerMove(event: PointerEvent): void {
-    if (this.activeTechnologyTagPointerId !== event.pointerId) {
+  onTagRailPointerMove(event: PointerEvent): void {
+    if (this.activePointerId !== event.pointerId) {
       return;
     }
 
@@ -176,52 +184,59 @@ export class ExperiencesPage {
       return;
     }
 
-    const dragOffset = event.clientX - this.technologyTagDragStartX;
+    const dragOffset = event.clientX - this.dragStartX;
 
-    if (!this.didDragTechnologyTagRail && Math.abs(dragOffset) < this.technologyTagDragThresholdPx) {
+    if (!this.hasDragged && Math.abs(dragOffset) < this.dragThresholdPx) {
       return;
     }
 
-    this.didDragTechnologyTagRail = true;
-    this.suppressNextTechnologyTagClick = true;
+    this.hasDragged = true;
+    this.suppressNextClick = true;
     this.isTechnologyTagRailDragging.set(true);
+
     event.preventDefault();
-    rail.scrollLeft = this.technologyTagDragStartScrollLeft - dragOffset;
+    rail.scrollLeft = this.dragStartScrollLeft - dragOffset;
   }
 
-  onTechnologyTagRailPointerEnd(event: PointerEvent): void {
-    if (this.activeTechnologyTagPointerId !== event.pointerId) {
+  onTagRailPointerEnd(event: PointerEvent): void {
+    if (this.activePointerId !== event.pointerId) {
       return;
     }
 
     const rail = event.currentTarget as HTMLElement | null;
-    rail?.releasePointerCapture?.(event.pointerId);
 
-    this.activeTechnologyTagPointerId = null;
-    this.didDragTechnologyTagRail = false;
+    if (rail?.hasPointerCapture(event.pointerId)) {
+      rail.releasePointerCapture(event.pointerId);
+    }
+
+    this.activePointerId = null;
+    this.hasDragged = false;
     this.isTechnologyTagRailDragging.set(false);
 
     window.setTimeout(() => {
-      this.suppressNextTechnologyTagClick = false;
-    });
+      this.suppressNextClick = false;
+    }, 0);
   }
 
   private keepExistingTechnologyFilters(experiences: Experience[]): void {
-    const availableTags = new Set(experiences.flatMap((experience) => experience.technologies));
+    const availableTags = new Set(
+      experiences.flatMap((experience) => experience.technologies)
+    );
 
     this.selectedTechnologyTags.update((selectedTags) =>
       selectedTags.filter((selectedTag) => availableTags.has(selectedTag))
     );
   }
 
-  private shouldIgnoreTechnologyFilterClick(event: MouseEvent): boolean {
-    if (!this.suppressNextTechnologyTagClick) {
+  private shouldSuppressClick(event: MouseEvent): boolean {
+    if (!this.suppressNextClick) {
       return false;
     }
 
     event.preventDefault();
     event.stopPropagation();
-    this.suppressNextTechnologyTagClick = false;
+
+    this.suppressNextClick = false;
 
     return true;
   }

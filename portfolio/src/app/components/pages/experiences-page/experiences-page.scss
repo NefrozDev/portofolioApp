@@ -17,42 +17,52 @@
 
 .experiences-page__tag-rail {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
   overflow: hidden;
+  border-radius: 999px;
 }
 
 .experiences-page__tag-rail::before,
 .experiences-page__tag-rail::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0.5rem;
-  z-index: 1;
-  width: 4rem;
-  pointer-events: none;
-}
-
-.experiences-page__tag-rail::before {
-  left: 0;
-  background: linear-gradient(90deg, rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0));
-}
-
-.experiences-page__tag-rail::after {
-  right: 0;
-  background: linear-gradient(270deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0));
+  display: none;
 }
 
 .experiences-page__tag-scroll {
   display: flex;
+  align-items: center;
   gap: 0.75rem;
+
   overflow-x: auto;
+  overflow-y: hidden;
+
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
+
   cursor: grab;
+  user-select: none;
   touch-action: pan-x;
-  padding: 0.1rem max(1rem, calc((100vw - var(--container-width)) / 2 + 1rem)) 0.65rem;
+
+  padding: 0.25rem 1rem 0.75rem;
+
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    black 2rem,
+    black calc(100% - 2rem),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    black 2rem,
+    black calc(100% - 2rem),
+    transparent 100%
+  );
+}
+
+.experiences-page__tag-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .experiences-page__tag-scroll--dragging {
@@ -60,23 +70,29 @@
   scroll-snap-type: none;
 }
 
-.experiences-page__tag-scroll::-webkit-scrollbar {
-  display: none;
-}
-
 .experiences-page__filter-chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   flex: 0 0 auto;
   scroll-snap-align: start;
+
   min-height: 2rem;
   padding: 0.25rem 0.9rem;
+
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--border-soft);
+
+  background: rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.8);
-  cursor: inherit;
+
+  font: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+
+  cursor: pointer;
+
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
@@ -85,16 +101,25 @@
     transform 0.2s ease;
 }
 
+.experiences-page__filter-chip:hover {
+  transform: translateY(-0.0625rem);
+}
+
 .experiences-page__filter-chip:hover,
 .experiences-page__filter-chip--active {
   color: #ffffff;
   border-color: rgba(123, 97, 255, 0.55);
-  background: linear-gradient(135deg, rgba(79, 140, 255, 0.32) 0%, rgba(123, 97, 255, 0.36) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(79, 140, 255, 0.32) 0%,
+    rgba(123, 97, 255, 0.36) 100%
+  );
   box-shadow: 0 0 24px rgba(123, 97, 255, 0.2);
 }
 
-.experiences-page__filter-chip:hover {
-  transform: translateY(-0.0625rem);
+.experiences-page__filter-chip:focus-visible {
+  outline: 2px solid rgba(123, 97, 255, 0.85);
+  outline-offset: 3px;
 }
 
 .experiences-page__list {
