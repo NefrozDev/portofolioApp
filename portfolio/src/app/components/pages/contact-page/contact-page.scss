@@ -17,10 +17,10 @@
   width: min(100% - 4rem, 86rem);
   height: 100%;
   margin: 0 auto;
-  padding: 2rem 0 1.5rem;
+  padding: 48px 0 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.5rem;
 }
 
@@ -34,20 +34,21 @@
 
 .contact-page__title {
   font-family: 'Space Grotesk', Inter, Arial, sans-serif;
-  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  font-size: clamp(2.25rem, 4vw, 3rem);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.1;
   background: linear-gradient(90deg, #e2e8f0 0%, #7b61ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .contact-page__subtitle {
   max-width: 60rem;
   font-family: 'Space Grotesk', Inter, Arial, sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.2;
   text-align: center;
 
   display: flex;
@@ -57,12 +58,14 @@
   background: linear-gradient(90deg, #cbd5f5 0%, #94a3b8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .contact-page__subtitle-highlight {
   background: linear-gradient(90deg, #e2e8f0 0%, #7b61ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .contact-page__hero-line {
@@ -146,7 +149,7 @@
 
   .contact-page__container {
     height: auto;
-    padding: 2rem 0 6rem;
+    padding: 48px 0 6rem;
     justify-content: flex-start;
   }
 
@@ -159,7 +162,6 @@
   .contact-page__container {
     width: min(100% - 1.5rem, 86rem);
     gap: 1.25rem;
-    padding-top: 1.5rem;
   }
 
   .contact-page__card {
