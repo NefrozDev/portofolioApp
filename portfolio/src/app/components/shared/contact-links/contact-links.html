@@ -1,1 +1,17 @@
-<p>{{ 'app.placeholders.contactLinks' | translate }}</p>
+<nav class="contact-links" [attr.aria-label]="'app.placeholders.contactLinks' | translate">
+  @for (link of links; track link.href) {
+    <a
+      class="contact-links__item"
+      [href]="link.href"
+      [attr.target]="link.external ? '_blank' : null"
+      [attr.rel]="link.external ? 'noreferrer' : null"
+    >
+      <span class="contact-links__label">
+        {{ link.labelKey | translate }}
+      </span>
+      <span class="contact-links__value">
+        {{ link.value }}
+      </span>
+    </a>
+  }
+</nav>

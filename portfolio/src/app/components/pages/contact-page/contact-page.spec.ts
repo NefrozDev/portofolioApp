@@ -32,4 +32,21 @@ describe('ContactPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render contact links above and outside the form card', () => {
+    const host = fixture.nativeElement as HTMLElement;
+    const container = host.querySelector('.contact-page__container');
+    const links = host.querySelector('app-contact-links');
+    const card = host.querySelector('.contact-page__card');
+
+    expect(container).toBeTruthy();
+    expect(links).toBeTruthy();
+    expect(card).toBeTruthy();
+    expect(card?.contains(links)).toBeFalse();
+
+    const children = Array.from(container?.children ?? []);
+    expect(children.indexOf(links as Element)).toBeLessThan(
+      children.indexOf(card as Element)
+    );
+  });
 });

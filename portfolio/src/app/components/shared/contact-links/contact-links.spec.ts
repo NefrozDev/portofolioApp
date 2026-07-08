@@ -22,4 +22,17 @@ describe('ContactLinks', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the three clickable contact placeholders', () => {
+    const links = fixture.nativeElement.querySelectorAll(
+      '.contact-links__item'
+    ) as NodeListOf<HTMLAnchorElement>;
+
+    expect(links.length).toBe(3);
+    expect(links[0].getAttribute('href')).toBe('tel:0445361218');
+    expect(links[1].getAttribute('href')).toBe(
+      'mailto:stevendemoor@gmail.com'
+    );
+    expect(links[2].getAttribute('href')).toBe('#');
+  });
 });

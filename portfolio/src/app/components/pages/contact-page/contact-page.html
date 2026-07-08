@@ -11,26 +11,9 @@
       <div class="contact-page__hero-line"></div>
     </header>
 
+    <app-contact-links class="contact-page__links" />
+
     <section class="contact-page__card glass-card">
-      <div class="contact-page__links">
-        <a class="contact-page__link" href="tel:0445361218">
-          04/45.36.12.18
-        </a>
-
-        <a class="contact-page__link" href="mailto:stevendemoor@gmail.com">
-          stevendemoor@gmail.com
-        </a>
-
-        <a
-          class="contact-page__link"
-          href="#"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {{ 'contact.links.linkedin' | translate }}
-        </a>
-      </div>
-
       <form
         class="contact-page__form"
         [formGroup]="contactForm"

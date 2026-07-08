@@ -4,11 +4,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 import { Contact } from '@common/models/contact.model';
 import { ContactApi } from '../../../services/api/contact-api';
+import { ContactLinks } from '../../shared/contact-links/contact-links';
 
 @Component({
   selector: 'app-contact-page',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe],
+  imports: [ReactiveFormsModule, TranslatePipe, ContactLinks],
   templateUrl: './contact-page.html',
   styleUrls: ['./contact-page.scss']
 })

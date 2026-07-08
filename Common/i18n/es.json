@@ -58,6 +58,8 @@
     "subtitle": "An idea, a project or an opportunity?",
     "subtitleHighlight": "Let's talk",
     "links": {
+      "phone": "Phone",
+      "email": "Mail",
       "linkedin": "LinkedIn"
     },
     "form": {
