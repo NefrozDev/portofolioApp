@@ -11,7 +11,7 @@
 .contact-links__item {
   position: relative;
   display: flex;
-  min-height: 8.5rem;
+  min-height: 9.25rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -60,10 +60,21 @@
   position: relative;
   z-index: 1;
   display: block;
-  width: 5.65rem;
-  height: 5.65rem;
+  width: 6.35rem;
+  height: 6.35rem;
   flex: 0 0 auto;
+  filter:
+    drop-shadow(0 0.8rem 1rem rgba(2, 6, 23, 0.42))
+    drop-shadow(0 0 0.8rem rgba(123, 97, 255, 0.22));
   object-fit: contain;
+  transition: filter 0.2s ease;
+}
+
+.contact-links__item:hover .contact-links__icon,
+.contact-links__item:focus-visible .contact-links__icon {
+  filter:
+    drop-shadow(0 0.95rem 1.15rem rgba(2, 6, 23, 0.5))
+    drop-shadow(0 0 1.1rem rgba(123, 97, 255, 0.34));
 }
 
 .contact-links__content {
@@ -94,11 +105,11 @@
   }
 
   .contact-links__item {
-    min-height: 7.75rem;
+    min-height: 8.5rem;
   }
 
   .contact-links__icon {
-    width: 5rem;
-    height: 5rem;
+    width: 5.55rem;
+    height: 5.55rem;
   }
 }
