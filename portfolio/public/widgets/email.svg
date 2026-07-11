@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Email icon</title>
+  
+  <defs>
+    <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5E8CFF"/>
+      <stop offset="52%" stop-color="#8B6CFF"/>
+      <stop offset="100%" stop-color="#C07CFF"/>
+    </linearGradient>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101A3A"/>
+      <stop offset="100%" stop-color="#070B1E"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="42" y="42" width="428" height="428" rx="86" fill="url(#bgGradient)" stroke="url(#strokeGradient)" stroke-width="5"/>
+  <g fill="none" stroke="url(#strokeGradient)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <rect x="116" y="155" width="280" height="202" rx="24"/>
+    <path d="M128 171l112 102c9 8 23 8 32 0l112-102"/>
+    <path d="M129 342l91-83"/>
+    <path d="M383 342l-91-83"/>
+  </g>
+</svg>

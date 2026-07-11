@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Phone icon</title>
+  
+  <defs>
+    <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5E8CFF"/>
+      <stop offset="52%" stop-color="#8B6CFF"/>
+      <stop offset="100%" stop-color="#C07CFF"/>
+    </linearGradient>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101A3A"/>
+      <stop offset="100%" stop-color="#070B1E"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="42" y="42" width="428" height="428" rx="86" fill="url(#bgGradient)" stroke="url(#strokeGradient)" stroke-width="5"/>
+  <g fill="none" stroke="url(#strokeGradient)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <path d="M183 157c-13-13-34-13-47 0l-25 25c-17 17-21 43-10 65 31 63 82 114 145 145 22 11 48 7 65-10l25-25c13-13 13-34 0-47l-38-38c-12-12-31-13-44-3l-28 22c-10 8-24 7-33-2l-48-48c-9-9-10-23-2-33l22-28c10-13 9-32-3-44l-29-29z"/>
+    <path d="M315 151c47 8 84 45 92 92"/>
+    <path d="M312 198c23 5 41 23 46 46"/>
+  </g>
+</svg>

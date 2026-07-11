@@ -11,44 +11,44 @@
 .contact-links__item {
   position: relative;
   display: flex;
-  min-height: 4.5rem;
+  min-height: 8.5rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  padding: 1.15rem 1rem 1rem;
+  gap: 0.65rem;
+  padding: 1rem 1rem 0.95rem;
   text-align: center;
+  isolation: isolate;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1rem;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%),
-    rgba(15, 23, 42, 0.7);
+  background: transparent;
   color: #e2e8f0;
-  box-shadow: 0 1rem 2.25rem rgba(15, 23, 42, 0.18);
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  box-shadow: none;
+  transition: box-shadow 0.2s ease;
 }
 
 .contact-links__item::before {
   content: '';
   position: absolute;
+  z-index: 0;
   inset: 0;
-  border-top: 0.1875rem solid rgba(123, 97, 255, 0.78);
-  opacity: 0.85;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(148, 163, 184, 0.08) 12%, rgba(71, 85, 105, 0.18) 34%, rgba(71, 85, 105, 0.18) 66%, rgba(148, 163, 184, 0.08) 88%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, rgba(148, 163, 184, 0.06) 14%, rgba(30, 41, 59, 0.2) 48%, rgba(30, 41, 59, 0.2) 52%, rgba(148, 163, 184, 0.06) 86%, transparent 100%);
+  opacity: 0;
   pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 
 .contact-links__item:hover,
 .contact-links__item:focus-visible {
-  transform: translateY(-0.125rem);
-  border-color: rgba(138, 180, 255, 0.45);
-  box-shadow:
-    0 1.25rem 2.75rem rgba(15, 23, 42, 0.22),
-    0 0 1.75rem rgba(99, 102, 241, 0.16);
+  box-shadow: none;
+}
+
+.contact-links__item:hover::before,
+.contact-links__item:focus-visible::before {
+  opacity: 1;
 }
 
 .contact-links__item:focus-visible {
@@ -56,22 +56,30 @@
   outline-offset: 0.1875rem;
 }
 
-.contact-links__label,
+.contact-links__icon {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 5.65rem;
+  height: 5.65rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.contact-links__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  width: 100%;
+  justify-items: center;
+}
+
 .contact-links__value {
   position: relative;
   min-width: 0;
   width: 100%;
-}
-
-.contact-links__label {
-  color: rgba(203, 213, 245, 0.72);
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.contact-links__value {
   color: #ffffff;
   font-size: 1rem;
   font-weight: 700;
@@ -86,6 +94,11 @@
   }
 
   .contact-links__item {
-    min-height: 4rem;
+    min-height: 7.75rem;
+  }
+
+  .contact-links__icon {
+    width: 5rem;
+    height: 5rem;
   }
 }

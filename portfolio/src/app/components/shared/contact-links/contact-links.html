@@ -6,11 +6,18 @@
       [attr.target]="link.external ? '_blank' : null"
       [attr.rel]="link.external ? 'noreferrer' : null"
     >
-      <span class="contact-links__label">
-        {{ link.labelKey | translate }}
-      </span>
-      <span class="contact-links__value">
-        {{ link.value }}
+      <img
+        class="contact-links__icon"
+        [src]="link.iconSrc"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+      />
+
+      <span class="contact-links__content">
+        <span class="contact-links__value">
+          {{ link.value }}
+        </span>
       </span>
     </a>
   }
