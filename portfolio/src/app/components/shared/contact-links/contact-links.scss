@@ -34,8 +34,8 @@
   inset: 0;
   border-radius: inherit;
   background:
-    linear-gradient(90deg, transparent 0%, rgba(148, 163, 184, 0.08) 12%, rgba(71, 85, 105, 0.18) 34%, rgba(71, 85, 105, 0.18) 66%, rgba(148, 163, 184, 0.08) 88%, transparent 100%),
-    linear-gradient(180deg, transparent 0%, rgba(148, 163, 184, 0.06) 14%, rgba(30, 41, 59, 0.2) 48%, rgba(30, 41, 59, 0.2) 52%, rgba(148, 163, 184, 0.06) 86%, transparent 100%);
+    radial-gradient(ellipse 72% 62% at center, rgba(15, 23, 42, 0.34) 0%, rgba(15, 23, 42, 0.2) 36%, rgba(99, 102, 241, 0.035) 54%, transparent 76%);
+  filter: blur(0.35rem);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
