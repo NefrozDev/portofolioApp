@@ -21,51 +21,78 @@
       >
         <input
           class="contact-page__input form-control"
+          [class.contact-page__field--invalid]="
+            nameControl?.touched && nameControl?.hasError('required')
+          "
           type="text"
           formControlName="name"
-          [placeholder]="'contact.form.name.placeholder' | translate"
+          [placeholder]="
+            (nameControl?.touched && nameControl?.hasError('required')
+              ? 'contact.form.name.required'
+              : 'contact.form.name.placeholder'
+            ) | translate
+          "
         />
 
-        @if (nameControl?.touched && nameControl?.invalid) {
+        @if (nameControl?.touched && nameControl?.errors?.['maxlength']) {
           <p class="contact-page__feedback contact-page__feedback--error">
-            @if (nameControl?.errors?.['required']) {
-              {{ 'contact.form.name.required' | translate }}
-            } @else if (nameControl?.errors?.['maxlength']) {
-              {{ 'contact.form.name.maxlength' | translate }}
-            }
+            {{ 'contact.form.name.maxlength' | translate }}
           </p>
         }
 
-        <input
-          class="contact-page__input form-control"
-          type="email"
-          formControlName="email"
-          [placeholder]="'contact.form.email.placeholder' | translate"
-        />
+        <div class="contact-page__field">
+          <input
+            class="contact-page__input form-control"
+            [class.contact-page__field--invalid]="
+              emailControl?.touched &&
+              (emailControl?.hasError('required') ||
+                emailControl?.hasError('email'))
+            "
+            [class.contact-page__input--with-inline-message]="
+              emailControl?.touched && emailControl?.hasError('email')
+            "
+            type="email"
+            formControlName="email"
+            [attr.aria-describedby]="
+              emailControl?.touched && emailControl?.hasError('email')
+                ? 'contact-email-inline-error'
+                : null
+            "
+            [placeholder]="
+              (emailControl?.touched && emailControl?.hasError('required')
+                ? 'contact.form.email.required'
+                : 'contact.form.email.placeholder'
+              ) | translate
+            "
+          />
 
-        @if (emailControl?.touched && emailControl?.invalid) {
-          <p class="contact-page__feedback contact-page__feedback--error">
-            @if (emailControl?.errors?.['required']) {
-              {{ 'contact.form.email.required' | translate }}
-            } @else if (emailControl?.errors?.['email']) {
+          @if (emailControl?.touched && emailControl?.errors?.['email']) {
+            <span
+              id="contact-email-inline-error"
+              class="contact-page__field-message"
+            >
               {{ 'contact.form.email.invalid' | translate }}
-            }
-          </p>
-        }
+            </span>
+          }
+        </div>
 
         <textarea
           class="contact-page__textarea form-control"
+          [class.contact-page__field--invalid]="
+            messageControl?.touched && messageControl?.hasError('required')
+          "
           formControlName="message"
-          [placeholder]="'contact.form.message.placeholder' | translate"
+          [placeholder]="
+            (messageControl?.touched && messageControl?.hasError('required')
+              ? 'contact.form.message.required'
+              : 'contact.form.message.placeholder'
+            ) | translate
+          "
         ></textarea>
 
-        @if (messageControl?.touched && messageControl?.invalid) {
+        @if (messageControl?.touched && messageControl?.errors?.['maxlength']) {
           <p class="contact-page__feedback contact-page__feedback--error">
-            @if (messageControl?.errors?.['required']) {
-              {{ 'contact.form.message.required' | translate }}
-            } @else if (messageControl?.errors?.['maxlength']) {
-              {{ 'contact.form.message.maxlength' | translate }}
-            }
+            {{ 'contact.form.message.maxlength' | translate }}
           </p>
         }
 

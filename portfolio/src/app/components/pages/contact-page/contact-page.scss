@@ -82,7 +82,8 @@
 }
 
 .contact-page__card {
-  padding: 1.5rem;
+  position: relative;
+  padding: 2.25rem 1.5rem 1.5rem;
   border-radius: 1.5rem;
   box-shadow:
     0 1.5rem 3.5rem rgba(99, 102, 241, 0.18),
@@ -90,7 +91,11 @@
 }
 
 .contact-page__links {
-  margin-top: 0.25rem;
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  width: min(100%, 68rem);
+  margin: 0.25rem auto 1.25rem;
 }
 
 .contact-page__form {
@@ -103,8 +108,16 @@
   width: 100%;
 }
 
+.contact-page__field {
+  position: relative;
+}
+
 .contact-page__input {
   min-height: 3.5rem;
+}
+
+.contact-page__input--with-inline-message {
+  padding-right: min(13rem, 48%);
 }
 
 .contact-page__textarea {
@@ -112,11 +125,67 @@
   resize: none;
 }
 
+.contact-page__input.contact-page__field--invalid,
+.contact-page__textarea.contact-page__field--invalid {
+  border-color: rgba(248, 113, 113, 0.72);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  animation: contact-page-invalid-border-flash 1.6s ease-in-out infinite;
+}
+
+.contact-page__input.contact-page__field--invalid::placeholder,
+.contact-page__textarea.contact-page__field--invalid::placeholder {
+  color: rgba(254, 202, 202, 0.78);
+}
+
+.contact-page__input.contact-page__field--invalid:focus,
+.contact-page__textarea.contact-page__field--invalid:focus {
+  border-color: rgba(248, 113, 113, 0.84);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+.contact-page__field-message {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  max-width: min(12rem, 42%);
+  transform: translateY(-50%);
+  color: rgba(254, 202, 202, 0.9);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1;
+  overflow: hidden;
+  pointer-events: none;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .contact-page__submit {
-  width: 100%;
+  width: min(100%, 14rem);
+  justify-self: center;
   min-height: 3.25rem;
   font-size: 1.1rem;
   font-weight: 700;
+}
+
+@keyframes contact-page-invalid-border-flash {
+  0%,
+  100% {
+    border-color: rgba(248, 113, 113, 0.38);
+  }
+
+  50% {
+    border-color: rgba(248, 113, 113, 0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-page__input.contact-page__field--invalid,
+  .contact-page__textarea.contact-page__field--invalid {
+    animation: none;
+  }
 }
 
 @media (max-width: 64rem) {
@@ -149,8 +218,12 @@
   }
 
   .contact-page__card {
-    padding: 1rem;
+    padding: 1.75rem 1rem 1rem;
     border-radius: 1rem;
+  }
+
+  .contact-page__links {
+    margin: 0.25rem auto 1rem;
   }
 
   .contact-page__subtitle {
