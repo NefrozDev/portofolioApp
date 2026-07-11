@@ -4,9 +4,6 @@
       <h1 class="contact-page__title">{{ 'contact.title' | translate }}</h1>
       <p class="contact-page__subtitle">
         {{ 'contact.subtitle' | translate }}
-        <span class="contact-page__subtitle-highlight">
-          {{ 'contact.subtitleHighlight' | translate }}
-        </span>
       </p>
       <div class="contact-page__hero-line"></div>
     </header>
@@ -116,7 +113,7 @@
           @if (isSubmitting()) {
             {{ 'contact.form.submitting' | translate }}
           } @else {
-            {{ 'contact.form.submit' | translate }}
+            {{ 'contact.subtitleHighlight' | translate }}
           }
         </button>
       </form>

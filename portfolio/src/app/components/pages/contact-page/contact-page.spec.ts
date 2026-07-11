@@ -50,6 +50,16 @@ describe('ContactPage', () => {
     );
   });
 
+  it('should move the hero call to action into the submit button', () => {
+    const host = fixture.nativeElement as HTMLElement;
+    const submitButton = host.querySelector(
+      '.contact-page__submit'
+    ) as HTMLButtonElement | null;
+
+    expect(host.querySelector('.contact-page__subtitle-highlight')).toBeNull();
+    expect(submitButton?.textContent?.trim()).toBe("Let's talk!");
+  });
+
   it('should move required feedback into placeholders on missing fields', () => {
     spyOn(console, 'warn');
 
@@ -99,7 +109,7 @@ describe('ContactPage', () => {
       '#contact-email-inline-error'
     );
 
-    expect(emailInput?.placeholder).toBe('Email');
+    expect(emailInput?.placeholder).toBe('Enter your email');
     expect(
       emailInput?.classList.contains('contact-page__field--invalid')
     ).toBeTrue();

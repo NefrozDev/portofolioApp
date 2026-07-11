@@ -56,7 +56,7 @@
   "contact": {
     "title": "Contact",
     "subtitle": "An idea, a project or an opportunity?",
-    "subtitleHighlight": "Let's talk",
+    "subtitleHighlight": "Let's talk!",
     "links": {
       "phone": "Phone",
       "email": "Mail",
@@ -64,17 +64,17 @@
     },
     "form": {
       "name": {
-        "placeholder": "Name",
+        "placeholder": "Enter your name",
         "required": "Name is required.",
         "maxlength": "Name cannot exceed 100 characters."
       },
       "email": {
-        "placeholder": "Email",
+        "placeholder": "Enter your email",
         "required": "Email address is required.",
         "invalid": "Email address is invalid."
       },
       "message": {
-        "placeholder": "Message",
+        "placeholder": "Enter your message",
         "required": "Message is required.",
         "maxlength": "Message cannot exceed 2000 characters."
       },
