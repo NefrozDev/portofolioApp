@@ -1,5 +1,8 @@
 :host {
   display: block;
+  position: sticky;
+  top: 0;
+  z-index: 30;
 }
 
 @media (max-width: 48rem) {
@@ -9,9 +12,7 @@
 }
 
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 30;
+  position: relative;
   height: var(--header-height);
   isolation: isolate;
   backdrop-filter: blur(14px) saturate(125%);
