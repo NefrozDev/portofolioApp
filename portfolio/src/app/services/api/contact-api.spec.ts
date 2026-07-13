@@ -38,6 +38,7 @@ describe('ContactApi', () => {
       .sendMessage({
         name: 'Steven',
         email: 'steven@example.com',
+        phone: '+32 470 12 34 56',
         message: 'Hello'
       })
       .subscribe((response) => {

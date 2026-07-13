@@ -19,11 +19,21 @@ test('POST /api/contact should return localized feedback', async () => {
   const response = await request(app).post('/api/contact?lang=nl').send({
     name: 'Test User',
     email: 'test@example.com',
+    phone: '+32 470 12 34 56',
     message: 'Hello from test.'
   });
 
   assert.equal(response.status, 200);
   assert.equal(response.body.message, 'Uw bericht is verzonden.');
+});
+
+test('POST /api/contact should accept missing optional contact details', async () => {
+  const response = await request(app).post('/api/contact').send({
+    name: 'Test User',
+    message: 'Hello without email or phone.'
+  });
+
+  assert.equal(response.status, 200);
 });
 
 test('POST /api/contact should reject an invalid payload', async () => {

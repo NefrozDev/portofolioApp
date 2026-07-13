@@ -37,40 +37,42 @@
           </p>
         }
 
-        <div class="contact-page__field">
+        <div class="contact-page__contact-row">
+          <div class="contact-page__field">
+            <input
+              class="contact-page__input form-control"
+              [class.contact-page__field--invalid]="
+                emailControl?.touched && emailControl?.hasError('email')
+              "
+              [class.contact-page__input--with-inline-message]="
+                emailControl?.touched && emailControl?.hasError('email')
+              "
+              type="email"
+              formControlName="email"
+              [attr.aria-describedby]="
+                emailControl?.touched && emailControl?.hasError('email')
+                  ? 'contact-email-inline-error'
+                  : null
+              "
+              [placeholder]="'contact.form.email.placeholder' | translate"
+            />
+
+            @if (emailControl?.touched && emailControl?.errors?.['email']) {
+              <span
+                id="contact-email-inline-error"
+                class="contact-page__field-message"
+              >
+                {{ 'contact.form.email.invalid' | translate }}
+              </span>
+            }
+          </div>
+
           <input
             class="contact-page__input form-control"
-            [class.contact-page__field--invalid]="
-              emailControl?.touched &&
-              (emailControl?.hasError('required') ||
-                emailControl?.hasError('email'))
-            "
-            [class.contact-page__input--with-inline-message]="
-              emailControl?.touched && emailControl?.hasError('email')
-            "
-            type="email"
-            formControlName="email"
-            [attr.aria-describedby]="
-              emailControl?.touched && emailControl?.hasError('email')
-                ? 'contact-email-inline-error'
-                : null
-            "
-            [placeholder]="
-              (emailControl?.touched && emailControl?.hasError('required')
-                ? 'contact.form.email.required'
-                : 'contact.form.email.placeholder'
-              ) | translate
-            "
+            type="tel"
+            formControlName="phone"
+            [placeholder]="'contact.form.phone.placeholder' | translate"
           />
-
-          @if (emailControl?.touched && emailControl?.errors?.['email']) {
-            <span
-              id="contact-email-inline-error"
-              class="contact-page__field-message"
-            >
-              {{ 'contact.form.email.invalid' | translate }}
-            </span>
-          }
         </div>
 
         <textarea

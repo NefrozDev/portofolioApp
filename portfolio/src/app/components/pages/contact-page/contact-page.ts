@@ -26,7 +26,8 @@ export class ContactPage {
   ) {
     this.contactForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(100)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.email]],
+      phone: [''],
       message: ['', [Validators.required, Validators.maxLength(2000)]]
     });
 
@@ -70,7 +71,8 @@ export class ContactPage {
       const formValue = this.contactForm.getRawValue();
       const payload: Contact = {
         name: formValue.name ?? '',
-        email: formValue.email ?? '',
+        ...(formValue.email ? { email: formValue.email } : {}),
+        ...(formValue.phone ? { phone: formValue.phone } : {}),
         message: formValue.message ?? ''
       };
 
@@ -80,6 +82,7 @@ export class ContactPage {
           this.contactForm.reset({
             name: '',
             email: '',
+            phone: '',
             message: ''
           });
           this.isSubmitting.set(false);

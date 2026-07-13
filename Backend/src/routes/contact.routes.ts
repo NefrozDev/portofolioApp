@@ -9,7 +9,7 @@ contactRouter.post('/', (req, res) => {
   const translations = getAppTranslations(language);
   const payload = req.body as Contact;
 
-  if (!payload.name || !payload.email || !payload.message) {
+  if (!payload.name || !payload.message) {
     console.warn('Contact route: invalid payload received.');
 
     res.status(400).json({

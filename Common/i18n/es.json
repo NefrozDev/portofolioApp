@@ -73,6 +73,9 @@
         "required": "Email address is required.",
         "invalid": "Email address is invalid."
       },
+      "phone": {
+        "placeholder": "Enter your phone number"
+      },
       "message": {
         "placeholder": "Enter your message",
         "required": "Message is required.",

@@ -60,7 +60,7 @@ describe('ContactPage', () => {
     expect(submitButton?.textContent?.trim()).toBe("Let's talk!");
   });
 
-  it('should move required feedback into placeholders on missing fields', () => {
+  it('should require only the name and message fields', () => {
     spyOn(console, 'warn');
 
     component.onSubmit();
@@ -73,12 +73,16 @@ describe('ContactPage', () => {
     const emailInput = host.querySelector<HTMLInputElement>(
       'input[formControlName="email"]'
     );
+    const phoneInput = host.querySelector<HTMLInputElement>(
+      'input[formControlName="phone"]'
+    );
     const messageTextarea = host.querySelector<HTMLTextAreaElement>(
       'textarea[formControlName="message"]'
     );
 
     expect(nameInput?.placeholder).toBe('Name is required.');
-    expect(emailInput?.placeholder).toBe('Email address is required.');
+    expect(emailInput?.placeholder).toBe('Enter your email');
+    expect(phoneInput?.placeholder).toBe('Enter your phone number');
     expect(messageTextarea?.placeholder).toBe('Message is required.');
 
     expect(
@@ -86,7 +90,7 @@ describe('ContactPage', () => {
     ).toBeTrue();
     expect(
       emailInput?.classList.contains('contact-page__field--invalid')
-    ).toBeTrue();
+    ).toBeFalse();
     expect(
       messageTextarea?.classList.contains('contact-page__field--invalid')
     ).toBeTrue();
@@ -94,6 +98,18 @@ describe('ContactPage', () => {
     expect(host.textContent).not.toContain('Name is required.');
     expect(host.textContent).not.toContain('Email address is required.');
     expect(host.textContent).not.toContain('Message is required.');
+  });
+
+  it('should place the optional phone field to the right of email', () => {
+    const host = fixture.nativeElement as HTMLElement;
+    const fields = Array.from(
+      host.querySelectorAll<HTMLInputElement>('.contact-page__contact-row input')
+    );
+
+    expect(fields.map((field) => field.getAttribute('formControlName'))).toEqual([
+      'email',
+      'phone'
+    ]);
   });
 
   it('should show invalid email feedback inside the email field', () => {
