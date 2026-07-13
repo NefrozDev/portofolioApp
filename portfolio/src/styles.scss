@@ -399,10 +399,30 @@ h3,
   color: var(--text-placeholder);
 }
 
+.contact-page__input::placeholder,
+.contact-page__textarea::placeholder {
+  transition:
+    color 1.5s ease-in-out,
+    opacity 1.5s ease-in-out;
+}
+
+.contact-page__input:hover::placeholder,
+.contact-page__textarea:hover::placeholder {
+  color: rgba(255, 255, 255, 0.46);
+  opacity: 0.82;
+}
+
 .form-control:focus {
   border-color: rgba(138, 180, 255, 0.8);
   box-shadow: 0 0 0 0.1875rem rgba(99, 102, 241, 0.15);
   background: rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-page__input::placeholder,
+  .contact-page__textarea::placeholder {
+    transition: none;
+  }
 }
 
 /* =========================
