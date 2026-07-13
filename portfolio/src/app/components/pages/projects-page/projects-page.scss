@@ -1,5 +1,5 @@
 .projects-page__main {
-  padding-top: 48px;
+  padding-top: var(--page-top-spacing);
   padding-bottom: 7rem;
 }
 
@@ -58,5 +58,11 @@
 @media (max-width: 64rem) {
   .projects-page__layout {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 48rem) {
+  .projects-page__main {
+    padding-top: var(--page-top-spacing-mobile);
   }
 }

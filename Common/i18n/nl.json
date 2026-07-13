@@ -85,7 +85,7 @@
       "submitting": "Sending..."
     },
     "feedback": {
-      "success": "Your message has been sent.",
+      "success": "Uw bericht is verzonden.",
       "submitError": "An error occurred while sending the message.",
       "prepareError": "An error occurred while preparing the message.",
       "invalidPayload": "Invalid payload."

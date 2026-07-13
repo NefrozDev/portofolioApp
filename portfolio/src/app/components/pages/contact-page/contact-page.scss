@@ -16,7 +16,7 @@
 .contact-page__container {
   width: min(100% - 4rem, 86rem);
   margin: 0 auto;
-  padding: clamp(1.5rem, 4vh, 3rem) 0 2rem;
+  padding: var(--page-top-spacing) 0 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -27,7 +27,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(0.5rem, 1vh, 0.75rem);
+  gap: var(--space-4);
   text-align: center;
 }
 
@@ -188,7 +188,7 @@
 
 @media (max-width: 64rem) {
   .contact-page__container {
-    padding: 3rem 0 2rem;
+    padding-bottom: 2rem;
     justify-content: flex-start;
   }
 
@@ -200,6 +200,7 @@
 @media (max-width: 48rem) {
   .contact-page__container {
     width: min(100% - 1.5rem, 86rem);
+    padding-top: var(--page-top-spacing-mobile);
     padding-bottom: 6rem;
     gap: 1rem;
   }
