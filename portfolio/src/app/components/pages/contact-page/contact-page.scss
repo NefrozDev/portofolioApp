@@ -1,12 +1,12 @@
 :host {
   display: block;
-  height: calc(100vh - 5rem - 1px);
-  overflow: hidden;
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100dvh - var(--header-height));
 }
 
 .contact-page {
-  height: 100%;
-  overflow: hidden;
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100dvh - var(--header-height));
   background:
     radial-gradient(circle at 20% 15%, rgba(99, 102, 241, 0.14), transparent 22%),
     radial-gradient(circle at 85% 15%, rgba(123, 97, 255, 0.12), transparent 18%),
@@ -15,9 +15,8 @@
 
 .contact-page__container {
   width: min(100% - 4rem, 86rem);
-  height: 100%;
   margin: 0 auto;
-  padding: 48px 0 1.5rem;
+  padding: 3rem 0 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -195,20 +194,8 @@
 }
 
 @media (max-width: 64rem) {
-  :host {
-    height: auto;
-    min-height: calc(100vh - 5rem);
-    overflow: visible;
-  }
-
-  .contact-page {
-    height: auto;
-    overflow: visible;
-  }
-
   .contact-page__container {
-    height: auto;
-    padding: 48px 0 6rem;
+    padding: 3rem 0 6rem;
     justify-content: flex-start;
   }
 
