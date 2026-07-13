@@ -117,7 +117,6 @@
     "experiences": {
       "icgreen-lead-dev": {
         "company": "IC GREEN",
-        "role": "Développeur Lead",
         "period": "Mai 2025 - Aujourd'hui",
         "highlights": [
           "Pilote le développement d'une plateforme robotique agricole autonome conçue pour éliminer les mauvaises herbes sans herbicides toxiques.",
@@ -129,7 +128,6 @@
       },
       "tihange-software-engineer": {
         "company": "Akkodis - Tihange Nuclear Power Plant",
-        "role": "Software Engineer",
         "period": "Sep 2024 - Juin 2025",
         "highlights": [
           "Géré le cycle complet de développement d'applications critiques soutenant les processus opérationnels dans un environnement nucléaire réglementé.",
@@ -139,7 +137,6 @@
       },
       "akkodis-internal-project": {
         "company": "Akkodis - Innovation Department",
-        "role": "Consultant Software Engineering",
         "period": "Déc 2023 - Sep 2024",
         "highlights": [
           "Mené le développement front-end d'une plateforme interne de recrutement connectée à un backend Python FastAPI.",
@@ -149,7 +146,6 @@
       },
       "pg-lfe-consultant": {
         "company": "Procter & Gamble - LFE Department",
-        "role": "Consultant Software Engineering",
         "period": "Mai 2023 - Nov 2023",
         "highlights": [
           "Architecturé et développé une application Angular intégrée à des API REST et à un backend C#/.NET.",
@@ -160,7 +156,6 @@
       },
       "pg-ana-sud-consultant": {
         "company": "Procter & Gamble - ANA & SUD Departments",
-        "role": "Consultant Software Engineering",
         "period": "Avr 2022 - Avr 2023",
         "highlights": [
           "Conçu et optimisé des microprocessus C# adaptés aux workflows analytiques et de laboratoire.",
@@ -170,7 +165,6 @@
       },
       "avanade-academy": {
         "company": "Avanade Academy Pilot Project",
-        "role": "Consultant Software Engineering",
         "period": "Nov 2021 - Avr 2022",
         "highlights": [
           "Suivi un programme intensif de formation autour de la suite Microsoft Dynamics 365.",
@@ -180,7 +174,6 @@
       },
       "noomia-angular-ionic": {
         "company": "Noomia",
-        "role": "Développeur Angular / Ionic",
         "period": "Jan 2021 - Mar 2021",
         "highlights": [
           "Maintenu et amélioré des applications mobiles développées avec Angular et Ionic.",
@@ -190,7 +183,6 @@
       },
       "inforius-fullstack": {
         "company": "Inforius",
-        "role": "Développeur Full-Stack Angular / Node.js",
         "period": "Jan 2020 - Juin 2020",
         "highlights": [
           "Développé une application full-stack de gestion de réservations de salles pour des services publics.",

@@ -21,9 +21,9 @@ test('GET /api/experiences should return an experience list', async () => {
   assert.ok(Array.isArray(firstExperience.highlights));
 });
 
-test('GET /api/experiences should return localized experiences', async () => {
+test('GET /api/experiences should keep role titles language-neutral', async () => {
   const response = await request(app).get('/api/experiences?lang=de');
 
   assert.equal(response.status, 200);
-  assert.equal(response.body[0].role, 'Frontend-Entwickler');
+  assert.equal(response.body[0].role, 'Lead Developer');
 });

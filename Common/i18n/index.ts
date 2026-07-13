@@ -58,52 +58,60 @@ const PROJECT_METADATA: Array<
 ];
 
 const EXPERIENCE_METADATA: Array<
-  Pick<Experience, 'id' | 'technologies' | 'isExpanded' | 'logoUrl'>
+  Pick<Experience, 'id' | 'role' | 'technologies' | 'isExpanded' | 'logoUrl'>
 > = [
   {
     id: 'icgreen-lead-dev',
+    role: 'Lead Developer',
     logoUrl: '/img/experiences/ic-green.png',
     technologies: ['Angular', 'TypeScript', 'Node.js', 'Docker', 'ROS / ROS2', 'MQTT', 'A.I.', 'Gerrit'],
     isExpanded: true
   },
   {
     id: 'tihange-software-engineer',
+    role: 'Software Engineer',
     logoUrl: '/img/experiences/akkodis.svg',
     technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'SQL', 'Azure DevOps'],
     isExpanded: false
   },
   {
     id: 'akkodis-internal-project',
+    role: 'Software Engineering Consultant',
     logoUrl: '/img/experiences/akkodis.svg',
     technologies: ['Angular', 'TypeScript', 'FastAPI', 'Python', 'A.I.', 'Docker'],
     isExpanded: false
   },
   {
     id: 'pg-lfe-consultant',
+    role: 'Software Engineering Consultant',
     logoUrl: '/img/experiences/procter-gamble.svg',
     technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'REST API', 'SQL'],
     isExpanded: false
   },
   {
     id: 'pg-ana-sud-consultant',
+    role: 'Software Engineering Consultant',
     logoUrl: '/img/experiences/procter-gamble.svg',
     technologies: ['C#', '.NET', 'SQL', 'Automation', 'Data Processing'],
     isExpanded: false
   },
   {
     id: 'avanade-academy',
+    role: 'Software Engineering Consultant',
     logoUrl: '/img/experiences/avanade.svg',
     technologies: ['Microsoft Dynamics 365', 'Power Platform', 'Consulting'],
     isExpanded: false
   },
   {
     id: 'noomia-angular-ionic',
+    role: 'Angular / Ionic Developer',
     logoUrl: '/img/experiences/noomia.png',
     technologies: ['Angular', 'Ionic', 'TypeScript', 'RxJS', 'NgRx', 'SCSS'],
     isExpanded: false
   },
   {
     id: 'inforius-fullstack',
+    role: 'Full-Stack Angular / Node.js Developer',
     logoUrl: '/img/experiences/inforius.png',
     technologies: ['Angular', 'Node.js', 'Express', 'SQL', 'TypeScript'],
     isExpanded: false
@@ -140,7 +148,6 @@ export function getExperiencesForLanguage(
     return {
       ...metadata,
       company: experience.company,
-      role: experience.role,
       period: experience.period,
       highlights: [...experience.highlights]
     };
