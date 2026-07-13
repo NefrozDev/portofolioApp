@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SiteHeader } from './site-header/site-header';
 import { MobileBottomNav } from './mobile-bottom-nav/mobile-bottom-nav';
+import { AppStateService } from '../../services/app-state';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,6 @@ import { MobileBottomNav } from './mobile-bottom-nav/mobile-bottom-nav';
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
-export class AppComponent {}
+export class AppComponent {
+  readonly appState = inject(AppStateService);
+}

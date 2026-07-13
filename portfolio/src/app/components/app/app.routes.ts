@@ -13,6 +13,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
+        data: { showSiteHeader: false },
         loadComponent: () =>
           import('../../components/pages/home-page/home-page').then(
             (m) => m.HomePage

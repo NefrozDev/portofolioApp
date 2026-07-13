@@ -1,3 +1,5 @@
-<app-site-header></app-site-header>
+@if (appState.siteHeaderVisible()) {
+  <app-site-header></app-site-header>
+}
 <router-outlet></router-outlet>
 <app-mobile-bottom-nav></app-mobile-bottom-nav>
