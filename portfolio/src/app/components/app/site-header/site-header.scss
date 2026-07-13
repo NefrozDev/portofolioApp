@@ -12,6 +12,7 @@
   position: sticky;
   top: 0;
   z-index: 30;
+  height: var(--header-height);
   isolation: isolate;
   backdrop-filter: blur(14px) saturate(125%);
   -webkit-backdrop-filter: blur(14px) saturate(125%);
@@ -28,7 +29,7 @@
 }
 
 .site-header__inner {
-  min-height: 5rem;
+  min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
