@@ -17,7 +17,8 @@ as a health check.
 
 1. Import this repository as a new Vercel project.
 2. Set **Root Directory** to `Backend` and keep Vercel's Express framework
-   detection/build settings.
+   detection/build settings. The checked-in `vercel.json` also pins the
+   framework to Express so Vercel does not expect a static `public` directory.
 3. Keep **Include source files outside of the Root Directory in the Build Step**
    enabled because the API imports shared models and translations from `Common`.
 4. Add `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, and `ALLOWED_ORIGINS` in the
