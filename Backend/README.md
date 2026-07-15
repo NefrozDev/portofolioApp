@@ -20,8 +20,9 @@ as a health check.
    detection/build settings.
 3. Keep **Include source files outside of the Root Directory in the Build Step**
    enabled because the API imports shared models and translations from `Common`.
-4. Add `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL`, and
-   `ALLOWED_ORIGINS` in the project's environment variables.
+4. Add `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, and `ALLOWED_ORIGINS` in the
+   project's environment variables. `CONTACT_TO_EMAIL` is optional and can
+   override the default recipient, `demoorsteven@yahoo.com`.
 5. Verify the sender domain in Resend and deploy.
 
 `CONTACT_FROM_EMAIL` must use the verified sender domain. Set

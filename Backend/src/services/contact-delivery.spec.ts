@@ -7,7 +7,7 @@ test('contact delivery sends a plain-text email through Resend', async () => {
   const originalEnvironment = { ...process.env };
   process.env['RESEND_API_KEY'] = 'test-api-key';
   process.env['CONTACT_FROM_EMAIL'] = 'Portfolio <contact@example.com>';
-  process.env['CONTACT_TO_EMAIL'] = 'owner@example.com';
+  delete process.env['CONTACT_TO_EMAIL'];
   let request: { input: string; init?: RequestInit } | undefined;
   const fetchRequest = async (input: string | URL | Request, init?: RequestInit) => {
     request = { input: input.toString(), init };
@@ -31,7 +31,7 @@ test('contact delivery sends a plain-text email through Resend', async () => {
     );
 
     const body = JSON.parse(request?.init?.body as string);
-    assert.equal(body.to[0], 'owner@example.com');
+    assert.equal(body.to[0], 'demoorsteven@yahoo.com');
     assert.equal(body.reply_to, 'test@example.com');
     assert.match(body.text, /Hello from the portfolio\./);
   } finally {

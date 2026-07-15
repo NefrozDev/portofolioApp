@@ -7,17 +7,18 @@ interface ContactDeliveryConfig {
 }
 
 type Fetch = typeof fetch;
+const defaultContactRecipient = 'demoorsteven@yahoo.com';
 
 class ContactDeliveryConfigurationError extends Error {}
 
 function getContactDeliveryConfig(): ContactDeliveryConfig {
   const apiKey = process.env['RESEND_API_KEY']?.trim();
   const from = process.env['CONTACT_FROM_EMAIL']?.trim();
-  const to = process.env['CONTACT_TO_EMAIL']?.trim();
+  const to = process.env['CONTACT_TO_EMAIL']?.trim() || defaultContactRecipient;
 
-  if (!apiKey || !from || !to) {
+  if (!apiKey || !from) {
     throw new ContactDeliveryConfigurationError(
-      'Contact delivery is not configured. Set RESEND_API_KEY, CONTACT_FROM_EMAIL and CONTACT_TO_EMAIL.'
+      'Contact delivery is not configured. Set RESEND_API_KEY and CONTACT_FROM_EMAIL.'
     );
   }
 
