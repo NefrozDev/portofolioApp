@@ -88,7 +88,7 @@ describe('ExperiencesPage', () => {
     } as HTMLElement;
     const preventDefault = jasmine.createSpy('preventDefault');
 
-    component.onTechnologyTagRailWheel({
+    component.onTagRailWheel({
       currentTarget: rail,
       deltaX: 0,
       deltaY: 40,
@@ -103,35 +103,39 @@ describe('ExperiencesPage', () => {
     const rail = {
       scrollLeft: 20,
       setPointerCapture: jasmine.createSpy('setPointerCapture'),
+      hasPointerCapture: jasmine
+        .createSpy('hasPointerCapture')
+        .and.returnValue(true),
       releasePointerCapture: jasmine.createSpy('releasePointerCapture')
     } as unknown as HTMLElement & {
       setPointerCapture: jasmine.Spy;
+      hasPointerCapture: jasmine.Spy;
       releasePointerCapture: jasmine.Spy;
     };
     const preventMoveDefault = jasmine.createSpy('preventMoveDefault');
     const preventClickDefault = jasmine.createSpy('preventClickDefault');
     const stopClickPropagation = jasmine.createSpy('stopClickPropagation');
 
-    component.onTechnologyTagRailPointerDown({
+    component.onTagRailPointerDown({
       currentTarget: rail,
       pointerId: 1,
       button: 0,
       clientX: 100
     } as unknown as PointerEvent);
 
-    component.onTechnologyTagRailPointerMove({
+    component.onTagRailPointerMove({
       currentTarget: rail,
       pointerId: 1,
       clientX: 70,
       preventDefault: preventMoveDefault
     } as unknown as PointerEvent);
 
-    component.onTechnologyTagRailPointerEnd({
+    component.onTagRailPointerEnd({
       currentTarget: rail,
       pointerId: 1
     } as unknown as PointerEvent);
 
-    component.toggleTechnologyFilterFromClick({
+    component.onTechnologyFilterClick({
       preventDefault: preventClickDefault,
       stopPropagation: stopClickPropagation
     } as unknown as MouseEvent, 'Angular');
