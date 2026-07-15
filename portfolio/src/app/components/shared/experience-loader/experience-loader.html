@@ -1,0 +1,32 @@
+<section
+  class="experience-loader"
+  role="status"
+  aria-live="polite"
+  aria-busy="true"
+>
+  <div class="experience-loader__label">
+    <span class="experience-loader__orbit" aria-hidden="true"></span>
+    <p>{{ 'experiences.loading' | translate }}</p>
+  </div>
+
+  <div class="experience-loader__list" aria-hidden="true">
+    @for (placeholder of [0, 1]; track placeholder) {
+      <article class="experience-loader__card glass-card">
+        <div class="experience-loader__header">
+          <span class="experience-loader__logo experience-loader__shape"></span>
+          <div class="experience-loader__copy">
+            <span class="experience-loader__line experience-loader__line--title experience-loader__shape"></span>
+            <span class="experience-loader__line experience-loader__shape"></span>
+          </div>
+          <span class="experience-loader__period experience-loader__shape"></span>
+        </div>
+
+        <div class="experience-loader__tags">
+          <span class="experience-loader__chip experience-loader__shape"></span>
+          <span class="experience-loader__chip experience-loader__shape"></span>
+          <span class="experience-loader__chip experience-loader__shape"></span>
+        </div>
+      </article>
+    }
+  </div>
+</section>

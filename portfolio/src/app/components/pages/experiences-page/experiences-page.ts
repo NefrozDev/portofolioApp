@@ -5,6 +5,7 @@ import { distinctUntilChanged } from 'rxjs';
 import { MobileBottomNav } from '../../app/mobile-bottom-nav/mobile-bottom-nav';
 import { SectionHero } from '../../shared/section-hero/section-hero';
 import { ExperienceCard } from '../../shared/experience-card/experience-card';
+import { ExperienceLoader } from '../../shared/experience-loader/experience-loader';
 import { Experience } from '@common/models/experience.model';
 import { ExperiencesApi } from '../../../services/api/experiences-api';
 import { LanguageService } from '../../../services/language';
@@ -12,7 +13,13 @@ import { LanguageService } from '../../../services/language';
 @Component({
   selector: 'app-experiences-page',
   standalone: true,
-  imports: [MobileBottomNav, SectionHero, ExperienceCard, TranslatePipe],
+  imports: [
+    MobileBottomNav,
+    SectionHero,
+    ExperienceCard,
+    ExperienceLoader,
+    TranslatePipe
+  ],
   templateUrl: './experiences-page.html',
   styleUrls: ['./experiences-page.scss']
 })

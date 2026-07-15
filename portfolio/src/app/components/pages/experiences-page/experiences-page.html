@@ -8,9 +8,7 @@
         ></app-section-hero>
 
         @if (isLoading()) {
-          <div class="experiences-page__empty glass-card">
-            <p>{{ 'experiences.loading' | translate }}</p>
-          </div>
+          <app-experience-loader />
         } @else if (loadError()) {
           <div class="experiences-page__empty glass-card">
             <p>{{ (loadError() ?? '') | translate }}</p>

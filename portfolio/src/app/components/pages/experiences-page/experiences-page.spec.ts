@@ -55,6 +55,21 @@ describe('ExperiencesPage', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should render an accessible skeleton while experiences are loading', () => {
+    component.isLoading.set(true);
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    const loader = host.querySelector<HTMLElement>('.experience-loader');
+    const skeletonCards = host.querySelectorAll('.experience-loader__card');
+
+    expect(loader?.getAttribute('role')).toBe('status');
+    expect(loader?.getAttribute('aria-busy')).toBe('true');
+    expect(loader?.textContent).toContain('Loading experiences...');
+    expect(skeletonCards.length).toBe(2);
+    expect(host.querySelector('.experiences-page__toolbar')).toBeNull();
+  });
+
   it('should expose sorted unique technology tags from the loaded experiences', () => {
     expect(component.availableTechnologyTags()).toEqual(['Angular', 'Node.js', 'TypeScript']);
   });
