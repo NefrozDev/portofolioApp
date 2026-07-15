@@ -89,11 +89,11 @@ function createContactRepository(
           INSERT INTO contact_messages (
             id, name, email, phone, message, ip_hash
           )
-          SELECT $1, $2, $3, $4, $5, $6
-          WHERE $6::text IS NULL OR (
+          SELECT $1, $2, $3, $4, $5, $6::CHAR(64)
+          WHERE $6::CHAR(64) IS NULL OR (
             SELECT COUNT(*)
             FROM contact_messages
-            WHERE ip_hash = $6
+            WHERE ip_hash = $6::CHAR(64)
               AND created_at >= NOW() - ($7 * INTERVAL '1 minute')
           ) < $8
           RETURNING id

@@ -25,6 +25,8 @@ test('contact repository prepares its schema and stores contact details', async 
   assert.match(queries[0].query, /CREATE TABLE IF NOT EXISTS contact_messages/);
   assert.match(queries[1].query, /CREATE INDEX IF NOT EXISTS/);
   assert.match(queries[2].query, /INSERT INTO contact_messages/);
+  assert.match(queries[2].query, /\$6::CHAR\(64\) IS NULL/);
+  assert.match(queries[2].query, /ip_hash = \$6::CHAR\(64\)/);
   assert.equal(queries[2].parameters?.[1], 'Test User');
   assert.equal(queries[2].parameters?.[5], 'a'.repeat(64));
 });
