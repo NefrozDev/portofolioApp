@@ -1,8 +1,8 @@
 # Portfolio backend
 
 Express API for portfolio data and contact-form delivery. Contact messages are
-sent to the configured inbox through Resend; the API does not persist their
-personal data.
+stored in Neon Postgres and sent to the configured inbox through Resend. Sender
+IP addresses are retained only as keyed hashes for submission rate limiting.
 
 ## Local development
 
@@ -21,14 +21,20 @@ as a health check.
    framework to Express so Vercel does not expect a static `public` directory.
 3. Keep **Include source files outside of the Root Directory in the Build Step**
    enabled because the API imports shared models and translations from `Common`.
-4. Add `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, and `ALLOWED_ORIGINS` in the
-   project's environment variables. `CONTACT_TO_EMAIL` is optional and can
-   override the default recipient, `demoorsteven@yahoo.com`.
-5. Verify the sender domain in Resend and deploy.
+4. Connect Neon to this project so it provides `DATABASE_URL`.
+5. Add `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `IP_HASH_SECRET`, and
+   `ALLOWED_ORIGINS` in the project's environment variables.
+   `CONTACT_TO_EMAIL` is optional and can override the default recipient,
+   `demoorsteven@yahoo.com`.
+6. Verify the sender domain in Resend and deploy.
 
 `CONTACT_FROM_EMAIL` must use the verified sender domain. Set
 `ALLOWED_ORIGINS` to the frontend origins allowed to call the API, separated by
 commas (include preview origins only if you want previews to submit messages).
+Cross-origin browser access is disabled on Vercel when this value is absent.
+Use at least 32 random bytes for `IP_HASH_SECRET` and keep it stable; changing
+it resets the identity used by the submission limiter. The API creates the
+`contact_messages` table and its rate-limit index on the first submission.
 
 After deployment, replace `apiUrl` in
 `portfolio/src/environments/environment.production.ts` with

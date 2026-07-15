@@ -1,11 +1,21 @@
-import { Router } from 'express';
+import { Request, Router } from 'express';
 import { getAppTranslations } from '../../../Common/i18n';
 import { Contact } from '../../../Common/models/contact.model';
 import {
   ContactDelivery,
-  ContactDeliveryConfigurationError,
   deliverContactMessage
 } from '../services/contact-delivery';
+import {
+  ContactRateLimitError,
+  ContactRepository,
+  ContactRepositoryConfigurationError,
+  contactRepository
+} from '../services/contact-repository';
+import {
+  IpHashConfigurationError,
+  getClientIp,
+  hashClientIp
+} from '../services/client-ip';
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -45,8 +55,19 @@ function parseContact(payload: unknown): Contact | undefined {
   };
 }
 
-function createContactRouter(deliver: ContactDelivery = deliverContactMessage) {
+interface ContactRouterDependencies {
+  deliver?: ContactDelivery;
+  repository?: ContactRepository;
+  getIpHash?: (request: Request) => string | undefined;
+}
+
+function createContactRouter(dependencies: ContactRouterDependencies = {}) {
   const contactRouter = Router();
+  const deliver = dependencies.deliver ?? deliverContactMessage;
+  const repository = dependencies.repository ?? contactRepository;
+  const getIpHash = dependencies.getIpHash ?? ((request) => (
+    hashClientIp(getClientIp(request))
+  ));
 
   contactRouter.post('/', async (req, res) => {
     const language = typeof req.query.lang === 'string' ? req.query.lang : undefined;
@@ -62,22 +83,50 @@ function createContactRouter(deliver: ContactDelivery = deliverContactMessage) {
     }
 
     try {
-      await deliver(contact);
+      const id = await repository.create({
+        contact,
+        ipHash: getIpHash(req)
+      });
+
+      let emailSent = false;
+
+      try {
+        await deliver(contact);
+        emailSent = true;
+      } catch (error) {
+        console.error('Contact route: email delivery failed after storage.', error);
+      }
+
+      if (emailSent) {
+        try {
+          await repository.markEmailSent(id);
+        } catch (error) {
+          console.error('Contact route: could not record successful email delivery.', error);
+        }
+      }
 
       res.status(200).json({
         message: translations.contact.feedback.success
       });
     } catch (error) {
-      const isConfigurationError = error instanceof ContactDeliveryConfigurationError;
+      const isConfigurationError = (
+        error instanceof ContactRepositoryConfigurationError ||
+        error instanceof IpHashConfigurationError
+      );
+      const isRateLimited = error instanceof ContactRateLimitError;
 
       console.error(
         isConfigurationError
-          ? 'Contact route: email delivery is not configured.'
-          : 'Contact route: email delivery failed.',
+          ? 'Contact route: contact storage is not configured.'
+          : 'Contact route: contact storage failed.',
         error
       );
 
-      res.status(isConfigurationError ? 503 : 502).json({
+      if (isRateLimited) {
+        res.setHeader('Retry-After', '900');
+      }
+
+      res.status(isRateLimited ? 429 : (isConfigurationError ? 503 : 502)).json({
         message: translations.contact.feedback.submitError
       });
     }
