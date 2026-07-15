@@ -112,6 +112,18 @@ describe('ContactPage', () => {
     ]);
   });
 
+  it('should center the form field text and placeholders', () => {
+    const host = fixture.nativeElement as HTMLElement;
+    const fields = host.querySelectorAll<HTMLElement>(
+      '.contact-page__input, .contact-page__textarea'
+    );
+
+    expect(fields.length).toBe(4);
+    fields.forEach((field) => {
+      expect(getComputedStyle(field).textAlign).toBe('center');
+    });
+  });
+
   it('should show invalid email feedback inside the email field', () => {
     component.emailControl?.setValue('not-an-email');
     component.emailControl?.markAsTouched();
