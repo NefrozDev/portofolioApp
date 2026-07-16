@@ -27,7 +27,15 @@ const PROJECT_METADATA: Array<
     category: 'fullstack',
     imageUrl: '/assets/images/projects/portfolio-app.png',
     technologies: ['Angular', 'TypeScript', 'Node.js', 'Express'],
-    tags: ['documentation', 'performance', 'optimization', 'design', 'accessibility'],
+    tags: [
+      'accessibility',
+      'design',
+      'documentation',
+      'internationalization',
+      'performance',
+      'responsive',
+      'seo'
+    ],
     sourceUrl: 'https://github.com/example/portfolio-app',
     demoUrl: 'https://example.com',
     isFeatured: true
@@ -37,16 +45,31 @@ const PROJECT_METADATA: Array<
     category: 'frontend',
     imageUrl: '/assets/images/projects/task-dashboard.png',
     technologies: ['Angular', 'SCSS', 'RxJS'],
-    tags: ['performance', 'design', 'accessibility', 'testing'],
+    tags: [
+      'accessibility',
+      'data-visualization',
+      'design',
+      'performance',
+      'responsive',
+      'testing'
+    ],
     sourceUrl: 'https://github.com/example/task-dashboard',
     isFeatured: false
   },
   {
     id: '3',
-    category: 'backend',
+    category: 'devops-cloud',
     imageUrl: '/img/projects/devops-monitor.png',
     technologies: ['Node.js', 'Docker', 'API'],
-    tags: ['documentation', 'performance', 'optimization', 'architecture'],
+    tags: [
+      'architecture',
+      'ci-cd',
+      'documentation',
+      'observability',
+      'performance',
+      'real-time',
+      'scalability'
+    ],
     sourceUrl: '#',
     demoUrl: '#'
   },
@@ -55,7 +78,15 @@ const PROJECT_METADATA: Array<
     category: 'frontend',
     imageUrl: '/img/projects/chat-application.png',
     technologies: ['Angular', 'SCSS', 'WebSocket'],
-    tags: ['performance', 'optimization', 'design', 'accessibility'],
+    tags: [
+      'accessibility',
+      'design',
+      'performance',
+      'real-time',
+      'responsive',
+      'security',
+      'testing'
+    ],
     sourceUrl: '#',
     demoUrl: '#'
   }

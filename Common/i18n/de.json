@@ -39,7 +39,10 @@
       "frontend": "Frontend",
       "backend": "Backend",
       "fullstack": "Fullstack",
-      "uiUx": "UI / UX"
+      "uiUx": "UI / UX",
+      "mobile": "Mobil",
+      "devopsCloud": "DevOps / Cloud",
+      "aiData": "KI / Daten"
     },
     "tags": {
       "documentation": "Dokumentation",
@@ -48,7 +51,17 @@
       "design": "Design",
       "accessibility": "Barrierefreiheit",
       "testing": "Tests",
-      "architecture": "Architektur"
+      "architecture": "Architektur",
+      "security": "Sicherheit",
+      "responsive": "Responsiv",
+      "internationalization": "Internationalisierung",
+      "seo": "SEO",
+      "real-time": "Echtzeit",
+      "observability": "Beobachtbarkeit",
+      "scalability": "Skalierbarkeit",
+      "maintainability": "Wartbarkeit",
+      "ci-cd": "CI/CD",
+      "data-visualization": "Datenvisualisierung"
     },
     "actions": {
       "sourceCode": "Source code",

@@ -1,4 +1,11 @@
-export type ProjectCategory = 'frontend' | 'backend' | 'fullstack' | 'ui-ux';
+export type ProjectCategory =
+  | 'frontend'
+  | 'backend'
+  | 'fullstack'
+  | 'ui-ux'
+  | 'mobile'
+  | 'devops-cloud'
+  | 'ai-data';
 
 export type ProjectTag =
   | 'documentation'
@@ -7,7 +14,17 @@ export type ProjectTag =
   | 'design'
   | 'accessibility'
   | 'testing'
-  | 'architecture';
+  | 'architecture'
+  | 'security'
+  | 'responsive'
+  | 'internationalization'
+  | 'seo'
+  | 'real-time'
+  | 'observability'
+  | 'scalability'
+  | 'maintainability'
+  | 'ci-cd'
+  | 'data-visualization';
 
 export interface Project {
   id: string;

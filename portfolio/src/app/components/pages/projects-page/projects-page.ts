@@ -29,7 +29,10 @@ export class ProjectsPage {
     { labelKey: 'projects.categories.frontend', value: 'frontend' },
     { labelKey: 'projects.categories.backend', value: 'backend' },
     { labelKey: 'projects.categories.fullstack', value: 'fullstack' },
-    { labelKey: 'projects.categories.uiUx', value: 'ui-ux' }
+    { labelKey: 'projects.categories.uiUx', value: 'ui-ux' },
+    { labelKey: 'projects.categories.mobile', value: 'mobile' },
+    { labelKey: 'projects.categories.devopsCloud', value: 'devops-cloud' },
+    { labelKey: 'projects.categories.aiData', value: 'ai-data' }
   ];
 
   readonly selectedCategory = signal<'all' | ProjectCategory>('all');

@@ -146,11 +146,13 @@ describe('ProjectsPage', () => {
 
   it('should render category and project tag filters above the layout', () => {
     const host = fixture.nativeElement as HTMLElement;
+    const filterRows = host.querySelectorAll('.projects-page__filter-row');
     const tagFilters = host.querySelectorAll<HTMLButtonElement>(
       '.projects-page__filter-chip--tag'
     );
 
-    expect(host.querySelectorAll('.projects-page__filter-row').length).toBe(2);
+    expect(filterRows.length).toBe(2);
+    expect(filterRows[0].querySelectorAll('button').length).toBe(8);
     expect(tagFilters.length).toBe(5);
     expect(tagFilters[0].textContent?.trim()).toBe('All');
     expect(tagFilters[0].getAttribute('aria-pressed')).toBe('true');

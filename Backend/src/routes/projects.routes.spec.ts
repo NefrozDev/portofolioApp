@@ -21,6 +21,13 @@ test('GET /api/projects should return a project list', async () => {
   assert.ok(Array.isArray(firstProject.technologies));
   assert.ok(Array.isArray(firstProject.tags));
   assert.ok(firstProject.tags.length > 0);
+
+  const devOpsProject = response.body.find(
+    (project: { shortLabel: string }) => project.shortLabel === 'DevOps Monitor'
+  );
+
+  assert.equal(devOpsProject.category, 'devops-cloud');
+  assert.ok(devOpsProject.tags.includes('observability'));
 });
 
 test('GET /api/projects should return localized projects', async () => {
