@@ -12,6 +12,7 @@ const project: Project = {
   description: 'Personal portfolio application.',
   imageUrl: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==',
   technologies: ['Angular'],
+  tags: ['documentation', 'design'],
   sourceUrl: '#',
   demoUrl: '#'
 };
@@ -35,5 +36,30 @@ describe('ProjectDetail', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display technologies separately from semantic project tags', () => {
+    const host = fixture.nativeElement as HTMLElement;
+    const groups = host.querySelectorAll('.project-detail__tag-group');
+
+    expect(groups.length).toBe(2);
+    expect(groups[0].textContent).toContain('Angular');
+    expect(groups[1].textContent).toContain('Documentation');
+    expect(groups[1].textContent).toContain('Design');
+  });
+
+  it('should show a branded fallback when the preview image fails', () => {
+    component.onImageError();
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    const placeholder = host.querySelector('.project-detail__image-placeholder');
+
+    expect(
+      placeholder?.classList.contains(
+        'project-detail__image-placeholder--visible'
+      )
+    ).toBeTrue();
+    expect(placeholder?.textContent).toContain('Portfolio');
   });
 });

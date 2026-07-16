@@ -20,13 +20,14 @@ export const APP_TRANSLATIONS: Record<AppLanguage, AppTranslations> = {
 };
 
 const PROJECT_METADATA: Array<
-  Pick<Project, 'id' | 'category' | 'imageUrl' | 'technologies' | 'sourceUrl' | 'demoUrl' | 'isFeatured'>
+  Pick<Project, 'id' | 'category' | 'imageUrl' | 'technologies' | 'tags' | 'sourceUrl' | 'demoUrl' | 'isFeatured'>
 > = [
   {
     id: '1',
     category: 'fullstack',
     imageUrl: '/assets/images/projects/portfolio-app.png',
     technologies: ['Angular', 'TypeScript', 'Node.js', 'Express'],
+    tags: ['documentation', 'performance', 'optimization', 'design', 'accessibility'],
     sourceUrl: 'https://github.com/example/portfolio-app',
     demoUrl: 'https://example.com',
     isFeatured: true
@@ -36,6 +37,7 @@ const PROJECT_METADATA: Array<
     category: 'frontend',
     imageUrl: '/assets/images/projects/task-dashboard.png',
     technologies: ['Angular', 'SCSS', 'RxJS'],
+    tags: ['performance', 'design', 'accessibility', 'testing'],
     sourceUrl: 'https://github.com/example/task-dashboard',
     isFeatured: false
   },
@@ -44,6 +46,7 @@ const PROJECT_METADATA: Array<
     category: 'backend',
     imageUrl: '/img/projects/devops-monitor.png',
     technologies: ['Node.js', 'Docker', 'API'],
+    tags: ['documentation', 'performance', 'optimization', 'architecture'],
     sourceUrl: '#',
     demoUrl: '#'
   },
@@ -52,6 +55,7 @@ const PROJECT_METADATA: Array<
     category: 'frontend',
     imageUrl: '/img/projects/chat-application.png',
     technologies: ['Angular', 'SCSS', 'WebSocket'],
+    tags: ['performance', 'optimization', 'design', 'accessibility'],
     sourceUrl: '#',
     demoUrl: '#'
   }

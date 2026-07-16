@@ -1,11 +1,15 @@
 import { Component, computed, signal } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
-import { distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { SectionHero } from '../../shared/section-hero/section-hero';
 import { ProjectSidebar } from '../../shared/project-sidebar/project-sidebar';
 import { ProjectDetail } from '../../shared/project-detail/project-detail';
-import { Project } from '@common/models/project.model';
+import {
+  Project,
+  ProjectCategory,
+  ProjectTag
+} from '@common/models/project.model';
 import { ProjectsApi } from '../../../services/api/projects-api';
 import { LanguageService } from '../../../services/language';
 
@@ -17,22 +21,49 @@ import { LanguageService } from '../../../services/language';
   styleUrls: ['./projects-page.scss']
 })
 export class ProjectsPage {
-  readonly selectedCategory = signal<'all' | Project['category']>('all');
+  readonly categories: Array<{
+    labelKey: string;
+    value: 'all' | ProjectCategory;
+  }> = [
+    { labelKey: 'projects.categories.all', value: 'all' },
+    { labelKey: 'projects.categories.frontend', value: 'frontend' },
+    { labelKey: 'projects.categories.backend', value: 'backend' },
+    { labelKey: 'projects.categories.fullstack', value: 'fullstack' },
+    { labelKey: 'projects.categories.uiUx', value: 'ui-ux' }
+  ];
+
+  readonly selectedCategory = signal<'all' | ProjectCategory>('all');
+  readonly selectedTags = signal<ProjectTag[]>([]);
+  readonly appliedTags = signal<ProjectTag[]>([]);
   readonly selectedProjectId = signal<string>('');
   readonly projects = signal<Project[]>([]);
   readonly isLoading = signal<boolean>(true);
   readonly loadError = signal<string | null>(null);
 
+  readonly availableTags = computed(() => {
+    const tags = this.projects().flatMap((project) => project.tags);
+
+    return [...new Set(tags)].sort((a, b) => a.localeCompare(b));
+  });
+
   readonly filteredProjects = computed(() => {
     const category = this.selectedCategory();
-    const projects = this.projects();
+    const selectedTags = this.appliedTags();
 
-    if (category === 'all') {
-      return projects;
-    }
+    return this.projects().filter((project) => {
+      const matchesCategory =
+        category === 'all' || project.category === category;
+      const matchesTags =
+        !selectedTags.length ||
+        project.tags.some((tag) => selectedTags.includes(tag));
 
-    return projects.filter((project) => project.category === category);
+      return matchesCategory && matchesTags;
+    });
   });
+
+  readonly hasActiveFilters = computed(
+    () => this.selectedCategory() !== 'all' || this.selectedTags().length > 0
+  );
 
   readonly selectedProject = computed(() => {
     const projectId = this.selectedProjectId();
@@ -45,6 +76,8 @@ export class ProjectsPage {
     );
   });
 
+  private readonly tagSelectionChanges = new Subject<ProjectTag[]>();
+
   constructor(
     private readonly projectsApi: ProjectsApi,
     languageService: LanguageService
@@ -52,6 +85,13 @@ export class ProjectsPage {
     toObservable(languageService.currentLanguage)
       .pipe(distinctUntilChanged(), takeUntilDestroyed())
       .subscribe(() => this.loadProjects());
+
+    this.tagSelectionChanges
+      .pipe(debounceTime(120), takeUntilDestroyed())
+      .subscribe((tags) => {
+        this.appliedTags.set(tags);
+        this.keepOrSelectFilteredProject();
+      });
   }
 
   private loadProjects(): void {
@@ -69,7 +109,7 @@ export class ProjectsPage {
           return;
         }
 
-        this.selectedProjectId.set(projects[0].id);
+        this.selectFirstFilteredProject();
         this.isLoading.set(false);
       },
       error: (error: unknown) => {
@@ -82,18 +122,35 @@ export class ProjectsPage {
     });
   }
 
-  selectCategory(category: 'all' | Project['category']): void {
+  selectCategory(category: 'all' | ProjectCategory): void {
     this.selectedCategory.set(category);
+    this.keepOrSelectFilteredProject();
+  }
 
-    const firstProject = this.filteredProjects()[0];
+  toggleTag(tag: ProjectTag): void {
+    const selectedTags = this.selectedTags();
+    const updatedTags = selectedTags.includes(tag)
+      ? selectedTags.filter((selectedTag) => selectedTag !== tag)
+      : [...selectedTags, tag];
 
-    if (!firstProject) {
-      console.warn('ProjectsPage: no data available for this category.');
-      this.selectedProjectId.set('');
-      return;
-    }
+    this.selectedTags.set(updatedTags);
+    this.tagSelectionChanges.next(updatedTags);
+  }
 
-    this.selectedProjectId.set(firstProject.id);
+  isTagSelected(tag: ProjectTag): boolean {
+    return this.selectedTags().includes(tag);
+  }
+
+  clearTags(): void {
+    this.selectedTags.set([]);
+    this.appliedTags.set([]);
+    this.tagSelectionChanges.next([]);
+    this.keepOrSelectFilteredProject();
+  }
+
+  clearFilters(): void {
+    this.selectedCategory.set('all');
+    this.clearTags();
   }
 
   selectProject(projectId: string): void {
@@ -103,5 +160,20 @@ export class ProjectsPage {
     }
 
     this.selectedProjectId.set(projectId);
+  }
+
+  private keepOrSelectFilteredProject(): void {
+    const projects = this.filteredProjects();
+    const selectedProjectStillExists = projects.some(
+      (project) => project.id === this.selectedProjectId()
+    );
+
+    if (!selectedProjectStillExists) {
+      this.selectFirstFilteredProject();
+    }
+  }
+
+  private selectFirstFilteredProject(): void {
+    this.selectedProjectId.set(this.filteredProjects()[0]?.id ?? '');
   }
 }

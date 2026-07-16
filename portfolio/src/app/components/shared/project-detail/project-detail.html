@@ -1,9 +1,20 @@
 <article class="project-detail glass-card">
   <div class="project-detail__image-wrapper">
+    <div
+      class="project-detail__image-placeholder"
+      [class.project-detail__image-placeholder--visible]="imageLoadFailed()"
+    >
+      <span aria-hidden="true">&lt;/&gt;</span>
+      <strong>{{ project().shortLabel }}</strong>
+    </div>
+
     <img
       class="project-detail__image"
+      [class.project-detail__image--hidden]="imageLoadFailed()"
       [src]="project().imageUrl"
       [alt]="'projects.previewAlt' | translate: { title: project().title }"
+      (load)="onImageLoad()"
+      (error)="onImageError()"
     />
   </div>
 
@@ -14,10 +25,30 @@
       {{ project().description }}
     </p>
 
-    <div class="tag-list project-detail__tags">
-      @for (technology of project().technologies; track technology) {
-        <span class="tag">{{ technology }}</span>
-      }
+    <div class="project-detail__metadata">
+      <section class="project-detail__tag-group">
+        <h3 class="project-detail__tag-label">
+          {{ 'projects.technologies' | translate }}
+        </h3>
+        <div class="tag-list project-detail__tags">
+          @for (technology of project().technologies; track technology) {
+            <span class="tag">{{ technology }}</span>
+          }
+        </div>
+      </section>
+
+      <section class="project-detail__tag-group">
+        <h3 class="project-detail__tag-label">
+          {{ 'projects.projectTags' | translate }}
+        </h3>
+        <div class="tag-list project-detail__tags">
+          @for (tag of project().tags; track tag) {
+            <span class="tag project-detail__semantic-tag">
+              {{ ('projects.tags.' + tag) | translate }}
+            </span>
+          }
+        </div>
+      </section>
     </div>
 
     <div class="project-detail__actions">

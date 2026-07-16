@@ -1,56 +1,79 @@
+:host {
+  display: block;
+  min-height: 0;
+}
+
 .project-sidebar {
-  padding: 1rem;
-}
-
-.project-sidebar__categories {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-
-.project-sidebar__category {
-  width: 100%;
-  text-align: left;
-  padding: 0.85rem 1rem;
-  border-radius: 0.875rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-soft);
-  color: var(--text-secondary);
-  font-family: 'Space Grotesk', Inter, Arial, sans-serif;
-  font-weight: 500;
-}
-
-.project-sidebar__category--active {
-  color: #fff;
-  background: linear-gradient(
-    90deg,
-    rgba(123, 97, 255, 0.3) 0%,
-    rgba(79, 140, 255, 0.25) 100%
-  );
-  border-color: rgba(138, 180, 255, 0.8);
+  height: 100%;
+  min-height: 0;
+  padding: 0.75rem;
+  overflow: hidden;
 }
 
 .project-sidebar__list {
   display: flex;
+  height: 100%;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.55rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(123, 97, 255, 0.65) transparent;
 }
 
 .project-sidebar__item {
+  display: grid;
   width: 100%;
-  text-align: left;
-  padding: 0.85rem 1rem;
-  border-radius: 0.875rem;
-  background: rgba(255, 255, 255, 0.04);
+  gap: 0.3rem;
+  padding: 0.8rem 0.9rem;
   border: 1px solid transparent;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
   color: var(--text-primary);
-  font-family: 'Space Grotesk', Inter, Arial, sans-serif;
-  font-weight: 500;
+  text-align: left;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+.project-sidebar__item:hover,
 .project-sidebar__item--active {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 1rem 2rem rgba(99, 102, 241, 0.15);
+  border-color: rgba(123, 97, 255, 0.42);
+  background: linear-gradient(
+    135deg,
+    rgba(79, 140, 255, 0.16),
+    rgba(123, 97, 255, 0.2)
+  );
+  box-shadow: 0 0.75rem 1.75rem rgba(99, 102, 241, 0.12);
+}
+
+.project-sidebar__item-title {
+  font-family: 'Space Grotesk', Inter, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.project-sidebar__item-meta {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 64rem) {
+  .project-sidebar {
+    height: auto;
+  }
+
+  .project-sidebar__list {
+    height: auto;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .project-sidebar__item {
+    width: min(13rem, 70vw);
+    flex: 0 0 auto;
+  }
 }

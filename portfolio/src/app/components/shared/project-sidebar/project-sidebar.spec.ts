@@ -13,6 +13,7 @@ const projects: Project[] = [
     description: 'Personal portfolio application.',
     imageUrl: '/img/project.png',
     technologies: ['Angular'],
+    tags: ['design'],
     sourceUrl: '#',
     demoUrl: '#'
   }
@@ -32,12 +33,23 @@ describe('ProjectSidebar', () => {
     fixture = TestBed.createComponent(ProjectSidebar);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('projects', projects);
-    fixture.componentRef.setInput('selectedCategory', 'all');
     fixture.componentRef.setInput('selectedProjectId', 'project-1');
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render project metadata without category controls', () => {
+    const host = fixture.nativeElement as HTMLElement;
+
+    expect(host.querySelector('.project-sidebar__item-title')?.textContent).toContain(
+      'Portfolio'
+    );
+    expect(host.querySelector('.project-sidebar__item-meta')?.textContent).toContain(
+      'Angular'
+    );
+    expect(host.querySelector('.project-sidebar__categories')).toBeNull();
   });
 });

@@ -28,13 +28,27 @@
     "loading": "Loading projects...",
     "loadError": "Unable to load projects.",
     "emptyCategory": "No project available for this category.",
-    "sortBy": "Sort by:",
+    "emptyFilters": "Kein Projekt entspricht diesen Filtern.",
+    "categoryLabel": "Kategorie:",
+    "tagLabel": "Tags:",
+    "technologies": "Technologien",
+    "projectTags": "Tags",
+    "clearFilters": "Filter zurücksetzen",
     "categories": {
       "all": "All",
       "frontend": "Frontend",
       "backend": "Backend",
       "fullstack": "Fullstack",
       "uiUx": "UI / UX"
+    },
+    "tags": {
+      "documentation": "Dokumentation",
+      "performance": "Leistung",
+      "optimization": "Optimierung",
+      "design": "Design",
+      "accessibility": "Barrierefreiheit",
+      "testing": "Tests",
+      "architecture": "Architektur"
     },
     "actions": {
       "sourceCode": "Source code",

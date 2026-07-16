@@ -19,6 +19,8 @@ test('GET /api/projects should return a project list', async () => {
   assert.equal(typeof firstProject.category, 'string');
   assert.equal(typeof firstProject.description, 'string');
   assert.ok(Array.isArray(firstProject.technologies));
+  assert.ok(Array.isArray(firstProject.tags));
+  assert.ok(firstProject.tags.length > 0);
 });
 
 test('GET /api/projects should return localized projects', async () => {

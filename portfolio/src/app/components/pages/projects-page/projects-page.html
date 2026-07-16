@@ -16,25 +16,80 @@
             <p>{{ (loadError() ?? '') | translate }}</p>
           </div>
         } @else {
-          <div class="projects-page__toolbar">
-            <span class="projects-page__toolbar-label">{{ 'projects.sortBy' | translate }}</span>
-
-            <button
-              type="button"
-              class="projects-page__toolbar-button"
-              [class.projects-page__toolbar-button--active]="selectedCategory() === 'all'"
-              (click)="selectCategory('all')"
+          <section class="projects-page__filters">
+            <div
+              class="projects-page__filter-row"
+              role="group"
+              [attr.aria-label]="'projects.categoryLabel' | translate"
             >
-              {{ 'projects.categories.all' | translate }}
-            </button>
-          </div>
+              <span class="projects-page__filter-label">
+                {{ 'projects.categoryLabel' | translate }}
+              </span>
+
+              <div class="projects-page__filter-rail">
+                @for (category of categories; track category.value) {
+                  <button
+                    type="button"
+                    class="projects-page__filter-chip"
+                    [class.projects-page__filter-chip--active]="selectedCategory() === category.value"
+                    [attr.aria-pressed]="selectedCategory() === category.value"
+                    (click)="selectCategory(category.value)"
+                  >
+                    {{ category.labelKey | translate }}
+                  </button>
+                }
+              </div>
+            </div>
+
+            <div
+              class="projects-page__filter-row"
+              role="group"
+              [attr.aria-label]="'projects.tagLabel' | translate"
+            >
+              <span class="projects-page__filter-label">
+                {{ 'projects.tagLabel' | translate }}
+              </span>
+
+              <div class="projects-page__filter-rail">
+                <button
+                  type="button"
+                  class="projects-page__filter-chip projects-page__filter-chip--tag"
+                  [class.projects-page__filter-chip--active]="!selectedTags().length"
+                  [attr.aria-pressed]="!selectedTags().length"
+                  (click)="clearTags()"
+                >
+                  {{ 'projects.categories.all' | translate }}
+                </button>
+
+                @for (tag of availableTags(); track tag) {
+                  <button
+                    type="button"
+                    class="projects-page__filter-chip projects-page__filter-chip--tag"
+                    [class.projects-page__filter-chip--active]="isTagSelected(tag)"
+                    [attr.aria-pressed]="isTagSelected(tag)"
+                    (click)="toggleTag(tag)"
+                  >
+                    {{ ('projects.tags.' + tag) | translate }}
+                  </button>
+                }
+              </div>
+
+              @if (hasActiveFilters()) {
+                <button
+                  type="button"
+                  class="projects-page__clear-filters"
+                  (click)="clearFilters()"
+                >
+                  {{ 'projects.clearFilters' | translate }}
+                </button>
+              }
+            </div>
+          </section>
 
           <div class="projects-page__layout">
             <app-project-sidebar
               [projects]="filteredProjects()"
-              [selectedCategory]="selectedCategory()"
               [selectedProjectId]="selectedProjectId()"
-              (categorySelected)="selectCategory($event)"
               (projectSelected)="selectProject($event)"
             ></app-project-sidebar>
 
@@ -42,7 +97,17 @@
               <app-project-detail [project]="project"></app-project-detail>
             } @else {
               <div class="projects-page__empty glass-card">
-                <p>{{ 'projects.emptyCategory' | translate }}</p>
+                <p>{{ 'projects.emptyFilters' | translate }}</p>
+
+                @if (hasActiveFilters()) {
+                  <button
+                    type="button"
+                    class="app-button app-button--ghost"
+                    (click)="clearFilters()"
+                  >
+                    {{ 'projects.clearFilters' | translate }}
+                  </button>
+                }
               </div>
             }
           </div>
