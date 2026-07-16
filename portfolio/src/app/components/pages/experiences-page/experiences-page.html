@@ -14,50 +14,15 @@
             <p>{{ (loadError() ?? '') | translate }}</p>
           </div>
         } @else {
-          <div class="experiences-page__toolbar">
-            <span class="experiences-page__toolbar-label">
-              {{ 'experiences.technologies' | translate }}
-            </span>
-
-            <div class="experiences-page__tag-rail">
-              <div
-                class="experiences-page__tag-scroll"
-                [class.experiences-page__tag-scroll--dragging]="isTechnologyTagRailDragging()"
-                role="group"
-                [attr.aria-label]="'experiences.sortBy' | translate"
-                (wheel)="onTagRailWheel($event)"
-                (pointerdown)="onTagRailPointerDown($event)"
-                (pointermove)="onTagRailPointerMove($event)"
-                (pointerup)="onTagRailPointerEnd($event)"
-                (pointerleave)="onTagRailPointerEnd($event)"
-                (pointercancel)="onTagRailPointerEnd($event)"
-              >
-                <button
-                  type="button"
-                  class="experiences-page__filter-chip"
-                  [class.experiences-page__filter-chip--active]="!selectedTechnologyTags().length"
-                  [attr.aria-pressed]="!selectedTechnologyTags().length"
-                  (pointerdown)="$event.stopPropagation()"
-                  (click)="onClearTechnologyFiltersClick($event)"
-                >
-                  {{ 'experiences.all' | translate }}
-                </button>
-
-                @for (technology of availableTechnologyTags(); track technology) {
-                  <button
-                    type="button"
-                    class="experiences-page__filter-chip"
-                    [class.experiences-page__filter-chip--active]="isTechnologySelected(technology)"
-                    [attr.aria-pressed]="isTechnologySelected(technology)"
-                    (pointerdown)="$event.stopPropagation()"
-                    (click)="onTechnologyFilterClick($event, technology)"
-                  >
-                    {{ technology }}
-                  </button>
-                }
-              </div>
-            </div>
-          </div>
+          <app-filter-rail
+            class="experiences-page__toolbar"
+            [labelKey]="'experiences.technologies'"
+            [allLabelKey]="'experiences.all'"
+            [options]="technologyFilterOptions()"
+            [selectedValues]="selectedTechnologyTags()"
+            (allSelected)="clearTechnologyFilters()"
+            (optionSelected)="toggleTechnologyFilter($event)"
+          ></app-filter-rail>
 
           <div class="experiences-page__list">
             @for (experience of filteredExperiences(); track experience.id) {

@@ -95,73 +95,11 @@ describe('ExperiencesPage', () => {
     expect(component.filteredExperiences()).toEqual(experiences);
   });
 
-  it('should scroll the technology filter rail with vertical wheel movement', () => {
-    const rail = {
-      clientWidth: 100,
-      scrollLeft: 10,
-      scrollWidth: 300
-    } as HTMLElement;
-    const preventDefault = jasmine.createSpy('preventDefault');
+  it('should render technology filtering through the shared rail', () => {
+    const rail = fixture.nativeElement.querySelector('app-filter-rail') as HTMLElement;
 
-    component.onTagRailWheel({
-      currentTarget: rail,
-      deltaX: 0,
-      deltaY: 40,
-      preventDefault
-    } as unknown as WheelEvent);
-
-    expect(preventDefault).toHaveBeenCalled();
-    expect(rail.scrollLeft).toBe(50);
-  });
-
-  it('should drag the technology filter rail without toggling a chip', () => {
-    const rail = {
-      scrollLeft: 20,
-      setPointerCapture: jasmine.createSpy('setPointerCapture'),
-      hasPointerCapture: jasmine
-        .createSpy('hasPointerCapture')
-        .and.returnValue(true),
-      releasePointerCapture: jasmine.createSpy('releasePointerCapture')
-    } as unknown as HTMLElement & {
-      setPointerCapture: jasmine.Spy;
-      hasPointerCapture: jasmine.Spy;
-      releasePointerCapture: jasmine.Spy;
-    };
-    const preventMoveDefault = jasmine.createSpy('preventMoveDefault');
-    const preventClickDefault = jasmine.createSpy('preventClickDefault');
-    const stopClickPropagation = jasmine.createSpy('stopClickPropagation');
-
-    component.onTagRailPointerDown({
-      currentTarget: rail,
-      pointerId: 1,
-      button: 0,
-      clientX: 100
-    } as unknown as PointerEvent);
-
-    component.onTagRailPointerMove({
-      currentTarget: rail,
-      pointerId: 1,
-      clientX: 70,
-      preventDefault: preventMoveDefault
-    } as unknown as PointerEvent);
-
-    component.onTagRailPointerEnd({
-      currentTarget: rail,
-      pointerId: 1
-    } as unknown as PointerEvent);
-
-    component.onTechnologyFilterClick({
-      preventDefault: preventClickDefault,
-      stopPropagation: stopClickPropagation
-    } as unknown as MouseEvent, 'Angular');
-
-    expect(rail.setPointerCapture).toHaveBeenCalledWith(1);
-    expect(rail.releasePointerCapture).toHaveBeenCalledWith(1);
-    expect(preventMoveDefault).toHaveBeenCalled();
-    expect(preventClickDefault).toHaveBeenCalled();
-    expect(stopClickPropagation).toHaveBeenCalled();
-    expect(rail.scrollLeft).toBe(50);
-    expect(component.isTechnologyTagRailDragging()).toBeFalse();
-    expect(component.selectedTechnologyTags()).toEqual([]);
+    expect(rail).not.toBeNull();
+    expect(rail.querySelectorAll('button').length).toBe(4);
+    expect(rail.querySelector('button')?.textContent?.trim()).toBe('All');
   });
 });

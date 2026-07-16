@@ -17,62 +17,24 @@
           </div>
         } @else {
           <section class="projects-page__filters">
-            <div
-              class="projects-page__filter-row"
-              role="group"
-              [attr.aria-label]="'projects.categoryLabel' | translate"
-            >
-              <span class="projects-page__filter-label">
-                {{ 'projects.categoryLabel' | translate }}
-              </span>
+            <app-filter-rail
+              [labelKey]="'projects.categoryLabel'"
+              [allLabelKey]="'projects.categories.all'"
+              [options]="categoryFilterOptions"
+              [selectedValues]="selectedCategoryValues()"
+              (allSelected)="selectCategory('all')"
+              (optionSelected)="selectCategoryValue($event)"
+            ></app-filter-rail>
 
-              <div class="projects-page__filter-rail">
-                @for (category of categories; track category.value) {
-                  <button
-                    type="button"
-                    class="projects-page__filter-chip"
-                    [class.projects-page__filter-chip--active]="selectedCategory() === category.value"
-                    [attr.aria-pressed]="selectedCategory() === category.value"
-                    (click)="selectCategory(category.value)"
-                  >
-                    {{ category.labelKey | translate }}
-                  </button>
-                }
-              </div>
-            </div>
-
-            <div
-              class="projects-page__filter-row"
-              role="group"
-              [attr.aria-label]="'projects.tagLabel' | translate"
-            >
-              <span class="projects-page__filter-label">
-                {{ 'projects.tagLabel' | translate }}
-              </span>
-
-              <div class="projects-page__filter-rail">
-                <button
-                  type="button"
-                  class="projects-page__filter-chip projects-page__filter-chip--tag"
-                  [class.projects-page__filter-chip--active]="!selectedTags().length"
-                  [attr.aria-pressed]="!selectedTags().length"
-                  (click)="clearTags()"
-                >
-                  {{ 'projects.categories.all' | translate }}
-                </button>
-
-                @for (tag of availableTags(); track tag) {
-                  <button
-                    type="button"
-                    class="projects-page__filter-chip projects-page__filter-chip--tag"
-                    [class.projects-page__filter-chip--active]="isTagSelected(tag)"
-                    [attr.aria-pressed]="isTagSelected(tag)"
-                    (click)="toggleTag(tag)"
-                  >
-                    {{ ('projects.tags.' + tag) | translate }}
-                  </button>
-                }
-              </div>
+            <div class="projects-page__tag-filters">
+              <app-filter-rail
+                [labelKey]="'projects.tagLabel'"
+                [allLabelKey]="'projects.categories.all'"
+                [options]="tagFilterOptions()"
+                [selectedValues]="selectedTags()"
+                (allSelected)="clearTags()"
+                (optionSelected)="toggleTagValue($event)"
+              ></app-filter-rail>
 
               @if (hasActiveFilters()) {
                 <button

@@ -6,6 +6,10 @@ import { SectionHero } from '../../shared/section-hero/section-hero';
 import { ProjectSidebar } from '../../shared/project-sidebar/project-sidebar';
 import { ProjectDetail } from '../../shared/project-detail/project-detail';
 import {
+  FilterRail,
+  FilterRailOption
+} from '../../shared/filter-rail/filter-rail';
+import {
   Project,
   ProjectCategory,
   ProjectTag
@@ -16,16 +20,15 @@ import { LanguageService } from '../../../services/language';
 @Component({
   selector: 'app-projects-page',
   standalone: true,
-  imports: [SectionHero, ProjectSidebar, ProjectDetail, TranslatePipe],
+  imports: [SectionHero, ProjectSidebar, ProjectDetail, FilterRail, TranslatePipe],
   templateUrl: './projects-page.html',
   styleUrls: ['./projects-page.scss']
 })
 export class ProjectsPage {
-  readonly categories: Array<{
+  readonly categoryFilterOptions: Array<{
     labelKey: string;
-    value: 'all' | ProjectCategory;
+    value: ProjectCategory;
   }> = [
-    { labelKey: 'projects.categories.all', value: 'all' },
     { labelKey: 'projects.categories.frontend', value: 'frontend' },
     { labelKey: 'projects.categories.backend', value: 'backend' },
     { labelKey: 'projects.categories.fullstack', value: 'fullstack' },
@@ -47,6 +50,19 @@ export class ProjectsPage {
     const tags = this.projects().flatMap((project) => project.tags);
 
     return [...new Set(tags)].sort((a, b) => a.localeCompare(b));
+  });
+
+  readonly tagFilterOptions = computed<FilterRailOption[]>(() =>
+    this.availableTags().map((tag) => ({
+      value: tag,
+      labelKey: `projects.tags.${tag}`
+    }))
+  );
+
+  readonly selectedCategoryValues = computed<string[]>(() => {
+    const category = this.selectedCategory();
+
+    return category === 'all' ? [] : [category];
   });
 
   readonly filteredProjects = computed(() => {
@@ -130,6 +146,16 @@ export class ProjectsPage {
     this.keepOrSelectFilteredProject();
   }
 
+  selectCategoryValue(value: string): void {
+    const category = this.categoryFilterOptions.find(
+      (option) => option.value === value
+    )?.value;
+
+    if (category) {
+      this.selectCategory(category);
+    }
+  }
+
   toggleTag(tag: ProjectTag): void {
     const selectedTags = this.selectedTags();
     const updatedTags = selectedTags.includes(tag)
@@ -140,8 +166,12 @@ export class ProjectsPage {
     this.tagSelectionChanges.next(updatedTags);
   }
 
-  isTagSelected(tag: ProjectTag): boolean {
-    return this.selectedTags().includes(tag);
+  toggleTagValue(value: string): void {
+    const tag = this.availableTags().find((availableTag) => availableTag === value);
+
+    if (tag) {
+      this.toggleTag(tag);
+    }
   }
 
   clearTags(): void {

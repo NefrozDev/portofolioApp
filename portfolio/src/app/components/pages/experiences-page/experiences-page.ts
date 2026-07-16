@@ -6,6 +6,10 @@ import { MobileBottomNav } from '../../app/mobile-bottom-nav/mobile-bottom-nav';
 import { SectionHero } from '../../shared/section-hero/section-hero';
 import { ExperienceCard } from '../../shared/experience-card/experience-card';
 import { ExperienceLoader } from '../../shared/experience-loader/experience-loader';
+import {
+  FilterRail,
+  FilterRailOption
+} from '../../shared/filter-rail/filter-rail';
 import { Experience } from '@common/models/experience.model';
 import { ExperiencesApi } from '../../../services/api/experiences-api';
 import { LanguageService } from '../../../services/language';
@@ -18,6 +22,7 @@ import { LanguageService } from '../../../services/language';
     SectionHero,
     ExperienceCard,
     ExperienceLoader,
+    FilterRail,
     TranslatePipe
   ],
   templateUrl: './experiences-page.html',
@@ -29,13 +34,19 @@ export class ExperiencesPage {
   readonly loadError = signal<string | null>(null);
 
   readonly selectedTechnologyTags = signal<string[]>([]);
-  readonly isTechnologyTagRailDragging = signal<boolean>(false);
 
   readonly availableTechnologyTags = computed(() => {
     const tags = this.experiences().flatMap((experience) => experience.technologies);
 
     return [...new Set(tags)].sort((a, b) => a.localeCompare(b));
   });
+
+  readonly technologyFilterOptions = computed<FilterRailOption[]>(() =>
+    this.availableTechnologyTags().map((technology) => ({
+      value: technology,
+      label: technology
+    }))
+  );
 
   readonly filteredExperiences = computed(() => {
     const selectedTags = this.selectedTechnologyTags();
@@ -50,14 +61,6 @@ export class ExperiencesPage {
       experience.technologies.some((technology) => selectedTagSet.has(technology))
     );
   });
-
-  private readonly dragThresholdPx = 6;
-
-  private activePointerId: number | null = null;
-  private dragStartX = 0;
-  private dragStartScrollLeft = 0;
-  private hasDragged = false;
-  private suppressNextClick = false;
 
   constructor(
     private readonly experiencesApi: ExperiencesApi,
@@ -123,108 +126,6 @@ export class ExperiencesPage {
     this.selectedTechnologyTags.set([]);
   }
 
-  isTechnologySelected(technology: string): boolean {
-    return this.selectedTechnologyTags().includes(technology);
-  }
-
-  onTechnologyFilterClick(event: MouseEvent, technology: string): void {
-    if (this.shouldSuppressClick(event)) {
-      return;
-    }
-
-    this.toggleTechnologyFilter(technology);
-  }
-
-  onClearTechnologyFiltersClick(event: MouseEvent): void {
-    if (this.shouldSuppressClick(event)) {
-      return;
-    }
-
-    this.clearTechnologyFilters();
-  }
-
-  onTagRailWheel(event: WheelEvent): void {
-    const rail = event.currentTarget as HTMLElement | null;
-
-    if (!rail || rail.scrollWidth <= rail.clientWidth) {
-      return;
-    }
-
-    const scrollDelta = event.deltaY || event.deltaX;
-
-    if (!scrollDelta) {
-      return;
-    }
-
-    event.preventDefault();
-    rail.scrollLeft += scrollDelta;
-  }
-
-  onTagRailPointerDown(event: PointerEvent): void {
-    if (event.button !== 0) {
-      return;
-    }
-
-    const rail = event.currentTarget as HTMLElement | null;
-
-    if (!rail) {
-      return;
-    }
-
-    this.activePointerId = event.pointerId;
-    this.dragStartX = event.clientX;
-    this.dragStartScrollLeft = rail.scrollLeft;
-    this.hasDragged = false;
-    this.suppressNextClick = false;
-
-    rail.setPointerCapture(event.pointerId);
-  }
-
-  onTagRailPointerMove(event: PointerEvent): void {
-    if (this.activePointerId !== event.pointerId) {
-      return;
-    }
-
-    const rail = event.currentTarget as HTMLElement | null;
-
-    if (!rail) {
-      return;
-    }
-
-    const dragOffset = event.clientX - this.dragStartX;
-
-    if (!this.hasDragged && Math.abs(dragOffset) < this.dragThresholdPx) {
-      return;
-    }
-
-    this.hasDragged = true;
-    this.suppressNextClick = true;
-    this.isTechnologyTagRailDragging.set(true);
-
-    event.preventDefault();
-    rail.scrollLeft = this.dragStartScrollLeft - dragOffset;
-  }
-
-  onTagRailPointerEnd(event: PointerEvent): void {
-    if (this.activePointerId !== event.pointerId) {
-      return;
-    }
-
-    const rail = event.currentTarget as HTMLElement | null;
-
-    if (rail?.hasPointerCapture(event.pointerId)) {
-      rail.releasePointerCapture(event.pointerId);
-    }
-
-    this.activePointerId = null;
-    this.hasDragged = false;
-    this.isTechnologyTagRailDragging.set(false);
-
-    window.setTimeout(() => {
-      this.suppressNextClick = false;
-    }, 0);
-  }
-
   private keepExistingTechnologyFilters(experiences: Experience[]): void {
     const availableTags = new Set(
       experiences.flatMap((experience) => experience.technologies)
@@ -235,16 +136,4 @@ export class ExperiencesPage {
     );
   }
 
-  private shouldSuppressClick(event: MouseEvent): boolean {
-    if (!this.suppressNextClick) {
-      return false;
-    }
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    this.suppressNextClick = false;
-
-    return true;
-  }
 }

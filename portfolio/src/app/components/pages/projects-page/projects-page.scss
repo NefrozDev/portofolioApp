@@ -34,77 +34,18 @@
   margin-bottom: 1rem;
 }
 
-.projects-page__filter-row {
+.projects-page__tag-filters {
   display: flex;
   align-items: center;
   min-width: 0;
   gap: 0.75rem;
 }
 
-.projects-page__filter-label {
-  display: inline-flex;
-  flex: 0 0 6.5rem;
-  justify-content: center;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(123, 97, 255, 0.28);
-  border-radius: var(--radius-pill);
-  background: rgba(123, 97, 255, 0.1);
-  color: var(--text-primary);
-  font-family: 'Space Grotesk', Inter, Arial, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.projects-page__filter-rail {
-  display: flex;
+.projects-page__tag-filters app-filter-rail {
   flex: 1;
   min-width: 0;
-  gap: 0.55rem;
-  padding: 0.2rem;
-  overflow-x: auto;
-  scrollbar-width: none;
 }
 
-.projects-page__filter-rail::-webkit-scrollbar {
-  display: none;
-}
-
-.projects-page__filter-chip {
-  min-height: 2rem;
-  flex: 0 0 auto;
-  padding: 0.25rem 0.85rem;
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.78);
-  font: inherit;
-  font-size: 0.88rem;
-  font-weight: 600;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    color 0.2s ease;
-}
-
-.projects-page__filter-chip--tag {
-  border-color: rgba(79, 140, 255, 0.2);
-}
-
-.projects-page__filter-chip:hover,
-.projects-page__filter-chip--active {
-  border-color: rgba(123, 97, 255, 0.6);
-  background: linear-gradient(
-    135deg,
-    rgba(79, 140, 255, 0.3),
-    rgba(123, 97, 255, 0.36)
-  );
-  color: #fff;
-  box-shadow: 0 0 1.25rem rgba(123, 97, 255, 0.18);
-}
-
-.projects-page__filter-chip:focus-visible,
 .projects-page__clear-filters:focus-visible {
   outline: 0.125rem solid rgba(138, 180, 255, 0.85);
   outline-offset: 0.125rem;
@@ -172,21 +113,6 @@
 @media (max-width: 48rem) {
   .projects-page__main {
     padding-top: var(--page-top-spacing-mobile);
-  }
-
-  .projects-page__filter-row {
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .projects-page__filter-label {
-    flex-basis: auto;
-  }
-
-  .projects-page__filter-rail {
-    order: 2;
-    width: 100%;
-    flex-basis: 100%;
   }
 
   .projects-page__clear-filters {
