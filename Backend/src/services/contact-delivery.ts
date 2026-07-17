@@ -7,7 +7,7 @@ interface ContactDeliveryConfig {
 }
 
 type Fetch = typeof fetch;
-const defaultContactRecipient = 'demoorsteven@yahoo.com';
+const defaultContactRecipient = 'nvonefroz@gmail.com';
 
 class ContactDeliveryConfigurationError extends Error {}
 

@@ -25,7 +25,7 @@ as a health check.
 5. Add `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `IP_HASH_SECRET`, and
    `ALLOWED_ORIGINS` in the project's environment variables.
    `CONTACT_TO_EMAIL` is optional and can override the default recipient,
-   `demoorsteven@yahoo.com`.
+   `nvonefroz@gmail.com`.
 6. Verify the sender domain in Resend and deploy.
 
 `CONTACT_FROM_EMAIL` must use the verified sender domain. Set

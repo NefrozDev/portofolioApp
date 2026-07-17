@@ -31,7 +31,7 @@ test('contact delivery sends a plain-text email through Resend', async () => {
     );
 
     const body = JSON.parse(request?.init?.body as string);
-    assert.equal(body.to[0], 'demoorsteven@yahoo.com');
+    assert.equal(body.to[0], 'nvonefroz@gmail.com');
     assert.equal(body.reply_to, 'test@example.com');
     assert.match(body.text, /Hello from the portfolio\./);
   } finally {

@@ -17,13 +17,8 @@ interface ContactLink {
 export class ContactLinks {
   readonly links: ContactLink[] = [
     {
-      value: '04/45.36.12.18',
-      href: 'tel:0445361218',
-      iconSrc: '/widgets/phone.svg'
-    },
-    {
-      value: 'stevendemoor@gmail.com',
-      href: 'mailto:stevendemoor@gmail.com',
+      value: 'nvonefroz@gmail.com',
+      href: 'mailto:nvonefroz@gmail.com',
       iconSrc: '/widgets/email.svg'
     },
     {

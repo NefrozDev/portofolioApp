@@ -23,7 +23,7 @@ describe('ContactLinks', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the three clickable contact widgets', () => {
+  it('should render the two clickable contact widgets', () => {
     const links = fixture.nativeElement.querySelectorAll(
       '.contact-links__item'
     ) as NodeListOf<HTMLAnchorElement>;
@@ -34,19 +34,17 @@ describe('ContactLinks', () => {
       '.contact-links__label'
     ) as NodeListOf<HTMLElement>;
 
-    expect(links.length).toBe(3);
-    expect(links[0].getAttribute('href')).toBe('tel:0445361218');
-    expect(links[1].getAttribute('href')).toBe(
-      'mailto:stevendemoor@gmail.com'
+    expect(links.length).toBe(2);
+    expect(links[0].getAttribute('href')).toBe(
+      'mailto:nvonefroz@gmail.com'
     );
-    expect(links[2].getAttribute('href')).toBe(
+    expect(links[1].getAttribute('href')).toBe(
       'https://www.linkedin.com/in/steven-de-moor-a68124162/'
     );
 
-    expect(icons.length).toBe(3);
-    expect(icons[0].getAttribute('src')).toBe('/widgets/phone.svg');
-    expect(icons[1].getAttribute('src')).toBe('/widgets/email.svg');
-    expect(icons[2].getAttribute('src')).toBe('/widgets/linkedin.svg');
+    expect(icons.length).toBe(2);
+    expect(icons[0].getAttribute('src')).toBe('/widgets/email.svg');
+    expect(icons[1].getAttribute('src')).toBe('/widgets/linkedin.svg');
     expect(labels.length).toBe(0);
   });
 });
