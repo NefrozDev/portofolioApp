@@ -39,7 +39,9 @@ describe('ContactLinks', () => {
     expect(links[1].getAttribute('href')).toBe(
       'mailto:stevendemoor@gmail.com'
     );
-    expect(links[2].getAttribute('href')).toBe('#');
+    expect(links[2].getAttribute('href')).toBe(
+      'https://www.linkedin.com/in/steven-de-moor-a68124162/'
+    );
 
     expect(icons.length).toBe(3);
     expect(icons[0].getAttribute('src')).toBe('/widgets/phone.svg');

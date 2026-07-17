@@ -28,7 +28,7 @@ export class ContactLinks {
     },
     {
       value: 'LinkedIn',
-      href: '#',
+      href: 'https://www.linkedin.com/in/steven-de-moor-a68124162/',
       iconSrc: '/widgets/linkedin.svg',
       external: true
     }
