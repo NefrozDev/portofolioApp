@@ -86,7 +86,7 @@
   position: relative;
   z-index: 1;
   align-self: center;
-  width: min(100%, 68rem);
+  width: min(80%, 68rem);
   margin: 0.25rem auto clamp(0.5rem, 2vh, 1.25rem);
 }
 
@@ -212,6 +212,7 @@
   }
 
   .contact-page__links {
+    width: 100%;
     margin: 0.25rem auto 1rem;
   }
 
