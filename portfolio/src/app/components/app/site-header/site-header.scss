@@ -134,6 +134,9 @@
 
 .site-header__lang-menu {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
   top: calc(100% + 0.65rem);
   right: 0;
   width: 12rem;
