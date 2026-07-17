@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { AppLanguage } from '@common/enums/app-language.enum';
 
 import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { SiteHeader } from './site-header';
@@ -22,5 +23,40 @@ describe('SiteHeader', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should toggle the language menu from the compact trigger', () => {
+    const trigger: HTMLButtonElement = fixture.nativeElement.querySelector(
+      '.site-header__lang-trigger'
+    );
+
+    expect(trigger.textContent).toContain('EN');
+    expect(trigger.getAttribute('aria-expanded')).toBe('false');
+
+    trigger.click();
+    fixture.detectChanges();
+
+    expect(component.isLanguageMenuOpen()).toBeTrue();
+    expect(trigger.getAttribute('aria-expanded')).toBe('true');
+    expect(
+      fixture.nativeElement.querySelectorAll('.site-header__lang-option').length
+    ).toBe(component.languages.length);
+  });
+
+  it('should close the language menu when a language is selected', () => {
+    component.isLanguageMenuOpen.set(true);
+
+    component.changeLanguage(AppLanguage.FR);
+
+    expect(component.isLanguageMenuOpen()).toBeFalse();
+    expect(component.currentLanguage()).toBe(AppLanguage.FR);
+  });
+
+  it('should close the language menu on Escape', () => {
+    component.isLanguageMenuOpen.set(true);
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+
+    expect(component.isLanguageMenuOpen()).toBeFalse();
   });
 });

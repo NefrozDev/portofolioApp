@@ -15,21 +15,48 @@
       }
     </nav>
 
-    <!-- LANGUAGES -->
     <div class="site-header__right">
-      <span class="site-header__lang-label">{{ 'app.language' | translate }}</span>
-
       <div class="site-header__lang-switch">
-        @for (lang of languages; track lang.code) {
-          <button
-            type="button"
-            class="site-header__lang-button"
-            [class.site-header__lang-button--active]="currentLanguage() === lang.code"
-            (click)="changeLanguage(lang.code)"
-          >
-            {{ lang.code.toUpperCase() }}
-          </button>
-        }
+        <button
+          type="button"
+          class="site-header__lang-trigger"
+          aria-haspopup="true"
+          aria-controls="site-header-language-menu"
+          [attr.aria-label]="('app.language' | translate) + ': ' + currentLanguage().toUpperCase()"
+          [attr.aria-expanded]="isLanguageMenuOpen()"
+          (click)="toggleLanguageMenu()"
+        >
+          <span>{{ currentLanguage().toUpperCase() }}</span>
+          <span
+            class="site-header__lang-chevron"
+            [class.site-header__lang-chevron--open]="isLanguageMenuOpen()"
+            aria-hidden="true"
+          ></span>
+        </button>
+
+        <div
+          id="site-header-language-menu"
+          class="site-header__lang-menu"
+          [class.site-header__lang-menu--open]="isLanguageMenuOpen()"
+          [attr.aria-hidden]="!isLanguageMenuOpen()"
+        >
+          @for (lang of languages; track lang.code) {
+            <button
+              type="button"
+              class="site-header__lang-option"
+              [class.site-header__lang-option--active]="currentLanguage() === lang.code"
+              [attr.aria-current]="currentLanguage() === lang.code ? 'true' : null"
+              [attr.tabindex]="isLanguageMenuOpen() ? 0 : -1"
+              (click)="changeLanguage(lang.code)"
+            >
+              <span class="site-header__lang-code">{{ lang.code.toUpperCase() }}</span>
+              <span>{{ lang.label }}</span>
+              @if (currentLanguage() === lang.code) {
+                <span class="site-header__lang-check" aria-hidden="true">&#10003;</span>
+              }
+            </button>
+          }
+        </div>
       </div>
     </div>
 
