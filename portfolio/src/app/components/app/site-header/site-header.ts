@@ -86,6 +86,8 @@ export class SiteHeader implements AfterViewInit {
             shouldAnimate,
             previousNavigationIndex
           );
+        } else {
+          this.resetAttentionDotVisualPosition();
         }
       });
 
@@ -172,6 +174,20 @@ export class SiteHeader implements AfterViewInit {
       this.scheduledAnimationFrame = undefined;
       this.moveAttentionDot(shouldAnimate, previousNavigationIndex);
     });
+  }
+
+  private resetAttentionDotVisualPosition(): void {
+    if (this.scheduledAnimationFrame !== undefined) {
+      cancelAnimationFrame(this.scheduledAnimationFrame);
+      this.scheduledAnimationFrame = undefined;
+    }
+
+    this.attentionAnimation?.cancel();
+    this.attentionAnimation = undefined;
+    this.hasPositionedAttentionDot = false;
+    this.attentionDot.nativeElement.classList.remove(
+      'site-header__attention-dot--positioned'
+    );
   }
 
   private moveAttentionDot(
