@@ -1,5 +1,5 @@
-@if (appState.siteHeaderVisible()) {
-  <app-site-header></app-site-header>
-}
+<app-site-header
+  [class.app__site-header--hidden]="!appState.siteHeaderVisible()"
+></app-site-header>
 <router-outlet></router-outlet>
 <app-mobile-bottom-nav></app-mobile-bottom-nav>

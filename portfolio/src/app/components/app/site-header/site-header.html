@@ -3,8 +3,15 @@
 
     <!-- NAV -->
     <nav class="site-header__nav">
+      <span
+        #attentionDot
+        class="site-header__attention-dot"
+        aria-hidden="true"
+      ></span>
+
       @for (item of navigationItems; track item.route) {
         <a
+          #navigationLink
           class="site-header__link"
           [routerLink]="getLink(item.route)"
           routerLinkActive="site-header__link--active"

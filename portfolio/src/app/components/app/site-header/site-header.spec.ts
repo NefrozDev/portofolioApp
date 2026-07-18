@@ -25,12 +25,24 @@ describe('SiteHeader', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should render a decorative attention dot over the navigation', () => {
+    const dot = fixture.nativeElement.querySelector(
+      '.site-header__attention-dot'
+    ) as HTMLElement | null;
+
+    expect(dot).toBeTruthy();
+    expect(dot?.getAttribute('aria-hidden')).toBe('true');
+    expect(dot?.parentElement?.classList.contains('site-header__nav')).toBeTrue();
+  });
+
   it('should toggle the language menu from the compact trigger', () => {
     const trigger: HTMLButtonElement = fixture.nativeElement.querySelector(
       '.site-header__lang-trigger'
     );
 
-    expect(trigger.textContent).toContain('EN');
+    expect(trigger.textContent).toContain(
+      component.currentLanguage().toUpperCase()
+    );
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
 
     trigger.click();
