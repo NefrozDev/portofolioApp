@@ -7,6 +7,8 @@
       "contact": "Contact"
     },
     "language": "Language",
+    "scrollFiltersLeft": "Filters naar links scrollen",
+    "scrollFiltersRight": "Filters naar rechts scrollen",
     "glossaryInfoLabel": "Meer informatie over {{ term }}",
     "glossary": {
       "angular": "Angular biedt een vaste structuur om interactieve webapplicaties te bouwen die ook tijdens hun groei onderhoudbaar blijven.",

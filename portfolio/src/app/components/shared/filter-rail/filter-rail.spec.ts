@@ -36,7 +36,9 @@ describe('FilterRail', () => {
   });
 
   it('should render literal and translated options with their selection state', () => {
-    const buttons = fixture.nativeElement.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
+    const buttons = fixture.nativeElement.querySelectorAll(
+      '.filter-rail__chip'
+    ) as NodeListOf<HTMLButtonElement>;
 
     expect(buttons.length).toBe(5);
     expect(buttons[0].textContent?.trim()).toBe('All');
@@ -50,6 +52,28 @@ describe('FilterRail', () => {
     ).toBe('SEO');
     expect(buttons[4].textContent?.trim()).toBe('Design');
     expect(buttons[4].getAttribute('aria-pressed')).toBe('true');
+  });
+
+  it('should render accessible controls on both sides of the rail', () => {
+    const arrows = fixture.nativeElement.querySelectorAll(
+      '.filter-rail__arrow'
+    ) as NodeListOf<HTMLButtonElement>;
+
+    expect(arrows.length).toBe(2);
+    expect(arrows[0].getAttribute('aria-label')).toBe('Scroll filters left');
+    expect(arrows[1].getAttribute('aria-label')).toBe('Scroll filters right');
+  });
+
+  it('should smoothly scroll most of the visible rail width', () => {
+    const scrollBy = jasmine.createSpy('scrollBy');
+    const rail = { clientWidth: 400, scrollBy } as unknown as HTMLElement;
+
+    component.scrollRailBy(rail, 1);
+
+    expect(scrollBy).toHaveBeenCalledOnceWith({
+      left: 280,
+      behavior: 'smooth'
+    });
   });
 
   it('should emit selected options and the All action', () => {

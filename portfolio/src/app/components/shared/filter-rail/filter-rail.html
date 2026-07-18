@@ -4,7 +4,20 @@
   </span>
 
   <div class="filter-rail__viewport">
+    <button
+      type="button"
+      class="filter-rail__arrow filter-rail__arrow--left"
+      [disabled]="!canScrollLeft()"
+      [attr.aria-label]="'app.scrollFiltersLeft' | translate"
+      (click)="scrollRailBy(scrollRail, -1)"
+    >
+      <span class="filter-rail__arrow-icon" aria-hidden="true">
+        <span>&lsaquo;</span><span>&lsaquo;</span>
+      </span>
+    </button>
+
     <div
+      #scrollRail
       class="filter-rail__scroll"
       [class.filter-rail__scroll--dragging]="isDragging()"
       role="group"
@@ -15,6 +28,7 @@
       (pointerup)="onPointerEnd($event)"
       (pointerleave)="onPointerEnd($event)"
       (pointercancel)="onPointerEnd($event)"
+      (scroll)="onScroll($event)"
     >
       <button
         type="button"
@@ -54,5 +68,17 @@
         </button>
       }
     </div>
+
+    <button
+      type="button"
+      class="filter-rail__arrow filter-rail__arrow--right"
+      [disabled]="!canScrollRight()"
+      [attr.aria-label]="'app.scrollFiltersRight' | translate"
+      (click)="scrollRailBy(scrollRail, 1)"
+    >
+      <span class="filter-rail__arrow-icon" aria-hidden="true">
+        <span>&rsaquo;</span><span>&rsaquo;</span>
+      </span>
+    </button>
   </div>
 </div>

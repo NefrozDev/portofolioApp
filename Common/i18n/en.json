@@ -7,6 +7,8 @@
       "contact": "Contact"
     },
     "language": "Language",
+    "scrollFiltersLeft": "Scroll filters left",
+    "scrollFiltersRight": "Scroll filters right",
     "glossaryInfoLabel": "More information about {{ term }}",
     "glossary": {
       "angular": "Angular provides a structured way to build interactive web applications that are easier to maintain as they grow.",

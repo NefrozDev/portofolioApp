@@ -1,4 +1,14 @@
-import { Component, input, output, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  DestroyRef,
+  ElementRef,
+  ViewChild,
+  inject,
+  input,
+  output,
+  signal
+} from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InfoTerm } from '../info-term/info-term';
 
@@ -16,7 +26,12 @@ export interface FilterRailOption {
   templateUrl: './filter-rail.html',
   styleUrls: ['./filter-rail.scss']
 })
-export class FilterRail {
+export class FilterRail implements AfterViewInit {
+  private readonly destroyRef = inject(DestroyRef);
+
+  @ViewChild('scrollRail', { static: true })
+  private readonly scrollRail!: ElementRef<HTMLElement>;
+
   readonly labelKey = input.required<string>();
   readonly allLabelKey = input.required<string>();
   readonly options = input.required<readonly FilterRailOption[]>();
@@ -26,12 +41,30 @@ export class FilterRail {
   readonly optionSelected = output<string>();
 
   readonly isDragging = signal(false);
+  readonly canScrollLeft = signal(false);
+  readonly canScrollRight = signal(false);
 
   private readonly dragThresholdPx = 6;
   private activePointerId: number | null = null;
   private dragStartX = 0;
   private dragStartScrollLeft = 0;
   private suppressNextClick = false;
+
+  ngAfterViewInit(): void {
+    const rail = this.scrollRail.nativeElement;
+    const animationFrame = requestAnimationFrame(() => {
+      this.updateScrollState(rail);
+    });
+    const resizeObserver = new ResizeObserver(() => {
+      this.updateScrollState(rail);
+    });
+
+    resizeObserver.observe(rail);
+    this.destroyRef.onDestroy(() => {
+      cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+    });
+  }
 
   isSelected(value: string): boolean {
     return this.selectedValues().includes(value);
@@ -64,6 +97,21 @@ export class FilterRail {
 
     event.preventDefault();
     rail.scrollLeft += scrollDelta;
+  }
+
+  scrollRailBy(rail: HTMLElement, direction: -1 | 1): void {
+    rail.scrollBy({
+      left: direction * Math.max(rail.clientWidth * 0.7, 160),
+      behavior: 'smooth'
+    });
+  }
+
+  onScroll(event: Event): void {
+    const rail = event.currentTarget as HTMLElement | null;
+
+    if (rail) {
+      this.updateScrollState(rail);
+    }
   }
 
   onPointerDown(event: PointerEvent): void {
@@ -136,5 +184,15 @@ export class FilterRail {
     this.suppressNextClick = false;
 
     return true;
+  }
+
+  private updateScrollState(rail: HTMLElement): void {
+    const edgeTolerance = 1;
+    const maximumScrollLeft = Math.max(rail.scrollWidth - rail.clientWidth, 0);
+
+    this.canScrollLeft.set(rail.scrollLeft > edgeTolerance);
+    this.canScrollRight.set(
+      rail.scrollLeft < maximumScrollLeft - edgeTolerance
+    );
   }
 }

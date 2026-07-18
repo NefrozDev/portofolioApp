@@ -7,6 +7,8 @@
       "contact": "Contact"
     },
     "language": "Language",
+    "scrollFiltersLeft": "Faire défiler les filtres vers la gauche",
+    "scrollFiltersRight": "Faire défiler les filtres vers la droite",
     "glossaryInfoLabel": "Plus d’informations sur {{ term }}",
     "glossary": {
       "angular": "Angular fournit une structure pour créer des applications web interactives qui restent faciles à maintenir en grandissant.",

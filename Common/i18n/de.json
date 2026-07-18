@@ -7,6 +7,8 @@
       "contact": "Contact"
     },
     "language": "Language",
+    "scrollFiltersLeft": "Filter nach links scrollen",
+    "scrollFiltersRight": "Filter nach rechts scrollen",
     "glossaryInfoLabel": "Weitere Informationen zu {{ term }}",
     "glossary": {
       "angular": "Angular bietet eine klare Struktur für interaktive Webanwendungen, die auch bei wachsendem Umfang gut wartbar bleiben.",
