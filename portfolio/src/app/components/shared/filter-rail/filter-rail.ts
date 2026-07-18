@@ -1,16 +1,18 @@
 import { Component, input, output, signal } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InfoTerm } from '../info-term/info-term';
 
 export interface FilterRailOption {
   value: string;
   label?: string;
   labelKey?: string;
+  infoKey?: string;
 }
 
 @Component({
   selector: 'app-filter-rail',
   standalone: true,
-  imports: [TranslatePipe],
+  imports: [InfoTerm, TranslatePipe],
   templateUrl: './filter-rail.html',
   styleUrls: ['./filter-rail.scss']
 })

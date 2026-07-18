@@ -14,6 +14,7 @@ import {
   ProjectCategory,
   ProjectTag
 } from '@common/models/project.model';
+import { getGlossaryInfoKey } from '@common/constants/glossary';
 import { ProjectsApi } from '../../../services/api/projects-api';
 import { LanguageService } from '../../../services/language';
 
@@ -55,7 +56,8 @@ export class ProjectsPage {
   readonly tagFilterOptions = computed<FilterRailOption[]>(() =>
     this.availableTags().map((tag) => ({
       value: tag,
-      labelKey: `projects.tags.${tag}`
+      labelKey: `projects.tags.${tag}`,
+      infoKey: getGlossaryInfoKey(tag)
     }))
   );
 

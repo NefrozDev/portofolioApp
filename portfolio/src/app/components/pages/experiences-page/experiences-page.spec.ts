@@ -21,7 +21,7 @@ const experiences: Experience[] = [
     company: 'Other Company',
     role: 'Backend Developer',
     period: '2023 - 2024',
-    technologies: ['Node.js', 'TypeScript'],
+    technologies: ['Node.js', 'TypeScript', 'Docker'],
     highlights: ['Built API'],
     isExpanded: false
   }
@@ -71,7 +71,12 @@ describe('ExperiencesPage', () => {
   });
 
   it('should expose sorted unique technology tags from the loaded experiences', () => {
-    expect(component.availableTechnologyTags()).toEqual(['Angular', 'Node.js', 'TypeScript']);
+    expect(component.availableTechnologyTags()).toEqual([
+      'Angular',
+      'Docker',
+      'Node.js',
+      'TypeScript'
+    ]);
   });
 
   it('should filter experiences by selected technology tags', () => {
@@ -99,7 +104,12 @@ describe('ExperiencesPage', () => {
     const rail = fixture.nativeElement.querySelector('app-filter-rail') as HTMLElement;
 
     expect(rail).not.toBeNull();
-    expect(rail.querySelectorAll('button').length).toBe(4);
+    expect(rail.querySelectorAll('button').length).toBe(5);
     expect(rail.querySelector('button')?.textContent?.trim()).toBe('All');
+    const terms = Array.from(rail.querySelectorAll('app-info-term')).map(
+      (term) => term.textContent
+    );
+
+    expect(terms.some((term) => term?.includes('Docker'))).toBeTrue();
   });
 });

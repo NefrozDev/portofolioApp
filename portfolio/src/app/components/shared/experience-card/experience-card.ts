@@ -1,15 +1,18 @@
 import { Component, input, output } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Experience } from '../../../../../../Common/models/experience.model';
+import { getGlossaryInfoKey } from '@common/constants/glossary';
+import { InfoTerm } from '../info-term/info-term';
 
 @Component({
   selector: 'app-experience-card',
   standalone: true,
-  imports: [TranslatePipe],
+  imports: [InfoTerm, TranslatePipe],
   templateUrl: './experience-card.html',
   styleUrls: ['./experience-card.scss']
 })
 export class ExperienceCard {
+  readonly glossaryInfoKey = getGlossaryInfoKey;
   readonly experience = input.required<Experience>();
   readonly toggle = output<string>();
 

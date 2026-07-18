@@ -1,13 +1,17 @@
 import { Component, input, output } from '@angular/core';
 import { Project } from '../../../../../../Common/models/project.model';
+import { getGlossaryInfoKey } from '@common/constants/glossary';
+import { InfoTerm } from '../info-term/info-term';
 
 @Component({
   selector: 'app-project-sidebar',
   standalone: true,
+  imports: [InfoTerm],
   templateUrl: './project-sidebar.html',
   styleUrls: ['./project-sidebar.scss']
 })
 export class ProjectSidebar {
+  readonly glossaryInfoKey = getGlossaryInfoKey;
   readonly projects = input.required<Project[]>();
   readonly selectedProjectId = input.required<string>();
 

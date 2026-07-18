@@ -9,7 +9,24 @@
       >
         <span class="project-sidebar__item-title">{{ project.shortLabel }}</span>
         <span class="project-sidebar__item-meta">
-          {{ project.technologies.slice(0, 2).join(' · ') }}
+          @for (
+            technology of project.technologies.slice(0, 2);
+            track technology;
+            let isLast = $last
+          ) {
+            @if (glossaryInfoKey(technology); as infoKey) {
+              <app-info-term
+                [label]="technology"
+                [descriptionKey]="infoKey"
+                [embedded]="true"
+              />
+            } @else {
+              {{ technology }}
+            }
+            @if (!isLast) {
+              <span aria-hidden="true"> · </span>
+            }
+          }
         </span>
       </button>
     }

@@ -9,7 +9,7 @@ const experience: Experience = {
   company: 'Company',
   role: 'Developer',
   period: '2024 - Present',
-  technologies: ['Angular'],
+  technologies: ['Angular', 'Docker'],
   highlights: ['Built UI'],
   isExpanded: true
 };
@@ -33,6 +33,17 @@ describe('ExperienceCard', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show information for the Docker technology tag', () => {
+    const infoTerms = Array.from(
+      fixture.nativeElement.querySelectorAll('app-info-term') as NodeListOf<HTMLElement>
+    );
+    const dockerTerm = infoTerms.find((term) =>
+      term.textContent?.includes('Docker')
+    );
+
+    expect(dockerTerm?.textContent).toContain('packages an application');
   });
 
   it('should apply the expanded state class when open', () => {

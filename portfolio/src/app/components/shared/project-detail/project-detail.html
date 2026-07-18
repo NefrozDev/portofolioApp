@@ -32,7 +32,16 @@
         </h3>
         <div class="tag-list project-detail__tags">
           @for (technology of project().technologies; track technology) {
-            <span class="tag">{{ technology }}</span>
+            <span class="tag">
+              @if (glossaryInfoKey(technology); as infoKey) {
+                <app-info-term
+                  [label]="technology"
+                  [descriptionKey]="infoKey"
+                />
+              } @else {
+                {{ technology }}
+              }
+            </span>
           }
         </div>
       </section>
@@ -44,7 +53,14 @@
         <div class="tag-list project-detail__tags">
           @for (tag of project().tags; track tag) {
             <span class="tag project-detail__semantic-tag">
-              {{ ('projects.tags.' + tag) | translate }}
+              @if (glossaryInfoKey(tag); as infoKey) {
+                <app-info-term
+                  [label]="('projects.tags.' + tag) | translate"
+                  [descriptionKey]="infoKey"
+                />
+              } @else {
+                {{ ('projects.tags.' + tag) | translate }}
+              }
             </span>
           }
         </div>

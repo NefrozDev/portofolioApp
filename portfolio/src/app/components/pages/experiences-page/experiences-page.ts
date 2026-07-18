@@ -11,6 +11,7 @@ import {
   FilterRailOption
 } from '../../shared/filter-rail/filter-rail';
 import { Experience } from '@common/models/experience.model';
+import { getGlossaryInfoKey } from '@common/constants/glossary';
 import { ExperiencesApi } from '../../../services/api/experiences-api';
 import { LanguageService } from '../../../services/language';
 
@@ -44,7 +45,8 @@ export class ExperiencesPage {
   readonly technologyFilterOptions = computed<FilterRailOption[]>(() =>
     this.availableTechnologyTags().map((technology) => ({
       value: technology,
-      label: technology
+      label: technology,
+      infoKey: getGlossaryInfoKey(technology)
     }))
   );
 

@@ -36,7 +36,17 @@
           (pointerdown)="$event.stopPropagation()"
           (click)="selectOption($event, option.value)"
         >
-          @if (option.labelKey) {
+          @if (option.infoKey) {
+            <app-info-term
+              [label]="
+                option.labelKey
+                  ? (option.labelKey | translate)
+                  : (option.label ?? option.value)
+              "
+              [descriptionKey]="option.infoKey"
+              [embedded]="true"
+            />
+          } @else if (option.labelKey) {
             {{ option.labelKey | translate }}
           } @else {
             {{ option.label }}

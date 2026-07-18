@@ -19,6 +19,16 @@ describe('FilterRail', () => {
     fixture.componentRef.setInput('allLabelKey', 'projects.categories.all');
     fixture.componentRef.setInput('options', [
       { value: 'Angular', label: 'Angular' },
+      {
+        value: 'Docker',
+        label: 'Docker',
+        infoKey: 'app.glossary.docker'
+      },
+      {
+        value: 'seo',
+        labelKey: 'projects.tags.seo',
+        infoKey: 'app.glossary.seo'
+      },
       { value: 'design', labelKey: 'projects.tags.design' }
     ]);
     fixture.componentRef.setInput('selectedValues', ['design']);
@@ -28,12 +38,18 @@ describe('FilterRail', () => {
   it('should render literal and translated options with their selection state', () => {
     const buttons = fixture.nativeElement.querySelectorAll('button') as NodeListOf<HTMLButtonElement>;
 
-    expect(buttons.length).toBe(3);
+    expect(buttons.length).toBe(5);
     expect(buttons[0].textContent?.trim()).toBe('All');
     expect(buttons[0].getAttribute('aria-pressed')).toBe('false');
     expect(buttons[1].textContent?.trim()).toBe('Angular');
-    expect(buttons[2].textContent?.trim()).toBe('Design');
-    expect(buttons[2].getAttribute('aria-pressed')).toBe('true');
+    expect(buttons[2].querySelector('app-info-term')?.textContent).toContain(
+      'Docker'
+    );
+    expect(
+      buttons[3].querySelector('.info-term__label')?.textContent?.trim()
+    ).toBe('SEO');
+    expect(buttons[4].textContent?.trim()).toBe('Design');
+    expect(buttons[4].getAttribute('aria-pressed')).toBe('true');
   });
 
   it('should emit selected options and the All action', () => {

@@ -1,0 +1,102 @@
+:host {
+  display: inline-flex;
+}
+
+.info-term {
+  position: relative;
+  display: inline-flex;
+}
+
+.info-term__trigger {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.1rem;
+  cursor: help;
+}
+
+.info-term__label {
+  border-bottom: 1px dashed currentColor;
+  line-height: 1.15;
+}
+
+.info-term__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-top: -0.1rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-family: Georgia, serif;
+  font-size: 0.46rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.78;
+}
+
+.info-term__tooltip {
+  position: absolute;
+  z-index: 20;
+  bottom: calc(100% + 0.65rem);
+  left: 50%;
+  width: max-content;
+  max-width: min(18rem, calc(100vw - 2rem));
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 0.6rem;
+  background: #111827;
+  box-shadow: 0 0.75rem 2rem rgba(2, 6, 23, 0.45);
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 0.25rem);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.info-term__tooltip--embedded {
+  position: fixed;
+  inset: auto;
+  bottom: auto;
+  width: min(14rem, calc(100vw - 2rem));
+  max-width: none;
+  margin: 0;
+  overflow: visible;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.info-term--open .info-term__tooltip,
+.info-term__trigger:focus-visible + .info-term__tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+:host-context(button:focus-visible) .info-term__tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.info-term__trigger:focus-visible {
+  border-radius: 0.2rem;
+  outline: 2px solid var(--primary-2);
+  outline-offset: 0.2rem;
+}
+
+@media (hover: hover) {
+  .info-term:hover .info-term__tooltip {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .info-term__tooltip {
+    transition: none;
+  }
+}

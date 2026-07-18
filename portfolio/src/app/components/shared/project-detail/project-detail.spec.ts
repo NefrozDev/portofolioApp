@@ -11,8 +11,8 @@ const project: Project = {
   category: 'fullstack',
   description: 'Personal portfolio application.',
   imageUrl: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==',
-  technologies: ['Angular'],
-  tags: ['documentation', 'design'],
+  technologies: ['Angular', 'Docker'],
+  tags: ['documentation', 'design', 'seo', 'ci-cd'],
   sourceUrl: '#',
   demoUrl: '#'
 };
@@ -44,8 +44,15 @@ describe('ProjectDetail', () => {
 
     expect(groups.length).toBe(2);
     expect(groups[0].textContent).toContain('Angular');
+    const technologyTerms = Array.from(
+      groups[0].querySelectorAll('app-info-term')
+    ).map((term) => term.textContent);
+
+    expect(technologyTerms.some((term) => term?.includes('Angular'))).toBeTrue();
+    expect(technologyTerms.some((term) => term?.includes('Docker'))).toBeTrue();
     expect(groups[1].textContent).toContain('Documentation');
     expect(groups[1].textContent).toContain('Design');
+    expect(groups[1].querySelectorAll('app-info-term').length).toBe(2);
   });
 
   it('should show a branded fallback when the preview image fails', () => {

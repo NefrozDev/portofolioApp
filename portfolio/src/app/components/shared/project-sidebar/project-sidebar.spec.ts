@@ -12,7 +12,7 @@ const projects: Project[] = [
     category: 'fullstack',
     description: 'Personal portfolio application.',
     imageUrl: '/img/project.png',
-    technologies: ['Angular'],
+    technologies: ['Angular', 'Docker'],
     tags: ['design'],
     sourceUrl: '#',
     demoUrl: '#'
@@ -50,6 +50,11 @@ describe('ProjectSidebar', () => {
     expect(host.querySelector('.project-sidebar__item-meta')?.textContent).toContain(
       'Angular'
     );
+    const terms = Array.from(host.querySelectorAll('app-info-term')).map(
+      (term) => term.textContent
+    );
+
+    expect(terms.some((term) => term?.includes('Docker'))).toBeTrue();
     expect(host.querySelector('.project-sidebar__categories')).toBeNull();
   });
 });
