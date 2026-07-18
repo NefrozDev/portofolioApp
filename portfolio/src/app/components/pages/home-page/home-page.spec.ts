@@ -22,4 +22,27 @@ describe('HomePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should animate the portrait, presentation and language controls into view', () => {
+    const host = fixture.nativeElement as HTMLElement;
+    const portrait = host.querySelector<HTMLElement>('.home__image');
+    const headline = host.querySelector<HTMLElement>('.home__headline');
+    const description = host.querySelector<HTMLElement>(
+      '.home__description-row'
+    );
+    const languages = host.querySelector<HTMLElement>('.home__languages');
+
+    expect(getComputedStyle(portrait!).animationName).toContain(
+      'home-image-enter'
+    );
+    expect(getComputedStyle(headline!).animationName).toContain(
+      'home-content-enter'
+    );
+    expect(getComputedStyle(description!).animationName).toContain(
+      'home-content-enter'
+    );
+    expect(getComputedStyle(languages!).animationName).toContain(
+      'home-languages-enter'
+    );
+  });
 });
