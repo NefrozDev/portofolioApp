@@ -120,21 +120,21 @@
     },
     "form": {
       "name": {
-        "placeholder": "Enter your name",
-        "required": "Name is required.",
+        "placeholder": "Entrez votre nom",
+        "required": "Le nom est requis.",
         "maxlength": "Name cannot exceed 100 characters."
       },
       "email": {
-        "placeholder": "Enter your email",
+        "placeholder": "Entrez votre adresse e-mail",
         "required": "Email address is required.",
         "invalid": "Email address is invalid."
       },
       "phone": {
-        "placeholder": "Enter your phone number"
+        "placeholder": "Entrez votre numéro de téléphone"
       },
       "message": {
-        "placeholder": "Enter your message",
-        "required": "Message is required.",
+        "placeholder": "Entrez votre message",
+        "required": "Le message est requis.",
         "maxlength": "Message cannot exceed 2000 characters."
       },
       "submit": "Send",

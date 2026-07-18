@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
+import { AppLanguage } from '@common/enums/app-language.enum';
 import { ContactApi } from '../../../services/api/contact-api';
 import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { ContactPage } from './contact-page';
@@ -98,6 +100,47 @@ describe('ContactPage', () => {
     expect(host.textContent).not.toContain('Name is required.');
     expect(host.textContent).not.toContain('Email address is required.');
     expect(host.textContent).not.toContain('Message is required.');
+  });
+
+  it('should translate placeholders when the selected language changes', () => {
+    const translateService = TestBed.inject(TranslateService);
+
+    translateService.use(AppLanguage.FR).subscribe();
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+
+    expect(
+      host.querySelector<HTMLInputElement>('input[formControlName="name"]')
+        ?.placeholder
+    ).toBe('Entrez votre nom');
+    expect(
+      host.querySelector<HTMLInputElement>('input[formControlName="email"]')
+        ?.placeholder
+    ).toBe('Entrez votre adresse e-mail');
+    expect(
+      host.querySelector<HTMLInputElement>('input[formControlName="phone"]')
+        ?.placeholder
+    ).toBe('Entrez votre numéro de téléphone');
+    expect(
+      host.querySelector<HTMLTextAreaElement>(
+        'textarea[formControlName="message"]'
+      )?.placeholder
+    ).toBe('Entrez votre message');
+
+    component.nameControl?.markAsTouched();
+    component.messageControl?.markAsTouched();
+    fixture.detectChanges();
+
+    expect(
+      host.querySelector<HTMLInputElement>('input[formControlName="name"]')
+        ?.placeholder
+    ).toBe('Le nom est requis.');
+    expect(
+      host.querySelector<HTMLTextAreaElement>(
+        'textarea[formControlName="message"]'
+      )?.placeholder
+    ).toBe('Le message est requis.');
   });
 
   it('should place the optional phone field to the right of email', () => {
