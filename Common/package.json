@@ -1,7 +1,19 @@
 {
-  "name": "@common",
+  "name": "@portfolio/contracts",
   "version": "1.0.0",
   "private": true,
-  "main": "index.ts",
-  "types": "index.ts"
+  "main": "dist/contracts.js",
+  "types": "dist/contracts.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/contracts.d.ts",
+      "default": "./dist/contracts.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/finalize-package.mjs"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.2"
+  }
 }

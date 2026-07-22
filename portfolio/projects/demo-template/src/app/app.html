@@ -1,0 +1,33 @@
+<pf-demo-shell
+  title="Demo template"
+  subtitle="Independent portfolio application"
+  [returnUrl]="context().returnUrl"
+>
+  <section class="demo-card">
+    <p class="demo-card__eyebrow">Architecture ready</p>
+    <h2>Build the project here</h2>
+    <p>
+      This application is independently buildable while reusing the portfolio
+      UI and SDK libraries.
+    </p>
+
+    <dl class="demo-card__context">
+      <div>
+        <dt>Project</dt>
+        <dd>{{ context().projectId }}</dd>
+      </div>
+      <div>
+        <dt>Language</dt>
+        <dd>{{ context().language }}</dd>
+      </div>
+      <div>
+        <dt>Theme</dt>
+        <dd>{{ context().theme }}</dd>
+      </div>
+      <div>
+        <dt>Example API URL</dt>
+        <dd>{{ exampleApiUrl }}</dd>
+      </div>
+    </dl>
+  </section>
+</pf-demo-shell>

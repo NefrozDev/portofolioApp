@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "rootDir": ".",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
     "strict": true,
-    "declaration": false,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["**/*.ts", "**/*.json"]
+  "include": [
+    "contracts.ts"
+  ]
 }

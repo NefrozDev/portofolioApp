@@ -5,12 +5,14 @@
     "start:front": "npm --prefix portfolio run start",
     "build:front": "npm --prefix portfolio run build",
     "test:front": "npm --prefix portfolio run test",
+    "build:projects": "npm --prefix portfolio run build:projects",
+    "test:projects": "npm --prefix portfolio run test:libs && npm --prefix portfolio run test:projects",
 
     "start:back": "npm --prefix Backend run dev",
     "build:back": "npm --prefix Backend run build",
     "test:back": "npm --prefix Backend run test",
 
-    "build": "npm run build:front && npm run build:back",
-    "test": "npm run test:front && npm run test:back"
+    "build": "npm run build:front && npm run build:projects && npm run build:back",
+    "test": "npm run test:front && npm run test:projects && npm run test:back"
   }
 }

@@ -17,7 +17,9 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "paths": {
-      "@common/*": ["../Common/*"]
+      "@common/*": ["../Common/*"],
+      "portfolio-sdk": ["./dist/portfolio-sdk"],
+      "portfolio-ui": ["./dist/portfolio-ui"]
     },
     "rootDir": ".."
   },
@@ -35,6 +37,24 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/portfolio-ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/portfolio-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/portfolio-sdk/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/portfolio-sdk/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/demo-template/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/demo-template/tsconfig.spec.json"
     }
   ]
 }

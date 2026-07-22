@@ -1,0 +1,17 @@
+<div class="demo-shell">
+  <header class="demo-shell__header">
+    <a class="demo-shell__back" [href]="returnUrl()">
+      <span aria-hidden="true">&larr;</span>
+      {{ backLabel() }}
+    </a>
+
+    <div>
+      <p class="demo-shell__eyebrow">{{ subtitle() }}</p>
+      <h1 class="demo-shell__title">{{ title() }}</h1>
+    </div>
+  </header>
+
+  <main class="demo-shell__content">
+    <ng-content />
+  </main>
+</div>

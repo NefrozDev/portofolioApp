@@ -28,6 +28,7 @@ export type ProjectTag =
 
 export interface Project {
   id: string;
+  demoAppId?: string;
   title: string;
   shortLabel: string;
   category: ProjectCategory;

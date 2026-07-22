@@ -99,6 +99,164 @@
           }
         }
       }
+    },
+    "portfolio-ui": {
+      "projectType": "library",
+      "root": "projects/portfolio-ui",
+      "sourceRoot": "projects/portfolio-ui/src",
+      "prefix": "pf",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/portfolio-ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/portfolio-ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/portfolio-ui/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "portfolio-sdk": {
+      "projectType": "library",
+      "root": "projects/portfolio-sdk",
+      "sourceRoot": "projects/portfolio-sdk/src",
+      "prefix": "pf",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/portfolio-sdk/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/portfolio-sdk/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/portfolio-sdk/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "demo-template": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/demo-template",
+      "sourceRoot": "projects/demo-template/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/demo-template/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/demo-template/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/demo-template/public"
+              }
+            ],
+            "styles": [
+              "projects/demo-template/src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "baseHref": "/demos/demo-template/",
+              "fileReplacements": [
+                {
+                  "replace": "projects/demo-template/src/environments/environment.ts",
+                  "with": "projects/demo-template/src/environments/environment.production.ts"
+                }
+              ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "demo-template:build:production"
+            },
+            "development": {
+              "buildTarget": "demo-template:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/demo-template/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/demo-template/public"
+              }
+            ],
+            "styles": [
+              "projects/demo-template/src/styles.scss"
+            ]
+          }
+        }
+      }
     }
   }
 }

@@ -3,10 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "ng serve portfolio",
+    "start:demo-template": "npm run build:libs && ng serve demo-template --port 4201",
+    "build": "ng build portfolio",
+    "build:contracts": "npm --prefix ../Common run build",
+    "build:libs": "npm run build:contracts && ng build portfolio-ui && ng build portfolio-sdk",
+    "build:projects": "npm run build:libs && ng build demo-template",
+    "build:all": "npm run build:libs && ng build portfolio && ng build demo-template",
+    "watch": "ng build portfolio --watch --configuration development",
+    "test": "ng test portfolio",
+    "test:libs": "npm run build:contracts && ng test portfolio-ui --watch=false --browsers=ChromeHeadless && ng test portfolio-sdk --watch=false --browsers=ChromeHeadless",
+    "test:projects": "npm run build:libs && ng test demo-template --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
@@ -16,6 +23,7 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "@portfolio/contracts": "file:../Common",
     "@ngx-translate/core": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -32,6 +40,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^20.3.0",
     "typescript": "~5.8.2"
   }
 }
