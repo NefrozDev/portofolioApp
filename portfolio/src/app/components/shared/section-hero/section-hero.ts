@@ -9,4 +9,5 @@ import { Component, input } from '@angular/core';
 export class SectionHero {
   readonly title = input.required<string>();
   readonly subtitle = input.required<string>();
+  readonly warningLabel = input<string | null>(null);
 }

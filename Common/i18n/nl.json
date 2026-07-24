@@ -7,6 +7,7 @@
       "contact": "Contact"
     },
     "language": "Language",
+    "pageUnderConstruction": "Pagina in aanbouw",
     "scrollFiltersLeft": "Filters naar links scrollen",
     "scrollFiltersRight": "Filters naar rechts scrollen",
     "glossaryInfoLabel": "Meer informatie over {{ term }}",

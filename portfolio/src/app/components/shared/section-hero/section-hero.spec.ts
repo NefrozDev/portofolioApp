@@ -22,4 +22,20 @@ describe('SectionHero', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render an accessible warning beside the title when provided', () => {
+    fixture.componentRef.setInput('warningLabel', 'Page under construction');
+    fixture.detectChanges();
+
+    const marker = fixture.nativeElement.querySelector(
+      '.hero-block__construction-warning'
+    ) as HTMLElement | null;
+    const title = fixture.nativeElement.querySelector('.page-title');
+
+    expect(marker).toBeTruthy();
+    expect(marker?.nextElementSibling).toBe(title);
+    expect(marker?.getAttribute('role')).toBe('status');
+    expect(marker?.textContent?.trim()).toBe('Page under construction');
+    expect(marker?.getAttribute('title')).toBe('Page under construction');
+  });
 });

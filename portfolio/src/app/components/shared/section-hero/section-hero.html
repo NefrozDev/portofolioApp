@@ -1,5 +1,14 @@
 <div class="hero-block">
-  <h1 class="page-title">{{ title() }}</h1>
+  <div class="hero-block__title-row">
+    @if (warningLabel(); as label) {
+      <span
+        class="hero-block__construction-warning"
+        role="status"
+        [attr.title]="label"
+      >{{ label }}</span>
+    }
+    <h1 class="page-title">{{ title() }}</h1>
+  </div>
   <p class="page-subtitle">{{ subtitle() }}</p>
   <div class="hero-block__line"></div>
 </div>

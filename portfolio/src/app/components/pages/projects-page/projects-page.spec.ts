@@ -4,8 +4,10 @@ import {
   TestBed,
   tick
 } from '@angular/core/testing';
+import { TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
+import { AppLanguage } from '@common/enums/app-language.enum';
 import { Project } from '../../../../../../Common/models/project.model';
 import { ProjectsApi } from '../../../services/api/projects-api';
 import { provideTestI18n } from '../../../testing/provide-test-i18n';
@@ -72,6 +74,27 @@ describe('ProjectsPage', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show an under-construction warning beside the page title', () => {
+    const marker = fixture.nativeElement.querySelector(
+      '.hero-block__construction-warning'
+    ) as HTMLElement | null;
+
+    expect(marker).toBeTruthy();
+    expect(marker?.nextElementSibling?.textContent?.trim()).toBe('Portfolio');
+    expect(marker?.textContent?.trim()).toBe('Page under construction');
+  });
+
+  it('should translate the under-construction warning to the current language', () => {
+    TestBed.inject(TranslateService).use(AppLanguage.FR).subscribe();
+    fixture.detectChanges();
+
+    const marker = fixture.nativeElement.querySelector(
+      '.hero-block__construction-warning'
+    ) as HTMLElement | null;
+
+    expect(marker?.textContent?.trim()).toBe('Page en construction');
   });
 
   it('should expose the tags available in the loaded projects', () => {
@@ -147,8 +170,8 @@ describe('ProjectsPage', () => {
   it('should render category and project tag filters above the layout', () => {
     const host = fixture.nativeElement as HTMLElement;
     const filterRails = host.querySelectorAll('app-filter-rail');
-    const categoryFilters = filterRails[0].querySelectorAll('button');
-    const tagFilters = filterRails[1].querySelectorAll('button');
+    const categoryFilters = filterRails[0].querySelectorAll('.filter-rail__chip');
+    const tagFilters = filterRails[1].querySelectorAll('.filter-rail__chip');
 
     expect(filterRails.length).toBe(2);
     expect(categoryFilters.length).toBe(8);

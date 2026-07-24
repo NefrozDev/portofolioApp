@@ -7,6 +7,7 @@
       "contact": "Contact"
     },
     "language": "Language",
+    "pageUnderConstruction": "Pagina in costruzione",
     "scrollFiltersLeft": "Scorri i filtri verso sinistra",
     "scrollFiltersRight": "Scorri i filtri verso destra",
     "glossaryInfoLabel": "Ulteriori informazioni su {{ term }}",
