@@ -99,7 +99,7 @@ describe('ExperienceCard', () => {
     button.click();
 
     expect(showModal).toHaveBeenCalled();
-    expect(button.textContent?.trim()).toBe('Recommendation letter');
+    expect(button.textContent?.trim()).toBe('Recommendation');
     expect(dialog.querySelector('iframe')?.getAttribute('src')).toBe(recommendationLetterUrl);
   });
 });
