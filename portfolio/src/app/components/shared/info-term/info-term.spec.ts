@@ -32,6 +32,7 @@ describe('InfoTerm', () => {
     expect(trigger?.textContent).toContain('Docker');
     expect(trigger?.getAttribute('aria-label')).toBe('More information about Docker');
     expect(tooltip?.textContent).toContain('packages an application');
+    expect(host.querySelector('.info-term__icon')).toBeNull();
   });
 
   it('should toggle on click and close on Escape', () => {
