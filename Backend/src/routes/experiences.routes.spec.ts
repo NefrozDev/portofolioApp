@@ -19,6 +19,17 @@ test('GET /api/experiences should return an experience list', async () => {
   assert.equal(typeof firstExperience.period, 'string');
   assert.ok(Array.isArray(firstExperience.technologies));
   assert.ok(Array.isArray(firstExperience.highlights));
+  assert.equal(
+    firstExperience.recommendationLetterUrl,
+    '/documents/recommendations/ic-green.pdf'
+  );
+  assert.ok(
+    response.body.every(
+      (experience: { recommendationLetterUrl?: unknown }) =>
+        experience.recommendationLetterUrl === undefined ||
+        typeof experience.recommendationLetterUrl === 'string'
+    )
+  );
 });
 
 test('GET /api/experiences should keep role titles language-neutral', async () => {

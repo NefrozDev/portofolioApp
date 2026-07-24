@@ -109,7 +109,11 @@
     "technologies": "Technologies:",
     "all": "All",
     "logoPlaceholder": "Logo",
-    "toggleDetails": "Toggle experience details"
+    "toggleDetails": "Toggle experience details",
+    "viewRecommendationLetter": "Aanbevelingsbrief bekijken",
+    "recommendationLetterTitle": "Aanbevelingsbrief",
+    "closeRecommendationLetter": "Aanbevelingsbrief sluiten",
+    "openRecommendationLetter": "PDF openen in een nieuw tabblad"
   },
   "contact": {
     "title": "Contact",

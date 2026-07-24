@@ -109,7 +109,11 @@
     "technologies": "Technologies:",
     "all": "All",
     "logoPlaceholder": "Logo",
-    "toggleDetails": "Toggle experience details"
+    "toggleDetails": "Toggle experience details",
+    "viewRecommendationLetter": "Visualizza la lettera di raccomandazione",
+    "recommendationLetterTitle": "Lettera di raccomandazione",
+    "closeRecommendationLetter": "Chiudi la lettera di raccomandazione",
+    "openRecommendationLetter": "Apri il PDF in una nuova scheda"
   },
   "contact": {
     "title": "Contact",

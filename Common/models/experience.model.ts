@@ -7,4 +7,5 @@ export interface Experience {
   technologies: string[];
   isExpanded: boolean;
   logoUrl?: string;
+  recommendationLetterUrl?: string;
 }

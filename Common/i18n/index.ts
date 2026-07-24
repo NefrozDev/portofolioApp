@@ -93,12 +93,21 @@ const PROJECT_METADATA: Array<
 ];
 
 const EXPERIENCE_METADATA: Array<
-  Pick<Experience, 'id' | 'role' | 'technologies' | 'isExpanded' | 'logoUrl'>
+  Pick<
+    Experience,
+    | 'id'
+    | 'role'
+    | 'technologies'
+    | 'isExpanded'
+    | 'logoUrl'
+    | 'recommendationLetterUrl'
+  >
 > = [
   {
     id: 'icgreen-lead-dev',
     role: 'Lead Developer',
     logoUrl: '/img/experiences/ic-green.png',
+    recommendationLetterUrl: '/documents/recommendations/ic-green.pdf',
     technologies: ['Angular', 'TypeScript', 'Node.js', 'Docker', 'ROS / ROS2', 'MQTT', 'AI', 'Gerrit'],
     isExpanded: true
   },

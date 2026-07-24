@@ -70,4 +70,36 @@ describe('ExperienceCard', () => {
     expect(content).not.toBeNull();
     expect(content.getAttribute('aria-hidden')).toBe('true');
   });
+
+  it('should hide the recommendation action when no letter is configured', () => {
+    const button = fixture.nativeElement.querySelector(
+      '.experience-card__recommendation'
+    ) as HTMLButtonElement | null;
+
+    expect(button).toBeNull();
+  });
+
+  it('should open a recommendation letter in a dialog when configured', () => {
+    const recommendationLetterUrl = 'data:application/pdf;base64,JVBERi0xLjQ=';
+
+    fixture.componentRef.setInput('experience', {
+      ...experience,
+      recommendationLetterUrl
+    });
+    fixture.detectChanges();
+
+    const dialog = fixture.nativeElement.querySelector(
+      '.recommendation-dialog'
+    ) as HTMLDialogElement;
+    const showModal = spyOn(dialog, 'showModal');
+    const button = fixture.nativeElement.querySelector(
+      '.experience-card__recommendation'
+    ) as HTMLButtonElement;
+
+    button.click();
+
+    expect(showModal).toHaveBeenCalled();
+    expect(button.textContent?.trim()).toBe('Recommendation letter');
+    expect(dialog.querySelector('iframe')?.getAttribute('src')).toBe(recommendationLetterUrl);
+  });
 });
