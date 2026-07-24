@@ -83,8 +83,8 @@ describe('ContactPage', () => {
     );
 
     expect(nameInput?.placeholder).toBe('Name is required.');
-    expect(emailInput?.placeholder).toBe('Enter your email');
-    expect(phoneInput?.placeholder).toBe('Enter your phone number');
+    expect(emailInput?.placeholder).toBe('Email');
+    expect(phoneInput?.placeholder).toBe('Phone');
     expect(messageTextarea?.placeholder).toBe('Message is required.');
 
     expect(
@@ -113,20 +113,20 @@ describe('ContactPage', () => {
     expect(
       host.querySelector<HTMLInputElement>('input[formControlName="name"]')
         ?.placeholder
-    ).toBe('Entrez votre nom');
+    ).toBe('Nom');
     expect(
       host.querySelector<HTMLInputElement>('input[formControlName="email"]')
         ?.placeholder
-    ).toBe('Entrez votre adresse e-mail');
+    ).toBe('E-mail');
     expect(
       host.querySelector<HTMLInputElement>('input[formControlName="phone"]')
         ?.placeholder
-    ).toBe('Entrez votre numéro de téléphone');
+    ).toBe('Téléphone');
     expect(
       host.querySelector<HTMLTextAreaElement>(
         'textarea[formControlName="message"]'
       )?.placeholder
-    ).toBe('Entrez votre message');
+    ).toBe('Message');
 
     component.nameControl?.markAsTouched();
     component.messageControl?.markAsTouched();
@@ -155,7 +155,7 @@ describe('ContactPage', () => {
     ]);
   });
 
-  it('should center the form field text and placeholders', () => {
+  it('should left-align the form field text and placeholders', () => {
     const host = fixture.nativeElement as HTMLElement;
     const fields = host.querySelectorAll<HTMLElement>(
       '.contact-page__input, .contact-page__textarea'
@@ -163,7 +163,7 @@ describe('ContactPage', () => {
 
     expect(fields.length).toBe(4);
     fields.forEach((field) => {
-      expect(getComputedStyle(field).textAlign).toBe('center');
+      expect(getComputedStyle(field).textAlign).toBe('left');
     });
   });
 
@@ -180,7 +180,7 @@ describe('ContactPage', () => {
       '#contact-email-inline-error'
     );
 
-    expect(emailInput?.placeholder).toBe('Enter your email');
+    expect(emailInput?.placeholder).toBe('Email');
     expect(
       emailInput?.classList.contains('contact-page__field--invalid')
     ).toBeTrue();

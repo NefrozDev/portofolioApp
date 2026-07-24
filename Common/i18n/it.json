@@ -127,20 +127,20 @@
     },
     "form": {
       "name": {
-        "placeholder": "Inserisci il tuo nome",
+        "placeholder": "Nome",
         "required": "Il nome è obbligatorio.",
         "maxlength": "Name cannot exceed 100 characters."
       },
       "email": {
-        "placeholder": "Inserisci la tua email",
+        "placeholder": "E-mail",
         "required": "Email address is required.",
         "invalid": "Email address is invalid."
       },
       "phone": {
-        "placeholder": "Inserisci il tuo numero di telefono"
+        "placeholder": "Telefono"
       },
       "message": {
-        "placeholder": "Inserisci il tuo messaggio",
+        "placeholder": "Messaggio",
         "required": "Il messaggio è obbligatorio.",
         "maxlength": "Message cannot exceed 2000 characters."
       },

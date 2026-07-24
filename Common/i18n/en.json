@@ -127,20 +127,20 @@
     },
     "form": {
       "name": {
-        "placeholder": "Enter your name",
+        "placeholder": "Name",
         "required": "Name is required.",
         "maxlength": "Name cannot exceed 100 characters."
       },
       "email": {
-        "placeholder": "Enter your email",
+        "placeholder": "Email",
         "required": "Email address is required.",
         "invalid": "Email address is invalid."
       },
       "phone": {
-        "placeholder": "Enter your phone number"
+        "placeholder": "Phone"
       },
       "message": {
-        "placeholder": "Enter your message",
+        "placeholder": "Message",
         "required": "Message is required.",
         "maxlength": "Message cannot exceed 2000 characters."
       },

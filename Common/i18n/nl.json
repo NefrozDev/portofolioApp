@@ -127,20 +127,20 @@
     },
     "form": {
       "name": {
-        "placeholder": "Vul uw naam in",
+        "placeholder": "Naam",
         "required": "Naam is verplicht.",
         "maxlength": "Name cannot exceed 100 characters."
       },
       "email": {
-        "placeholder": "Vul uw e-mailadres in",
+        "placeholder": "E-mailadres",
         "required": "Email address is required.",
         "invalid": "Email address is invalid."
       },
       "phone": {
-        "placeholder": "Vul uw telefoonnummer in"
+        "placeholder": "Telefoonnummer"
       },
       "message": {
-        "placeholder": "Voer uw bericht in",
+        "placeholder": "Bericht",
         "required": "Bericht is verplicht.",
         "maxlength": "Message cannot exceed 2000 characters."
       },
