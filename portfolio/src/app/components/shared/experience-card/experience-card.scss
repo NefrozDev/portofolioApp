@@ -252,120 +252,105 @@
   color: var(--primary);
 }
 
-.recommendation-dialog {
-  position: fixed;
-  inset: 0;
-  width: min(68rem, calc(100vw - 2rem));
-  height: min(52rem, calc(100vh - 2rem));
-  max-width: none;
-  max-height: none;
-  margin: auto;
-  padding: 0;
-  color: var(--text-primary);
-  background: #0f172a;
-  border: 1px solid rgba(123, 97, 255, 0.42);
-  border-radius: var(--radius-md);
-  box-shadow: 0 30px 100px rgba(2, 6, 23, 0.82);
-}
-
-.recommendation-dialog::backdrop {
-  background: rgba(2, 6, 23, 0.82);
-  backdrop-filter: blur(0.35rem);
-}
-
-.recommendation-dialog__panel {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  height: 100%;
-}
-
-.recommendation-dialog__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--border-soft);
-}
-
-.recommendation-dialog__eyebrow {
-  margin-bottom: 0.15rem;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.recommendation-dialog__header h2 {
-  font-size: 1.2rem;
-}
-
-.recommendation-dialog__close {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  flex-shrink: 0;
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border-soft);
-  font-size: 1.7rem;
-  line-height: 1;
-}
-
-.recommendation-dialog__close:hover,
-.recommendation-dialog__close:focus-visible {
-  background: rgba(123, 97, 255, 0.24);
-  border-color: rgba(123, 97, 255, 0.62);
-}
-
-.recommendation-dialog__document {
-  width: 100%;
-  height: 100%;
-  background: #ffffff;
-  border: 0;
-}
-
-.recommendation-dialog__footer {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0.75rem 1.25rem;
-  border-top: 1px solid var(--border-soft);
-}
-
-.recommendation-dialog__external-link {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  text-decoration: underline;
-  text-underline-offset: 0.2rem;
-}
-
-.recommendation-dialog__external-link:hover,
-.recommendation-dialog__external-link:focus-visible {
-  color: #ffffff;
-}
-
 @media (max-width: 48rem) {
+  .experience-card {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: 1rem;
+    border-radius: 0.9rem;
+  }
+
   .experience-card__header {
     flex-direction: column;
+    gap: 0.9rem;
   }
 
   .experience-card__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     width: 100%;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 0.75rem;
   }
 
   .experience-card__recommendation {
+    grid-column: 1 / -1;
     width: 100%;
-  }
-  .experience-card__identity {
-    width: 100%;
+    min-width: 0;
+    height: 2.75rem;
   }
 
-  .recommendation-dialog {
-    width: calc(100vw - 1rem);
-    height: calc(100vh - 1rem);
+  .experience-card__identity {
+    width: 100%;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .experience-card__logo {
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 0.75rem;
+  }
+
+  .experience-card__meta {
+    min-width: 0;
+  }
+
+  .experience-card__role {
+    font-size: 1.1rem;
+    line-height: 1.25;
+  }
+
+  .experience-card__company {
+    font-size: 0.88rem;
+  }
+
+  .experience-card__period {
+    align-self: center;
+    font-size: 0.9rem;
+    white-space: normal;
+  }
+
+  .experience-card__toggle {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .experience-card__tags {
+    margin-top: 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .experience-card__tags .tag {
+    min-height: 1.8rem;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.78rem;
+  }
+
+  .experience-card.experience-card--expanded .experience-card__content {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+  }
+
+  .experience-card__highlights {
+    gap: 0.55rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .experience-card__highlights li {
+    overflow-wrap: anywhere;
+  }
+
+}
+
+@media (max-width: 22rem) {
+  .experience-card__logo {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .experience-card__role {
+    font-size: 1rem;
   }
 }

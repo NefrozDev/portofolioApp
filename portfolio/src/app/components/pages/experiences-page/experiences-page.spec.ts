@@ -102,10 +102,11 @@ describe('ExperiencesPage', () => {
 
   it('should render technology filtering through the shared rail', () => {
     const rail = fixture.nativeElement.querySelector('app-filter-rail') as HTMLElement;
+    const filterChips = rail.querySelectorAll('.filter-rail__chip');
 
     expect(rail).not.toBeNull();
-    expect(rail.querySelectorAll('button').length).toBe(5);
-    expect(rail.querySelector('button')?.textContent?.trim()).toBe('All');
+    expect(filterChips.length).toBe(5);
+    expect(filterChips[0]?.textContent?.trim()).toBe('All');
     const terms = Array.from(rail.querySelectorAll('app-info-term')).map(
       (term) => term.textContent
     );

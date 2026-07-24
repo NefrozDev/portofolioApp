@@ -68,13 +68,45 @@
 
 @media (max-width: 768px) {
   .experiences-page {
-    height: 100vh;
-    height: 100dvh;
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .experiences-page .page-content {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .experiences-page__main {
     padding-top: var(--page-top-spacing-mobile);
-    padding-bottom: 1rem;
+    padding-bottom: 6.5rem;
   }
 
+  .experiences-page__main > .container {
+    height: auto;
+  }
+
+  .experiences-page__main app-section-hero {
+    margin-bottom: 1.25rem;
+  }
+
+  .experiences-page__toolbar {
+    margin-bottom: 1.25rem;
+  }
+
+  .experiences-page__list {
+    flex: 0 0 auto;
+    gap: 1rem;
+    padding-right: 0;
+    padding-bottom: 0;
+    overflow: visible;
+  }
+
+  .experiences-page__list app-experience-card {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+  }
 }

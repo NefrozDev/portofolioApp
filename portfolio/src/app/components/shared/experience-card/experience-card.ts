@@ -1,30 +1,23 @@
-import { Component, ElementRef, computed, inject, input, output, viewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, input, output, viewChild } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Experience } from '../../../../../../Common/models/experience.model';
 import { getGlossaryInfoKey } from '@common/constants/glossary';
 import { InfoTerm } from '../info-term/info-term';
+import { RecommendationLetterDialog } from '../recommendation-letter-dialog/recommendation-letter-dialog';
 
 @Component({
   selector: 'app-experience-card',
   standalone: true,
-  imports: [InfoTerm, TranslatePipe],
+  imports: [InfoTerm, RecommendationLetterDialog, TranslatePipe],
   templateUrl: './experience-card.html',
   styleUrls: ['./experience-card.scss']
 })
 export class ExperienceCard {
-  private readonly sanitizer = inject(DomSanitizer);
-  private readonly recommendationDialog =
-    viewChild<ElementRef<HTMLDialogElement>>('recommendationDialog');
+  private readonly recommendationDialog = viewChild(RecommendationLetterDialog);
 
   readonly glossaryInfoKey = getGlossaryInfoKey;
   readonly experience = input.required<Experience>();
   readonly toggle = output<string>();
-  readonly safeRecommendationLetterUrl = computed(() => {
-    const url = this.experience().recommendationLetterUrl;
-
-    return url ? this.sanitizer.bypassSecurityTrustResourceUrl(url) : null;
-  });
 
   onToggle(): void {
     const currentExperience = this.experience();
@@ -42,17 +35,7 @@ export class ExperienceCard {
       return;
     }
 
-    this.recommendationDialog()?.nativeElement.showModal();
-  }
-
-  closeRecommendationLetter(): void {
-    this.recommendationDialog()?.nativeElement.close();
-  }
-
-  closeRecommendationLetterFromBackdrop(event: MouseEvent): void {
-    if (event.target === event.currentTarget) {
-      this.closeRecommendationLetter();
-    }
+    this.recommendationDialog()?.open();
   }
 
   onLogoError(event: Event): void {

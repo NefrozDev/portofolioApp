@@ -2,7 +2,6 @@ import { Component, computed, signal } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { distinctUntilChanged } from 'rxjs';
-import { MobileBottomNav } from '../../app/mobile-bottom-nav/mobile-bottom-nav';
 import { SectionHero } from '../../shared/section-hero/section-hero';
 import { ExperienceCard } from '../../shared/experience-card/experience-card';
 import { ExperienceLoader } from '../../shared/experience-loader/experience-loader';
@@ -19,7 +18,6 @@ import { LanguageService } from '../../../services/language';
   selector: 'app-experiences-page',
   standalone: true,
   imports: [
-    MobileBottomNav,
     SectionHero,
     ExperienceCard,
     ExperienceLoader,

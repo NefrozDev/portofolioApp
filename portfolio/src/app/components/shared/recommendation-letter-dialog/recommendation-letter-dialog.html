@@ -1,0 +1,45 @@
+<dialog
+  #dialog
+  class="recommendation-dialog"
+  (click)="closeFromBackdrop($event)"
+  [attr.aria-labelledby]="'recommendation-title-' + experience().id"
+>
+  <div class="recommendation-dialog__panel">
+    <header class="recommendation-dialog__header">
+      <div>
+        <p class="recommendation-dialog__eyebrow">
+          {{ 'experiences.recommendationLetterTitle' | translate }}
+        </p>
+        <h2 [id]="'recommendation-title-' + experience().id">
+          {{ experience().company }}
+        </h2>
+      </div>
+
+      <button
+        type="button"
+        class="recommendation-dialog__close"
+        (click)="close()"
+        [attr.aria-label]="'experiences.closeRecommendationLetter' | translate"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </header>
+
+    <iframe
+      class="recommendation-dialog__document"
+      [src]="safeLetterUrl()"
+      [title]="'experiences.recommendationLetterTitle' | translate"
+    ></iframe>
+
+    <footer class="recommendation-dialog__footer">
+      <a
+        class="recommendation-dialog__external-link"
+        [href]="experience().recommendationLetterUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ 'experiences.openRecommendationLetter' | translate }}
+      </a>
+    </footer>
+  </div>
+</dialog>

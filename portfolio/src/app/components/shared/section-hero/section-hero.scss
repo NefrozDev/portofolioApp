@@ -2,3 +2,14 @@
   display: block;
   margin-bottom: 2rem;
 }
+
+@media (max-width: 48rem) {
+  :host {
+    margin-bottom: 1rem;
+  }
+
+  .hero-block {
+    gap: 0.7rem;
+    margin-bottom: 0;
+  }
+}

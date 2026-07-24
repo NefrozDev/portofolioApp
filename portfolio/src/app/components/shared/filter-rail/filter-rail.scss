@@ -194,15 +194,38 @@
   .filter-rail {
     align-items: flex-start;
     flex-wrap: wrap;
+    gap: 0.6rem;
   }
 
   .filter-rail__label {
     flex-basis: auto;
+    padding-inline: 0.7rem;
+    font-size: 0.78rem;
   }
 
   .filter-rail__viewport {
+    display: block;
     order: 2;
     width: 100%;
     flex-basis: 100%;
+  }
+
+  .filter-rail__arrow {
+    display: none;
+  }
+
+  .filter-rail__scroll {
+    min-height: 2.35rem;
+    gap: 0.45rem;
+    padding: 0.15rem 0.35rem;
+    scroll-padding-inline: 0.35rem;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .filter-rail__chip {
+    min-height: 2.1rem;
+    padding-inline: 0.75rem;
+    font-size: 0.82rem;
   }
 }
