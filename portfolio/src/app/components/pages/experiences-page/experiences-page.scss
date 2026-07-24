@@ -47,6 +47,42 @@
   overscroll-behavior-y: contain;
 }
 
+.experiences-page__list--entering app-experience-card {
+  opacity: 0;
+  transform: translate3d(0, 8rem, 0) scale(0.96);
+  animation: experience-stack-in
+    var(--experience-entrance-duration)
+    cubic-bezier(0.22, 1, 0.36, 1)
+    var(--experience-entrance-delay)
+    forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes experience-stack-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 8rem, 0) scale(0.96);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experiences-page__list--entering app-experience-card {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    will-change: auto;
+  }
+}
+
 .experiences-page__list::-webkit-scrollbar {
   width: 0.5rem;
 }

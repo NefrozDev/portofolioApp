@@ -55,6 +55,41 @@ describe('ExperiencesPage', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should expand the first experience one second into the two-second stack animation', () => {
+    expect(component.experiences().every((experience) => !experience.isExpanded)).toBeTrue();
+    expect(component.isEntranceAnimating()).toBeTrue();
+    expect(component.entranceAnimationDelay(0, 2)).toBe('0ms');
+    expect(component.entranceAnimationDelay(1, 2)).toBe('1400ms');
+    expect(component.entranceAnimationDuration(2)).toBe('600ms');
+
+    (
+      component as unknown as { cancelEntranceAnimation: () => void }
+    ).cancelEntranceAnimation();
+    jasmine.clock().install();
+
+    try {
+      (
+        component as unknown as { startEntranceAnimation: () => void }
+      ).startEntranceAnimation();
+
+      jasmine.clock().tick(999);
+      expect(component.experiences()[0].isExpanded).toBeFalse();
+
+      jasmine.clock().tick(1);
+      expect(component.experiences()[0].isExpanded).toBeTrue();
+      expect(component.experiences()[1].isExpanded).toBeFalse();
+      expect(component.isEntranceAnimating()).toBeTrue();
+
+      jasmine.clock().tick(1000);
+      expect(component.isEntranceAnimating()).toBeFalse();
+    } finally {
+      (
+        component as unknown as { cancelEntranceAnimation: () => void }
+      ).cancelEntranceAnimation();
+      jasmine.clock().uninstall();
+    }
+  });
+
   it('should render an accessible skeleton while experiences are loading', () => {
     component.isLoading.set(true);
     fixture.detectChanges();
@@ -97,7 +132,9 @@ describe('ExperiencesPage', () => {
     component.clearTechnologyFilters();
 
     expect(component.selectedTechnologyTags()).toEqual([]);
-    expect(component.filteredExperiences()).toEqual(experiences);
+    expect(
+      component.filteredExperiences().map((experience) => experience.id)
+    ).toEqual(['exp-1', 'exp-2']);
   });
 
   it('should render technology filtering through the shared rail', () => {
