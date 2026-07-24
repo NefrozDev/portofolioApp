@@ -167,6 +167,25 @@
   min-height: 3.25rem;
   font-size: 1.1rem;
   font-weight: 700;
+  animation: contact-page-submit-intro-glow 0.8s ease-in-out 2.05s 1;
+}
+
+@keyframes contact-page-submit-intro-glow {
+  0%,
+  100% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+
+  45%,
+  60% {
+    box-shadow:
+      0 0 0 1px rgba(199, 210, 254, 0.62),
+      0 0 2.75rem rgba(99, 102, 241, 0.72),
+      0 0 1.5rem rgba(79, 140, 255, 0.55);
+    filter: brightness(1.22);
+    transform: scale(1.06);
+  }
 }
 
 @keyframes contact-page-invalid-border-flash {
@@ -181,6 +200,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .contact-page__submit,
   .contact-page__input.contact-page__field--invalid,
   .contact-page__textarea.contact-page__field--invalid {
     animation: none;

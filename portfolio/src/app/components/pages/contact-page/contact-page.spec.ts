@@ -35,6 +35,19 @@ describe('ContactPage', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should highlight the submit button after both contact links', () => {
+    const submitButton = fixture.nativeElement.querySelector(
+      '.contact-page__submit'
+    ) as HTMLButtonElement;
+    const styles = getComputedStyle(submitButton);
+
+    expect(styles.animationName).toContain(
+      'contact-page-submit-intro-glow'
+    );
+    expect(styles.animationDelay).toBe('2.05s');
+    expect(styles.animationIterationCount).toBe('1');
+  });
+
   it('should render contact links above and outside the form card', () => {
     const host = fixture.nativeElement as HTMLElement;
     const container = host.querySelector('.contact-page__container');
