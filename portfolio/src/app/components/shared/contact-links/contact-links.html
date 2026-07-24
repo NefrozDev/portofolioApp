@@ -1,10 +1,11 @@
 <nav class="contact-links" [attr.aria-label]="'app.placeholders.contactLinks' | translate">
-  @for (link of links; track link.href) {
+  @for (link of links; track link.href; let index = $index) {
     <a
       class="contact-links__item"
       [href]="link.href"
       [attr.target]="link.external ? '_blank' : null"
       [attr.rel]="link.external ? 'noreferrer' : null"
+      [style.--contact-link-highlight-delay]="(index * 900 + 250) + 'ms'"
     >
       <img
         class="contact-links__icon"

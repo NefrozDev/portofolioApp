@@ -47,4 +47,21 @@ describe('ContactLinks', () => {
     expect(icons[1].getAttribute('src')).toBe('/widgets/linkedin.svg');
     expect(labels.length).toBe(0);
   });
+
+  it('should highlight each contact link once in consecutive order', () => {
+    const links = fixture.nativeElement.querySelectorAll(
+      '.contact-links__item'
+    ) as NodeListOf<HTMLAnchorElement>;
+
+    expect(
+      links[0].style.getPropertyValue('--contact-link-highlight-delay')
+    ).toBe('250ms');
+    expect(
+      links[1].style.getPropertyValue('--contact-link-highlight-delay')
+    ).toBe('1150ms');
+    expect(getComputedStyle(links[0]).animationName).toContain(
+      'contact-link-intro-glow'
+    );
+    expect(getComputedStyle(links[0]).animationIterationCount).toBe('1');
+  });
 });
