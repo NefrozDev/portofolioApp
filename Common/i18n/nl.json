@@ -56,7 +56,7 @@
   },
   "projects": {
     "title": "Portfolio",
-    "subtitle": "Recent projects",
+    "subtitle": "Recente projecten",
     "loading": "Loading projects...",
     "loadError": "Unable to load projects.",
     "emptyCategory": "No project available for this category.",
@@ -103,7 +103,7 @@
   },
   "experiences": {
     "title": "Experiences",
-    "subtitle": "My professional journey",
+    "subtitle": "Mijn professionele parcours",
     "loading": "Loading experiences...",
     "loadError": "Unable to load experiences.",
     "empty": "No experience available.",
@@ -118,7 +118,7 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "An idea, a project or an opportunity?",
+    "subtitle": "Een idee, een project of een opportuniteit?",
     "subtitleHighlight": "Let's talk!",
     "links": {
       "phone": "Phone",
