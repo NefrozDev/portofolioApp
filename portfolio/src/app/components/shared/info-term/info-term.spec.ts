@@ -35,6 +35,16 @@ describe('InfoTerm', () => {
     expect(host.querySelector('.info-term__icon')).toBeNull();
   });
 
+  it('should underline the term without adding a layout-shifting border', () => {
+    const label = fixture.nativeElement.querySelector(
+      '.info-term__label'
+    ) as HTMLElement;
+    const styles = getComputedStyle(label);
+
+    expect(styles.borderBottomWidth).toBe('0px');
+    expect(styles.textDecorationLine).toContain('underline');
+  });
+
   it('should toggle on click and close on Escape', () => {
     const trigger = fixture.nativeElement.querySelector(
       '.info-term__trigger'

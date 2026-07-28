@@ -64,6 +64,20 @@ describe('FilterRail', () => {
     expect(arrows[1].getAttribute('aria-label')).toBe('Scroll filters right');
   });
 
+  it('should make an explained term fill its containing chip', () => {
+    const chip = fixture.nativeElement.querySelectorAll(
+      '.filter-rail__chip'
+    )[2] as HTMLButtonElement;
+    const term = chip.querySelector('app-info-term') as HTMLElement;
+
+    expect(term.getBoundingClientRect().width).toBeGreaterThanOrEqual(
+      chip.getBoundingClientRect().width - 2
+    );
+    expect(term.getBoundingClientRect().height).toBeGreaterThanOrEqual(
+      chip.getBoundingClientRect().height - 2
+    );
+  });
+
   it('should smoothly scroll most of the visible rail width', () => {
     const scrollBy = jasmine.createSpy('scrollBy');
     const rail = { clientWidth: 400, scrollBy } as unknown as HTMLElement;

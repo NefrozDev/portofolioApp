@@ -117,8 +117,10 @@
 }
 
 .project-detail__tags .tag {
+  --info-term-container-padding-block: 0.2rem;
+  --info-term-container-padding-inline: 0.7rem;
+
   min-height: 1.75rem;
-  padding: 0.2rem 0.7rem;
   font-size: 0.8rem;
 }
 

@@ -345,11 +345,14 @@ h3,
 }
 
 .tag {
+  --info-term-container-padding-block: 0.25rem;
+  --info-term-container-padding-inline: 0.9rem;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 2rem;
-  padding: 0.25rem 0.9rem;
+  padding: var(--info-term-container-padding-block) var(--info-term-container-padding-inline);
   border-radius: var(--radius-pill);
   background: var(--tag-bg);
   color: #fff;
