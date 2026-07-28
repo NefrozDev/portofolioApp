@@ -31,6 +31,14 @@
           [attr.aria-label]="'experiences.viewRecommendationLetter' | translate"
           [attr.title]="'experiences.viewRecommendationLetter' | translate"
         >
+          <svg
+            class="experience-card__recommendation-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M4.75 6.25h14.5A1.75 1.75 0 0 1 21 8v8a1.75 1.75 0 0 1-1.75 1.75H4.75A1.75 1.75 0 0 1 3 16V8a1.75 1.75 0 0 1 1.75-1.75Z" />
+            <path d="m4 7 8 6 8-6" />
+          </svg>
           {{ 'experiences.recommendationLetterTitle' | translate }}
         </button>
       }

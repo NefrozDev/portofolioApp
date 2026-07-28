@@ -43,7 +43,7 @@ describe('ExperienceCard', () => {
       term.textContent?.includes('Docker')
     );
 
-    expect(dockerTerm?.textContent).toContain('packages an application');
+    expect(dockerTerm?.textContent).toContain('keeping the environment consistent');
   });
 
   it('should apply the expanded state class when open', () => {
@@ -100,6 +100,10 @@ describe('ExperienceCard', () => {
 
     expect(showModal).toHaveBeenCalled();
     expect(button.textContent?.trim()).toBe('Recommendation');
+    expect(
+      button.querySelector('.experience-card__recommendation-icon')
+        ?.getAttribute('aria-hidden')
+    ).toBe('true');
     expect(dialog.querySelector('iframe')?.getAttribute('src')).toBe(recommendationLetterUrl);
   });
 });
