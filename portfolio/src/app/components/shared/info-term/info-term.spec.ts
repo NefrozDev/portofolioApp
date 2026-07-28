@@ -71,6 +71,65 @@ describe('InfoTerm', () => {
     expect(tooltip.matches(':popover-open')).toBeFalse();
   });
 
+  it('should keep a tooltip within the viewport at both horizontal edges', () => {
+    const componentHost = fixture.nativeElement as HTMLElement;
+    const term = componentHost.querySelector(
+      '.info-term'
+    ) as HTMLElement;
+    const tooltip = componentHost.querySelector(
+      '[role="tooltip"]'
+    ) as HTMLElement;
+
+    const hostBounds = spyOn(
+      componentHost,
+      'getBoundingClientRect'
+    ).and.returnValue({
+      left: 0,
+      right: 64,
+      top: 100,
+      bottom: 124,
+      width: 64,
+      height: 24,
+      x: 0,
+      y: 100,
+      toJSON: () => ({})
+    });
+    spyOn(tooltip, 'getBoundingClientRect').and.returnValue({
+      left: 0,
+      right: 288,
+      top: 0,
+      bottom: 80,
+      width: 288,
+      height: 80,
+      x: 0,
+      y: 0,
+      toJSON: () => ({})
+    });
+
+    term.dispatchEvent(new MouseEvent('mouseenter'));
+    fixture.detectChanges();
+
+    expect(component.tooltipLeft()).toBe(152);
+    expect(tooltip.matches(':popover-open')).toBeTrue();
+
+    hostBounds.and.returnValue({
+      left: window.innerWidth - 64,
+      right: window.innerWidth,
+      top: 100,
+      bottom: 124,
+      width: 64,
+      height: 24,
+      x: window.innerWidth - 64,
+      y: 100,
+      toJSON: () => ({})
+    });
+
+    term.dispatchEvent(new MouseEvent('mouseenter'));
+    fixture.detectChanges();
+
+    expect(component.tooltipLeft()).toBe(window.innerWidth - 152);
+  });
+
   it('should include the approved glossary terms and omit the exclusions', () => {
     const includedTerms = [
       'Angular',

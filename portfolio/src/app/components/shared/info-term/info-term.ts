@@ -31,19 +31,21 @@ export class InfoTerm {
   readonly tooltipId = `info-term-tooltip-${InfoTerm.nextTooltipId++}`;
 
   toggle(): void {
-    this.positionEmbeddedTooltip();
-    this.isOpen.update((isOpen) => !isOpen);
+    const shouldOpen = !this.isOpen();
 
-    if (this.isOpen()) {
-      this.showEmbeddedTooltip();
+    this.isOpen.set(shouldOpen);
+
+    if (shouldOpen) {
+      this.showTooltip();
+      this.positionTooltip();
     } else {
-      this.hideEmbeddedTooltip();
+      this.hideTooltip();
     }
   }
 
   close(): void {
     this.isOpen.set(false);
-    this.hideEmbeddedTooltip();
+    this.hideTooltip();
   }
 
   @HostListener('document:click', ['$event'])
@@ -59,13 +61,13 @@ export class InfoTerm {
   }
 
   onPointerEnter(): void {
-    this.positionEmbeddedTooltip();
-    this.showEmbeddedTooltip();
+    this.showTooltip();
+    this.positionTooltip();
   }
 
   onPointerLeave(): void {
     if (!this.isOpen()) {
-      this.hideEmbeddedTooltip();
+      this.hideTooltip();
     }
   }
 
@@ -73,46 +75,56 @@ export class InfoTerm {
   onDocumentFocusIn(event: FocusEvent): void {
     const target = event.target;
 
-    if (
-      this.embedded() &&
-      target instanceof HTMLElement &&
-      target.contains(this.elementRef.nativeElement)
-    ) {
-      this.positionEmbeddedTooltip();
-      this.showEmbeddedTooltip();
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const host = this.elementRef.nativeElement;
+    const interactsWithHost = host.contains(target) || target.contains(host);
+
+    if (interactsWithHost) {
+      this.showTooltip();
+      this.positionTooltip();
+    } else if (!this.isOpen()) {
+      this.hideTooltip();
     }
   }
 
   @HostListener('window:resize')
   @HostListener('window:scroll')
   repositionOpenTooltip(): void {
-    if (this.isOpen()) {
-      this.positionEmbeddedTooltip();
+    if (
+      this.isOpen() ||
+      this.tooltip().nativeElement.matches(':popover-open')
+    ) {
+      this.positionTooltip();
     }
   }
 
-  private positionEmbeddedTooltip(): void {
-    if (!this.embedded()) {
-      return;
-    }
-
+  private positionTooltip(): void {
     const bounds = this.elementRef.nativeElement.getBoundingClientRect();
-    const tooltipWidth = Math.min(224, window.innerWidth - 32);
+    const tooltipBounds = this.tooltip().nativeElement.getBoundingClientRect();
+    const fallbackWidth = this.embedded() ? 224 : 288;
+    const tooltipWidth =
+      tooltipBounds.width || Math.min(fallbackWidth, window.innerWidth - 32);
+    const tooltipHeight = tooltipBounds.height;
     const minimumLeft = tooltipWidth / 2 + 8;
     const maximumLeft = window.innerWidth - tooltipWidth / 2 - 8;
     const centeredLeft = bounds.left + bounds.width / 2;
+    const belowTop = bounds.bottom + 8;
+    const aboveTop = bounds.top - tooltipHeight - 8;
+    const fitsBelow = belowTop + tooltipHeight <= window.innerHeight - 8;
+    const fitsAbove = aboveTop >= 8;
+    const preferredTop = fitsBelow || !fitsAbove ? belowTop : aboveTop;
+    const maximumTop = Math.max(8, window.innerHeight - tooltipHeight - 8);
 
     this.tooltipLeft.set(
       Math.min(Math.max(centeredLeft, minimumLeft), maximumLeft)
     );
-    this.tooltipTop.set(bounds.bottom + 8);
+    this.tooltipTop.set(Math.min(Math.max(preferredTop, 8), maximumTop));
   }
 
-  private showEmbeddedTooltip(): void {
-    if (!this.embedded()) {
-      return;
-    }
-
+  private showTooltip(): void {
     const tooltip = this.tooltip().nativeElement;
 
     if (!tooltip.matches(':popover-open')) {
@@ -120,11 +132,7 @@ export class InfoTerm {
     }
   }
 
-  private hideEmbeddedTooltip(): void {
-    if (!this.embedded()) {
-      return;
-    }
-
+  private hideTooltip(): void {
     const tooltip = this.tooltip().nativeElement;
 
     if (tooltip.matches(':popover-open')) {

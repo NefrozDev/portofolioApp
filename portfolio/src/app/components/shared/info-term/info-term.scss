@@ -19,12 +19,12 @@
 }
 
 .info-term__tooltip {
-  position: absolute;
+  position: fixed;
+  inset: auto;
   z-index: 20;
-  bottom: calc(100% + 0.65rem);
-  left: 50%;
   width: max-content;
   max-width: min(18rem, calc(100vw - 2rem));
+  margin: 0;
   padding: 0.65rem 0.75rem;
   border: 1px solid var(--border-soft);
   border-radius: 0.6rem;
@@ -35,7 +35,10 @@
   font-weight: 400;
   line-height: 1.4;
   opacity: 0;
+  overflow: visible;
   pointer-events: none;
+  white-space: normal;
+  overflow-wrap: break-word;
   transform: translate(-50%, 0.25rem);
   transition:
     opacity 0.15s ease,
@@ -43,15 +46,8 @@
 }
 
 .info-term__tooltip--embedded {
-  position: fixed;
-  inset: auto;
-  bottom: auto;
   width: min(14rem, calc(100vw - 2rem));
   max-width: none;
-  margin: 0;
-  overflow: visible;
-  white-space: normal;
-  overflow-wrap: break-word;
 }
 
 .info-term--open .info-term__tooltip,

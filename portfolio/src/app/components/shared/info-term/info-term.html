@@ -30,9 +30,9 @@
     [id]="tooltipId"
     role="tooltip"
     [attr.aria-hidden]="embedded() ? 'true' : null"
-    [attr.popover]="embedded() ? 'manual' : null"
-    [style.left.px]="embedded() ? tooltipLeft() : null"
-    [style.top.px]="embedded() ? tooltipTop() : null"
+    popover="manual"
+    [style.left.px]="tooltipLeft()"
+    [style.top.px]="tooltipTop()"
   >
     {{ descriptionKey() | translate }}
   </span>
