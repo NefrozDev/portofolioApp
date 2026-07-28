@@ -85,3 +85,15 @@ When working inside a subproject directly:
 - Shared public exports should be maintained through `Common/index.ts`.
 - Keep shared models and enums framework-agnostic.
 - Avoid importing Angular or Express-specific code into `Common/`.
+
+## Translation and Glossary Guidelines
+
+- Keep English technical terminology unchanged.
+- In non-English glossary copy, translate `framework` using the natural local equivalent of the French concept `boîte à outils` rather than retaining the English word.
+- Start every glossary explanation by stating what the term is (for example, a language, tool, protocol, platform, or practice), then briefly explain what it does.
+- Give each glossary explanation enough context for the type of term:
+  - For a technology, explain at least what it does.
+  - For a programming language, explain its main purpose or common use.
+  - For an alternative or complement to another product, explain why someone might choose or add it. For example, Gerrit complements Git with a code-review and approval workflow rather than replacing Git.
+  - For a framework or library, name the main programming language or ecosystem it relates to.
+- Use direct, factual wording and remove adjectives that do not add necessary meaning.
