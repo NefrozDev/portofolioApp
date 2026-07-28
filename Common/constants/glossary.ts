@@ -15,6 +15,7 @@ const GLOSSARY_INFO_KEYS = {
   Gerrit: 'app.glossary.gerrit',
   'C#': 'app.glossary.cSharp',
   '.NET': 'app.glossary.dotNet',
+  WinDev: 'app.glossary.winDev',
   SQL: 'app.glossary.sql',
   'Azure DevOps': 'app.glossary.azureDevOps',
   FastAPI: 'app.glossary.fastApi',

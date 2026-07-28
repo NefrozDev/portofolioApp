@@ -115,7 +115,7 @@ const EXPERIENCE_METADATA: Array<
     id: 'tihange-software-engineer',
     role: 'Software Engineer',
     logoUrl: '/img/experiences/akkodis.svg',
-    technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'SQL', 'Azure DevOps'],
+    technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'WinDev', 'SQL', 'Azure DevOps'],
     isExpanded: false
   },
   {

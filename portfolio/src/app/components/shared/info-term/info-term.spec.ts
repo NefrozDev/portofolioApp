@@ -31,7 +31,7 @@ describe('InfoTerm', () => {
 
     expect(trigger?.textContent).toContain('Docker');
     expect(trigger?.getAttribute('aria-label')).toBe('More information about Docker');
-    expect(tooltip?.textContent).toContain('packages an application');
+    expect(tooltip?.textContent).toContain('keeping the environment consistent');
     expect(host.querySelector('.info-term__icon')).toBeNull();
   });
 
@@ -89,6 +89,7 @@ describe('InfoTerm', () => {
       'Gerrit',
       'C#',
       '.NET',
+      'WinDev',
       'SQL',
       'Azure DevOps',
       'FastAPI',

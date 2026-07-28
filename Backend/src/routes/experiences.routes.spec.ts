@@ -38,3 +38,14 @@ test('GET /api/experiences should keep role titles language-neutral', async () =
   assert.equal(response.status, 200);
   assert.equal(response.body[0].role, 'Lead Developer');
 });
+
+test('GET /api/experiences should include WinDev in the Tihange experience', async () => {
+  const response = await request(app).get('/api/experiences');
+  const tihangeExperience = response.body.find(
+    (experience: { id: string }) => experience.id === 'tihange-software-engineer'
+  );
+
+  assert.equal(response.status, 200);
+  assert.ok(tihangeExperience);
+  assert.ok(tihangeExperience.technologies.includes('WinDev'));
+});
