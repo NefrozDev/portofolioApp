@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 import { AppLanguage } from '@common/enums/app-language.enum';
 import { ContactApi } from '../../../services/api/contact-api';
@@ -10,17 +10,19 @@ import { ContactPage } from './contact-page';
 describe('ContactPage', () => {
   let component: ContactPage;
   let fixture: ComponentFixture<ContactPage>;
+  let contactApi: jasmine.SpyObj<ContactApi>;
 
   beforeEach(async () => {
+    contactApi = jasmine.createSpyObj<ContactApi>('ContactApi', ['sendMessage']);
+    contactApi.sendMessage.and.returnValue(of({ message: 'Message sent.' }));
+
     await TestBed.configureTestingModule({
       imports: [ContactPage],
       providers: [
         ...provideTestI18n(),
         {
           provide: ContactApi,
-          useValue: {
-            sendMessage: () => of({ message: 'Message sent.' })
-          }
+          useValue: contactApi
         }
       ]
     })
@@ -208,5 +210,83 @@ describe('ContactPage', () => {
     expect(inlineMessage?.textContent?.trim()).toBe(
       'Email address is invalid.'
     );
+  });
+
+  it('should submit optional contact details and reset the form on success', () => {
+    component.contactForm.setValue({
+      name: ' Steven ',
+      email: 'steven@example.com',
+      phone: '+32 123',
+      message: 'Hello'
+    });
+
+    component.onSubmit();
+
+    expect(contactApi.sendMessage).toHaveBeenCalledOnceWith({
+      name: ' Steven ',
+      email: 'steven@example.com',
+      phone: '+32 123',
+      message: 'Hello'
+    });
+    expect(component.submitSuccessMessage()).toBe('contact.feedback.success');
+    expect(component.submitErrorMessage()).toBeNull();
+    expect(component.isSubmitting()).toBeFalse();
+    expect(component.contactForm.getRawValue()).toEqual({
+      name: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+  });
+
+  it('should omit empty optional contact details from the payload', () => {
+    component.contactForm.setValue({
+      name: 'Steven',
+      email: '',
+      phone: '',
+      message: 'Hello'
+    });
+
+    component.onSubmit();
+
+    expect(contactApi.sendMessage).toHaveBeenCalledOnceWith({
+      name: 'Steven',
+      message: 'Hello'
+    });
+  });
+
+  it('should expose a localized error when submission fails', () => {
+    spyOn(console, 'error');
+    contactApi.sendMessage.and.returnValue(
+      throwError(() => new Error('Network unavailable'))
+    );
+    component.contactForm.patchValue({ name: 'Steven', message: 'Hello' });
+
+    component.onSubmit();
+
+    expect(component.submitErrorMessage()).toBe('contact.feedback.submitError');
+    expect(component.submitSuccessMessage()).toBeNull();
+    expect(component.isSubmitting()).toBeFalse();
+  });
+
+  it('should recover when preparing the request throws synchronously', () => {
+    spyOn(console, 'error');
+    contactApi.sendMessage.and.throwError('Unexpected client error');
+    component.contactForm.patchValue({ name: 'Steven', message: 'Hello' });
+
+    component.onSubmit();
+
+    expect(component.submitErrorMessage()).toBe('contact.feedback.prepareError');
+    expect(component.isSubmitting()).toBeFalse();
+  });
+
+  it('should clear submission feedback when the form changes', () => {
+    component.submitSuccessMessage.set('contact.feedback.success');
+    component.submitErrorMessage.set('contact.feedback.submitError');
+
+    component.nameControl?.setValue('Updated');
+
+    expect(component.submitSuccessMessage()).toBeNull();
+    expect(component.submitErrorMessage()).toBeNull();
   });
 });

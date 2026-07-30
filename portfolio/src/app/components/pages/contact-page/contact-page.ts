@@ -78,13 +78,13 @@ export class ContactPage {
 
       this.contactApi.sendMessage(payload).subscribe({
         next: () => {
-          this.submitSuccessMessage.set('contact.feedback.success');
           this.contactForm.reset({
             name: '',
             email: '',
             phone: '',
             message: ''
           });
+          this.submitSuccessMessage.set('contact.feedback.success');
           this.isSubmitting.set(false);
         },
         error: (error: unknown) => {

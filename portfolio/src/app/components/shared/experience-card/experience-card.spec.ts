@@ -124,4 +124,40 @@ describe('ExperienceCard', () => {
     ).toBe('true');
     expect(dialog.querySelector('iframe')?.getAttribute('src')).toBe(recommendationLetterUrl);
   });
+
+  it('should emit the experience id when toggled', () => {
+    const toggledIds: string[] = [];
+    component.toggle.subscribe((id) => toggledIds.push(id));
+
+    component.onToggle();
+
+    expect(toggledIds).toEqual(['exp-1']);
+  });
+
+  it('should ignore a toggle when the experience id is missing', () => {
+    spyOn(console, 'warn');
+    const toggledIds: string[] = [];
+    component.toggle.subscribe((id) => toggledIds.push(id));
+    fixture.componentRef.setInput('experience', { ...experience, id: '' });
+
+    component.onToggle();
+
+    expect(toggledIds).toEqual([]);
+    expect(console.warn).toHaveBeenCalled();
+  });
+
+  it('should replace a broken logo with a text placeholder', () => {
+    const container = document.createElement('div');
+    const image = document.createElement('img');
+    container.appendChild(image);
+
+    component.onLogoError({ target: image } as unknown as Event);
+
+    expect(image.style.display).toBe('none');
+    expect(container.querySelector('span')?.textContent).toBe('[Logo]');
+  });
+
+  it('should ignore the recommendation action when no letter is configured', () => {
+    expect(() => component.openRecommendationLetter()).not.toThrow();
+  });
 });

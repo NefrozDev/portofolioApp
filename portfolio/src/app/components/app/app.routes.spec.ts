@@ -35,6 +35,29 @@ describe('routes', () => {
     ]);
   });
 
+  it('should lazy-load every page component', async () => {
+    const languageRoute = routes.find((route) => route.path === ':lang');
+    const loadedComponents = await Promise.all(
+      (languageRoute?.children ?? []).map((route) => route.loadComponent?.())
+    );
+
+    expect(
+      loadedComponents.map(
+        (component) =>
+          (
+            component as
+              | { ɵcmp?: { selectors?: string[][] } }
+              | undefined
+          )?.ɵcmp?.selectors?.[0]?.[0]
+      )
+    ).toEqual([
+      'app-home-page',
+      'app-experiences-page',
+      'app-projects-page',
+      'app-contact-page'
+    ]);
+  });
+
   it('should redirect unknown paths to English', () => {
     expect(routes.at(-1)).toEqual(
       jasmine.objectContaining({

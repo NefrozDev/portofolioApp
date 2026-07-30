@@ -5,7 +5,8 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/Backend/src/server.js",
-    "test": "node scripts/run-tests.mjs"
+    "test": "node scripts/run-tests.mjs",
+    "test:coverage": "node scripts/run-tests.mjs --coverage"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

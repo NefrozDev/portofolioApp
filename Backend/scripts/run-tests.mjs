@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const backendRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const sourceRoot = join(backendRoot, 'src');
+const coverageEnabled = process.argv.includes('--coverage');
 
 function collectSpecFiles(directory) {
   return readdirSync(directory)
@@ -32,7 +33,13 @@ if (!specFiles.length) {
 
 const result = spawnSync(
   process.execPath,
-  ['--import', 'tsx', '--test', ...specFiles],
+  [
+    ...(coverageEnabled ? ['--experimental-test-coverage'] : []),
+    '--import',
+    'tsx',
+    '--test',
+    ...specFiles
+  ],
   {
     cwd: backendRoot,
     stdio: 'inherit'

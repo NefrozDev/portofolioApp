@@ -11,6 +11,7 @@
     "start:back": "npm --prefix Backend run dev",
     "build:back": "npm --prefix Backend run build",
     "test:back": "npm --prefix Backend run test",
+    "test:coverage": "npm --prefix portfolio run test:coverage && npm run test:projects && npm --prefix Backend run test:coverage",
 
     "build": "npm run build:front && npm run build:projects && npm run build:back",
     "test": "npm run test:front && npm run test:projects && npm run test:back"

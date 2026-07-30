@@ -11,9 +11,10 @@
     "build:projects": "npm run build:libs && ng build demo-template",
     "build:all": "npm run build:libs && ng build portfolio && ng build demo-template",
     "watch": "ng build portfolio --watch --configuration development",
-    "test": "ng test portfolio",
-    "test:libs": "npm run build:contracts && ng test portfolio-ui --watch=false --browsers=ChromeHeadless && ng test portfolio-sdk --watch=false --browsers=ChromeHeadless",
-    "test:projects": "npm run build:libs && ng test demo-template --watch=false --browsers=ChromeHeadless"
+    "test": "ng test portfolio --watch=false --browsers=ChromeHeadlessNoSandbox",
+    "test:coverage": "ng test portfolio --watch=false --browsers=ChromeHeadlessNoSandbox --code-coverage && node scripts/check-coverage.mjs",
+    "test:libs": "npm run build:contracts && ng test portfolio-ui --watch=false --browsers=ChromeHeadlessNoSandbox && ng test portfolio-sdk --watch=false --browsers=ChromeHeadlessNoSandbox",
+    "test:projects": "npm run build:libs && ng test demo-template --watch=false --browsers=ChromeHeadlessNoSandbox"
   },
   "private": true,
   "dependencies": {
