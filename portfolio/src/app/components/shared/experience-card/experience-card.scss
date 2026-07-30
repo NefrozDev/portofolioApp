@@ -118,6 +118,25 @@
   font-size: 0.95rem;
 }
 
+.experience-card__company-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.experience-card__status {
+  flex: 0 0 auto;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(123, 97, 255, 0.35);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: rgba(123, 97, 255, 0.12);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
 .experience-card__actions {
   display: flex;
   align-items: center;
@@ -189,7 +208,8 @@
 }
 
 .experience-card.experience-card--expanded .experience-card__company,
-.experience-card.experience-card--expanded .experience-card__period {
+.experience-card.experience-card--expanded .experience-card__period,
+.experience-card.experience-card--expanded .experience-card__status {
   color: var(--text-secondary);
 }
 

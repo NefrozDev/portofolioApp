@@ -115,7 +115,14 @@
     "viewRecommendationLetter": "View recommendation letter",
     "recommendationLetterTitle": "Recommendation",
     "closeRecommendationLetter": "Close recommendation letter",
-    "openRecommendationLetter": "Open the PDF in a new tab"
+    "openRecommendationLetter": "Open the PDF in a new tab",
+    "statuses": {
+      "employee": "Employee",
+      "freelance": "Freelance",
+      "self-employed": "Self-employed",
+      "cadre": "Executive",
+      "corporate": "Corporate"
+    }
   },
   "contact": {
     "title": "Contact",
@@ -180,13 +187,13 @@
     },
     "experiences": {
       "icgreen-lead-dev": {
-        "company": "IC GREEN",
+        "company": "IC-Green",
         "period": "May 2025 - Present",
         "highlights": [
           "Lead the development of an autonomous agricultural robotics platform designed to remove weeds without toxic herbicides.",
           "Drive software architecture, development activities, and technical direction across the robot software ecosystem.",
-          "Coordinate developers working on robot implementation, testing, validation, and field-ready software delivery.",
-          "Develop full-stack features across an Angular operator interface and a Node.js backend deployed on the robot.",
+          "Lead and coordinate development teams working on robot implementation, testing, validation, and field-ready software delivery.",
+          "Develop full-stack features for an Angular operator interface and a distributed architecture connecting multiple robots, each running a Node.js backend, to a chain of online Node.js servers. These servers handle security, routing, load balancing, and communication with multiple SQL and NoSQL databases, including logging stores.",
           "Collaborate with robotics, AI, and hardware engineers to integrate AI-powered weed detection into operational workflows."
         ]
       },
@@ -208,11 +215,21 @@
           "Defined coding standards, reusable patterns, and best practices to improve maintainability and delivery quality."
         ]
       },
+      "akkodis-pg-site-leader": {
+        "company": "Akkodis at Procter & Gamble",
+        "period": "Apr 2022 - Nov 2023",
+        "highlights": [
+          "Strengthened communication between Procter & Gamble managers, Akkodis managers, and a team of 25 on-site consultants.",
+          "Coordinated consultant onboarding and provided ongoing support throughout their assignments.",
+          "Prospected for new missions and opportunities with the client.",
+          "Organized after-work events to foster connection and team cohesion among consultants."
+        ]
+      },
       "pg-lfe-consultant": {
         "company": "Procter & Gamble - LFE Department",
         "period": "May 2023 - Nov 2023",
         "highlights": [
-          "Architected and developed an Angular application integrated with REST APIs and a C#/.NET backend.",
+          "For the Liquid Fabric Enhancers (LFE) department, architected and developed an Angular application integrated with REST APIs and a C#/.NET backend.",
           "Connected multiple data sources, including Siemens, custom, and local databases.",
           "Built data visualization features including graphs, tables, image rendering, and analytical views.",
           "Delivered a feature-rich application helping stakeholders retrieve filtered samples and generate actionable insights."
@@ -222,9 +239,9 @@
         "company": "Procter & Gamble - ANA & SUD Departments",
         "period": "Apr 2022 - Apr 2023",
         "highlights": [
-          "Designed and optimized C# microprocesses tailored to analytical and laboratory workflows.",
+          "For the Analytical (ANA) and Soluble Unidoses (SUD) departments, designed and optimized C# microprocesses tailored to analytical and laboratory workflows.",
           "Automated experiment file uploads, data extraction, calculations, and secure database integration.",
-          "Supported approximately 15 testing methodologies while improving productivity, data integrity, and process reliability."
+          "Supported approximately 15 chemical testing methods while improving productivity, data integrity, and process reliability."
         ]
       },
       "avanade-academy": {
@@ -233,7 +250,7 @@
         "highlights": [
           "Completed an intensive training program focused on the Microsoft Dynamics 365 suite.",
           "Collaborated with a multidisciplinary team to deliver a final project based on Dynamics 365 solutions.",
-          "Strengthened consulting, delivery, and enterprise software implementation practices."
+          "Led the team project through delivery of the Dynamics 365 solution."
         ]
       },
       "noomia-angular-ionic": {
@@ -249,9 +266,9 @@
         "company": "Inforius",
         "period": "Jan 2020 - Jun 2020",
         "highlights": [
-          "Developed a full-stack application for managing room reservations in public services.",
-          "Built the Angular front end and Node.js backend, including business logic and database interactions.",
-          "Designed user interfaces and ensured consistent integration across the full application stack."
+          "Worked on a full-stack application for managing room reservations in public services.",
+          "Contributed to the Angular front end and Node.js backend, including business logic and database interactions.",
+          "Participated in user interface design and integration between the different parts of the application."
         ]
       }
     }

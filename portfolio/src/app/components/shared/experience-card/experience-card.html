@@ -18,7 +18,12 @@
 
       <div class="experience-card__meta">
         <h2 class="experience-card__role">{{ experience().role }}</h2>
-        <p class="experience-card__company">{{ experience().company }}</p>
+        <div class="experience-card__company-line">
+          <span class="experience-card__status">
+            {{ 'experiences.statuses.' + experience().status | translate }}
+          </span>
+          <p class="experience-card__company">{{ experience().company }}</p>
+        </div>
       </div>
     </div>
 

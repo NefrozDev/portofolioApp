@@ -8,6 +8,7 @@ const experience: Experience = {
   id: 'icgreen-lead-dev',
   company: 'IC Green',
   role: 'Lead Developer',
+  status: 'cadre',
   period: '2025 - Present',
   technologies: ['Angular'],
   highlights: [],

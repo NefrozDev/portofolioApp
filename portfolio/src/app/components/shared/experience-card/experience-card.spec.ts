@@ -8,6 +8,7 @@ const experience: Experience = {
   id: 'exp-1',
   company: 'Company',
   role: 'Developer',
+  status: 'employee',
   period: '2024 - Present',
   technologies: ['Angular', 'Docker'],
   highlights: ['Built UI'],
@@ -50,6 +51,23 @@ describe('ExperienceCard', () => {
     const card = fixture.nativeElement.querySelector('.experience-card') as HTMLElement;
 
     expect(card.classList.contains('experience-card--expanded')).toBeTrue();
+  });
+
+  it('should show the translated position status', () => {
+    const status = fixture.nativeElement.querySelector(
+      '.experience-card__status'
+    ) as HTMLElement;
+
+    expect(status.textContent?.trim()).toBe('Employee');
+  });
+
+  it('should place the position status before the company name', () => {
+    const companyLine = fixture.nativeElement.querySelector(
+      '.experience-card__company-line'
+    ) as HTMLElement;
+
+    expect(companyLine.children[0].classList).toContain('experience-card__status');
+    expect(companyLine.children[1].classList).toContain('experience-card__company');
   });
 
   it('should remove the expanded state class when closed', () => {

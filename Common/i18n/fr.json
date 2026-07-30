@@ -115,7 +115,14 @@
     "viewRecommendationLetter": "Consulter la lettre de recommandation",
     "recommendationLetterTitle": "Recommandation",
     "closeRecommendationLetter": "Fermer la lettre de recommandation",
-    "openRecommendationLetter": "Ouvrir le PDF dans un nouvel onglet"
+    "openRecommendationLetter": "Ouvrir le PDF dans un nouvel onglet",
+    "statuses": {
+      "employee": "Employé",
+      "freelance": "Freelance",
+      "self-employed": "Indépendant",
+      "cadre": "Cadre",
+      "corporate": "Corporate"
+    }
   },
   "contact": {
     "title": "Contact",
@@ -180,13 +187,13 @@
     },
     "experiences": {
       "icgreen-lead-dev": {
-        "company": "IC GREEN",
+        "company": "IC-Green",
         "period": "Mai 2025 - Aujourd'hui",
         "highlights": [
           "Pilote le développement d'une plateforme robotique agricole autonome conçue pour éliminer les mauvaises herbes sans herbicides toxiques.",
           "Définis l'architecture logicielle, les activités de développement et la direction technique de l'écosystème logiciel du robot.",
-          "Coordonne les développeurs impliqués dans l'implémentation robotique, les tests, la validation et la livraison de solutions prêtes pour le terrain.",
-          "Développe des fonctionnalités full-stack autour d'une interface opérateur Angular et d'un backend Node.js déployé sur le robot.",
+          "Dirige et coordonne les équipes de développement impliquées dans l'implémentation robotique, les tests, la validation et la livraison de solutions prêtes pour le terrain.",
+          "Développe des fonctionnalités full-stack pour une interface opérateur Angular et une architecture distribuée reliant plusieurs robots, chacun doté d'un backend Node.js, à une chaîne de serveurs Node.js en ligne. Ces serveurs assurent notamment la sécurité, le routage et la répartition de charge, et communiquent avec plusieurs bases de données SQL et NoSQL, notamment pour la journalisation.",
           "Collabore avec les équipes robotique, IA et hardware afin d'intégrer la détection des mauvaises herbes par IA dans les flux opérationnels."
         ]
       },
@@ -208,11 +215,21 @@
           "Défini des standards de code, des patterns réutilisables et des bonnes pratiques afin d'améliorer la maintenabilité et la qualité de livraison."
         ]
       },
+      "akkodis-pg-site-leader": {
+        "company": "Akkodis chez Procter & Gamble",
+        "period": "Avr 2022 - Nov 2023",
+        "highlights": [
+          "Renforcé la communication entre les managers de Procter & Gamble, les managers d'Akkodis et une équipe de 25 consultants sur site.",
+          "Coordonné l'onboarding des consultants et assuré un support continu tout au long de leurs missions.",
+          "Prospecté de nouvelles missions et opportunités auprès du client.",
+          "Organisé des afterworks afin de favoriser les échanges et la cohésion entre les consultants."
+        ]
+      },
       "pg-lfe-consultant": {
         "company": "Procter & Gamble - LFE Department",
         "period": "Mai 2023 - Nov 2023",
         "highlights": [
-          "Architecturé et développé une application Angular intégrée à des API REST et à un backend C#/.NET.",
+          "Pour le département Liquid Fabric Enhancers (LFE), architecturé et développé une application Angular intégrée à des API REST et à un backend C#/.NET.",
           "Connecté plusieurs sources de données, notamment Siemens, des bases personnalisées et des bases locales.",
           "Développé des fonctionnalités de visualisation de données incluant graphiques, tableaux, rendu d'images et vues analytiques.",
           "Livré une application riche en fonctionnalités permettant aux parties prenantes de récupérer des échantillons filtrés et de générer des insights exploitables."
@@ -222,9 +239,9 @@
         "company": "Procter & Gamble - ANA & SUD Departments",
         "period": "Avr 2022 - Avr 2023",
         "highlights": [
-          "Conçu et optimisé des microprocessus C# adaptés aux workflows analytiques et de laboratoire.",
+          "Pour les départements Analytical (ANA) et Soluble Unidoses (SUD), conçu et optimisé des microprocessus C# adaptés aux workflows analytiques et de laboratoire.",
           "Automatisé l'upload de fichiers d'expériences, l'extraction de données, les calculs et l'intégration sécurisée en base de données.",
-          "Soutenu environ 15 méthodologies de test tout en améliorant la productivité, l'intégrité des données et la fiabilité des processus."
+          "Pris en charge environ 15 méthodes d'analyse chimique tout en améliorant la productivité, l'intégrité des données et la fiabilité des processus."
         ]
       },
       "avanade-academy": {
@@ -233,7 +250,7 @@
         "highlights": [
           "Suivi un programme intensif de formation autour de la suite Microsoft Dynamics 365.",
           "Collaboré avec une équipe multidisciplinaire pour livrer un projet final basé sur des solutions Dynamics 365.",
-          "Renforcé les pratiques de conseil, de livraison et d'implémentation de logiciels d'entreprise."
+          "Dirigé le projet d'équipe jusqu'à la livraison de la solution Dynamics 365."
         ]
       },
       "noomia-angular-ionic": {
@@ -249,9 +266,9 @@
         "company": "Inforius",
         "period": "Jan 2020 - Juin 2020",
         "highlights": [
-          "Développé une application full-stack de gestion de réservations de salles pour des services publics.",
-          "Construit le front-end Angular et le backend Node.js, incluant la logique métier et les interactions avec la base de données.",
-          "Conçu les interfaces utilisateur et assuré une intégration cohérente sur l'ensemble de la stack applicative."
+          "Travaillé sur une application full-stack de gestion de réservations de salles pour des services publics.",
+          "Contribué au front-end Angular et au backend Node.js, notamment à la logique métier et aux interactions avec la base de données.",
+          "Participé à la conception des interfaces utilisateur et à l'intégration entre les différentes parties de l'application."
         ]
       }
     }

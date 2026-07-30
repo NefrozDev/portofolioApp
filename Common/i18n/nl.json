@@ -115,7 +115,14 @@
     "viewRecommendationLetter": "Aanbevelingsbrief bekijken",
     "recommendationLetterTitle": "Aanbeveling",
     "closeRecommendationLetter": "Aanbevelingsbrief sluiten",
-    "openRecommendationLetter": "PDF openen in een nieuw tabblad"
+    "openRecommendationLetter": "PDF openen in een nieuw tabblad",
+    "statuses": {
+      "employee": "Werknemer",
+      "freelance": "Freelance",
+      "self-employed": "Zelfstandige",
+      "cadre": "Kaderlid",
+      "corporate": "Corporate"
+    }
   },
   "contact": {
     "title": "Contact",
@@ -180,13 +187,13 @@
     },
     "experiences": {
       "icgreen-lead-dev": {
-        "company": "IC GREEN",
+        "company": "IC-Green",
         "period": "Mei 2025 - Heden",
         "highlights": [
           "Leid de ontwikkeling van een autonoom agrarisch robotplatform dat onkruid verwijdert zonder toxische herbiciden.",
           "Bepaal de softwarearchitectuur, ontwikkelingsactiviteiten en technische richting van het robotsoftware-ecosysteem.",
-          "Coördineer ontwikkelaars die werken aan robotimplementatie, testen, validatie en veldklare softwarelevering.",
-          "Ontwikkel full-stack features voor een Angular operatorinterface en een Node.js-backend die op de robot wordt uitgevoerd.",
+          "Leid en coördineer ontwikkelingsteams die werken aan robotimplementatie, testen, validatie en veldklare softwarelevering.",
+          "Ontwikkel full-stack features voor een Angular-operatorinterface en een gedistribueerde architectuur die meerdere robots, elk met een Node.js-backend, verbindt met een keten van online Node.js-servers. Deze servers verzorgen beveiliging, routing, load balancing en communicatie met meerdere SQL- en NoSQL-databases, waaronder opslag voor logging.",
           "Werk samen met robotica-, AI- en hardwareteams om AI-gestuurde onkruiddetectie te integreren in operationele workflows."
         ]
       },
@@ -208,11 +215,21 @@
           "Definieerde code standaarden, herbruikbare patronen en best practices om onderhoudbaarheid en leveringskwaliteit te verbeteren."
         ]
       },
+      "akkodis-pg-site-leader": {
+        "company": "Akkodis bij Procter & Gamble",
+        "period": "Apr 2022 - Nov 2023",
+        "highlights": [
+          "Versterkte de communicatie tussen managers van Procter & Gamble, managers van Akkodis en een team van 25 consultants op locatie.",
+          "Coördineerde de onboarding van consultants en bood doorlopende ondersteuning tijdens hun opdrachten.",
+          "Zocht bij de klant naar nieuwe opdrachten en opportuniteiten.",
+          "Organiseerde afterwork-evenementen om de onderlinge band en teamcohesie tussen consultants te versterken."
+        ]
+      },
       "pg-lfe-consultant": {
         "company": "Procter & Gamble - LFE Department",
         "period": "Mei 2023 - Nov 2023",
         "highlights": [
-          "Architecteerde en ontwikkelde een Angular-applicatie geïntegreerd met REST API's en een C#/.NET-backend.",
+          "Architecteerde en ontwikkelde voor de afdeling Liquid Fabric Enhancers (LFE) een Angular-applicatie geïntegreerd met REST API's en een C#/.NET-backend.",
           "Verbond meerdere databronnen, waaronder Siemens, aangepaste en lokale databases.",
           "Bouwde datavisualisatiefuncties zoals grafieken, tabellen, beeldweergave en analytische views.",
           "Levering van een feature-rijke applicatie waarmee stakeholders gefilterde samples konden ophalen en bruikbare inzichten konden genereren."
@@ -222,9 +239,9 @@
         "company": "Procter & Gamble - ANA & SUD Departments",
         "period": "Apr 2022 - Apr 2023",
         "highlights": [
-          "Ontwierp en optimaliseerde C#-microprocessen afgestemd op analytische en laboratoriumworkflows.",
+          "Ontwierp en optimaliseerde voor de afdelingen Analytical (ANA) en Soluble Unidoses (SUD) C#-microprocessen voor analytische en laboratoriumworkflows.",
           "Automatiseerde uploads van experimentbestanden, data-extractie, berekeningen en veilige database-integratie.",
-          "Ondersteunde ongeveer 15 testmethodologieën en verbeterde productiviteit, data-integriteit en procesbetrouwbaarheid."
+          "Ondersteunde ongeveer 15 chemische testmethoden en verbeterde productiviteit, data-integriteit en procesbetrouwbaarheid."
         ]
       },
       "avanade-academy": {
@@ -233,7 +250,7 @@
         "highlights": [
           "Voltooide een intensief trainingsprogramma rond Microsoft Dynamics 365.",
           "Werkte samen met een multidisciplinair team aan een eindproject gebaseerd op Dynamics 365-oplossingen.",
-          "Versterkte consulting-, delivery- en implementatiepraktijken voor enterprise software."
+          "Leidde het teamproject tot en met de oplevering van de Dynamics 365-oplossing."
         ]
       },
       "noomia-angular-ionic": {
@@ -249,9 +266,9 @@
         "company": "Inforius",
         "period": "Jan 2020 - Jun 2020",
         "highlights": [
-          "Ontwikkelde een full-stack applicatie voor het beheer van zaalreservaties in openbare diensten.",
-          "Bouwde de Angular front-end en Node.js-backend, inclusief businesslogica en database-interacties.",
-          "Ontwierp gebruikersinterfaces en zorgde voor consistente integratie over de volledige applicatiestack."
+          "Werkte aan een full-stack applicatie voor het beheer van zaalreservaties in openbare diensten.",
+          "Droeg bij aan de Angular-front-end en Node.js-backend, waaronder businesslogica en database-interacties.",
+          "Werkte mee aan het ontwerp van gebruikersinterfaces en de integratie tussen de verschillende onderdelen van de applicatie."
         ]
       }
     }

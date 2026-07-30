@@ -97,6 +97,7 @@ const EXPERIENCE_METADATA: Array<
     Experience,
     | 'id'
     | 'role'
+    | 'status'
     | 'technologies'
     | 'isExpanded'
     | 'logoUrl'
@@ -106,14 +107,26 @@ const EXPERIENCE_METADATA: Array<
   {
     id: 'icgreen-lead-dev',
     role: 'Lead Developer',
+    status: 'cadre',
     logoUrl: '/img/experiences/ic-green.png',
     recommendationLetterUrl: '/documents/recommendations/ic-green.pdf',
-    technologies: ['Angular', 'TypeScript', 'Node.js', 'Docker', 'ROS / ROS2', 'MQTT', 'AI', 'Gerrit'],
+    technologies: [
+      'Angular',
+      'TypeScript',
+      'Node.js',
+      'Docker',
+      'ROS / ROS2',
+      'MQTT',
+      'AI',
+      'Gerrit',
+      'Leadership'
+    ],
     isExpanded: true
   },
   {
     id: 'tihange-software-engineer',
     role: 'Software Engineer',
+    status: 'employee',
     logoUrl: '/img/experiences/akkodis.svg',
     technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'WinDev', 'SQL', 'Azure DevOps'],
     isExpanded: false
@@ -121,13 +134,23 @@ const EXPERIENCE_METADATA: Array<
   {
     id: 'akkodis-internal-project',
     role: 'Software Engineering Consultant',
+    status: 'employee',
     logoUrl: '/img/experiences/akkodis.svg',
     technologies: ['Angular', 'TypeScript', 'FastAPI', 'Python', 'AI', 'Docker'],
     isExpanded: false
   },
   {
+    id: 'akkodis-pg-site-leader',
+    role: 'Site Leader',
+    status: 'corporate',
+    logoUrl: '/img/experiences/akkodis.svg',
+    technologies: ['Leadership', 'Consulting'],
+    isExpanded: false
+  },
+  {
     id: 'pg-lfe-consultant',
     role: 'Software Engineering Consultant',
+    status: 'employee',
     logoUrl: '/img/experiences/procter-gamble.svg',
     technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'REST API', 'SQL'],
     isExpanded: false
@@ -135,6 +158,7 @@ const EXPERIENCE_METADATA: Array<
   {
     id: 'pg-ana-sud-consultant',
     role: 'Software Engineering Consultant',
+    status: 'employee',
     logoUrl: '/img/experiences/procter-gamble.svg',
     technologies: ['C#', '.NET', 'SQL', 'Automation', 'Data Processing'],
     isExpanded: false
@@ -142,13 +166,15 @@ const EXPERIENCE_METADATA: Array<
   {
     id: 'avanade-academy',
     role: 'Software Engineering Consultant',
+    status: 'employee',
     logoUrl: '/img/experiences/avanade.svg',
-    technologies: ['Microsoft Dynamics 365', 'Power Platform', 'Consulting'],
+    technologies: ['Microsoft Dynamics 365', 'Power Platform', 'Consulting', 'Leadership'],
     isExpanded: false
   },
   {
     id: 'noomia-angular-ionic',
     role: 'Angular / Ionic Developer',
+    status: 'employee',
     logoUrl: '/img/experiences/noomia.png',
     technologies: ['Angular', 'Ionic', 'TypeScript', 'RxJS', 'NgRx', 'SCSS'],
     isExpanded: false
@@ -156,6 +182,7 @@ const EXPERIENCE_METADATA: Array<
   {
     id: 'inforius-fullstack',
     role: 'Full-Stack Angular / Node.js Developer',
+    status: 'employee',
     logoUrl: '/img/experiences/inforius.png',
     technologies: ['Angular', 'Node.js', 'Express', 'SQL', 'TypeScript'],
     isExpanded: false

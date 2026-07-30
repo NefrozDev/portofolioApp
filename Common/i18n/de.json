@@ -115,7 +115,14 @@
     "viewRecommendationLetter": "Empfehlungsschreiben ansehen",
     "recommendationLetterTitle": "Empfehlung",
     "closeRecommendationLetter": "Empfehlungsschreiben schließen",
-    "openRecommendationLetter": "PDF in einem neuen Tab öffnen"
+    "openRecommendationLetter": "PDF in einem neuen Tab öffnen",
+    "statuses": {
+      "employee": "Angestellt",
+      "freelance": "Freiberuflich",
+      "self-employed": "Selbstständig",
+      "cadre": "Führungskraft",
+      "corporate": "Corporate"
+    }
   },
   "contact": {
     "title": "Contact",
@@ -180,13 +187,13 @@
     },
     "experiences": {
       "icgreen-lead-dev": {
-        "company": "IC GREEN",
+        "company": "IC-Green",
         "period": "Mai 2025 - Heute",
         "highlights": [
           "Leite die Entwicklung einer autonomen Agrarrobotik-Plattform zur Entfernung von Unkraut ohne toxische Herbizide.",
           "Verantworte Softwarearchitektur, Entwicklungsaktivitäten und technische Ausrichtung des Robotersoftware-Ökosystems.",
-          "Koordiniere Entwickler für Roboterimplementierung, Tests, Validierung und feldtaugliche Softwarelieferung.",
-          "Entwickle Full-Stack-Funktionen für eine Angular-Bedienoberfläche und ein Node.js-Backend, das auf dem Roboter läuft.",
+          "Leite und koordiniere Entwicklungsteams für Roboterimplementierung, Tests, Validierung und feldtaugliche Softwarelieferung.",
+          "Entwickle Full-Stack-Funktionen für eine Angular-Bedienoberfläche und eine verteilte Architektur, die mehrere Roboter mit jeweils eigenem Node.js-Backend über eine Kette von Online-Node.js-Servern verbindet. Diese Server übernehmen Sicherheit, Routing, Lastverteilung und die Kommunikation mit mehreren SQL- und NoSQL-Datenbanken, darunter Speicher für Protokolldaten.",
           "Arbeite mit Robotik-, KI- und Hardware-Teams zusammen, um KI-gestützte Unkrauterkennung in operative Abläufe zu integrieren."
         ]
       },
@@ -208,11 +215,21 @@
           "Definierte Coding-Standards, wiederverwendbare Patterns und Best Practices zur Verbesserung von Wartbarkeit und Lieferqualität."
         ]
       },
+      "akkodis-pg-site-leader": {
+        "company": "Akkodis bei Procter & Gamble",
+        "period": "Apr 2022 - Nov 2023",
+        "highlights": [
+          "Stärkte die Kommunikation zwischen den Führungskräften von Procter & Gamble, den Führungskräften von Akkodis und einem Team von 25 Beratern vor Ort.",
+          "Koordinierte das Onboarding der Berater und unterstützte sie fortlaufend während ihrer Einsätze.",
+          "Akquirierte beim Kunden neue Einsätze und Geschäftsmöglichkeiten.",
+          "Organisierte Afterwork-Veranstaltungen, um den Austausch und den Teamzusammenhalt unter den Beratern zu fördern."
+        ]
+      },
       "pg-lfe-consultant": {
         "company": "Procter & Gamble - LFE Department",
         "period": "Mai 2023 - Nov 2023",
         "highlights": [
-          "Architektierte und entwickelte eine Angular-Anwendung mit REST-APIs und C#/.NET-Backend.",
+          "Architektierte und entwickelte für die Abteilung Liquid Fabric Enhancers (LFE) eine Angular-Anwendung mit REST-APIs und C#/.NET-Backend.",
           "Integrierte mehrere Datenquellen, darunter Siemens sowie kundenspezifische und lokale Datenbanken.",
           "Erstellte Datenvisualisierungen wie Diagramme, Tabellen, Bilddarstellung und analytische Ansichten.",
           "Lieferte eine funktionsreiche Anwendung, mit der Stakeholder gefilterte Proben abrufen und verwertbare Erkenntnisse gewinnen konnten."
@@ -222,9 +239,9 @@
         "company": "Procter & Gamble - ANA & SUD Departments",
         "period": "Apr 2022 - Apr 2023",
         "highlights": [
-          "Entwarf und optimierte C#-Mikroprozesse für analytische und Labor-Workflows.",
+          "Entwarf und optimierte für die Abteilungen Analytical (ANA) und Soluble Unidoses (SUD) C#-Mikroprozesse für analytische und Labor-Workflows.",
           "Automatisierte Uploads von Experimentdateien, Datenextraktion, Berechnungen und sichere Datenbankintegration.",
-          "Unterstützte rund 15 Testmethoden und verbesserte Produktivität, Datenintegrität und Prozesszuverlässigkeit."
+          "Unterstützte rund 15 chemische Prüfmethoden und verbesserte Produktivität, Datenintegrität und Prozesszuverlässigkeit."
         ]
       },
       "avanade-academy": {
@@ -233,7 +250,7 @@
         "highlights": [
           "Absolvierte ein intensives Trainingsprogramm zur Microsoft Dynamics 365 Suite.",
           "Arbeitete mit einem multidisziplinären Team an einem Abschlussprojekt auf Basis von Dynamics 365-Lösungen.",
-          "Vertiefte Consulting-, Delivery- und Implementierungspraktiken für Unternehmenssoftware."
+          "Leitete das Teamprojekt bis zur Bereitstellung der Dynamics-365-Lösung."
         ]
       },
       "noomia-angular-ionic": {
@@ -249,9 +266,9 @@
         "company": "Inforius",
         "period": "Jan 2020 - Jun 2020",
         "highlights": [
-          "Entwickelte eine Full-Stack-Anwendung zur Verwaltung von Raumreservierungen im öffentlichen Dienst.",
-          "Baute Angular-Frontend und Node.js-Backend inklusive Geschäftslogik und Datenbankinteraktionen.",
-          "Gestaltete Benutzeroberflächen und stellte eine konsistente Integration über den gesamten Stack sicher."
+          "Arbeitete an einer Full-Stack-Anwendung zur Verwaltung von Raumreservierungen im öffentlichen Dienst.",
+          "Wirkte am Angular-Frontend und Node.js-Backend mit, einschließlich Geschäftslogik und Datenbankinteraktionen.",
+          "Beteiligte sich an der Gestaltung der Benutzeroberflächen und der Integration zwischen den verschiedenen Teilen der Anwendung."
         ]
       }
     }

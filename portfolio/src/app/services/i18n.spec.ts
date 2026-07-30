@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 
 import { AppLanguage } from '@common/enums/app-language.enum';
+import { APP_TRANSLATIONS } from '@common/i18n';
 import { I18nService } from './i18n';
 import { LanguageService } from './language';
 
@@ -57,5 +58,29 @@ describe('I18nService', () => {
     });
 
     expect(service.instant('home.greeting', { name: 'Steven' })).toBe('Hello Steven');
+  });
+
+  it('should provide localized labels for every position status', () => {
+    const expectedCadreLabels = {
+      [AppLanguage.EN]: 'Executive',
+      [AppLanguage.FR]: 'Cadre',
+      [AppLanguage.NL]: 'Kaderlid',
+      [AppLanguage.ES]: 'Directivo',
+      [AppLanguage.IT]: 'Quadro',
+      [AppLanguage.DE]: 'Führungskraft'
+    };
+
+    for (const language of Object.values(AppLanguage)) {
+      const statuses = APP_TRANSLATIONS[language].experiences.statuses;
+
+      expect(Object.keys(statuses)).toEqual([
+        'employee',
+        'freelance',
+        'self-employed',
+        'cadre',
+        'corporate'
+      ]);
+      expect(statuses.cadre).toBe(expectedCadreLabels[language]);
+    }
   });
 });

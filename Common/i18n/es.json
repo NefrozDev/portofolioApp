@@ -115,7 +115,14 @@
     "viewRecommendationLetter": "Ver carta de recomendación",
     "recommendationLetterTitle": "Recomendación",
     "closeRecommendationLetter": "Cerrar carta de recomendación",
-    "openRecommendationLetter": "Abrir el PDF en una pestaña nueva"
+    "openRecommendationLetter": "Abrir el PDF en una pestaña nueva",
+    "statuses": {
+      "employee": "Empleado",
+      "freelance": "Freelance",
+      "self-employed": "Autónomo",
+      "cadre": "Directivo",
+      "corporate": "Corporativo"
+    }
   },
   "contact": {
     "title": "Contact",
@@ -180,13 +187,13 @@
     },
     "experiences": {
       "icgreen-lead-dev": {
-        "company": "IC GREEN",
+        "company": "IC-Green",
         "period": "May 2025 - Presente",
         "highlights": [
           "Lidero el desarrollo de una plataforma robótica agrícola autónoma diseñada para eliminar malas hierbas sin herbicidas tóxicos.",
           "Defino la arquitectura de software, las actividades de desarrollo y la dirección técnica del ecosistema software del robot.",
-          "Coordino a desarrolladores encargados de la implementación robótica, pruebas, validación y entrega de software listo para campo.",
-          "Desarrollo funcionalidades full-stack para una interfaz de operador en Angular y un backend Node.js desplegado en el robot.",
+          "Lidero y coordino equipos de desarrollo encargados de la implementación robótica, pruebas, validación y entrega de software listo para campo.",
+          "Desarrollo funcionalidades full-stack para una interfaz de operador en Angular y una arquitectura distribuida que conecta varios robots, cada uno con un backend Node.js, a una cadena de servidores Node.js en línea. Estos servidores gestionan la seguridad, el enrutamiento, el balanceo de carga y la comunicación con varias bases de datos SQL y NoSQL, incluidos los almacenes de registros.",
           "Colaboro con equipos de robótica, IA y hardware para integrar la detección de malas hierbas con IA en los flujos operativos."
         ]
       },
@@ -208,11 +215,21 @@
           "Definí estándares de código, patrones reutilizables y buenas prácticas para mejorar la mantenibilidad y la calidad de entrega."
         ]
       },
+      "akkodis-pg-site-leader": {
+        "company": "Akkodis en Procter & Gamble",
+        "period": "Abr 2022 - Nov 2023",
+        "highlights": [
+          "Reforcé la comunicación entre los responsables de Procter & Gamble, los responsables de Akkodis y un equipo de 25 consultores en las instalaciones.",
+          "Coordiné la incorporación de consultores y proporcioné soporte continuo durante sus misiones.",
+          "Busqué nuevas misiones y oportunidades con el cliente.",
+          "Organicé eventos afterwork para fomentar las relaciones y la cohesión del equipo de consultores."
+        ]
+      },
       "pg-lfe-consultant": {
         "company": "Procter & Gamble - LFE Department",
         "period": "May 2023 - Nov 2023",
         "highlights": [
-          "Arquitecté y desarrollé una aplicación Angular integrada con APIs REST y un backend C#/.NET.",
+          "Para el departamento Liquid Fabric Enhancers (LFE), arquitecté y desarrollé una aplicación Angular integrada con APIs REST y un backend C#/.NET.",
           "Conecté múltiples fuentes de datos, incluidas Siemens, bases de datos personalizadas y locales.",
           "Construí funcionalidades de visualización de datos como gráficos, tablas, renderizado de imágenes y vistas analíticas.",
           "Entregué una aplicación completa que ayudó a los stakeholders a recuperar muestras filtradas y generar información accionable."
@@ -222,9 +239,9 @@
         "company": "Procter & Gamble - ANA & SUD Departments",
         "period": "Abr 2022 - Abr 2023",
         "highlights": [
-          "Diseñé y optimicé microprocesos C# adaptados a flujos analíticos y de laboratorio.",
+          "Para los departamentos Analytical (ANA) y Soluble Unidoses (SUD), diseñé y optimicé microprocesos C# adaptados a flujos analíticos y de laboratorio.",
           "Automaticé cargas de archivos de experimentos, extracción de datos, cálculos e integración segura con bases de datos.",
-          "Di soporte a aproximadamente 15 metodologías de prueba, mejorando productividad, integridad de datos y fiabilidad de procesos."
+          "Di soporte a aproximadamente 15 métodos de análisis químico, mejorando productividad, integridad de datos y fiabilidad de procesos."
         ]
       },
       "avanade-academy": {
@@ -233,7 +250,7 @@
         "highlights": [
           "Completé un programa intensivo de formación centrado en Microsoft Dynamics 365.",
           "Colaboré con un equipo multidisciplinar para entregar un proyecto final basado en soluciones Dynamics 365.",
-          "Reforcé prácticas de consultoría, delivery e implementación de software empresarial."
+          "Lideré el proyecto del equipo hasta la entrega de la solución Dynamics 365."
         ]
       },
       "noomia-angular-ionic": {
@@ -249,9 +266,9 @@
         "company": "Inforius",
         "period": "Ene 2020 - Jun 2020",
         "highlights": [
-          "Desarrollé una aplicación full-stack para gestionar reservas de salas en servicios públicos.",
-          "Construí el front-end Angular y el backend Node.js, incluyendo lógica de negocio e interacciones con bases de datos.",
-          "Diseñé interfaces de usuario y aseguré una integración coherente en todo el stack de la aplicación."
+          "Trabajé en una aplicación full-stack para gestionar reservas de salas en servicios públicos.",
+          "Contribuí al front-end Angular y al backend Node.js, incluyendo lógica de negocio e interacciones con bases de datos.",
+          "Participé en el diseño de interfaces de usuario y en la integración entre las distintas partes de la aplicación."
         ]
       }
     }
