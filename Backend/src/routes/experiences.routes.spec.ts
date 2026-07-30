@@ -83,6 +83,7 @@ test('GET /api/experiences should include WinDev in the Tihange experience', asy
   assert.equal(response.status, 200);
   assert.ok(tihangeExperience);
   assert.ok(tihangeExperience.technologies.includes('WinDev'));
+  assert.equal(tihangeExperience.logoUrl, '/img/experiences/engie.svg.webp');
 });
 
 test('GET /api/experiences should explain the P&G department acronyms and chemical testing work', async () => {
