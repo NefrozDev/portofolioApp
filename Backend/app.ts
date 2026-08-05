@@ -28,9 +28,9 @@ function createApp(dependencies: AppDependencies = {}) {
 
   app.disable('x-powered-by');
   app.use(cors({
-    origin: env.allowedOrigins.length
+    origin: env.isVercel || env.hasConfiguredOrigins
       ? env.allowedOrigins
-      : (env.isVercel ? false : true)
+      : true
   }));
   app.use(express.json({ limit: '20kb' }));
 

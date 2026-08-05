@@ -31,7 +31,9 @@ as a health check.
 `CONTACT_FROM_EMAIL` must use the verified sender domain. Set
 `ALLOWED_ORIGINS` to the frontend origins allowed to call the API, separated by
 commas (include preview origins only if you want previews to submit messages).
-Cross-origin browser access is disabled on Vercel when this value is absent.
+`https://synapseengineering.dev` and `https://www.synapseengineering.dev` are
+always allowed; use the environment variable for local, preview, or additional
+origins.
 Use at least 32 random bytes for `IP_HASH_SECRET` and keep it stable; changing
 it resets the identity used by the submission limiter. The API creates the
 `contact_messages` table and its rate-limit index on the first submission.
