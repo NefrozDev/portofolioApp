@@ -218,11 +218,57 @@
   }
 }
 
+@media (min-width: 48.0625rem) and (max-height: 50rem) {
+  .contact-page__container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    gap: 0.5rem;
+  }
+
+  .contact-page__hero {
+    gap: 0.5rem;
+  }
+
+  .contact-page__title {
+    font-size: 2.25rem;
+  }
+
+  .contact-page__subtitle {
+    font-size: 1.25rem;
+  }
+
+  .contact-page__links {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-page__card {
+    padding-top: 1rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .contact-page__form {
+    gap: 0.625rem;
+  }
+
+  .contact-page__input {
+    min-height: 3rem;
+  }
+
+  .contact-page__textarea {
+    min-height: 6rem;
+  }
+
+  .contact-page__submit {
+    min-height: 2.875rem;
+  }
+}
+
 @media (max-width: 48rem) {
   .contact-page__container {
     width: min(100% - 1.5rem, 86rem);
     padding-top: var(--page-top-spacing-mobile);
-    padding-bottom: 6rem;
+    padding-bottom: calc(7rem + env(safe-area-inset-bottom));
     gap: 1rem;
   }
 
