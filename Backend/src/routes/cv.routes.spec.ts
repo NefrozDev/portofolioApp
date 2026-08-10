@@ -49,8 +49,10 @@ test('GET /api/cv should return an error when PDF generation fails', async () =>
 
 test('the default CV generator should produce a valid PDF from portfolio data', async () => {
   const pdf = await createCvPdf('en');
+  const pageCount = pdf.toString('latin1').match(/\/Type\s*\/Page\b/g)?.length ?? 0;
 
   assert.equal(pdf.subarray(0, 5).toString(), '%PDF-');
   assert.ok(pdf.length > 1_000);
+  assert.ok(pageCount >= 2 && pageCount <= 3);
   assert.match(pdf.subarray(-32).toString(), /%%EOF/);
 });
