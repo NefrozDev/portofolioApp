@@ -137,7 +137,7 @@
   "contact": {
     "title": "Contact",
     "subtitle": "Een idee, een project of een opportuniteit?",
-    "subtitleHighlight": "Let's talk!",
+    "subtitleHighlight": "Laten we praten!",
     "links": {
       "phone": "Phone",
       "email": "Mail",
@@ -162,8 +162,8 @@
         "required": "Bericht is verplicht.",
         "maxlength": "Message cannot exceed 2000 characters."
       },
-      "submit": "Send",
-      "submitting": "Sending..."
+      "submit": "Verzenden",
+      "submitting": "Verzenden..."
     },
     "feedback": {
       "success": "Uw bericht is verzonden.",
@@ -256,7 +256,7 @@
       },
       "avanade-academy": {
         "company": "Avanade Academy Pilot Project",
-        "period": "Nov 2021 - Apr 2022",
+        "period": "Okt 2021 - Apr 2022",
         "highlights": [
           "Voltooide een intensief trainingsprogramma rond Microsoft Dynamics 365.",
           "Werkte samen met een multidisciplinair team aan een eindproject gebaseerd op Dynamics 365-oplossingen.",

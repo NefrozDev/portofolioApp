@@ -67,14 +67,14 @@ describe('ContactPage', () => {
     );
   });
 
-  it('should move the hero call to action into the submit button', () => {
+  it('should use the dedicated translated submit label', () => {
     const host = fixture.nativeElement as HTMLElement;
     const submitButton = host.querySelector(
       '.contact-page__submit'
     ) as HTMLButtonElement | null;
 
     expect(host.querySelector('.contact-page__subtitle-highlight')).toBeNull();
-    expect(submitButton?.textContent?.trim()).toBe("Let's talk!");
+    expect(submitButton?.textContent?.trim()).toBe('Send');
   });
 
   it('should require only the name and message fields', () => {
@@ -142,6 +142,9 @@ describe('ContactPage', () => {
         'textarea[formControlName="message"]'
       )?.placeholder
     ).toBe('Message');
+    expect(
+      host.querySelector<HTMLButtonElement>('.contact-page__submit')?.textContent?.trim()
+    ).toBe('Envoyer');
 
     component.nameControl?.markAsTouched();
     component.messageControl?.markAsTouched();

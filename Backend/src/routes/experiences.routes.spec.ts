@@ -111,6 +111,7 @@ test('GET /api/experiences should describe leadership of the Avanade team projec
     avanadeExperience.highlights[2],
     /Led the team project through delivery of the Dynamics 365 solution/
   );
+  assert.equal(avanadeExperience.period, 'Oct 2021 - Apr 2022');
   assert.ok(avanadeExperience.technologies.includes('Leadership'));
 });
 
