@@ -83,4 +83,21 @@ describe('I18nService', () => {
       expect(statuses.cadre).toBe(expectedCadreLabels[language]);
     }
   });
+
+  it('should provide a grammatical position and company phrase for every language', () => {
+    const expectedPhrases = {
+      [AppLanguage.EN]: '{{status}} at {{company}}',
+      [AppLanguage.FR]: '{{status}} chez {{company}}',
+      [AppLanguage.NL]: '{{status}} bij {{company}}',
+      [AppLanguage.ES]: '{{status}} en {{company}}',
+      [AppLanguage.IT]: '{{status}} presso {{company}}',
+      [AppLanguage.DE]: '{{status}} bei {{company}}'
+    };
+
+    for (const language of Object.values(AppLanguage)) {
+      expect(APP_TRANSLATIONS[language].experiences.positionAtCompany).toBe(
+        expectedPhrases[language]
+      );
+    }
+  });
 });

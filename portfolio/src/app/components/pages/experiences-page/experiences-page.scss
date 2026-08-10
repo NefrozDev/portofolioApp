@@ -117,7 +117,7 @@
 
   .experiences-page__main {
     padding-top: var(--page-top-spacing-mobile);
-    padding-bottom: 6.5rem;
+    padding-bottom: calc(7rem + env(safe-area-inset-bottom));
   }
 
   .experiences-page__main > .container {

@@ -116,6 +116,7 @@
     "recommendationLetterTitle": "Recommandation",
     "closeRecommendationLetter": "Fermer la lettre de recommandation",
     "openRecommendationLetter": "Ouvrir le PDF dans un nouvel onglet",
+    "positionAtCompany": "{{status}} chez {{company}}",
     "statuses": {
       "employee": "Employé",
       "freelance": "Freelance",

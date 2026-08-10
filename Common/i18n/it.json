@@ -116,6 +116,7 @@
     "recommendationLetterTitle": "Raccomandazione",
     "closeRecommendationLetter": "Chiudi la lettera di raccomandazione",
     "openRecommendationLetter": "Apri il PDF in una nuova scheda",
+    "positionAtCompany": "{{status}} presso {{company}}",
     "statuses": {
       "employee": "Dipendente",
       "freelance": "Freelance",

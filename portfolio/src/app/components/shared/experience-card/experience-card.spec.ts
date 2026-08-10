@@ -53,21 +53,13 @@ describe('ExperienceCard', () => {
     expect(card.classList.contains('experience-card--expanded')).toBeTrue();
   });
 
-  it('should show the translated position status', () => {
-    const status = fixture.nativeElement.querySelector(
-      '.experience-card__status'
+  it('should combine the translated position status with the company name', () => {
+    const company = fixture.nativeElement.querySelector(
+      '.experience-card__company'
     ) as HTMLElement;
 
-    expect(status.textContent?.trim()).toBe('Employee');
-  });
-
-  it('should place the position status before the company name', () => {
-    const companyLine = fixture.nativeElement.querySelector(
-      '.experience-card__company-line'
-    ) as HTMLElement;
-
-    expect(companyLine.children[0].classList).toContain('experience-card__status');
-    expect(companyLine.children[1].classList).toContain('experience-card__company');
+    expect(company.textContent?.trim()).toBe('Employee at Company');
+    expect(company.querySelector('.experience-card__status')).toBeNull();
   });
 
   it('should remove the expanded state class when closed', () => {

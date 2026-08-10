@@ -116,6 +116,7 @@
     "recommendationLetterTitle": "Aanbeveling",
     "closeRecommendationLetter": "Aanbevelingsbrief sluiten",
     "openRecommendationLetter": "PDF openen in een nieuw tabblad",
+    "positionAtCompany": "{{status}} bij {{company}}",
     "statuses": {
       "employee": "Werknemer",
       "freelance": "Freelance",

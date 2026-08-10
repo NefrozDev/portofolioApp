@@ -116,6 +116,7 @@
     "recommendationLetterTitle": "Recommendation",
     "closeRecommendationLetter": "Close recommendation letter",
     "openRecommendationLetter": "Open the PDF in a new tab",
+    "positionAtCompany": "{{status}} at {{company}}",
     "statuses": {
       "employee": "Employee",
       "freelance": "Freelance",
