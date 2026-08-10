@@ -100,4 +100,24 @@ describe('I18nService', () => {
       );
     }
   });
+
+  it('should use idiomatic resume phrasing for current-role responsibilities', () => {
+    const expectedOpenings = {
+      [AppLanguage.EN]: ['Lead ', 'Drive '],
+      [AppLanguage.FR]: ['Pilotage ', 'Définition '],
+      [AppLanguage.NL]: ['Leiding ', 'Bepaling '],
+      [AppLanguage.ES]: ['Liderazgo ', 'Definición '],
+      [AppLanguage.IT]: ['Guida ', 'Definizione '],
+      [AppLanguage.DE]: ['Leitung ', 'Verantwortung ']
+    };
+
+    for (const language of Object.values(AppLanguage)) {
+      const highlights =
+        APP_TRANSLATIONS[language].data.experiences['icgreen-lead-dev']
+          .highlights;
+
+      expect(highlights[0].startsWith(expectedOpenings[language][0])).toBeTrue();
+      expect(highlights[1].startsWith(expectedOpenings[language][1])).toBeTrue();
+    }
+  });
 });

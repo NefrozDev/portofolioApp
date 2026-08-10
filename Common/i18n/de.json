@@ -191,11 +191,11 @@
         "company": "IC-Green",
         "period": "Mai 2025 - Heute",
         "highlights": [
-          "Leite die Entwicklung einer autonomen Agrarrobotik-Plattform zur Entfernung von Unkraut ohne toxische Herbizide.",
-          "Verantworte Softwarearchitektur, Entwicklungsaktivitäten und technische Ausrichtung des Robotersoftware-Ökosystems.",
-          "Leite und koordiniere Entwicklungsteams für Roboterimplementierung, Tests, Validierung und feldtaugliche Softwarelieferung.",
-          "Entwickle Full-Stack-Funktionen für eine Angular-Bedienoberfläche und eine verteilte Architektur, die mehrere Roboter mit jeweils eigenem Node.js-Backend über eine Kette von Online-Node.js-Servern verbindet. Diese Server übernehmen Sicherheit, Routing, Lastverteilung und die Kommunikation mit mehreren SQL- und NoSQL-Datenbanken, darunter Speicher für Protokolldaten.",
-          "Arbeite mit Robotik-, KI- und Hardware-Teams zusammen, um KI-gestützte Unkrauterkennung in operative Abläufe zu integrieren."
+          "Leitung der Entwicklung einer autonomen Agrarrobotik-Plattform zur Entfernung von Unkraut ohne toxische Herbizide.",
+          "Verantwortung für die Softwarearchitektur, die Entwicklungsaktivitäten und die technische Ausrichtung des Robotersoftware-Ökosystems.",
+          "Leitung und Koordination der Entwicklungsteams für Roboterimplementierung, Tests, Validierung und feldtaugliche Softwarebereitstellung.",
+          "Entwicklung von Full-Stack-Funktionen für eine Angular-Bedienoberfläche und eine verteilte Architektur, die mehrere Roboter mit jeweils eigenem Node.js-Backend über eine Kette von Online-Node.js-Servern verbindet. Diese Server übernehmen Sicherheit, Routing, Lastverteilung und die Kommunikation mit mehreren SQL- und NoSQL-Datenbanken, einschließlich Speicherlösungen für Protokolldaten.",
+          "Zusammenarbeit mit Robotik-, KI- und Hardware-Teams zur Integration KI-gestützter Unkrauterkennung in operative Abläufe."
         ]
       },
       "tihange-software-engineer": {

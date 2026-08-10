@@ -191,85 +191,85 @@
         "company": "IC-Green",
         "period": "Mai 2025 - Aujourd'hui",
         "highlights": [
-          "Pilote le développement d'une plateforme robotique agricole autonome conçue pour éliminer les mauvaises herbes sans herbicides toxiques.",
-          "Définis l'architecture logicielle, les activités de développement et la direction technique de l'écosystème logiciel du robot.",
-          "Dirige et coordonne les équipes de développement impliquées dans l'implémentation robotique, les tests, la validation et la livraison de solutions prêtes pour le terrain.",
-          "Développe des fonctionnalités full-stack pour une interface opérateur Angular et une architecture distribuée reliant plusieurs robots, chacun doté d'un backend Node.js, à une chaîne de serveurs Node.js en ligne. Ces serveurs assurent notamment la sécurité, le routage et la répartition de charge, et communiquent avec plusieurs bases de données SQL et NoSQL, notamment pour la journalisation.",
-          "Collabore avec les équipes robotique, IA et hardware afin d'intégrer la détection des mauvaises herbes par IA dans les flux opérationnels."
+          "Pilotage du développement d'une plateforme robotique agricole autonome conçue pour éliminer les mauvaises herbes sans herbicides toxiques.",
+          "Définition de l'architecture logicielle, coordination des activités de développement et orientation technique de l'écosystème logiciel du robot.",
+          "Direction et coordination des équipes de développement chargées de l'implémentation robotique, des tests, de la validation et de la livraison de solutions prêtes pour le terrain.",
+          "Développement de fonctionnalités full-stack pour une interface opérateur Angular et une architecture distribuée reliant plusieurs robots, chacun doté d'un backend Node.js, à une chaîne de serveurs Node.js en ligne. Ces serveurs assurent la sécurité, le routage, la répartition de charge et les échanges avec plusieurs bases de données SQL et NoSQL, notamment pour la journalisation.",
+          "Collaboration avec les équipes de robotique, d'IA et de hardware pour intégrer la détection des mauvaises herbes par IA dans les flux opérationnels."
         ]
       },
       "tihange-software-engineer": {
         "company": "Akkodis - Tihange Nuclear Power Plant",
         "period": "Sep 2024 - Juin 2025",
         "highlights": [
-          "Géré le cycle complet de développement d'applications critiques soutenant les processus opérationnels dans un environnement nucléaire réglementé.",
-          "Conçu et livré des outils pour l'accréditation du personnel, la gestion des sources scellées, la requalification d'équipements techniques et le support à l'exploitation long terme.",
-          "Développé des solutions logicielles sécurisées et fiables axées sur l'efficacité, la traçabilité, la conformité et la continuité opérationnelle."
+          "Gestion du cycle complet de développement d'applications critiques soutenant les processus opérationnels dans un environnement nucléaire réglementé.",
+          "Conception et livraison d'outils pour l'accréditation du personnel, la gestion des sources scellées, la requalification d'équipements techniques et le support à l'exploitation à long terme.",
+          "Développement de solutions logicielles sécurisées et fiables, axées sur l'efficacité, la traçabilité, la conformité et la continuité opérationnelle."
         ]
       },
       "akkodis-internal-project": {
         "company": "Akkodis - Innovation Department",
         "period": "Déc 2023 - Sep 2024",
         "highlights": [
-          "Mené le développement front-end d'une plateforme interne de recrutement connectée à un backend Python FastAPI.",
-          "Implémenté des fonctionnalités assistées par IA pour traiter des fichiers CV, extraire les informations pertinentes et soutenir les workflows des recruteurs.",
-          "Défini des standards de code, des patterns réutilisables et des bonnes pratiques afin d'améliorer la maintenabilité et la qualité de livraison."
+          "Pilotage du développement front-end d'une plateforme interne de recrutement connectée à un backend Python FastAPI.",
+          "Implémentation de fonctionnalités assistées par IA pour traiter des CV, extraire les informations pertinentes et soutenir les workflows des recruteurs.",
+          "Définition de standards de code, de patterns réutilisables et de bonnes pratiques afin d'améliorer la maintenabilité et la qualité des livraisons."
         ]
       },
       "akkodis-pg-site-leader": {
         "company": "Akkodis chez Procter & Gamble",
         "period": "Avr 2022 - Nov 2023",
         "highlights": [
-          "Renforcé la communication entre les managers de Procter & Gamble, les managers d'Akkodis et une équipe de 25 consultants sur site.",
-          "Coordonné l'onboarding des consultants et assuré un support continu tout au long de leurs missions.",
-          "Prospecté de nouvelles missions et opportunités auprès du client.",
-          "Organisé des afterworks afin de favoriser les échanges et la cohésion entre les consultants."
+          "Renforcement de la communication entre les managers de Procter & Gamble, les managers d'Akkodis et une équipe de 25 consultants sur site.",
+          "Coordination de l'onboarding des consultants et accompagnement continu tout au long de leurs missions.",
+          "Prospection de nouvelles missions et opportunités auprès du client.",
+          "Organisation d'afterworks afin de favoriser les échanges et la cohésion entre les consultants."
         ]
       },
       "pg-lfe-consultant": {
         "company": "Procter & Gamble - LFE Department",
         "period": "Mai 2023 - Nov 2023",
         "highlights": [
-          "Pour le département Liquid Fabric Enhancers (LFE), architecturé et développé une application Angular intégrée à des API REST et à un backend C#/.NET.",
-          "Connecté plusieurs sources de données, notamment Siemens, des bases personnalisées et des bases locales.",
-          "Développé des fonctionnalités de visualisation de données incluant graphiques, tableaux, rendu d'images et vues analytiques.",
-          "Livré une application riche en fonctionnalités permettant aux parties prenantes de récupérer des échantillons filtrés et de générer des insights exploitables."
+          "Architecture et développement, pour le département Liquid Fabric Enhancers (LFE), d'une application Angular intégrée à des API REST et à un backend C#/.NET.",
+          "Connexion de plusieurs sources de données, notamment Siemens, des bases personnalisées et des bases locales.",
+          "Développement de fonctionnalités de visualisation de données : graphiques, tableaux, rendu d'images et vues analytiques.",
+          "Livraison d'une application riche en fonctionnalités permettant aux parties prenantes de récupérer des échantillons filtrés et de produire des analyses exploitables."
         ]
       },
       "pg-ana-sud-consultant": {
         "company": "Procter & Gamble - ANA & SUD Departments",
         "period": "Avr 2022 - Avr 2023",
         "highlights": [
-          "Pour les départements Analytical (ANA) et Soluble Unidoses (SUD), conçu et optimisé des microprocessus C# adaptés aux workflows analytiques et de laboratoire.",
-          "Automatisé l'upload de fichiers d'expériences, l'extraction de données, les calculs et l'intégration sécurisée en base de données.",
-          "Pris en charge environ 15 méthodes d'analyse chimique tout en améliorant la productivité, l'intégrité des données et la fiabilité des processus."
+          "Conception et optimisation, pour les départements Analytical (ANA) et Soluble Unidoses (SUD), de microprocessus C# adaptés aux workflows analytiques et de laboratoire.",
+          "Automatisation de l'upload de fichiers d'expériences, de l'extraction de données, des calculs et de l'intégration sécurisée en base de données.",
+          "Prise en charge d'environ 15 méthodes d'analyse chimique, avec amélioration de la productivité, de l'intégrité des données et de la fiabilité des processus."
         ]
       },
       "avanade-academy": {
         "company": "Avanade Academy Pilot Project",
         "period": "Nov 2021 - Avr 2022",
         "highlights": [
-          "Suivi un programme intensif de formation autour de la suite Microsoft Dynamics 365.",
-          "Collaboré avec une équipe multidisciplinaire pour livrer un projet final basé sur des solutions Dynamics 365.",
-          "Dirigé le projet d'équipe jusqu'à la livraison de la solution Dynamics 365."
+          "Suivi d'un programme intensif de formation autour de la suite Microsoft Dynamics 365.",
+          "Collaboration avec une équipe multidisciplinaire pour livrer un projet final basé sur des solutions Dynamics 365.",
+          "Direction du projet d'équipe jusqu'à la livraison de la solution Dynamics 365."
         ]
       },
       "noomia-angular-ionic": {
         "company": "Noomia",
         "period": "Jan 2021 - Mar 2021",
         "highlights": [
-          "Maintenu et amélioré des applications mobiles développées avec Angular et Ionic.",
-          "Travaillé sur des fonctionnalités de géolocalisation, des flux RxJS, la gestion d'état NgRx et le styling d'interfaces mobiles.",
-          "Contribué à des initiatives de recherche et développement centrées sur l'expérience utilisateur et la performance applicative."
+          "Maintenance et amélioration d'applications mobiles développées avec Angular et Ionic.",
+          "Développement de fonctionnalités de géolocalisation et de flux RxJS, gestion d'état avec NgRx et styling des interfaces mobiles.",
+          "Contribution à des initiatives de recherche et développement centrées sur l'expérience utilisateur et les performances applicatives."
         ]
       },
       "inforius-fullstack": {
         "company": "Inforius",
         "period": "Jan 2020 - Juin 2020",
         "highlights": [
-          "Travaillé sur une application full-stack de gestion de réservations de salles pour des services publics.",
-          "Contribué au front-end Angular et au backend Node.js, notamment à la logique métier et aux interactions avec la base de données.",
-          "Participé à la conception des interfaces utilisateur et à l'intégration entre les différentes parties de l'application."
+          "Participation au développement d'une application full-stack de gestion de réservations de salles pour des services publics.",
+          "Contribution au front-end Angular et au backend Node.js, notamment à la logique métier et aux interactions avec la base de données.",
+          "Participation à la conception des interfaces utilisateur et à l'intégration des différentes parties de l'application."
         ]
       }
     }

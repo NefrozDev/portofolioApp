@@ -191,11 +191,11 @@
         "company": "IC-Green",
         "period": "May 2025 - Presente",
         "highlights": [
-          "Lidero el desarrollo de una plataforma robótica agrícola autónoma diseñada para eliminar malas hierbas sin herbicidas tóxicos.",
-          "Defino la arquitectura de software, las actividades de desarrollo y la dirección técnica del ecosistema software del robot.",
-          "Lidero y coordino equipos de desarrollo encargados de la implementación robótica, pruebas, validación y entrega de software listo para campo.",
-          "Desarrollo funcionalidades full-stack para una interfaz de operador en Angular y una arquitectura distribuida que conecta varios robots, cada uno con un backend Node.js, a una cadena de servidores Node.js en línea. Estos servidores gestionan la seguridad, el enrutamiento, el balanceo de carga y la comunicación con varias bases de datos SQL y NoSQL, incluidos los almacenes de registros.",
-          "Colaboro con equipos de robótica, IA y hardware para integrar la detección de malas hierbas con IA en los flujos operativos."
+          "Liderazgo del desarrollo de una plataforma robótica agrícola autónoma diseñada para eliminar malas hierbas sin herbicidas tóxicos.",
+          "Definición de la arquitectura de software, coordinación de las actividades de desarrollo y dirección técnica del ecosistema de software del robot.",
+          "Dirección y coordinación de equipos de desarrollo responsables de la implementación robótica, las pruebas, la validación y la entrega de software listo para su uso en campo.",
+          "Desarrollo de funcionalidades full-stack para una interfaz de operador en Angular y una arquitectura distribuida que conecta varios robots, cada uno con un backend Node.js, a una cadena de servidores Node.js en línea. Estos servidores gestionan la seguridad, el enrutamiento, el balanceo de carga y la comunicación con varias bases de datos SQL y NoSQL, incluidos los almacenes de registros.",
+          "Colaboración con equipos de robótica, IA y hardware para integrar la detección de malas hierbas mediante IA en los flujos operativos."
         ]
       },
       "tihange-software-engineer": {

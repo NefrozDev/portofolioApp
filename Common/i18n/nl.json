@@ -191,11 +191,11 @@
         "company": "IC-Green",
         "period": "Mei 2025 - Heden",
         "highlights": [
-          "Leid de ontwikkeling van een autonoom agrarisch robotplatform dat onkruid verwijdert zonder toxische herbiciden.",
-          "Bepaal de softwarearchitectuur, ontwikkelingsactiviteiten en technische richting van het robotsoftware-ecosysteem.",
-          "Leid en coördineer ontwikkelingsteams die werken aan robotimplementatie, testen, validatie en veldklare softwarelevering.",
-          "Ontwikkel full-stack features voor een Angular-operatorinterface en een gedistribueerde architectuur die meerdere robots, elk met een Node.js-backend, verbindt met een keten van online Node.js-servers. Deze servers verzorgen beveiliging, routing, load balancing en communicatie met meerdere SQL- en NoSQL-databases, waaronder opslag voor logging.",
-          "Werk samen met robotica-, AI- en hardwareteams om AI-gestuurde onkruiddetectie te integreren in operationele workflows."
+          "Leiding over de ontwikkeling van een autonoom agrarisch robotplatform dat onkruid verwijdert zonder toxische herbiciden.",
+          "Bepaling van de softwarearchitectuur, de ontwikkelingsactiviteiten en de technische richting van het robotsoftware-ecosysteem.",
+          "Leiding en coördinatie van ontwikkelingsteams voor robotimplementatie, testen, validatie en de oplevering van veldklare software.",
+          "Ontwikkeling van full-stack features voor een Angular-operatorinterface en een gedistribueerde architectuur die meerdere robots, elk met een Node.js-backend, verbindt met een keten van online Node.js-servers. Deze servers verzorgen beveiliging, routing, load balancing en communicatie met meerdere SQL- en NoSQL-databases, waaronder opslag voor logging.",
+          "Samenwerking met robotica-, AI- en hardwareteams om AI-gestuurde onkruiddetectie te integreren in operationele workflows."
         ]
       },
       "tihange-software-engineer": {

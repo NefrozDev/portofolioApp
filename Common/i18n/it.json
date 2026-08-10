@@ -191,11 +191,11 @@
         "company": "IC-Green",
         "period": "Mag 2025 - Presente",
         "highlights": [
-          "Guido lo sviluppo di una piattaforma robotica agricola autonoma progettata per eliminare le erbacce senza erbicidi tossici.",
-          "Definisco l'architettura software, le attività di sviluppo e la direzione tecnica dell'ecosistema software del robot.",
-          "Guido e coordino i team di sviluppo impegnati nell'implementazione robotica, nei test, nella validazione e nella consegna di software pronto per il campo.",
-          "Sviluppo funzionalità full-stack per un'interfaccia operatore Angular e un'architettura distribuita che collega più robot, ciascuno con un backend Node.js, a una catena di server Node.js online. Questi server gestiscono sicurezza, routing, bilanciamento del carico e comunicazione con diversi database SQL e NoSQL, inclusi gli archivi per i log.",
-          "Collaboro con team di robotica, IA e hardware per integrare il rilevamento delle erbacce basato su IA nei flussi operativi."
+          "Guida dello sviluppo di una piattaforma robotica agricola autonoma progettata per eliminare le erbacce senza erbicidi tossici.",
+          "Definizione dell'architettura software, coordinamento delle attività di sviluppo e direzione tecnica dell'ecosistema software del robot.",
+          "Guida e coordinamento dei team di sviluppo impegnati nell'implementazione robotica, nei test, nella validazione e nella consegna di software pronto per l'impiego sul campo.",
+          "Sviluppo di funzionalità full-stack per un'interfaccia operatore Angular e un'architettura distribuita che collega più robot, ciascuno con un backend Node.js, a una catena di server Node.js online. Questi server gestiscono la sicurezza, il routing, il bilanciamento del carico e la comunicazione con diversi database SQL e NoSQL, inclusi gli archivi per i log.",
+          "Collaborazione con team di robotica, IA e hardware per integrare il rilevamento delle erbacce basato su IA nei flussi operativi."
         ]
       },
       "tihange-software-engineer": {
