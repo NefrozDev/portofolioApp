@@ -4,7 +4,9 @@
       "home": "Home",
       "experiences": "Experiences",
       "projects": "Projects",
-      "contact": "Contact"
+      "contact": "Contact",
+      "cv": "CV",
+      "downloadCv": "Télécharger le CV"
     },
     "language": "Language",
     "pageUnderConstruction": "Page en construction",
@@ -54,6 +56,13 @@
     "description": "Turning ideas into concrete, high-performing projects.",
     "descriptionBis": "Step into my world, discover my work, and let's discuss your future projects.",
     "portraitAlt": "Portrait of Steven De Moor"
+  },
+  "cv": {
+    "title": "Curriculum Vitae",
+    "profile": "Profil professionnel",
+    "skills": "Compétences principales",
+    "experience": "Expérience professionnelle",
+    "projects": "Projets sélectionnés"
   },
   "projects": {
     "title": "Portfolio",

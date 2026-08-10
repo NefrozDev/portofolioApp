@@ -20,7 +20,7 @@
 
   .mobile-bottom-nav {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     width: calc(100vw - 1.5rem);
     max-width: 30rem;
     margin-inline: auto;

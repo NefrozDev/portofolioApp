@@ -4,5 +4,7 @@ export * from './models/contact.model';
 export * from './models/portfolio-demo-context.model';
 export * from './enums/app-language.enum';
 export * from './constants/navigation-items';
+export * from './constants/cv';
+export * from './constants/portfolio-profile';
 export * from './constants/glossary';
 export * from './i18n';

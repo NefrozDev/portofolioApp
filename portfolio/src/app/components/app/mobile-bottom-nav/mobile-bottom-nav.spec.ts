@@ -24,17 +24,23 @@ describe('MobileBottomNav', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the four primary navigation destinations', () => {
+  it('should render the navigation destinations and localized CV generator', () => {
     const links = fixture.nativeElement.querySelectorAll(
       '.mobile-bottom-nav__link'
     ) as NodeListOf<HTMLAnchorElement>;
 
-    expect(links.length).toBe(4);
+    expect(links.length).toBe(5);
     expect(Array.from(links).map((link) => link.textContent?.trim())).toEqual([
       'Home',
       'Experiences',
       'Projects',
-      'Contact'
+      'Contact',
+      'CV'
     ]);
+
+    const cvLink = links[4];
+    expect(cvLink.getAttribute('href')).toBe('http://localhost:3000/api/cv?lang=en');
+    expect(cvLink.getAttribute('download')).toBe('Steven-De-Moor-CV.pdf');
+    expect(cvLink.getAttribute('aria-label')).toBe('Download CV');
   });
 });

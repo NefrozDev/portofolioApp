@@ -20,6 +20,17 @@
           {{ item.labelKey | translate }}
         </a>
       }
+      <a
+        class="site-header__link site-header__cv-link"
+        [href]="getCvDownloadUrl()"
+        [attr.download]="cvDownloadFilename"
+        [attr.aria-label]="'app.navigation.downloadCv' | translate"
+      >
+        <svg class="site-header__cv-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" />
+        </svg>
+        {{ 'app.navigation.cv' | translate }}
+      </a>
     </nav>
 
     <div class="site-header__right">

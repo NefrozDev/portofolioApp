@@ -21,10 +21,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 import { AppLanguage } from '../../../../../../Common/enums/app-language.enum';
+import { CV_DOWNLOAD_FILENAME } from '../../../../../../Common/constants/cv';
 import { NAVIGATION_ITEMS } from '../../../../../../Common/constants/navigation-items';
 import { LANGUAGE_OPTIONS } from '../../../../../../Common/constants/language-options';
 import { NavItem } from '../../../../../../Common/models/nav-item.model';
 import { LanguageOption } from '../../../../../../Common/models/language.model';
+import { environment } from '../../../../environments/environment';
 import { AppStateService } from '../../../services/app-state';
 import { LanguageService } from '../../../services/language';
 
@@ -54,6 +56,7 @@ export class SiteHeader implements AfterViewInit {
   private readonly navigationLinks!: QueryList<ElementRef<HTMLElement>>;
 
   readonly navigationItems: NavItem[] = NAVIGATION_ITEMS;
+  readonly cvDownloadFilename = CV_DOWNLOAD_FILENAME;
   readonly languages: LanguageOption[] = LANGUAGE_OPTIONS;
   readonly isLanguageMenuOpen = signal(false);
 
@@ -160,6 +163,10 @@ export class SiteHeader implements AfterViewInit {
     }
 
     void this.router.navigate(['/', language, ...segments]);
+  }
+
+  getCvDownloadUrl(): string {
+    return `${environment.apiUrl}/cv?lang=${encodeURIComponent(this.currentLanguage())}`;
   }
 
   private scheduleAttentionDotMove(

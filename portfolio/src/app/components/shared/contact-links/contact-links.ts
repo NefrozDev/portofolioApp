@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
+import { PORTFOLIO_PROFILE } from '../../../../../../Common/constants/portfolio-profile';
 
 interface ContactLink {
   readonly value: string;
@@ -17,13 +18,13 @@ interface ContactLink {
 export class ContactLinks {
   readonly links: ContactLink[] = [
     {
-      value: 'nvonefroz@gmail.com',
-      href: 'mailto:nvonefroz@gmail.com',
+      value: PORTFOLIO_PROFILE.email,
+      href: `mailto:${PORTFOLIO_PROFILE.email}`,
       iconSrc: '/widgets/email.svg'
     },
     {
       value: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/steven-de-moor-a68124162/',
+      href: PORTFOLIO_PROFILE.linkedInUrl,
       iconSrc: '/widgets/linkedin.svg',
       external: true
     }

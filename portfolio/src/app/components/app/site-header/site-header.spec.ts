@@ -37,6 +37,19 @@ describe('SiteHeader', () => {
     expect(dot?.parentElement?.classList.contains('site-header__nav')).toBeTrue();
   });
 
+  it('should render the localized CV generator after Contact', () => {
+    const links = Array.from(
+      fixture.nativeElement.querySelectorAll('.site-header__link') as NodeListOf<HTMLAnchorElement>
+    );
+    const cvLink = links.at(-1);
+
+    expect(links.at(-2)?.textContent?.trim()).toBe('Contact');
+    expect(cvLink?.textContent?.trim()).toBe('CV');
+    expect(cvLink?.getAttribute('href')).toBe('http://localhost:3000/api/cv?lang=en');
+    expect(cvLink?.getAttribute('download')).toBe('Steven-De-Moor-CV.pdf');
+    expect(cvLink?.getAttribute('aria-label')).toBe('Download CV');
+  });
+
   it('should toggle the language menu from the compact trigger', () => {
     const trigger: HTMLButtonElement = fixture.nativeElement.querySelector(
       '.site-header__lang-trigger'
