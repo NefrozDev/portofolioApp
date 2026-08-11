@@ -128,7 +128,16 @@ const EXPERIENCE_METADATA: Array<
     role: 'Software Engineer',
     status: 'employee',
     logoUrl: '/img/experiences/engie.svg.webp',
-    technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'WinDev', 'SQL', 'Azure DevOps'],
+    technologies: [
+      'Angular',
+      'TypeScript',
+      'Node.js',
+      'C#',
+      '.NET',
+      'WinDev',
+      'SQL',
+      'Azure DevOps'
+    ],
     isExpanded: false
   },
   {
@@ -136,7 +145,7 @@ const EXPERIENCE_METADATA: Array<
     role: 'Software Engineering Consultant',
     status: 'employee',
     logoUrl: '/img/experiences/akkodis.svg',
-    technologies: ['Angular', 'TypeScript', 'FastAPI', 'Python', 'AI', 'Docker'],
+    technologies: ['Angular', 'TypeScript', 'Node.js', 'FastAPI', 'Python', 'AI', 'Docker'],
     isExpanded: false
   },
   {

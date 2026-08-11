@@ -74,16 +74,22 @@ test('GET /api/experiences should keep role titles language-neutral', async () =
   assert.equal(response.body[0].role, 'Lead Developer');
 });
 
-test('GET /api/experiences should include WinDev in the Tihange experience', async () => {
+test('GET /api/experiences should include Node.js for Tihange and the Innovation project', async () => {
   const response = await request(app).get('/api/experiences');
   const tihangeExperience = response.body.find(
     (experience: { id: string }) => experience.id === 'tihange-software-engineer'
+  );
+  const innovationExperience = response.body.find(
+    (experience: { id: string }) => experience.id === 'akkodis-internal-project'
   );
 
   assert.equal(response.status, 200);
   assert.ok(tihangeExperience);
   assert.ok(tihangeExperience.technologies.includes('WinDev'));
+  assert.ok(tihangeExperience.technologies.includes('Node.js'));
   assert.equal(tihangeExperience.logoUrl, '/img/experiences/engie.svg.webp');
+  assert.ok(innovationExperience);
+  assert.ok(innovationExperience.technologies.includes('Node.js'));
 });
 
 test('GET /api/experiences should explain the P&G department acronyms and chemical testing work', async () => {
