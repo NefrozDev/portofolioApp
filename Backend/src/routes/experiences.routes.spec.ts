@@ -171,6 +171,10 @@ test('GET /api/experiences should include the configured technology versions', a
   assert.equal(versionsByExperience.get('tihange-software-engineer')?.Angular, '18');
   assert.equal(versionsByExperience.get('icgreen-lead-dev')?.Angular, '21');
   assert.equal(versionsByExperience.get('icgreen-lead-dev')?.['Node.js'], '20');
+  assert.ok('Jenkins' in (versionsByExperience.get('icgreen-lead-dev') ?? {}));
+  assert.ok('Linux' in (versionsByExperience.get('icgreen-lead-dev') ?? {}));
+  assert.ok('Access Control' in (versionsByExperience.get('icgreen-lead-dev') ?? {}));
+  assert.ok('Server Hardening' in (versionsByExperience.get('icgreen-lead-dev') ?? {}));
 });
 
 test('GET /api/experiences should include HTML 5 and CSS 3 on every Angular role', async () => {
@@ -212,4 +216,19 @@ test('GET /api/experiences should include Jasmine and Karma on Angular roles fro
     .map((experience: { id: string }) => experience.id);
 
   assert.deepEqual(testingTechnologyIds, expectedIds);
+});
+
+test('GET /api/experiences should include Monorepo on IC-Green and Innovation only', async () => {
+  const response = await request(app).get('/api/experiences');
+  const monorepoExperienceIds = response.body
+    .filter(
+      (experience: { technologies: Array<{ name: string }> }) =>
+        experience.technologies.some((technology) => technology.name === 'Monorepo')
+    )
+    .map((experience: { id: string }) => experience.id);
+
+  assert.deepEqual(monorepoExperienceIds, [
+    'icgreen-lead-dev',
+    'akkodis-internal-project'
+  ]);
 });

@@ -123,6 +123,11 @@ const EXPERIENCE_METADATA: Array<
       { name: 'MQTT' },
       { name: 'AI' },
       { name: 'Gerrit' },
+      { name: 'Jenkins' },
+      { name: 'Linux' },
+      { name: 'Access Control' },
+      { name: 'Server Hardening' },
+      { name: 'Monorepo' },
       { name: 'Leadership' }
     ],
     isExpanded: true
@@ -164,7 +169,8 @@ const EXPERIENCE_METADATA: Array<
       { name: 'FastAPI' },
       { name: 'Python' },
       { name: 'AI' },
-      { name: 'Docker' }
+      { name: 'Docker' },
+      { name: 'Monorepo' }
     ],
     isExpanded: false
   },
