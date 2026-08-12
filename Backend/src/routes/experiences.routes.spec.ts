@@ -83,6 +83,26 @@ test('GET /api/experiences should keep role titles language-neutral', async () =
   assert.equal(response.body[0].role, 'Lead Developer');
 });
 
+test('GET /api/experiences should describe Site Leader as an additional parallel role in every language', async () => {
+  const expectedIntroductions: Record<string, RegExp> = {
+    en: /^This was an additional internal role for Akkodis, carried out alongside/,
+    fr: /^Il s'agissait d'un rôle interne annexe pour Akkodis, exercé en parallèle/,
+    nl: /^Dit was een aanvullende interne rol voor Akkodis, die ik naast/,
+    es: /^Se trataba de una función interna adicional para Akkodis, desempeñada en paralelo/,
+    it: /^Si trattava di un ruolo interno aggiuntivo per Akkodis, svolto parallelamente/,
+    de: /^Dies war eine zusätzliche interne Rolle für Akkodis, die ich parallel/
+  };
+
+  for (const [language, introduction] of Object.entries(expectedIntroductions)) {
+    const response = await request(app).get(`/api/experiences?lang=${language}`);
+    const siteLeaderExperience = response.body.find(
+      (experience: { id: string }) => experience.id === 'akkodis-pg-site-leader'
+    );
+
+    assert.match(siteLeaderExperience.highlights[0], introduction);
+  }
+});
+
 test('GET /api/experiences should include Node.js for Tihange and the Innovation project', async () => {
   const response = await request(app).get('/api/experiences');
   const tihangeExperience = response.body.find(
