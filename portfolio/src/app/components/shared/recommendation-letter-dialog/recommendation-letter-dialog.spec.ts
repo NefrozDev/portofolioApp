@@ -10,7 +10,7 @@ const experience: Experience = {
   role: 'Lead Developer',
   status: 'cadre',
   period: '2025 - Present',
-  technologies: ['Angular'],
+  technologies: [{ name: 'Angular' }],
   highlights: [],
   isExpanded: true,
   recommendationLetterUrl: 'data:application/pdf;base64,JVBERi0xLjQ='

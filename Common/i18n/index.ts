@@ -111,15 +111,19 @@ const EXPERIENCE_METADATA: Array<
     logoUrl: '/img/experiences/ic-green.png',
     recommendationLetterUrl: '/documents/recommendations/ic-green.pdf',
     technologies: [
-      'Angular',
-      'TypeScript',
-      'Node.js',
-      'Docker',
-      'ROS / ROS2',
-      'MQTT',
-      'AI',
-      'Gerrit',
-      'Leadership'
+      { name: 'Angular', version: '21' },
+      { name: 'HTML', version: '5' },
+      { name: 'CSS', version: '3' },
+      { name: 'TypeScript' },
+      { name: 'Jasmine' },
+      { name: 'Karma' },
+      { name: 'Node.js', version: '20' },
+      { name: 'Docker' },
+      { name: 'ROS / ROS2' },
+      { name: 'MQTT' },
+      { name: 'AI' },
+      { name: 'Gerrit' },
+      { name: 'Leadership' }
     ],
     isExpanded: true
   },
@@ -129,14 +133,18 @@ const EXPERIENCE_METADATA: Array<
     status: 'employee',
     logoUrl: '/img/experiences/engie.svg.webp',
     technologies: [
-      'Angular',
-      'TypeScript',
-      'Node.js',
-      'C#',
-      '.NET',
-      'WinDev',
-      'SQL',
-      'Azure DevOps'
+      { name: 'Angular', version: '18' },
+      { name: 'HTML', version: '5' },
+      { name: 'CSS', version: '3' },
+      { name: 'TypeScript', version: '5.5' },
+      { name: 'Jasmine' },
+      { name: 'Karma' },
+      { name: 'Node.js', version: '22' },
+      { name: 'C#', version: '12' },
+      { name: '.NET', version: '8' },
+      { name: 'WinDev', version: '2024' },
+      { name: 'SQL' },
+      { name: 'Azure DevOps' }
     ],
     isExpanded: false
   },
@@ -145,7 +153,19 @@ const EXPERIENCE_METADATA: Array<
     role: 'Software Engineering Consultant',
     status: 'employee',
     logoUrl: '/img/experiences/akkodis.svg',
-    technologies: ['Angular', 'TypeScript', 'Node.js', 'FastAPI', 'Python', 'AI', 'Docker'],
+    technologies: [
+      { name: 'Angular', version: '17' },
+      { name: 'HTML', version: '5' },
+      { name: 'CSS', version: '3' },
+      { name: 'TypeScript' },
+      { name: 'Jasmine' },
+      { name: 'Karma' },
+      { name: 'Node.js' },
+      { name: 'FastAPI' },
+      { name: 'Python' },
+      { name: 'AI' },
+      { name: 'Docker' }
+    ],
     isExpanded: false
   },
   {
@@ -153,7 +173,7 @@ const EXPERIENCE_METADATA: Array<
     role: 'Site Leader',
     status: 'corporate',
     logoUrl: '/img/experiences/akkodis.svg',
-    technologies: ['Leadership', 'Consulting'],
+    technologies: [{ name: 'Leadership' }, { name: 'Consulting' }],
     isExpanded: false
   },
   {
@@ -161,7 +181,18 @@ const EXPERIENCE_METADATA: Array<
     role: 'Software Engineering Consultant',
     status: 'employee',
     logoUrl: '/img/experiences/procter-gamble.svg',
-    technologies: ['Angular', 'TypeScript', 'C#', '.NET', 'REST API', 'SQL'],
+    technologies: [
+      { name: 'Angular', version: '16' },
+      { name: 'HTML', version: '5' },
+      { name: 'CSS', version: '3' },
+      { name: 'TypeScript' },
+      { name: 'Jasmine' },
+      { name: 'Karma' },
+      { name: 'C#' },
+      { name: '.NET' },
+      { name: 'REST API' },
+      { name: 'SQL' }
+    ],
     isExpanded: false
   },
   {
@@ -169,7 +200,13 @@ const EXPERIENCE_METADATA: Array<
     role: 'Software Engineering Consultant',
     status: 'employee',
     logoUrl: '/img/experiences/procter-gamble.svg',
-    technologies: ['C#', '.NET', 'SQL', 'Automation', 'Data Processing'],
+    technologies: [
+      { name: 'C#' },
+      { name: '.NET' },
+      { name: 'SQL' },
+      { name: 'Automation' },
+      { name: 'Data Processing' }
+    ],
     isExpanded: false
   },
   {
@@ -177,7 +214,12 @@ const EXPERIENCE_METADATA: Array<
     role: 'Software Engineering Consultant',
     status: 'employee',
     logoUrl: '/img/experiences/avanade.svg',
-    technologies: ['Microsoft Dynamics 365', 'Power Platform', 'Consulting', 'Leadership'],
+    technologies: [
+      { name: 'Microsoft Dynamics 365' },
+      { name: 'Power Platform' },
+      { name: 'Consulting' },
+      { name: 'Leadership' }
+    ],
     isExpanded: false
   },
   {
@@ -185,7 +227,16 @@ const EXPERIENCE_METADATA: Array<
     role: 'Angular / Ionic Developer',
     status: 'employee',
     logoUrl: '/img/experiences/noomia.png',
-    technologies: ['Angular', 'Ionic', 'TypeScript', 'RxJS', 'NgRx', 'SCSS'],
+    technologies: [
+      { name: 'Angular', version: '11' },
+      { name: 'HTML', version: '5' },
+      { name: 'CSS', version: '3' },
+      { name: 'Ionic' },
+      { name: 'TypeScript' },
+      { name: 'RxJS' },
+      { name: 'NgRx' },
+      { name: 'SCSS' }
+    ],
     isExpanded: false
   },
   {
@@ -193,7 +244,15 @@ const EXPERIENCE_METADATA: Array<
     role: 'Full-Stack Angular / Node.js Developer',
     status: 'employee',
     logoUrl: '/img/experiences/inforius.png',
-    technologies: ['Angular', 'Node.js', 'Express', 'SQL', 'TypeScript'],
+    technologies: [
+      { name: 'Angular', version: '12' },
+      { name: 'HTML', version: '5' },
+      { name: 'CSS', version: '3' },
+      { name: 'Node.js', version: '14' },
+      { name: 'Express' },
+      { name: 'SQL' },
+      { name: 'TypeScript' }
+    ],
     isExpanded: false
   }
 ];

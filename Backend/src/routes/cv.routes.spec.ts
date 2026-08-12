@@ -3,7 +3,22 @@ import test from 'node:test';
 import request from 'supertest';
 
 import { createApp } from '../../app';
-import { createCvPdf } from '../services/cv-pdf';
+import { Experience } from '../../../Common/models/experience.model';
+import { createCvPdf, getLatestTechnologyTags } from '../services/cv-pdf';
+
+const experience = (
+  id: string,
+  technologies: Experience['technologies']
+): Experience => ({
+  id,
+  company: 'Company',
+  role: 'Developer',
+  status: 'employee',
+  period: '2024',
+  highlights: [],
+  technologies,
+  isExpanded: false
+});
 
 test('GET /api/cv should download a generated PDF in the requested language', async () => {
   let receivedLanguage: string | undefined;
@@ -55,4 +70,23 @@ test('the default CV generator should produce a valid PDF from portfolio data', 
   assert.ok(pdf.length > 1_000);
   assert.ok(pageCount >= 2 && pageCount <= 3);
   assert.match(pdf.subarray(-32).toString(), /%%EOF/);
+});
+
+test('CV competencies should retain only the highest version for each technology', () => {
+  const skills = getLatestTechnologyTags([
+    experience('older', [
+      { name: 'Angular', version: '12' },
+      { name: 'Node.js', version: '22' }
+    ]),
+    experience('newest', [
+      { name: 'Angular', version: '21' },
+      { name: 'TypeScript' }
+    ])
+  ]);
+
+  assert.deepEqual(skills, [
+    { name: 'Angular', version: '21' },
+    { name: 'Node.js', version: '22' },
+    { name: 'TypeScript' }
+  ]);
 });

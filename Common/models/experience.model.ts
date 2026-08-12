@@ -5,6 +5,17 @@ export type PositionStatus =
   | 'cadre'
   | 'corporate';
 
+export interface TechnologyTag {
+  name: string;
+  version?: string;
+}
+
+export function formatTechnologyTag(technology: TechnologyTag): string {
+  return technology.version
+    ? `${technology.name} ${technology.version}`
+    : technology.name;
+}
+
 export interface Experience {
   id: string;
   company: string;
@@ -12,7 +23,7 @@ export interface Experience {
   status: PositionStatus;
   period: string;
   highlights: string[];
-  technologies: string[];
+  technologies: TechnologyTag[];
   isExpanded: boolean;
   logoUrl?: string;
   recommendationLetterUrl?: string;

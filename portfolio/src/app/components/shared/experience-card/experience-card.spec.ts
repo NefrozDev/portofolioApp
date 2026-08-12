@@ -10,7 +10,7 @@ const experience: Experience = {
   role: 'Developer',
   status: 'employee',
   period: '2024 - Present',
-  technologies: ['Angular', 'Docker'],
+  technologies: [{ name: 'Angular', version: '12' }, { name: 'Docker' }],
   highlights: ['Built UI'],
   isExpanded: true
 };
@@ -45,6 +45,14 @@ describe('ExperienceCard', () => {
     );
 
     expect(dockerTerm?.textContent).toContain('keeping the environment consistent');
+  });
+
+  it('should display a technology version when provided', () => {
+    const tags = Array.from(
+      fixture.nativeElement.querySelectorAll('.experience-card__tags .tag') as NodeListOf<HTMLElement>
+    );
+
+    expect(tags.some((tag) => tag.textContent?.includes('Angular 12'))).toBeTrue();
   });
 
   it('should apply the expanded state class when open', () => {

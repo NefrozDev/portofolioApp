@@ -19,6 +19,13 @@ test('GET /api/experiences should return an experience list', async () => {
   assert.equal(typeof firstExperience.status, 'string');
   assert.equal(typeof firstExperience.period, 'string');
   assert.ok(Array.isArray(firstExperience.technologies));
+  assert.equal(typeof firstExperience.technologies[0].name, 'string');
+  assert.ok(
+    firstExperience.technologies.every(
+      (technology: { version?: unknown }) =>
+        technology.version === undefined || typeof technology.version === 'string'
+    )
+  );
   assert.ok(Array.isArray(firstExperience.highlights));
   assert.equal(
     firstExperience.recommendationLetterUrl,
@@ -52,7 +59,9 @@ test('GET /api/experiences should include position statuses and the Akkodis Site
   assert.match(siteLeaderExperience.highlights[3], /after-work events/);
   assert.equal(icGreenExperience.status, 'cadre');
   assert.equal(icGreenExperience.company, 'IC-Green');
-  assert.ok(icGreenExperience.technologies.includes('Leadership'));
+  assert.ok(icGreenExperience.technologies.some(
+    (technology: { name: string }) => technology.name === 'Leadership'
+  ));
   assert.match(icGreenExperience.highlights[2], /Lead and coordinate development teams/);
   assert.match(icGreenExperience.highlights[3], /connecting multiple robots/);
   assert.match(icGreenExperience.highlights[3], /security, routing, load balancing/);
@@ -85,11 +94,17 @@ test('GET /api/experiences should include Node.js for Tihange and the Innovation
 
   assert.equal(response.status, 200);
   assert.ok(tihangeExperience);
-  assert.ok(tihangeExperience.technologies.includes('WinDev'));
-  assert.ok(tihangeExperience.technologies.includes('Node.js'));
+  assert.ok(tihangeExperience.technologies.some(
+    (technology: { name: string }) => technology.name === 'WinDev'
+  ));
+  assert.ok(tihangeExperience.technologies.some(
+    (technology: { name: string }) => technology.name === 'Node.js'
+  ));
   assert.equal(tihangeExperience.logoUrl, '/img/experiences/engie.svg.webp');
   assert.ok(innovationExperience);
-  assert.ok(innovationExperience.technologies.includes('Node.js'));
+  assert.ok(innovationExperience.technologies.some(
+    (technology: { name: string }) => technology.name === 'Node.js'
+  ));
 });
 
 test('GET /api/experiences should explain the P&G department acronyms and chemical testing work', async () => {
@@ -118,7 +133,9 @@ test('GET /api/experiences should describe leadership of the Avanade team projec
     /Led the team project through delivery of the Dynamics 365 solution/
   );
   assert.equal(avanadeExperience.period, 'Oct 2021 - Apr 2022');
-  assert.ok(avanadeExperience.technologies.includes('Leadership'));
+  assert.ok(avanadeExperience.technologies.some(
+    (technology: { name: string }) => technology.name === 'Leadership'
+  ));
 });
 
 test('GET /api/experiences should describe the Inforius work as a contribution', async () => {
@@ -130,4 +147,69 @@ test('GET /api/experiences should describe the Inforius work as a contribution',
   assert.match(inforiusExperience.highlights[0], /^Worked on a full-stack application/);
   assert.match(inforiusExperience.highlights[1], /^Contributed to/);
   assert.match(inforiusExperience.highlights[2], /^Participated in/);
+});
+
+test('GET /api/experiences should include the configured technology versions', async () => {
+  const response = await request(app).get('/api/experiences');
+  const versionsByExperience = new Map<string, Record<string, string | undefined>>(
+    response.body.map((experience: {
+      id: string;
+      technologies: Array<{ name: string; version?: string }>;
+    }) => [
+      experience.id,
+      Object.fromEntries(
+        experience.technologies.map((technology) => [technology.name, technology.version])
+      ) as Record<string, string | undefined>
+    ])
+  );
+
+  assert.equal(versionsByExperience.get('inforius-fullstack')?.Angular, '12');
+  assert.equal(versionsByExperience.get('inforius-fullstack')?.['Node.js'], '14');
+  assert.equal(versionsByExperience.get('noomia-angular-ionic')?.Angular, '11');
+  assert.equal(versionsByExperience.get('pg-lfe-consultant')?.Angular, '16');
+  assert.equal(versionsByExperience.get('akkodis-internal-project')?.Angular, '17');
+  assert.equal(versionsByExperience.get('tihange-software-engineer')?.Angular, '18');
+  assert.equal(versionsByExperience.get('icgreen-lead-dev')?.Angular, '21');
+  assert.equal(versionsByExperience.get('icgreen-lead-dev')?.['Node.js'], '20');
+});
+
+test('GET /api/experiences should include HTML 5 and CSS 3 on every Angular role', async () => {
+  const response = await request(app).get('/api/experiences');
+  const angularExperiences = response.body.filter(
+    (experience: { technologies: Array<{ name: string }> }) =>
+      experience.technologies.some((technology) => technology.name === 'Angular')
+  );
+
+  assert.ok(angularExperiences.length > 0);
+  assert.ok(
+    angularExperiences.every(
+      (experience: { technologies: Array<{ name: string; version?: string }> }) =>
+        experience.technologies.some(
+          (technology) => technology.name === 'HTML' && technology.version === '5'
+        ) &&
+        experience.technologies.some(
+          (technology) => technology.name === 'CSS' && technology.version === '3'
+        )
+    )
+  );
+});
+
+test('GET /api/experiences should include Jasmine and Karma on Angular roles from LFE onward', async () => {
+  const response = await request(app).get('/api/experiences');
+  const expectedIds = [
+    'icgreen-lead-dev',
+    'tihange-software-engineer',
+    'akkodis-internal-project',
+    'pg-lfe-consultant'
+  ];
+  const testingTechnologyIds = response.body
+    .filter(
+      (experience: { technologies: Array<{ name: string }> }) =>
+        ['Jasmine', 'Karma'].every((name) =>
+          experience.technologies.some((technology) => technology.name === name)
+        )
+    )
+    .map((experience: { id: string }) => experience.id);
+
+  assert.deepEqual(testingTechnologyIds, expectedIds);
 });

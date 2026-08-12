@@ -3,7 +3,11 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import { PORTFOLIO_PROFILE } from '../../../Common/constants/portfolio-profile';
-import { Experience } from '../../../Common/models/experience.model';
+import {
+  Experience,
+  TechnologyTag,
+  formatTechnologyTag
+} from '../../../Common/models/experience.model';
 import {
   getAppTranslations,
   getExperiencesForLanguage
@@ -29,6 +33,35 @@ const PAGE = {
 
 const HERO_IMAGE_URL = 'https://www.synapseengineering.dev/img/userpic.png';
 let heroImagePromise: Promise<Buffer | undefined> | undefined;
+
+const versionCollator = new Intl.Collator('en', {
+  numeric: true,
+  sensitivity: 'base'
+});
+
+export function getLatestTechnologyTags(
+  experiences: Experience[]
+): TechnologyTag[] {
+  const latestByName = new Map<string, TechnologyTag>();
+
+  for (const technology of experiences.flatMap((experience) => experience.technologies)) {
+    const current = latestByName.get(technology.name);
+
+    if (
+      !current ||
+      (technology.version &&
+        (!current.version || versionCollator.compare(technology.version, current.version) > 0))
+    ) {
+      latestByName.set(technology.name, technology);
+    }
+  }
+
+  return [...latestByName.values()];
+}
+
+function technologyLabels(experience: Experience): string[] {
+  return experience.technologies.map(formatTechnologyTag);
+}
 
 async function loadHeroImage(): Promise<Buffer | undefined> {
   const localCandidates = [
@@ -277,7 +310,7 @@ function experienceHeight(
   );
   document.font('Helvetica-Oblique').fontSize(8);
   const technologiesHeight = document.heightOfString(
-    experience.technologies.join('  •  '),
+    technologyLabels(experience).join('  •  '),
     { width, lineGap: 1.5 }
   );
 
@@ -325,7 +358,7 @@ function addExperience(document: PDFKit.PDFDocument, experience: Experience): vo
     .font('Helvetica-Oblique')
     .fontSize(8)
     .fillColor(COLORS.muted)
-    .text(experience.technologies.join('  •  '), detailsX, document.y + 5, {
+    .text(technologyLabels(experience).join('  •  '), detailsX, document.y + 5, {
       width: detailsWidth,
       lineGap: 1.5
     });
@@ -381,9 +414,7 @@ export async function createCvPdf(language?: string): Promise<Buffer> {
   const translations = getAppTranslations(language);
   const experiences = getExperiencesForLanguage(language);
   const heroImage = await getHeroImage();
-  const skills = Array.from(
-    new Set(experiences.flatMap((experience) => experience.technologies))
-  );
+  const skills = getLatestTechnologyTags(experiences).map(formatTechnologyTag);
 
   const document = new PDFDocument({
     size: 'A4',

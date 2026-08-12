@@ -13,7 +13,7 @@ const experiences: Experience[] = [
     role: 'Developer',
     status: 'employee',
     period: '2024 - Present',
-    technologies: ['Angular', 'TypeScript'],
+    technologies: [{ name: 'Angular', version: '12' }, { name: 'TypeScript' }],
     highlights: ['Built UI'],
     isExpanded: true
   },
@@ -23,7 +23,7 @@ const experiences: Experience[] = [
     role: 'Backend Developer',
     status: 'employee',
     period: '2023 - 2024',
-    technologies: ['Node.js', 'TypeScript', 'Docker'],
+    technologies: [{ name: 'Node.js' }, { name: 'TypeScript' }, { name: 'Docker' }],
     highlights: ['Built API'],
     isExpanded: false
   }
@@ -117,6 +117,15 @@ describe('ExperiencesPage', () => {
   });
 
   it('should filter experiences by selected technology tags', () => {
+    component.toggleTechnologyFilter('Angular');
+
+    expect(component.filteredExperiences().map((experience) => experience.id)).toEqual(['exp-1']);
+  });
+
+  it('should exclude versions from rail labels and filtering', () => {
+    expect(component.availableTechnologyTags()).toContain('Angular');
+    expect(component.availableTechnologyTags()).not.toContain('Angular 12');
+
     component.toggleTechnologyFilter('Angular');
 
     expect(component.filteredExperiences().map((experience) => experience.id)).toEqual(['exp-1']);

@@ -1,6 +1,9 @@
 import { Component, input, output, viewChild } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Experience } from '../../../../../../Common/models/experience.model';
+import {
+  Experience,
+  formatTechnologyTag
+} from '../../../../../../Common/models/experience.model';
 import { getGlossaryInfoKey } from '@common/constants/glossary';
 import { InfoTerm } from '../info-term/info-term';
 import { RecommendationLetterDialog } from '../recommendation-letter-dialog/recommendation-letter-dialog';
@@ -16,6 +19,7 @@ export class ExperienceCard {
   private readonly recommendationDialog = viewChild(RecommendationLetterDialog);
 
   readonly glossaryInfoKey = getGlossaryInfoKey;
+  readonly formatTechnologyTag = formatTechnologyTag;
   readonly experience = input.required<Experience>();
   readonly toggle = output<string>();
 

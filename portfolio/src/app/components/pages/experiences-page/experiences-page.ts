@@ -42,7 +42,9 @@ export class ExperiencesPage {
   private firstExperienceTimer: ReturnType<typeof setTimeout> | undefined;
 
   readonly availableTechnologyTags = computed(() => {
-    const tags = this.experiences().flatMap((experience) => experience.technologies);
+    const tags = this.experiences().flatMap((experience) =>
+      experience.technologies.map((technology) => technology.name)
+    );
 
     return [...new Set(tags)].sort((a, b) => a.localeCompare(b));
   });
@@ -65,7 +67,7 @@ export class ExperiencesPage {
     const selectedTagSet = new Set(selectedTags);
 
     return this.experiences().filter((experience) =>
-      experience.technologies.some((technology) => selectedTagSet.has(technology))
+      experience.technologies.some((technology) => selectedTagSet.has(technology.name))
     );
   });
 
@@ -167,7 +169,9 @@ export class ExperiencesPage {
 
   private keepExistingTechnologyFilters(experiences: Experience[]): void {
     const availableTags = new Set(
-      experiences.flatMap((experience) => experience.technologies)
+      experiences.flatMap((experience) =>
+        experience.technologies.map((technology) => technology.name)
+      )
     );
 
     this.selectedTechnologyTags.update((selectedTags) =>

@@ -78,15 +78,15 @@
   }
 
   <div class="tag-list experience-card__tags">
-    @for (technology of experience().technologies; track technology) {
+    @for (technology of experience().technologies; track technology.name) {
       <span class="tag">
-        @if (glossaryInfoKey(technology); as infoKey) {
+        @if (glossaryInfoKey(technology.name); as infoKey) {
           <app-info-term
-            [label]="technology"
+            [label]="formatTechnologyTag(technology)"
             [descriptionKey]="infoKey"
           />
         } @else {
-          {{ technology }}
+          {{ formatTechnologyTag(technology) }}
         }
       </span>
     }
