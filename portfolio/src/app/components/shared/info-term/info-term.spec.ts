@@ -143,6 +143,8 @@ describe('InfoTerm', () => {
   it('should include the approved glossary terms and omit the exclusions', () => {
     const includedTerms = [
       'Angular',
+      'HTML',
+      'CSS',
       'TypeScript',
       'Node.js',
       'Express',
@@ -160,6 +162,11 @@ describe('InfoTerm', () => {
       'Jasmine',
       'Karma',
       'Phabricator',
+      'Jenkins',
+      'Linux',
+      'Server Hardening',
+      'Monorepo',
+      'Access Control',
       'C#',
       '.NET',
       'WinDev',
