@@ -39,7 +39,7 @@
   <a
     class="mobile-bottom-nav__link mobile-bottom-nav__cv-link"
     [href]="getCvDownloadUrl()"
-    [attr.download]="cvDownloadFilename"
+    [attr.download]="getCvDownloadFilename()"
     [attr.aria-label]="'app.navigation.downloadCv' | translate"
   >
     <span class="mobile-bottom-nav__icon" aria-hidden="true">

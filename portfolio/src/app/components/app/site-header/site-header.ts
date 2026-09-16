@@ -21,7 +21,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 import { AppLanguage } from '../../../../../../Common/enums/app-language.enum';
-import { CV_DOWNLOAD_FILENAME } from '../../../../../../Common/constants/cv';
+import {
+  CV_DOWNLOAD_FILENAME,
+  CV_WORD_DOWNLOAD_FILENAME
+} from '../../../../../../Common/constants/cv';
 import { NAVIGATION_ITEMS } from '../../../../../../Common/constants/navigation-items';
 import { LANGUAGE_OPTIONS } from '../../../../../../Common/constants/language-options';
 import { NavItem } from '../../../../../../Common/models/nav-item.model';
@@ -57,6 +60,7 @@ export class SiteHeader implements AfterViewInit {
 
   readonly navigationItems: NavItem[] = NAVIGATION_ITEMS;
   readonly cvDownloadFilename = CV_DOWNLOAD_FILENAME;
+  readonly cvWordDownloadFilename = CV_WORD_DOWNLOAD_FILENAME;
   readonly languages: LanguageOption[] = LANGUAGE_OPTIONS;
   readonly isLanguageMenuOpen = signal(false);
 
@@ -127,6 +131,21 @@ export class SiteHeader implements AfterViewInit {
     this.closeLanguageMenu();
   }
 
+  @HostListener('document:keydown.w')
+  enableWordCvDownload(): void {
+    this.isWordCvDownload.set(true);
+  }
+
+  @HostListener('document:keyup.w')
+  disableWordCvDownload(): void {
+    this.isWordCvDownload.set(false);
+  }
+
+  @HostListener('window:blur')
+  resetWordCvDownload(): void {
+    this.isWordCvDownload.set(false);
+  }
+
   getLink(route: string): string[] {
     const lang = this.currentLanguage();
 
@@ -165,8 +184,22 @@ export class SiteHeader implements AfterViewInit {
     void this.router.navigate(['/', language, ...segments]);
   }
 
+  readonly isWordCvDownload = signal(false);
+
   getCvDownloadUrl(): string {
-    return `${environment.apiUrl}/cv?lang=${encodeURIComponent(this.currentLanguage())}`;
+    const parameters = new URLSearchParams({ lang: this.currentLanguage() });
+
+    if (this.isWordCvDownload()) {
+      parameters.set('format', 'docx');
+    }
+
+    return `${environment.apiUrl}/cv?${parameters.toString()}`;
+  }
+
+  getCvDownloadFilename(): string {
+    return this.isWordCvDownload()
+      ? this.cvWordDownloadFilename
+      : this.cvDownloadFilename;
   }
 
   private scheduleAttentionDotMove(

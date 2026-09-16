@@ -5,6 +5,7 @@ import request from 'supertest';
 import { createApp } from '../../app';
 import { Experience } from '../../../Common/models/experience.model';
 import { createCvPdf, getLatestTechnologyTags } from '../services/cv-pdf';
+import { createCvDocx } from '../services/cv-docx';
 
 const experience = (
   id: string,
@@ -62,6 +63,32 @@ test('GET /api/cv should return an error when PDF generation fails', async () =>
   }
 });
 
+test('GET /api/cv?format=docx should download a Word CV in the requested language', async () => {
+  let receivedLanguage: string | undefined;
+  const expectedDocx = Buffer.from('PK-generated-test');
+  const app = createApp({
+    generateCvDocx: async (language?: string) => {
+      receivedLanguage = language;
+      return expectedDocx;
+    }
+  });
+
+  const response = await request(app).get('/api/cv?lang=nl&format=docx');
+
+  assert.equal(response.status, 200);
+  assert.equal(receivedLanguage, 'nl');
+  assert.match(
+    response.headers['content-type'],
+    /^application\/vnd\.openxmlformats-officedocument\.wordprocessingml\.document/
+  );
+  assert.equal(
+    response.headers['content-disposition'],
+    'attachment; filename="Steven-De-Moor-CV.docx"'
+  );
+  assert.equal(response.headers['content-length'], expectedDocx.length.toString());
+  assert.equal(response.headers['cache-control'], 'no-store');
+});
+
 test('the default CV generator should produce a valid PDF from portfolio data', async () => {
   const pdf = await createCvPdf('en');
   const pageCount = pdf.toString('latin1').match(/\/Type\s*\/Page\b/g)?.length ?? 0;
@@ -70,6 +97,13 @@ test('the default CV generator should produce a valid PDF from portfolio data', 
   assert.ok(pdf.length > 1_000);
   assert.ok(pageCount >= 2 && pageCount <= 3);
   assert.match(pdf.subarray(-32).toString(), /%%EOF/);
+});
+
+test('the Word CV generator should produce a valid DOCX from the same portfolio data', async () => {
+  const docx = await createCvDocx('en');
+
+  assert.equal(docx.subarray(0, 2).toString(), 'PK');
+  assert.ok(docx.length > 1_000);
 });
 
 test('CV competencies should retain only the highest version for each technology', () => {

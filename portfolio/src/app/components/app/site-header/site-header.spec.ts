@@ -50,6 +50,22 @@ describe('SiteHeader', () => {
     expect(cvLink?.getAttribute('aria-label')).toBe('Download CV');
   });
 
+  it('should switch the CV download to Word while W is held', () => {
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'w' }));
+    fixture.detectChanges();
+
+    const cvLink = fixture.nativeElement.querySelector(
+      '.site-header__cv-link'
+    ) as HTMLAnchorElement;
+
+    expect(cvLink.getAttribute('href')).toBe(
+      'http://localhost:3000/api/cv?lang=en&format=docx'
+    );
+    expect(cvLink.getAttribute('download')).toBe('Steven-De-Moor-CV.docx');
+
+    document.dispatchEvent(new KeyboardEvent('keyup', { key: 'w' }));
+  });
+
   it('should toggle the language menu from the compact trigger', () => {
     const trigger: HTMLButtonElement = fixture.nativeElement.querySelector(
       '.site-header__lang-trigger'

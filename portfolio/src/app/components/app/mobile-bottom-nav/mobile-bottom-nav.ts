@@ -1,7 +1,10 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, HostListener, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { CV_DOWNLOAD_FILENAME } from '../../../../../../Common/constants/cv';
+import {
+  CV_DOWNLOAD_FILENAME,
+  CV_WORD_DOWNLOAD_FILENAME
+} from '../../../../../../Common/constants/cv';
 import { NAVIGATION_ITEMS } from '../../../../../../Common/constants/navigation-items';
 import { NavItem } from '../../../../../../Common/models/nav-item.model';
 import { LanguageService } from '../../../services/language';
@@ -18,6 +21,8 @@ export class MobileBottomNav {
 
   readonly navigationItems: NavItem[] = NAVIGATION_ITEMS;
   readonly cvDownloadFilename = CV_DOWNLOAD_FILENAME;
+  readonly cvWordDownloadFilename = CV_WORD_DOWNLOAD_FILENAME;
+  readonly isWordCvDownload = signal(false);
   readonly currentLanguage = computed(() => this.languageService.currentLanguage());
 
   getLink(route: string): string[] {
@@ -27,6 +32,33 @@ export class MobileBottomNav {
   }
 
   getCvDownloadUrl(): string {
-    return `${environment.apiUrl}/cv?lang=${encodeURIComponent(this.currentLanguage())}`;
+    const parameters = new URLSearchParams({ lang: this.currentLanguage() });
+
+    if (this.isWordCvDownload()) {
+      parameters.set('format', 'docx');
+    }
+
+    return `${environment.apiUrl}/cv?${parameters.toString()}`;
+  }
+
+  getCvDownloadFilename(): string {
+    return this.isWordCvDownload()
+      ? this.cvWordDownloadFilename
+      : this.cvDownloadFilename;
+  }
+
+  @HostListener('document:keydown.w')
+  enableWordCvDownload(): void {
+    this.isWordCvDownload.set(true);
+  }
+
+  @HostListener('document:keyup.w')
+  disableWordCvDownload(): void {
+    this.isWordCvDownload.set(false);
+  }
+
+  @HostListener('window:blur')
+  resetWordCvDownload(): void {
+    this.isWordCvDownload.set(false);
   }
 }

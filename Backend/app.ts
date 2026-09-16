@@ -7,6 +7,7 @@ import { experiencesRouter } from './src/routes/experiences.routes';
 import { createContactRouter } from './src/routes/contact.routes';
 import { createCvRouter } from './src/routes/cv.routes';
 import { createCvPdf, CvPdfGenerator } from './src/services/cv-pdf';
+import { createCvDocx, CvDocxGenerator } from './src/services/cv-docx';
 import {
   ContactDelivery,
   deliverContactMessage
@@ -22,6 +23,7 @@ interface AppDependencies {
   contactRepository?: ContactRepository;
   getContactIpHash?: (request: Request) => string | undefined;
   generateCvPdf?: CvPdfGenerator;
+  generateCvDocx?: CvDocxGenerator;
 }
 
 function createApp(dependencies: AppDependencies = {}) {
@@ -40,7 +42,10 @@ function createApp(dependencies: AppDependencies = {}) {
   app.use('/api/health', healthRouter);
   app.use('/api/projects', projectsRouter);
   app.use('/api/experiences', experiencesRouter);
-  app.use('/api/cv', createCvRouter(dependencies.generateCvPdf ?? createCvPdf));
+  app.use('/api/cv', createCvRouter(
+    dependencies.generateCvPdf ?? createCvPdf,
+    dependencies.generateCvDocx ?? createCvDocx
+  ));
   app.use('/api/contact', createContactRouter({
     deliver: contactDelivery,
     repository,
