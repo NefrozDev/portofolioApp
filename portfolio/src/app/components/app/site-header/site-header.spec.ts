@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
 import { AppLanguage } from '@common/enums/app-language.enum';
+import { LanguageService } from '../../../services/language';
 
 import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { SiteHeader } from './site-header';
@@ -18,9 +19,15 @@ describe('SiteHeader', () => {
     })
     .compileComponents();
 
+    jasmine.clock().install();
+    jasmine.clock().mockDate(new Date(2026, 0, 5));
     fixture = TestBed.createComponent(SiteHeader);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    jasmine.clock().uninstall();
   });
 
   it('should create', () => {
@@ -46,7 +53,7 @@ describe('SiteHeader', () => {
     expect(links.at(-2)?.textContent?.trim()).toBe('Contact');
     expect(cvLink?.textContent?.trim()).toBe('CV');
     expect(cvLink?.getAttribute('href')).toBe('http://localhost:3000/api/cv?lang=en');
-    expect(cvLink?.getAttribute('download')).toBe('Steven-De-Moor-CV.pdf');
+    expect(cvLink?.getAttribute('download')).toBe('CV-Steven-De-Moor-05-01-2026-EN.pdf');
     expect(cvLink?.getAttribute('aria-label')).toBe('Download CV');
   });
 
@@ -61,9 +68,24 @@ describe('SiteHeader', () => {
     expect(cvLink.getAttribute('href')).toBe(
       'http://localhost:3000/api/cv?lang=en&format=docx'
     );
-    expect(cvLink.getAttribute('download')).toBe('Steven-De-Moor-CV.docx');
+    expect(cvLink.getAttribute('download')).toBe('CV-Steven-De-Moor-05-01-2026-EN.docx');
 
     document.dispatchEvent(new KeyboardEvent('keyup', { key: 'w' }));
+  });
+
+  it('should update the CV filename when the language or date changes', () => {
+    TestBed.inject(LanguageService).setLanguage(AppLanguage.FR);
+    jasmine.clock().mockDate(new Date(2026, 11, 31));
+    fixture.detectChanges();
+
+    const cvLink: HTMLAnchorElement = fixture.nativeElement.querySelector('.site-header__cv-link');
+    expect(cvLink.getAttribute('download')).toBe('CV-Steven-De-Moor-31-12-2026-FR.pdf');
+
+    jasmine.clock().mockDate(new Date(2027, 0, 1));
+    component.enableWordCvDownload();
+    fixture.detectChanges();
+
+    expect(cvLink.getAttribute('download')).toBe('CV-Steven-De-Moor-01-01-2027-FR.docx');
   });
 
   it('should toggle the language menu from the compact trigger', () => {

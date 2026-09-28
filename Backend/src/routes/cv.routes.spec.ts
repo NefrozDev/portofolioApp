@@ -21,7 +21,8 @@ const experience = (
   isExpanded: false
 });
 
-test('GET /api/cv should download a generated PDF in the requested language', async () => {
+test('GET /api/cv should download a generated PDF in the requested language', async (context) => {
+  context.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 0, 5) });
   let receivedLanguage: string | undefined;
   const expectedPdf = Buffer.from('%PDF-generated-test');
   const app = createApp({
@@ -38,7 +39,7 @@ test('GET /api/cv should download a generated PDF in the requested language', as
   assert.match(response.headers['content-type'], /^application\/pdf/);
   assert.equal(
     response.headers['content-disposition'],
-    'attachment; filename="Steven-De-Moor-CV.pdf"'
+    'attachment; filename="CV-Steven-De-Moor-05-01-2026-FR.pdf"'
   );
   assert.equal(response.headers['cache-control'], 'no-store');
   assert.deepEqual(response.body, expectedPdf);
@@ -63,7 +64,8 @@ test('GET /api/cv should return an error when PDF generation fails', async () =>
   }
 });
 
-test('GET /api/cv?format=docx should download a Word CV in the requested language', async () => {
+test('GET /api/cv?format=docx should download a Word CV in the requested language', async (context) => {
+  context.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 8, 28) });
   let receivedLanguage: string | undefined;
   const expectedDocx = Buffer.from('PK-generated-test');
   const app = createApp({
@@ -83,10 +85,30 @@ test('GET /api/cv?format=docx should download a Word CV in the requested languag
   );
   assert.equal(
     response.headers['content-disposition'],
-    'attachment; filename="Steven-De-Moor-CV.docx"'
+    'attachment; filename="CV-Steven-De-Moor-28-09-2026-NL.docx"'
   );
   assert.equal(response.headers['content-length'], expectedDocx.length.toString());
   assert.equal(response.headers['cache-control'], 'no-store');
+});
+
+test('GET /api/cv should use English for missing or unsupported languages', async (context) => {
+  context.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 0, 5) });
+  const app = createApp({
+    generateCvPdf: async (language?: string) => {
+      assert.equal(language, 'en');
+      return Buffer.from('%PDF-generated-test');
+    }
+  });
+
+  for (const query of ['', '?lang=unsupported', '?lang=fr&lang=nl']) {
+    const response = await request(app).get(`/api/cv${query}`);
+
+    assert.equal(response.status, 200);
+    assert.equal(
+      response.headers['content-disposition'],
+      'attachment; filename="CV-Steven-De-Moor-05-01-2026-EN.pdf"'
+    );
+  }
 });
 
 test('the default CV generator should produce a valid PDF from portfolio data', async () => {

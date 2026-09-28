@@ -1,9 +1,7 @@
 import { Router } from 'express';
 
-import {
-  CV_DOWNLOAD_FILENAME,
-  CV_WORD_DOWNLOAD_FILENAME
-} from '../../../Common/constants/cv';
+import { getCvDownloadFilename } from '../../../Common/constants/cv';
+import { toSupportedLanguage } from '../../../Common/i18n';
 import { createCvDocx, CvDocxGenerator } from '../services/cv-docx';
 import { createCvPdf, CvPdfGenerator } from '../services/cv-pdf';
 
@@ -14,7 +12,9 @@ function createCvRouter(
   const router = Router();
 
   router.get('/', async (req, res) => {
-    const language = typeof req.query.lang === 'string' ? req.query.lang : undefined;
+    const language = toSupportedLanguage(
+      typeof req.query.lang === 'string' ? req.query.lang : undefined
+    );
     const isWordDownload = req.query.format === 'docx';
 
     try {
@@ -28,9 +28,10 @@ function createCvRouter(
           'Content-Type': isWordDownload
             ? 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
             : 'application/pdf',
-          'Content-Disposition': `attachment; filename="${
-            isWordDownload ? CV_WORD_DOWNLOAD_FILENAME : CV_DOWNLOAD_FILENAME
-          }"`,
+          'Content-Disposition': `attachment; filename="${getCvDownloadFilename(
+            language,
+            isWordDownload ? 'docx' : 'pdf'
+          )}"`,
           'Content-Length': document.length.toString(),
           'Cache-Control': 'no-store'
         })

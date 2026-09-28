@@ -21,10 +21,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 import { AppLanguage } from '../../../../../../Common/enums/app-language.enum';
-import {
-  CV_DOWNLOAD_FILENAME,
-  CV_WORD_DOWNLOAD_FILENAME
-} from '../../../../../../Common/constants/cv';
+import { getCvDownloadFilename } from '@common/constants/cv';
 import { NAVIGATION_ITEMS } from '../../../../../../Common/constants/navigation-items';
 import { LANGUAGE_OPTIONS } from '../../../../../../Common/constants/language-options';
 import { NavItem } from '../../../../../../Common/models/nav-item.model';
@@ -59,8 +56,6 @@ export class SiteHeader implements AfterViewInit {
   private readonly navigationLinks!: QueryList<ElementRef<HTMLElement>>;
 
   readonly navigationItems: NavItem[] = NAVIGATION_ITEMS;
-  readonly cvDownloadFilename = CV_DOWNLOAD_FILENAME;
-  readonly cvWordDownloadFilename = CV_WORD_DOWNLOAD_FILENAME;
   readonly languages: LanguageOption[] = LANGUAGE_OPTIONS;
   readonly isLanguageMenuOpen = signal(false);
 
@@ -197,9 +192,10 @@ export class SiteHeader implements AfterViewInit {
   }
 
   getCvDownloadFilename(): string {
-    return this.isWordCvDownload()
-      ? this.cvWordDownloadFilename
-      : this.cvDownloadFilename;
+    return getCvDownloadFilename(
+      this.currentLanguage(),
+      this.isWordCvDownload() ? 'docx' : 'pdf'
+    );
   }
 
   private scheduleAttentionDotMove(

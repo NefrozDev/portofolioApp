@@ -1,10 +1,7 @@
 import { Component, computed, HostListener, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import {
-  CV_DOWNLOAD_FILENAME,
-  CV_WORD_DOWNLOAD_FILENAME
-} from '../../../../../../Common/constants/cv';
+import { getCvDownloadFilename } from '@common/constants/cv';
 import { NAVIGATION_ITEMS } from '../../../../../../Common/constants/navigation-items';
 import { NavItem } from '../../../../../../Common/models/nav-item.model';
 import { LanguageService } from '../../../services/language';
@@ -20,8 +17,6 @@ export class MobileBottomNav {
   private readonly languageService = inject(LanguageService);
 
   readonly navigationItems: NavItem[] = NAVIGATION_ITEMS;
-  readonly cvDownloadFilename = CV_DOWNLOAD_FILENAME;
-  readonly cvWordDownloadFilename = CV_WORD_DOWNLOAD_FILENAME;
   readonly isWordCvDownload = signal(false);
   readonly currentLanguage = computed(() => this.languageService.currentLanguage());
 
@@ -42,9 +37,10 @@ export class MobileBottomNav {
   }
 
   getCvDownloadFilename(): string {
-    return this.isWordCvDownload()
-      ? this.cvWordDownloadFilename
-      : this.cvDownloadFilename;
+    return getCvDownloadFilename(
+      this.currentLanguage(),
+      this.isWordCvDownload() ? 'docx' : 'pdf'
+    );
   }
 
   @HostListener('document:keydown.w')
