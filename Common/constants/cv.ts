@@ -1,4 +1,14 @@
 import { AppLanguage } from '../enums/app-language.enum';
+import { TechnologyTag } from '../models/experience.model';
+
+// General CV skills that are not assigned to a specific position.
+export const CV_ADDITIONAL_SKILLS: TechnologyTag[] = [
+  { name: 'GitHub' },
+  { name: 'GitLab' },
+  { name: 'GitKraken' },
+  { name: 'Bitbucket' },
+  { name: 'OWASP' }
+];
 
 export function getCvDownloadFilename(
   language: AppLanguage,

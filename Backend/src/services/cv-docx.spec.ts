@@ -8,6 +8,7 @@ import { formatTechnologyTag } from '../../../Common/models/experience.model';
 import { PORTFOLIO_PROFILE } from '../../../Common/constants/portfolio-profile';
 import { createCvDocx } from './cv-docx';
 import { getLatestTechnologyTags } from './cv-pdf';
+import { getCvSkillGroups } from './cv-skills';
 
 function xmlText(xml: string): string {
   return [...xml.matchAll(/<w:t\b[^>]*>([\s\S]*?)<\/w:t>/g)]
@@ -21,9 +22,11 @@ test('Word CV preserves editable localized content and individual rounded skill 
     const archive = await JSZip.loadAsync(await createCvDocx(language));
     const xml = await archive.file('word/document.xml')!.async('string');
     const text = xmlText(xml);
+    assert.doesNotMatch(text, /\bundefined\b/, `${language}: missing CV text`);
     const translations = getAppTranslations(language);
     const experiences = getExperiencesForLanguage(language);
-    const skills = getLatestTechnologyTags(experiences).map(formatTechnologyTag);
+    const groups = getCvSkillGroups(getLatestTechnologyTags(experiences));
+    const skills = groups.flatMap((group) => group.technologies.map(formatTechnologyTag));
 
     assert.ok(text.includes(translations.cv.skills.toUpperCase()), language);
     assert.ok(text.includes(translations.cv.experience.toUpperCase()), language);
@@ -34,6 +37,18 @@ test('Word CV preserves editable localized content and individual rounded skill 
     }
     assert.equal((xml.match(/<v:roundrect\b/g) ?? []).length, skills.length);
     for (const skill of skills) assert.ok(text.includes(skill), skill);
+    let previousCategoryEnd = -1;
+    for (const group of groups) {
+      assert.equal(typeof translations.cv.skillCategories[group.id], 'string',
+        `${language}: missing category label for ${group.id}`);
+      const heading = `${translations.cv.skillCategories[group.id]}:`;
+      const position = text.indexOf(heading);
+      assert.ok(position > previousCategoryEnd, `${language}: category order for ${heading}`);
+      assert.ok(text.includes(`${heading}\n${formatTechnologyTag(group.technologies[0])}`));
+      previousCategoryEnd = position;
+    }
+    const shapeIds = [...xml.matchAll(/<v:roundrect\b[^>]*\bid="([^"]+)"/g)].map((match) => match[1]);
+    assert.equal(new Set(shapeIds).size, skills.length);
     assert.doesNotMatch(xml, /<undefined[\s>]/);
     // Adjacent tables can be merged by Word, changing column widths and indentation.
     assert.doesNotMatch(xml, /<\/w:tbl>\s*<w:tbl>/);

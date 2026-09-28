@@ -13,6 +13,7 @@ import { PORTFOLIO_PROFILE } from '../../../Common/constants/portfolio-profile';
 import { getAppTranslations, getExperiencesForLanguage } from '../../../Common/i18n';
 import { Experience, formatTechnologyTag } from '../../../Common/models/experience.model';
 import { getLatestTechnologyTags } from './cv-pdf';
+import { getCvSkillGroups } from './cv-skills';
 
 const COLORS = {
   navy: '0F172A', primary: '4F46E5', primarySoft: 'EEF2FF',
@@ -101,7 +102,7 @@ function sectionHeading(title: string): Paragraph[] {
   ];
 }
 
-function skillParagraphs(skills: string[]): Paragraph[] {
+function skillParagraphs(skills: string[], categoryId: string): Paragraph[] {
   const metrics = new PDFDocument({ autoFirstPage: false });
   metrics.font('Helvetica-Bold').fontSize(8);
   const rows: TextRun[][] = [[]];
@@ -113,12 +114,12 @@ function skillParagraphs(skills: string[]): Paragraph[] {
       rowWidth = 0;
     }
     if (rowWidth) rows.at(-1)!.push(run(' ', { size: 16, characterSpacing: 75 }));
-    rows.at(-1)!.push(roundedBox(`skill-${index}`, width, 19, COLORS.primarySoft, skill));
+    rows.at(-1)!.push(roundedBox(`skill-${categoryId}-${index}`, width, 19, COLORS.primarySoft, skill));
     rowWidth += width + 6;
   });
   metrics.end();
-  return rows.map((children) => new Paragraph({
-    keepNext: true,
+  return rows.map((children, index) => new Paragraph({
+    keepNext: index < rows.length - 1,
     spacing: { before: 0, after: 0, line: pt(25), lineRule: LineRuleType.EXACT },
     children
   }));
@@ -245,7 +246,15 @@ export async function createCvDocx(language?: string): Promise<Buffer> {
       children: [
         spacer(24),
         ...sectionHeading(translations.cv.skills),
-        ...skillParagraphs(getLatestTechnologyTags(experiences).map(formatTechnologyTag)),
+        ...getCvSkillGroups(getLatestTechnologyTags(experiences)).flatMap((group) => [
+          new Paragraph({
+            keepNext: true,
+            spacing: { before: pt(6), after: pt(3) },
+            children: [run(`${translations.cv.skillCategories[group.id]}:`,
+              { bold: true, color: COLORS.heading })]
+          }),
+          ...skillParagraphs(group.technologies.map(formatTechnologyTag), group.id)
+        ]),
         spacer(15),
         ...sectionHeading(translations.cv.experience),
         ...experiences.flatMap((experience) => [experienceTable(experience), spacer(14)])

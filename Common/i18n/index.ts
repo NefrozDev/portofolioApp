@@ -26,7 +26,7 @@ const PROJECT_METADATA: Array<
     id: '1',
     category: 'fullstack',
     imageUrl: '/assets/images/projects/portfolio-app.png',
-    technologies: ['Angular', 'TypeScript', 'Node.js', 'Express'],
+    technologies: ['Angular', 'TypeScript', 'Node.js', 'Express', 'Feature-based'],
     tags: [
       'accessibility',
       'design',
@@ -44,7 +44,7 @@ const PROJECT_METADATA: Array<
     id: '2',
     category: 'frontend',
     imageUrl: '/assets/images/projects/task-dashboard.png',
-    technologies: ['Angular', 'SCSS', 'RxJS'],
+    technologies: ['Angular', 'SCSS', 'RxJS', 'Feature-based'],
     tags: [
       'accessibility',
       'data-visualization',
@@ -77,7 +77,7 @@ const PROJECT_METADATA: Array<
     id: '4',
     category: 'frontend',
     imageUrl: '/img/projects/chat-application.png',
-    technologies: ['Angular', 'SCSS', 'WebSocket'],
+    technologies: ['Angular', 'SCSS', 'WebSocket', 'Feature-based'],
     tags: [
       'accessibility',
       'design',
@@ -112,6 +112,7 @@ const EXPERIENCE_METADATA: Array<
     recommendationLetterUrl: '/documents/recommendations/ic-green.pdf',
     technologies: [
       { name: 'Angular', version: '21' },
+      { name: 'Feature-based' },
       { name: 'HTML', version: '5' },
       { name: 'CSS', version: '3' },
       { name: 'TypeScript' },
@@ -121,6 +122,8 @@ const EXPERIENCE_METADATA: Array<
       { name: 'Vitest' },
       { name: 'JSDOM' },
       { name: 'Node.js', version: '20' },
+      { name: 'SQL Server' },
+      { name: 'NoSQL' },
       { name: 'Docker' },
       { name: 'ROS / ROS2' },
       { name: 'MQTT' },
@@ -130,10 +133,14 @@ const EXPERIENCE_METADATA: Array<
       { name: 'Jenkins' },
       { name: 'SonarQube' },
       { name: 'Linux' },
+      { name: 'Windows' },
       { name: 'Access Control' },
       { name: 'Server Hardening' },
       { name: 'Monorepo' },
-      { name: 'Leadership' }
+      { name: 'Nx' },
+      { name: 'Leadership' },
+      { name: 'Team Leading' },
+      { name: 'Project Management' }
     ],
     isExpanded: true
   },
@@ -144,6 +151,7 @@ const EXPERIENCE_METADATA: Array<
     logoUrl: '/img/experiences/engie.svg.webp',
     technologies: [
       { name: 'Angular', version: '18' },
+      { name: 'Feature-based' },
       { name: 'HTML', version: '5' },
       { name: 'CSS', version: '3' },
       { name: 'TypeScript', version: '5.5' },
@@ -154,7 +162,9 @@ const EXPERIENCE_METADATA: Array<
       { name: '.NET', version: '8' },
       { name: 'WinDev', version: '2024' },
       { name: 'SQL' },
-      { name: 'Azure DevOps' }
+      { name: 'SQL Server' },
+      { name: 'Azure DevOps' },
+      { name: 'Windows' }
     ],
     isExpanded: false
   },
@@ -165,6 +175,7 @@ const EXPERIENCE_METADATA: Array<
     logoUrl: '/img/experiences/akkodis.svg',
     technologies: [
       { name: 'Angular', version: '17' },
+      { name: 'Feature-based' },
       { name: 'HTML', version: '5' },
       { name: 'CSS', version: '3' },
       { name: 'TypeScript' },
@@ -173,9 +184,12 @@ const EXPERIENCE_METADATA: Array<
       { name: 'Node.js' },
       { name: 'FastAPI' },
       { name: 'Python' },
+      { name: 'NoSQL' },
       { name: 'AI' },
       { name: 'Docker' },
-      { name: 'Monorepo' }
+      { name: 'Monorepo' },
+      { name: 'Nx' },
+      { name: 'Windows' }
     ],
     isExpanded: false
   },
@@ -194,6 +208,7 @@ const EXPERIENCE_METADATA: Array<
     logoUrl: '/img/experiences/procter-gamble.svg',
     technologies: [
       { name: 'Angular', version: '16' },
+      { name: 'Feature-based' },
       { name: 'HTML', version: '5' },
       { name: 'CSS', version: '3' },
       { name: 'TypeScript' },
@@ -202,7 +217,10 @@ const EXPERIENCE_METADATA: Array<
       { name: 'C#' },
       { name: '.NET' },
       { name: 'REST API' },
-      { name: 'SQL' }
+      { name: 'SQL' },
+      { name: 'ServiceNow' },
+      { name: 'Jira' },
+      { name: 'Windows' }
     ],
     isExpanded: false
   },
@@ -216,7 +234,9 @@ const EXPERIENCE_METADATA: Array<
       { name: '.NET' },
       { name: 'SQL' },
       { name: 'Automation' },
-      { name: 'Data Processing' }
+      { name: 'Data Processing' },
+      { name: 'Jira' },
+      { name: 'Windows' }
     ],
     isExpanded: false
   },
@@ -229,7 +249,8 @@ const EXPERIENCE_METADATA: Array<
       { name: 'Microsoft Dynamics 365' },
       { name: 'Power Platform' },
       { name: 'Consulting' },
-      { name: 'Leadership' }
+      { name: 'Leadership' },
+      { name: 'Windows' }
     ],
     isExpanded: false
   },
@@ -240,13 +261,15 @@ const EXPERIENCE_METADATA: Array<
     logoUrl: '/img/experiences/noomia.png',
     technologies: [
       { name: 'Angular', version: '11' },
+      { name: 'Feature-based' },
       { name: 'HTML', version: '5' },
       { name: 'CSS', version: '3' },
       { name: 'Ionic' },
       { name: 'TypeScript' },
       { name: 'RxJS' },
       { name: 'NgRx' },
-      { name: 'SCSS' }
+      { name: 'SCSS' },
+      { name: 'Windows' }
     ],
     isExpanded: false
   },
@@ -257,12 +280,14 @@ const EXPERIENCE_METADATA: Array<
     logoUrl: '/img/experiences/inforius.png',
     technologies: [
       { name: 'Angular', version: '12' },
+      { name: 'Feature-based' },
       { name: 'HTML', version: '5' },
       { name: 'CSS', version: '3' },
       { name: 'Node.js', version: '14' },
       { name: 'Express' },
       { name: 'SQL' },
-      { name: 'TypeScript' }
+      { name: 'TypeScript' },
+      { name: 'Windows' }
     ],
     isExpanded: false
   }

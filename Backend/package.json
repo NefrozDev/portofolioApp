@@ -2,7 +2,7 @@
   "name": "portfolioapp-backend",
   "private": true,
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch --include \"../Common/i18n/*.json\" src/server.ts",
     "build": "tsc",
     "start": "node dist/Backend/src/server.js",
     "test": "node scripts/run-tests.mjs",

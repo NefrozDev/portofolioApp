@@ -69,6 +69,21 @@
     "portraitAlt": "Portrait of Steven De Moor"
   },
   "cv": {
+    "skillCategories": {
+      "versionControl": "Versionsverwaltung und Repositories",
+      "planning": "Planung und Zusammenarbeit",
+      "architecture": "Architektur und Zusammenarbeit",
+      "data": "Datenbanken und Datenverarbeitung",
+      "backend": "Backend und APIs",
+      "frontend": "Frontend und Mobile",
+      "business": "Geschäftsanwendungen und Automatisierung",
+      "integration": "KI, Robotik und Integration",
+      "quality": "Tests und Codequalität",
+      "delivery": "CI/CD und Bereitstellung",
+      "infrastructure": "Infrastruktur und Sicherheit",
+      "operations": "Betrieb und Servicemanagement",
+      "other": "Weitere Kompetenzen"
+    },
     "title": "Lebenslauf",
     "profile": "Berufliches Profil",
     "skills": "Kernkompetenzen",

@@ -1,6 +1,7 @@
 import PDFDocument from 'pdfkit';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { getCvSkillGroups } from './cv-skills';
 
 import { PORTFOLIO_PROFILE } from '../../../Common/constants/portfolio-profile';
 import {
@@ -270,9 +271,25 @@ function addSectionHeading(document: PDFKit.PDFDocument, title: string): void {
   document.y = headingY + 31;
 }
 
-function addSkillTags(document: PDFKit.PDFDocument, skills: string[]): void {
+function addSkillTags(document: PDFKit.PDFDocument, title: string, skills: string[]): void {
   const maxX = document.page.width - PAGE.right;
   const chipHeight = 19;
+  document.font('Helvetica-Bold').fontSize(8);
+  let rowWidth = 0;
+  let rows = 1;
+  for (const skill of skills) {
+    const width = document.widthOfString(skill) + 14;
+    if (rowWidth + width > contentWidth(document)) {
+      rows++;
+      rowWidth = 0;
+    }
+    rowWidth += width + 6;
+  }
+  ensureSpace(document, 16 + rows * 25 + 8);
+  const headingY = document.y;
+  document.font('Helvetica-Bold').fontSize(9).fillColor(COLORS.heading)
+    .text(`${title}:`, PAGE.left, headingY, { lineBreak: false });
+  document.y = headingY + 16;
   let x = PAGE.left;
   let y = document.y;
 
@@ -294,7 +311,7 @@ function addSkillTags(document: PDFKit.PDFDocument, skills: string[]): void {
   }
 
   document.x = PAGE.left;
-  document.y = y + chipHeight + 14;
+  document.y = y + chipHeight + 8;
 }
 
 function experienceHeight(
@@ -414,7 +431,7 @@ export async function createCvPdf(language?: string): Promise<Buffer> {
   const translations = getAppTranslations(language);
   const experiences = getExperiencesForLanguage(language);
   const heroImage = await getHeroImage();
-  const skills = getLatestTechnologyTags(experiences).map(formatTechnologyTag);
+  const skillGroups = getCvSkillGroups(getLatestTechnologyTags(experiences));
 
   const document = new PDFDocument({
     size: 'A4',
@@ -448,7 +465,10 @@ export async function createCvPdf(language?: string): Promise<Buffer> {
   );
 
   addSectionHeading(document, translations.cv.skills);
-  addSkillTags(document, skills);
+  for (const group of skillGroups) {
+    addSkillTags(document, translations.cv.skillCategories[group.id],
+      group.technologies.map(formatTechnologyTag));
+  }
 
   ensureSpace(document, 170);
   addSectionHeading(document, translations.cv.experience);
