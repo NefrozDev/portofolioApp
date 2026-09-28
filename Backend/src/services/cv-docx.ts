@@ -167,12 +167,12 @@ function hero(translations: ReturnType<typeof getAppTranslations>, portrait: Buf
     children: [run(text, { size, color, bold, italics })]
   });
   const contacts = new Paragraph({
-    tabStops: [{ type: TabStopType.LEFT, position: pt(183) }],
+    tabStops: [{ type: TabStopType.LEFT, position: pt(203) }],
     children: [
-      run('✉  ', { font: 'Segoe UI Symbol', size: 30, color: 'A5B4FC' }),
-      new ExternalHyperlink({ link: `mailto:${PORTFOLIO_PROFILE.email}`, children: [run(PORTFOLIO_PROFILE.email, { size: 20, bold: true, color: 'CBD5E1' })] }),
-      run('\t'), run(' in ', { size: 15, bold: true, color: COLORS.navy, shading: { type: ShadingType.CLEAR, fill: '818CF8' } }), run('  '),
-      new ExternalHyperlink({ link: PORTFOLIO_PROFILE.linkedInUrl, children: [run(translations.contact.links.linkedin, { size: 20, bold: true, color: 'CBD5E1' })] })
+      run('✉  ', { font: 'Segoe UI Symbol', size: 36, color: 'A5B4FC' }),
+      new ExternalHyperlink({ link: `mailto:${PORTFOLIO_PROFILE.email}`, children: [run(PORTFOLIO_PROFILE.email, { size: 24, bold: true, color: 'CBD5E1' })] }),
+      run('\t'), run(' in ', { size: 18, bold: true, color: COLORS.navy, shading: { type: ShadingType.CLEAR, fill: '818CF8' } }), run('  '),
+      new ExternalHyperlink({ link: PORTFOLIO_PROFILE.linkedInUrl, children: [run(translations.contact.links.linkedin, { size: 24, bold: true, color: 'CBD5E1' })] })
     ]
   });
   const content = new Table({

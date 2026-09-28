@@ -144,26 +144,26 @@ function addEmailIcon(document: PDFKit.PDFDocument, x: number, y: number): void 
 
   document.save();
   document
-    .roundedRect(x, envelopeY, 14, 11, 2)
+    .roundedRect(x, envelopeY, 16.5, 13, 2)
     .lineWidth(1.2)
     .strokeColor('#a5b4fc')
     .stroke();
   document
     .moveTo(x + 1.5, envelopeY + 2)
-    .lineTo(x + 7, envelopeY + 6.5)
-    .lineTo(x + 12.5, envelopeY + 2)
+    .lineTo(x + 8.25, envelopeY + 7.5)
+    .lineTo(x + 15, envelopeY + 2)
     .stroke();
   document.restore();
 }
 
 function addLinkedInIcon(document: PDFKit.PDFDocument, x: number, y: number): void {
   document.save();
-  document.roundedRect(x, y, 14, 14, 2.5).fill('#818cf8');
+  document.roundedRect(x, y, 16.5, 16.5, 2.5).fill('#818cf8');
   document
     .font('Helvetica-Bold')
-    .fontSize(7.5)
+    .fontSize(9)
     .fillColor(COLORS.navy)
-    .text('in', x + 3, y + 3.5, { lineBreak: false });
+    .text('in', x + 3.5, y + 4, { lineBreak: false });
   document.restore();
 }
 
@@ -205,16 +205,16 @@ function addHero(
   const contactY = 156;
   const contactLabelY = contactY + 3.2;
   addEmailIcon(document, copyX, contactY);
-  addLinkedInIcon(document, copyX + 183, contactY);
+  addLinkedInIcon(document, copyX + 203, contactY);
   document
     .font('Helvetica-Bold')
-    .fontSize(10.3)
+    .fontSize(12)
     .fillColor('#cbd5e1')
-    .text(PORTFOLIO_PROFILE.email, copyX + 21, contactLabelY, {
+    .text(PORTFOLIO_PROFILE.email, copyX + 24, contactLabelY, {
       link: `mailto:${PORTFOLIO_PROFILE.email}`,
-      width: 155
+      width: 174
     })
-    .text(linkedInLabel, copyX + 204, contactLabelY, {
+    .text(linkedInLabel, copyX + 227, contactLabelY, {
       link: PORTFOLIO_PROFILE.linkedInUrl,
       width: 80
     });
