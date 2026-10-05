@@ -63,6 +63,12 @@ When working inside a subproject directly:
 - Do not edit generated build output, dependency folders, or lockfiles unless the task requires it.
 - Be careful with shared code in `Common/`; changes there can affect both frontend and backend behavior.
 
+## Commit Messages
+
+- Write commit titles as `Type: lowercase description`, for example `Impr: changed developer's mail address`. Types include `Feat`, `Impr`, `Refa`, `Chore`, and `Bugfix`.
+- When the title alone does not make the change self-explanatory, add a commit body after a blank line.
+- Keep every commit body line at 72 characters or fewer.
+
 ## Frontend Notes
 
 - The frontend uses Angular 20 with SCSS.
