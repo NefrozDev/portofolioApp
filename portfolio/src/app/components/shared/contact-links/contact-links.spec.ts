@@ -36,7 +36,7 @@ describe('ContactLinks', () => {
 
     expect(links.length).toBe(2);
     expect(links[0].getAttribute('href')).toBe(
-      'mailto:nvonefroz@gmail.com'
+      'mailto:contact@synapseengineering.dev'
     );
     expect(links[1].getAttribute('href')).toBe(
       'https://www.linkedin.com/in/steven-de-moor-a68124162/'
