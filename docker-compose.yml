@@ -1,16 +1,21 @@
-version: '3.9'
-
 services:
   backend:
     build:
       context: .
       dockerfile: Backend/Dockerfile
+    env_file:
+      - path: Backend/.env
+        required: false
     ports:
       - "3000:3000"
 
   frontend:
     build:
-      context: ./portfolio
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: portfolio/Dockerfile
+      args:
+        BUILD_CONFIGURATION: development
+    depends_on:
+      - backend
     ports:
       - "8080:80"
