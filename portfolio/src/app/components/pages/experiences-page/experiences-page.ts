@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { distinctUntilChanged } from 'rxjs';
@@ -12,6 +12,7 @@ import {
 import { Experience } from '@common/models/experience.model';
 import { getGlossaryInfoKey } from '@common/constants/glossary';
 import { ExperiencesApi } from '../../../services/api/experiences-api';
+import { AppStateService } from '../../../services/app-state';
 import { LanguageService } from '../../../services/language';
 
 @Component({
@@ -32,6 +33,7 @@ export class ExperiencesPage {
   private static readonly CARD_SETTLE_DURATION_MS = 600;
   private static readonly FIRST_EXPERIENCE_OPEN_DELAY_MS = 1000;
 
+  readonly appState = inject(AppStateService);
   readonly experiences = signal<Experience[]>([]);
   readonly isLoading = signal<boolean>(true);
   readonly loadError = signal<string | null>(null);

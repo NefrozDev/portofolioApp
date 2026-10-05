@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
-import { AppStateService } from './app-state';
+import { ARRIVED_FROM_HOME_STATE, AppStateService } from './app-state';
 
 describe('AppStateService', () => {
   const routerEvents = new Subject<NavigationEnd>();
@@ -10,13 +10,19 @@ describe('AppStateService', () => {
     data: {},
     firstChild: null
   };
-  const router = {
+  const router: {
+    events: Subject<NavigationEnd>;
+    routerState: { snapshot: { root: ActivatedRouteSnapshot } };
+    lastSuccessfulNavigation: { extras: { state?: Record<string, unknown> } } | null;
+  } = {
     events: routerEvents,
-    routerState: { snapshot: { root: rootRoute as unknown as ActivatedRouteSnapshot } }
+    routerState: { snapshot: { root: rootRoute as unknown as ActivatedRouteSnapshot } },
+    lastSuccessfulNavigation: null
   };
 
   beforeEach(() => {
     rootRoute.firstChild = null;
+    router.lastSuccessfulNavigation = null;
     TestBed.configureTestingModule({
       providers: [
         AppStateService,
@@ -44,5 +50,19 @@ describe('AppStateService', () => {
     routerEvents.next(new NavigationEnd(1, '/en', '/en'));
 
     expect(service.siteHeaderVisible()).toBeFalse();
+  });
+
+  it('reports an arrival from the home page only for the navigation that carries the flag', () => {
+    const service = TestBed.inject(AppStateService);
+
+    router.lastSuccessfulNavigation = { extras: { state: { [ARRIVED_FROM_HOME_STATE]: true } } };
+    routerEvents.next(new NavigationEnd(1, '/fr/experiences', '/fr/experiences'));
+
+    expect(service.arrivedFromHome()).toBeTrue();
+
+    router.lastSuccessfulNavigation = { extras: {} };
+    routerEvents.next(new NavigationEnd(2, '/fr/projects', '/fr/projects'));
+
+    expect(service.arrivedFromHome()).toBeFalse();
   });
 });

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router, provideRouter } from '@angular/router';
 
 import { AppLanguage } from '@common/enums/app-language.enum';
 import { LanguageService } from '../../../services/language';
@@ -10,9 +9,9 @@ describe('LanguageSwitcher', () => {
   let fixture: ComponentFixture<LanguageSwitcher>;
 
   beforeEach(async () => {
+    localStorage.clear();
     await TestBed.configureTestingModule({
-      imports: [LanguageSwitcher],
-      providers: [provideRouter([])]
+      imports: [LanguageSwitcher]
     })
     .compileComponents();
 
@@ -25,25 +24,28 @@ describe('LanguageSwitcher', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should select a language and navigate to its experiences page', () => {
-    const router = TestBed.inject(Router);
-    const navigate = spyOn(router, 'navigate').and.resolveTo(true);
+  it('should emit the chosen language and highlight it without switching yet', () => {
+    const languageService = TestBed.inject(LanguageService);
+    languageService.setLanguage(AppLanguage.EN);
+    const selected: AppLanguage[] = [];
+    component.languageSelected.subscribe((language) => selected.push(language));
 
     component.selectLanguage(AppLanguage.FR);
 
-    expect(TestBed.inject(LanguageService).currentLanguage()).toBe(AppLanguage.FR);
-    expect(navigate).toHaveBeenCalledOnceWith(['/', AppLanguage.FR, 'experiences']);
+    expect(selected).toEqual([AppLanguage.FR]);
     expect(component.isSelected(AppLanguage.FR)).toBeTrue();
+    expect(component.isSelected(AppLanguage.EN)).toBeFalse();
+    expect(languageService.currentLanguage()).toBe(AppLanguage.EN);
   });
 
   it('should ignore an empty language code', () => {
-    const router = TestBed.inject(Router);
-    const navigate = spyOn(router, 'navigate');
+    const selected: AppLanguage[] = [];
+    component.languageSelected.subscribe((language) => selected.push(language));
     spyOn(console, 'warn');
 
     component.selectLanguage('' as AppLanguage);
 
-    expect(navigate).not.toHaveBeenCalled();
+    expect(selected).toEqual([]);
     expect(console.warn).toHaveBeenCalled();
   });
 });

@@ -7,13 +7,19 @@ export interface AppRouteState {
   showSiteHeader?: boolean;
 }
 
+// Navigation state flag set by the home page after its exit animation, so
+// the next page can play its arrival animation.
+export const ARRIVED_FROM_HOME_STATE = 'arrivedFromHome';
+
 @Injectable({ providedIn: 'root' })
 export class AppStateService {
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
   private readonly siteHeaderVisibleState = signal(true);
+  private readonly arrivedFromHomeState = signal(false);
 
   readonly siteHeaderVisible = this.siteHeaderVisibleState.asReadonly();
+  readonly arrivedFromHome = this.arrivedFromHomeState.asReadonly();
 
   constructor() {
     this.updateRouteState();
@@ -31,6 +37,9 @@ export class AppStateService {
     const state = route.data as AppRouteState;
 
     this.siteHeaderVisibleState.set(state.showSiteHeader !== false);
+    this.arrivedFromHomeState.set(
+      this.router.lastSuccessfulNavigation?.extras.state?.[ARRIVED_FROM_HOME_STATE] === true
+    );
   }
 
   private getActiveRoute(route: ActivatedRouteSnapshot): ActivatedRouteSnapshot {

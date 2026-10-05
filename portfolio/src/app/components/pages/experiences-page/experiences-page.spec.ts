@@ -1,8 +1,10 @@
+import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { Experience } from '../../../../../../Common/models/experience.model';
 import { ExperiencesApi } from '../../../services/api/experiences-api';
+import { AppStateService } from '../../../services/app-state';
 import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { ExperiencesPage } from './experiences-page';
 
@@ -160,5 +162,36 @@ describe('ExperiencesPage', () => {
     );
 
     expect(terms.some((term) => term?.includes('Docker'))).toBeTrue();
+  });
+});
+
+describe('ExperiencesPage arrival', () => {
+  async function render(arrivedFromHome: boolean): Promise<HTMLElement> {
+    await TestBed.configureTestingModule({
+      imports: [ExperiencesPage],
+      providers: [
+        ...provideTestI18n(),
+        { provide: ExperiencesApi, useValue: { getExperiences: () => of(experiences) } },
+        { provide: AppStateService, useValue: { arrivedFromHome: signal(arrivedFromHome) } }
+      ]
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(ExperiencesPage);
+    fixture.detectChanges();
+
+    return fixture.nativeElement.querySelector('.experiences-page');
+  }
+
+  it('should fade the page in after the home page exit', async () => {
+    const page = await render(true);
+
+    expect(page.classList).toContain('experiences-page--arriving');
+    expect(getComputedStyle(page).animationName).toContain('experiences-page-arrive');
+  });
+
+  it('should not fade the page in for other navigations', async () => {
+    const page = await render(false);
+
+    expect(page.classList).not.toContain('experiences-page--arriving');
   });
 });

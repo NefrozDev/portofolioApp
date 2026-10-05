@@ -1,3 +1,20 @@
 .app__site-header--hidden {
   display: none;
 }
+
+// After the home page exit, the navigation fades in with the next page.
+.app__navigation--arriving {
+  animation: app-navigation-arrive 0.6s ease-out both;
+}
+
+@keyframes app-navigation-arrive {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app__navigation--arriving {
+    animation: none;
+  }
+}

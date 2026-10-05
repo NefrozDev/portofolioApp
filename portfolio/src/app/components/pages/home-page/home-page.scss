@@ -198,9 +198,70 @@
   animation: home-languages-enter 1s 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* =========================
+   EXIT (reverse of the entrance, then the background fades out;
+   HomePage.EXIT_DURATION_MS waits for the end)
+   ========================= */
+
+.home--leaving {
+  --home-leave: 0.6s cubic-bezier(0.7, 0, 0.84, 0) both;
+  pointer-events: none;
+}
+
+.home--leaving::before {
+  opacity: 1;
+  animation: home-background-fade-out 0.45s 0.85s ease-in forwards;
+}
+
+.home--leaving .home__languages {
+  animation: home-languages-leave var(--home-leave);
+}
+
+.home--leaving .home__description-row {
+  animation: home-content-leave var(--home-leave);
+  animation-delay: 0.08s;
+}
+
+.home--leaving .home__headline {
+  animation: home-content-leave var(--home-leave);
+  animation-delay: 0.16s;
+}
+
+.home--leaving .home__image {
+  animation: home-image-leave var(--home-leave);
+  animation-delay: 0.24s;
+}
+
 @keyframes home-background-reveal {
   to {
     opacity: 1;
+  }
+}
+
+@keyframes home-background-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes home-image-leave {
+  to {
+    opacity: 0;
+    transform: translateX(-105vw);
+  }
+}
+
+@keyframes home-content-leave {
+  to {
+    opacity: 0;
+    transform: translateY(-105vh);
+  }
+}
+
+@keyframes home-languages-leave {
+  to {
+    opacity: 0;
+    transform: translateY(105vh);
   }
 }
 
@@ -245,7 +306,12 @@
   .home__image,
   .home__headline,
   .home__description-row,
-  .home__languages {
+  .home__languages,
+  .home--leaving::before,
+  .home--leaving .home__image,
+  .home--leaving .home__headline,
+  .home--leaving .home__description-row,
+  .home--leaving .home__languages {
     animation: none;
     opacity: 1;
   }
@@ -409,6 +475,16 @@
     max-width: 24rem;
     margin-top: 0;
     z-index: 3;
+  }
+
+  .home--leaving .home__subtitle-row {
+    animation: home-content-leave var(--home-leave);
+    animation-delay: 0.12s;
+  }
+
+  .home--leaving .home__name {
+    animation: home-content-leave var(--home-leave);
+    animation-delay: 0.18s;
   }
 }
 
