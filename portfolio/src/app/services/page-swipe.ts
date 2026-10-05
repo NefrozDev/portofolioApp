@@ -7,7 +7,8 @@ import {
   PLATFORM_ID,
   afterNextRender,
   createComponent,
-  inject
+  inject,
+  signal
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import {
@@ -65,6 +66,13 @@ export class PageSwipeService {
   private viewport?: HTMLElement;
   private page?: HTMLElement;
   private swipe?: Swipe;
+  private readonly swipingState = signal(false);
+
+  /**
+   * True from just before the page changes until the new page has settled.
+   * Pages start their entrance animations once it is false again.
+   */
+  readonly isSwiping = this.swipingState.asReadonly();
 
   /** `page` wraps the router outlet; `viewport` clips the panels around it. */
   attach(viewport: HTMLElement, page: HTMLElement): void {
@@ -139,6 +147,8 @@ export class PageSwipeService {
     track.setAttribute('aria-hidden', 'true');
     track.inert = true;
     track.style.height = `${page.offsetHeight}px`;
+    // The copy is a still image of the page: its animations stay off.
+    outgoingPage.classList.add('page-swipe__snapshot');
     track.append(this.toPanel(outgoingPage, 0));
 
     for (let step = 1; step < steps; step++) {
@@ -153,9 +163,12 @@ export class PageSwipeService {
     }
 
     this.viewport!.append(track);
-    // Keep the incoming page off-screen until the slide starts.
+    // Keep the incoming page off-screen until the slide starts, with its CSS
+    // animations paused until it has settled.
     page.style.transform = `translateX(${direction * steps * 100}%)`;
+    page.classList.add('page-swipe__incoming');
     this.swipe = { track, skeletons, offset: direction * steps, steps, animations: [] };
+    this.swipingState.set(true);
   }
 
   private playAfterRender(): void {
@@ -213,6 +226,8 @@ export class PageSwipeService {
     swipe.track.remove();
     swipe.skeletons.forEach((skeleton) => skeleton.destroy());
     this.page!.style.transform = '';
+    this.page!.classList.remove('page-swipe__incoming');
+    this.swipingState.set(false);
   }
 
   private toPanel(element: HTMLElement, offset: number): HTMLElement {

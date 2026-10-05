@@ -1,7 +1,7 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
-import { distinctUntilChanged } from 'rxjs';
+import { Subscription, distinctUntilChanged, filter, take } from 'rxjs';
 import { SectionHero } from '../../shared/section-hero/section-hero';
 import { ExperienceCard } from '../../shared/experience-card/experience-card';
 import { ExperienceLoader } from '../../shared/experience-loader/experience-loader';
@@ -13,6 +13,7 @@ import { Experience } from '@common/models/experience.model';
 import { getGlossaryInfoKey } from '@common/constants/glossary';
 import { ExperiencesApi } from '../../../services/api/experiences-api';
 import { AppStateService } from '../../../services/app-state';
+import { PageSwipeService } from '../../../services/page-swipe';
 import { LanguageService } from '../../../services/language';
 
 @Component({
@@ -34,6 +35,12 @@ export class ExperiencesPage {
   private static readonly FIRST_EXPERIENCE_OPEN_DELAY_MS = 1000;
 
   readonly appState = inject(AppStateService);
+  private readonly pageSwipe = inject(PageSwipeService);
+  private readonly swipeSettled$ = toObservable(this.pageSwipe.isSwiping).pipe(
+    filter((isSwiping) => !isSwiping),
+    take(1)
+  );
+  private swipeWait: Subscription | undefined;
   readonly experiences = signal<Experience[]>([]);
   readonly isLoading = signal<boolean>(true);
   readonly loadError = signal<string | null>(null);
@@ -188,6 +195,19 @@ export class ExperiencesPage {
     }
 
     this.isEntranceAnimating.set(true);
+
+    // While the page is still sliding in, the stack holds its first frame
+    // (its CSS animation is paused) and the timers wait for the swipe to end.
+    if (this.pageSwipe.isSwiping()) {
+      this.swipeWait = this.swipeSettled$.subscribe(() => this.startEntranceTimers());
+      return;
+    }
+
+    this.startEntranceTimers();
+  }
+
+  private startEntranceTimers(): void {
+    this.swipeWait = undefined;
     this.firstExperienceTimer = setTimeout(
       () => this.openFirstExperience(),
       ExperiencesPage.FIRST_EXPERIENCE_OPEN_DELAY_MS
@@ -217,6 +237,9 @@ export class ExperiencesPage {
   }
 
   private cancelEntranceAnimation(): void {
+    this.swipeWait?.unsubscribe();
+    this.swipeWait = undefined;
+
     if (this.entranceTimer) {
       clearTimeout(this.entranceTimer);
       this.entranceTimer = undefined;

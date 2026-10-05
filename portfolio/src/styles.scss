@@ -568,6 +568,21 @@ body::-webkit-scrollbar-button {
   pointer-events: none;
 }
 
+// Entrance animations of the incoming page wait for the swipe to finish,
+// and the copy of the outgoing page stays still. !important is needed to
+// override the `animation` shorthand set in component styles.
+.page-swipe__incoming *,
+.page-swipe__incoming *::before,
+.page-swipe__incoming *::after {
+  animation-play-state: paused !important;
+}
+
+.page-swipe__snapshot *,
+.page-swipe__snapshot *::before,
+.page-swipe__snapshot *::after {
+  animation: none !important;
+}
+
 .page-swipe__panel {
   position: absolute;
   top: 0;

@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { Experience } from '../../../../../../Common/models/experience.model';
 import { ExperiencesApi } from '../../../services/api/experiences-api';
 import { AppStateService } from '../../../services/app-state';
+import { PageSwipeService } from '../../../services/page-swipe';
 import { provideTestI18n } from '../../../testing/provide-test-i18n';
 import { ExperiencesPage } from './experiences-page';
 
@@ -162,6 +163,41 @@ describe('ExperiencesPage', () => {
     );
 
     expect(terms.some((term) => term?.includes('Docker'))).toBeTrue();
+  });
+});
+
+describe('ExperiencesPage during a page swipe', () => {
+  it('should hold the card stack until the page has finished sliding in', async () => {
+    const isSwiping = signal(true);
+    await TestBed.configureTestingModule({
+      imports: [ExperiencesPage],
+      providers: [
+        ...provideTestI18n(),
+        { provide: ExperiencesApi, useValue: { getExperiences: () => of(experiences) } },
+        { provide: PageSwipeService, useValue: { isSwiping } }
+      ]
+    }).compileComponents();
+    jasmine.clock().install();
+
+    try {
+      const fixture = TestBed.createComponent(ExperiencesPage);
+      const component = fixture.componentInstance;
+      fixture.detectChanges();
+
+      expect(component.isEntranceAnimating()).toBeTrue();
+      jasmine.clock().tick(ExperiencesPage['FIRST_EXPERIENCE_OPEN_DELAY_MS']);
+      expect(component.experiences()[0].isExpanded).toBeFalse();
+
+      isSwiping.set(false);
+      fixture.detectChanges();
+      jasmine.clock().tick(999);
+      expect(component.experiences()[0].isExpanded).toBeFalse();
+
+      jasmine.clock().tick(1);
+      expect(component.experiences()[0].isExpanded).toBeTrue();
+    } finally {
+      jasmine.clock().uninstall();
+    }
   });
 });
 

@@ -76,6 +76,33 @@ describe('PageSwipeService', () => {
     expect(page.getAnimations().length).toBe(0);
   });
 
+  it('should hold the incoming page animations until the swipe has finished', async () => {
+    const service = TestBed.inject(PageSwipeService);
+    const glow = document.createElement('span');
+    glow.style.animation = 'page-skeleton-shimmer 1s infinite';
+    page.append(glow);
+
+    await harness.navigateByUrl('/experiences');
+    expect(service.isSwiping()).toBeFalse();
+
+    await harness.navigateByUrl('/contact');
+    TestBed.tick();
+
+    expect(service.isSwiping()).toBeTrue();
+    expect(page.classList).toContain('page-swipe__incoming');
+    expect(getComputedStyle(glow).animationPlayState).toBe('paused');
+    expect(panels()[0].classList).toContain('page-swipe__snapshot');
+    expect(getComputedStyle(panels()[0].querySelector('span')!).animationName).toBe('none');
+
+    track()!.getAnimations().forEach((animation) => animation.finish());
+    page.getAnimations().forEach((animation) => animation.finish());
+    await new Promise((resolve) => setTimeout(resolve));
+
+    expect(service.isSwiping()).toBeFalse();
+    expect(page.classList).not.toContain('page-swipe__incoming');
+    expect(getComputedStyle(glow).animationPlayState).toBe('running');
+  });
+
   it('should slide the other way when going back', async () => {
     await harness.navigateByUrl('/contact');
     await harness.navigateByUrl('/projects');
