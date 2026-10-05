@@ -107,6 +107,16 @@
           </p>
         }
 
+        <!-- Spam trap: hidden from people, often filled in by bots. -->
+        <div class="contact-page__trap" aria-hidden="true">
+          <input
+            type="text"
+            formControlName="website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
         <button
           class="contact-page__submit app-button app-button--primary"
           type="submit"

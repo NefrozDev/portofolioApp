@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { Contact } from '@common/models/contact.model';
+import { ContactSubmission } from '@common/models/contact.model';
 import { ContactApi } from '../../../services/api/contact-api';
 import { ContactLinks } from '../../shared/contact-links/contact-links';
 
@@ -28,7 +28,8 @@ export class ContactPage {
       name: ['', [Validators.required, Validators.maxLength(100)]],
       email: ['', [Validators.email]],
       phone: [''],
-      message: ['', [Validators.required, Validators.maxLength(2000)]]
+      message: ['', [Validators.required, Validators.maxLength(2000)]],
+      website: ['']
     });
 
     this.contactForm.valueChanges.subscribe(() => {
@@ -69,11 +70,12 @@ export class ContactPage {
       this.submitErrorMessage.set(null);
 
       const formValue = this.contactForm.getRawValue();
-      const payload: Contact = {
+      const payload: ContactSubmission = {
         name: formValue.name ?? '',
         ...(formValue.email ? { email: formValue.email } : {}),
         ...(formValue.phone ? { phone: formValue.phone } : {}),
-        message: formValue.message ?? ''
+        message: formValue.message ?? '',
+        ...(formValue.website ? { website: formValue.website } : {})
       };
 
       this.contactApi.sendMessage(payload).subscribe({
@@ -82,7 +84,8 @@ export class ContactPage {
             name: '',
             email: '',
             phone: '',
-            message: ''
+            message: '',
+            website: ''
           });
           this.submitSuccessMessage.set('contact.feedback.success');
           this.isSubmitting.set(false);

@@ -158,6 +158,53 @@ test('POST /api/contact reports storage failures without exposing details', asyn
   }
 });
 
+test('POST /api/contact silently drops submissions that fill the spam trap', async () => {
+  let stored = false;
+  let delivered = false;
+  const app = createTestApp({
+    deliver: async () => {
+      delivered = true;
+    },
+    repository: createRepository({
+      create: async () => {
+        stored = true;
+        return 'stored-id';
+      }
+    })
+  });
+
+  const response = await request(app).post('/api/contact').send({
+    name: 'Bot',
+    message: 'Buy now.',
+    website: 'https://spam.example'
+  });
+
+  assert.equal(response.status, 200);
+  assert.equal(stored, false);
+  assert.equal(delivered, false);
+});
+
+test('POST /api/contact accepts an empty spam trap', async () => {
+  let stored = false;
+  const app = createTestApp({
+    repository: createRepository({
+      create: async () => {
+        stored = true;
+        return 'stored-id';
+      }
+    })
+  });
+
+  const response = await request(app).post('/api/contact').send({
+    name: 'Test User',
+    message: 'Hello from test.',
+    website: '  '
+  });
+
+  assert.equal(response.status, 200);
+  assert.equal(stored, true);
+});
+
 test('POST /api/contact returns 429 when the IP submission limit is reached', async () => {
   const originalError = console.error;
   console.error = () => {};

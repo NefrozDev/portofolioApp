@@ -3,18 +3,10 @@ import { Request } from 'express';
 
 class IpHashConfigurationError extends Error {}
 
+// request.ip follows the app's 'trust proxy' setting, so X-Forwarded-For
+// is only used when it was written by a trusted proxy.
 function getClientIp(request: Request): string | undefined {
-  const forwardedFor = request.headers['x-forwarded-for'];
-
-  if (typeof forwardedFor === 'string') {
-    return forwardedFor.split(',')[0]?.trim() || undefined;
-  }
-
-  if (Array.isArray(forwardedFor)) {
-    return forwardedFor[0]?.split(',')[0]?.trim() || undefined;
-  }
-
-  return request.socket.remoteAddress;
+  return request.ip || undefined;
 }
 
 function hashClientIp(ipAddress: string | undefined): string | undefined {

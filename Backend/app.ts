@@ -32,6 +32,7 @@ function createApp(dependencies: AppDependencies = {}) {
   const repository = dependencies.contactRepository ?? contactRepository;
 
   app.disable('x-powered-by');
+  app.set('trust proxy', env.trustProxyHops);
   app.use(cors({
     origin: env.isVercel || env.hasConfiguredOrigins
       ? env.allowedOrigins

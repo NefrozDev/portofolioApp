@@ -1,7 +1,36 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import express from 'express';
+import request from 'supertest';
 
-import { hashClientIp } from './client-ip';
+import { getClientIp, hashClientIp } from './client-ip';
+
+function createIpApp(trustProxyHops: number) {
+  const app = express();
+  app.set('trust proxy', trustProxyHops);
+  app.get('/', (req, res) => {
+    res.json({ ip: getClientIp(req) });
+  });
+
+  return app;
+}
+
+test('getClientIp ignores X-Forwarded-For when no proxy is trusted', async () => {
+  const response = await request(createIpApp(0))
+    .get('/')
+    .set('X-Forwarded-For', '198.51.100.7');
+
+  assert.notEqual(response.body.ip, '198.51.100.7');
+  assert.match(response.body.ip, /127\.0\.0\.1|::1/);
+});
+
+test('getClientIp ignores addresses prepended by the visitor behind a trusted proxy', async () => {
+  const response = await request(createIpApp(1))
+    .get('/')
+    .set('X-Forwarded-For', '198.51.100.7, 203.0.113.42');
+
+  assert.equal(response.body.ip, '203.0.113.42');
+});
 
 test('hashClientIp creates a stable keyed hash without retaining the address', () => {
   const originalSecret = process.env['IP_HASH_SECRET'];

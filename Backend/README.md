@@ -37,6 +37,10 @@ origins.
 Use at least 32 random bytes for `IP_HASH_SECRET` and keep it stable; changing
 it resets the identity used by the submission limiter. The API creates the
 `contact_messages` table and its rate-limit index on the first submission.
+The limiter identifies visitors by the IP address reported by trusted
+proxies only. Vercel counts as one proxy by default; when hosting elsewhere,
+set `TRUST_PROXY_HOPS` to the number of reverse proxies in front of the API
+(`0` when it is exposed directly).
 
 After deployment, replace `apiUrl` in
 `portfolio/src/environments/environment.production.ts` with

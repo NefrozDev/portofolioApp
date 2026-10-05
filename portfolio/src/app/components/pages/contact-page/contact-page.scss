@@ -13,6 +13,14 @@
     linear-gradient(243deg, #020617 0%, #0f172a 100%);
 }
 
+.contact-page__trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .contact-page__container {
   width: min(100% - 4rem, 86rem);
   margin: 0 auto;

@@ -19,6 +19,16 @@ import {
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function isSpamTrapFilled(payload: unknown): boolean {
+  if (!payload || typeof payload !== 'object') {
+    return false;
+  }
+
+  const website = (payload as Record<string, unknown>)['website'];
+
+  return typeof website === 'string' && website.trim() !== '';
+}
+
 function parseContact(payload: unknown): Contact | undefined {
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
     return undefined;
@@ -72,6 +82,16 @@ function createContactRouter(dependencies: ContactRouterDependencies = {}) {
   contactRouter.post('/', async (req, res) => {
     const language = typeof req.query.lang === 'string' ? req.query.lang : undefined;
     const translations = getAppTranslations(language);
+
+    // Answer bots as if the message was sent so they do not adapt.
+    if (isSpamTrapFilled(req.body)) {
+      res.status(200).json({
+        message: translations.contact.feedback.success
+      });
+
+      return;
+    }
+
     const contact = parseContact(req.body);
 
     if (!contact) {
@@ -140,5 +160,6 @@ const contactRouter = createContactRouter();
 export {
   contactRouter,
   createContactRouter,
+  isSpamTrapFilled,
   parseContact
 };

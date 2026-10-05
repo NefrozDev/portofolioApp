@@ -220,7 +220,8 @@ describe('ContactPage', () => {
       name: ' Steven ',
       email: 'steven@example.com',
       phone: '+32 123',
-      message: 'Hello'
+      message: 'Hello',
+      website: ''
     });
 
     component.onSubmit();
@@ -238,7 +239,8 @@ describe('ContactPage', () => {
       name: '',
       email: '',
       phone: '',
-      message: ''
+      message: '',
+      website: ''
     });
   });
 
@@ -247,7 +249,8 @@ describe('ContactPage', () => {
       name: 'Steven',
       email: '',
       phone: '',
-      message: 'Hello'
+      message: 'Hello',
+      website: ''
     });
 
     component.onSubmit();
@@ -256,6 +259,35 @@ describe('ContactPage', () => {
       name: 'Steven',
       message: 'Hello'
     });
+  });
+
+  it('should send the spam trap value so the API can drop bot submissions', () => {
+    component.contactForm.setValue({
+      name: 'Bot',
+      email: '',
+      phone: '',
+      message: 'Buy now.',
+      website: 'https://spam.example'
+    });
+
+    component.onSubmit();
+
+    expect(contactApi.sendMessage).toHaveBeenCalledOnceWith({
+      name: 'Bot',
+      message: 'Buy now.',
+      website: 'https://spam.example'
+    });
+  });
+
+  it('should hide the spam trap from people and assistive technology', () => {
+    const trap = (fixture.nativeElement as HTMLElement).querySelector<HTMLElement>(
+      '.contact-page__trap'
+    );
+    const trapInput = trap?.querySelector<HTMLInputElement>('input');
+
+    expect(trap?.getAttribute('aria-hidden')).toBe('true');
+    expect(trapInput?.tabIndex).toBe(-1);
+    expect(trap?.getBoundingClientRect().right).toBeLessThan(0);
   });
 
   it('should expose a localized error when submission fails', () => {
