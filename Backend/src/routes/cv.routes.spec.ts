@@ -64,6 +64,61 @@ test('GET /api/cv should return an error when PDF generation fails', async () =>
   }
 });
 
+test('GET /api/cv should generate each language and format only once', async () => {
+  const generatedPdfLanguages: (string | undefined)[] = [];
+  const generatedDocxLanguages: (string | undefined)[] = [];
+  const app = createApp({
+    generateCvPdf: async (language?: string) => {
+      generatedPdfLanguages.push(language);
+      return Buffer.from(`%PDF-${language}`);
+    },
+    generateCvDocx: async (language?: string) => {
+      generatedDocxLanguages.push(language);
+      return Buffer.from(`PK-${language}`);
+    }
+  });
+
+  for (const query of ['?lang=fr', '?lang=fr', '?lang=de', '?lang=fr&format=docx']) {
+    const response = await request(app).get(`/api/cv${query}`);
+
+    assert.equal(response.status, 200);
+  }
+
+  const cachedResponse = await request(app).get('/api/cv?lang=fr');
+
+  assert.deepEqual(cachedResponse.body, Buffer.from('%PDF-fr'));
+  assert.deepEqual(generatedPdfLanguages, ['fr', 'de']);
+  assert.deepEqual(generatedDocxLanguages, ['fr']);
+});
+
+test('GET /api/cv should retry generation after a failure', async () => {
+  let attempts = 0;
+  const app = createApp({
+    generateCvPdf: async () => {
+      attempts += 1;
+
+      if (attempts === 1) {
+        throw new Error('PDF failure');
+      }
+
+      return Buffer.from('%PDF-generated-test');
+    }
+  });
+  const originalConsoleError = console.error;
+  console.error = () => undefined;
+
+  try {
+    const failedResponse = await request(app).get('/api/cv');
+    const retriedResponse = await request(app).get('/api/cv');
+
+    assert.equal(failedResponse.status, 500);
+    assert.equal(retriedResponse.status, 200);
+    assert.equal(attempts, 2);
+  } finally {
+    console.error = originalConsoleError;
+  }
+});
+
 test('GET /api/cv?format=docx should download a Word CV in the requested language', async (context) => {
   context.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 8, 28) });
   let receivedLanguage: string | undefined;

@@ -10,6 +10,22 @@ function createCvRouter(
   generateDocx: CvDocxGenerator = createCvDocx
 ): Router {
   const router = Router();
+  // The CV only depends on the language and format, so each document is
+  // generated once per process and reused until the next deployment.
+  const documents = new Map<string, Promise<Buffer>>();
+
+  function getDocument(language: string, isWordDownload: boolean): Promise<Buffer> {
+    const key = `${language}:${isWordDownload ? 'docx' : 'pdf'}`;
+    let document = documents.get(key);
+
+    if (!document) {
+      document = isWordDownload ? generateDocx(language) : generatePdf(language);
+      documents.set(key, document);
+      document.catch(() => documents.delete(key));
+    }
+
+    return document;
+  }
 
   router.get('/', async (req, res) => {
     const language = toSupportedLanguage(
@@ -18,9 +34,7 @@ function createCvRouter(
     const isWordDownload = req.query.format === 'docx';
 
     try {
-      const document = isWordDownload
-        ? await generateDocx(language)
-        : await generatePdf(language);
+      const document = await getDocument(language, isWordDownload);
 
       res
         .status(200)
