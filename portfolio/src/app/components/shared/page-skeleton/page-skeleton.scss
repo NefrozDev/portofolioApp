@@ -1,0 +1,349 @@
+// Sizes follow the real pages (section-hero, filter-rail, project-sidebar,
+// project-detail) so the placeholder lines up with the page it stands for.
+
+:host {
+  display: block;
+}
+
+.page-skeleton,
+.page-skeleton .page-content {
+  height: 100%;
+}
+
+.page-skeleton__main {
+  height: 100%;
+  padding: var(--page-top-spacing) 0 1.5rem;
+}
+
+.page-skeleton__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.page-skeleton__shape {
+  display: block;
+  flex: 0 0 auto;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    100deg,
+    rgba(79, 140, 255, 0.1) 20%,
+    rgba(123, 97, 255, 0.3) 50%,
+    rgba(79, 140, 255, 0.1) 80%
+  );
+  background-size: 220% 100%;
+  animation: page-skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+// Hero
+.page-skeleton__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 7.625rem;
+  margin-bottom: 3.5rem;
+}
+
+.page-skeleton__title {
+  width: 12.3rem;
+  height: 3.3rem;
+  border-radius: 0.75rem;
+}
+
+.page-skeleton__subtitle {
+  width: 13rem;
+  height: 2.1rem;
+  margin-top: 1rem;
+  border-radius: 0.6rem;
+}
+
+.page-skeleton__line {
+  width: 20rem;
+  height: 0.25rem;
+  margin-top: auto;
+}
+
+// Filter rails
+.page-skeleton__filters {
+  display: grid;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.page-skeleton__rail {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  height: 2.5rem;
+}
+
+.page-skeleton__rail-label {
+  width: 6.5rem;
+  height: 1.75rem;
+}
+
+.page-skeleton__rail-viewport {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.page-skeleton__arrow {
+  width: 2rem;
+  height: 2rem;
+}
+
+.page-skeleton__chips {
+  display: flex;
+  flex: 1;
+  gap: 0.55rem;
+  min-width: 0;
+  padding: 0 1rem;
+  overflow: hidden;
+}
+
+.page-skeleton__chip {
+  width: var(--chip-width);
+  height: 2rem;
+}
+
+// Project list and selected project
+.page-skeleton__projects {
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  flex: 1;
+  gap: 1rem;
+  min-height: 0;
+}
+
+.page-skeleton__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 0;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.page-skeleton__item {
+  display: grid;
+  flex: 0 0 auto;
+  gap: 0.5rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.page-skeleton__item-title {
+  height: 1.1rem;
+}
+
+.page-skeleton__item-meta {
+  height: 0.85rem;
+}
+
+.page-skeleton__detail {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.9fr) minmax(20rem, 1.1fr);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page-skeleton__preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border-right: 1px solid rgba(138, 180, 255, 0.1);
+  background: radial-gradient(circle at 30% 30%, rgba(79, 140, 255, 0.12), transparent 55%);
+}
+
+.page-skeleton__preview-icon {
+  width: 7rem;
+  height: 4rem;
+  border-radius: 1rem;
+}
+
+.page-skeleton__preview-label {
+  width: 4.5rem;
+  height: 1.1rem;
+}
+
+.page-skeleton__detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+  padding: clamp(1.1rem, 2.5vh, 1.5rem);
+}
+
+.page-skeleton__detail-title {
+  width: 10rem;
+  height: 1.95rem;
+  border-radius: 0.6rem;
+}
+
+.page-skeleton__detail-description {
+  width: min(26rem, 85%);
+  height: 1.1rem;
+}
+
+.page-skeleton__tag-group {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.page-skeleton__tag-label {
+  width: 6rem;
+  height: 0.875rem;
+}
+
+.page-skeleton__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.page-skeleton__tag {
+  height: 1.75rem;
+}
+
+.page-skeleton__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.page-skeleton__action {
+  width: 9.1rem;
+  height: 2.875rem;
+  border-radius: 0.75rem;
+}
+
+.page-skeleton__action--primary {
+  width: 8.2rem;
+}
+
+// Pages without a detailed placeholder
+.page-skeleton__card {
+  flex: 1;
+  border-radius: 1rem;
+}
+
+@keyframes page-skeleton-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-skeleton__shape {
+    animation: none;
+  }
+}
+
+// Same breakpoints as ProjectsPage: single column, horizontal project list.
+@media (max-width: 64rem) {
+  .page-skeleton__projects {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .page-skeleton__sidebar {
+    flex-direction: row;
+  }
+
+  .page-skeleton__item {
+    width: 13rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .page-skeleton__main {
+    padding-top: var(--page-top-spacing-mobile);
+  }
+
+  .page-skeleton__hero {
+    height: 8.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-skeleton__title {
+    width: 9.25rem;
+    height: 2.5rem;
+  }
+
+  .page-skeleton__subtitle {
+    width: 9.4rem;
+    height: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .page-skeleton__line {
+    width: 100%;
+  }
+
+  .page-skeleton__filters {
+    gap: 0.65rem;
+  }
+
+  .page-skeleton__rail {
+    display: grid;
+    gap: 0.65rem;
+    height: auto;
+  }
+
+  .page-skeleton__rail-label {
+    width: 5rem;
+    height: 1.625rem;
+  }
+
+  .page-skeleton__rail-viewport {
+    border: 1px solid rgba(138, 180, 255, 0.12);
+    border-radius: 0.9rem;
+    background: rgba(15, 23, 42, 0.24);
+  }
+
+  .page-skeleton__arrow {
+    display: none;
+  }
+
+  .page-skeleton__chips {
+    display: grid;
+    grid-auto-columns: 5rem;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, 1.9rem);
+    gap: 0.45rem 0.4rem;
+    padding: 0.55rem;
+  }
+
+  .page-skeleton__chip {
+    width: auto;
+    height: 1.9rem;
+  }
+
+  .page-skeleton__detail {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 12.8rem auto;
+  }
+
+  .page-skeleton__preview {
+    border-right: 0;
+    border-bottom: 1px solid rgba(138, 180, 255, 0.1);
+  }
+
+  .page-skeleton__detail-description {
+    width: 100%;
+    height: 2.9rem;
+    border-radius: 0.6rem;
+  }
+}

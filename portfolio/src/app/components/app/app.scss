@@ -18,3 +18,9 @@
     animation: none;
   }
 }
+
+// Clips the swipe panels sliding in and out on each side of the page.
+.app__viewport {
+  position: relative;
+  overflow-x: clip;
+}

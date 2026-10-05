@@ -1,0 +1,77 @@
+<section class="page-shell page-skeleton">
+  <div class="page-content">
+    <div class="page-skeleton__main">
+      <div class="container page-skeleton__container">
+        <div class="page-skeleton__hero">
+          <span class="page-skeleton__shape page-skeleton__title"></span>
+          <span class="page-skeleton__shape page-skeleton__subtitle"></span>
+          <span class="page-skeleton__shape page-skeleton__line"></span>
+        </div>
+
+        @switch (page()) {
+          @case ('projects') {
+            <!-- Mirrors ProjectsPage: two filter rails, the project list and the selected project. -->
+            <div class="page-skeleton__filters">
+              @for (rail of filterRails; track $index) {
+                <div class="page-skeleton__rail">
+                  <span class="page-skeleton__shape page-skeleton__rail-label"></span>
+                  <div class="page-skeleton__rail-viewport">
+                    <span class="page-skeleton__shape page-skeleton__arrow"></span>
+                    <div class="page-skeleton__chips">
+                      @for (width of rail; track $index) {
+                        <span class="page-skeleton__shape page-skeleton__chip" [style.--chip-width]="width + 'rem'"></span>
+                      }
+                    </div>
+                    <span class="page-skeleton__shape page-skeleton__arrow"></span>
+                  </div>
+                </div>
+              }
+            </div>
+
+            <div class="page-skeleton__projects">
+              <div class="page-skeleton__sidebar glass-card">
+                @for (item of projectItems; track $index) {
+                  <div class="page-skeleton__item">
+                    <span class="page-skeleton__shape page-skeleton__item-title" [style.width.rem]="item[0]"></span>
+                    <span class="page-skeleton__shape page-skeleton__item-meta" [style.width.rem]="item[1]"></span>
+                  </div>
+                }
+              </div>
+
+              <div class="page-skeleton__detail glass-card">
+                <div class="page-skeleton__preview">
+                  <span class="page-skeleton__shape page-skeleton__preview-icon"></span>
+                  <span class="page-skeleton__shape page-skeleton__preview-label"></span>
+                </div>
+
+                <div class="page-skeleton__detail-content">
+                  <span class="page-skeleton__shape page-skeleton__detail-title"></span>
+                  <span class="page-skeleton__shape page-skeleton__detail-description"></span>
+
+                  @for (group of detailTagGroups; track $index) {
+                    <div class="page-skeleton__tag-group">
+                      <span class="page-skeleton__shape page-skeleton__tag-label"></span>
+                      <div class="page-skeleton__tags">
+                        @for (width of group; track $index) {
+                          <span class="page-skeleton__shape page-skeleton__tag" [style.width.rem]="width"></span>
+                        }
+                      </div>
+                    </div>
+                  }
+
+                  <div class="page-skeleton__actions">
+                    <span class="page-skeleton__shape page-skeleton__action"></span>
+                    <span class="page-skeleton__shape page-skeleton__action page-skeleton__action--primary"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+          @default {
+            <span class="page-skeleton__shape page-skeleton__card"></span>
+          }
+        }
+      </div>
+    </div>
+  </div>
+</section>

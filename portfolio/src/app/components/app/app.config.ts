@@ -5,7 +5,11 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection
 } from '@angular/core';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import {
+  REMOVE_STYLES_ON_COMPONENT_DESTROY,
+  provideClientHydration,
+  withEventReplay
+} from '@angular/platform-browser';
 import { provideRouter, TitleStrategy } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideTranslateService } from '@ngx-translate/core';
@@ -23,6 +27,9 @@ export const appConfig: ApplicationConfig = {
     // Reuses the prerendered page and the API data it was built with.
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
+    // The page swipe slides a copy of the page being left, which still needs
+    // that page's component styles after the router destroys it.
+    { provide: REMOVE_STYLES_ON_COMPONENT_DESTROY, useValue: false },
     ...provideTranslateService({
       fallbackLang: AppLanguage.EN,
       lang: AppLanguage.EN

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { REMOVE_STYLES_ON_COMPONENT_DESTROY } from '@angular/platform-browser';
 import { Router, TitleStrategy } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -28,5 +29,9 @@ describe('appConfig', () => {
 
   it('should provide localized route titles', () => {
     expect(TestBed.inject(TitleStrategy)).toBeTruthy();
+  });
+
+  it('should keep component styles for the copy of the page being swiped away', () => {
+    expect(TestBed.inject(REMOVE_STYLES_ON_COMPONENT_DESTROY)).toBeFalse();
   });
 });

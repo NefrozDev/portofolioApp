@@ -554,3 +554,24 @@ html::-webkit-scrollbar-button,
 body::-webkit-scrollbar-button {
   display: none;
 }
+
+/* =========================
+   Page swipe (PageSwipeService builds these outside any component)
+   ========================= */
+
+.page-swipe__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  pointer-events: none;
+}
+
+.page-swipe__panel {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}

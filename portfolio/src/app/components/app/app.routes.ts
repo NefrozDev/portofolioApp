@@ -28,7 +28,7 @@ export const routes: Routes = [
       },
       {
         path: 'experiences',
-        data: { description: 'app.seo.experiences' },
+        data: { description: 'app.seo.experiences', swipePage: 'experiences' },
         loadComponent: () =>
           import('../../components/pages/experiences-page/experiences-page').then(
             (m) => m.ExperiencesPage
@@ -37,7 +37,7 @@ export const routes: Routes = [
       },
       {
         path: 'projects',
-        data: { description: 'app.seo.projects' },
+        data: { description: 'app.seo.projects', swipePage: 'projects' },
         loadComponent: () =>
           import('../../components/pages/projects-page/projects-page').then(
             (m) => m.ProjectsPage
@@ -46,7 +46,7 @@ export const routes: Routes = [
       },
       {
         path: 'contact',
-        data: { description: 'app.seo.contact' },
+        data: { description: 'app.seo.contact', swipePage: 'contact' },
         loadComponent: () =>
           import('../../components/pages/contact-page/contact-page').then(
             (m) => m.ContactPage

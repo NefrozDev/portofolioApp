@@ -2,7 +2,11 @@
   [class.app__site-header--hidden]="!appState.siteHeaderVisible()"
   [class.app__navigation--arriving]="appState.arrivedFromHome()"
 ></app-site-header>
-<router-outlet></router-outlet>
+<div class="app__viewport" #viewport>
+  <div class="app__page" #page>
+    <router-outlet></router-outlet>
+  </div>
+</div>
 @if (appState.siteHeaderVisible()) {
   <app-mobile-bottom-nav
     [class.app__navigation--arriving]="appState.arrivedFromHome()"

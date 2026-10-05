@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { AppLanguage } from '@common/enums/app-language.enum';
 import { languageGuard } from '../../guards/language.guard';
 import { LanguageService } from '../../services/language';
+import { SWIPE_PAGES } from '../../services/page-swipe';
 import { redirectToPreferredLanguage, routes } from './app.routes';
 
 describe('routes', () => {
@@ -63,6 +64,15 @@ describe('routes', () => {
       'app.seo.experiences',
       'app.seo.projects',
       'app.seo.contact'
+    ]);
+  });
+
+  it('should place experiences, projects and contact on the swipe axis', () => {
+    const languageRoute = routes.find((route) => route.path === ':lang');
+
+    expect(languageRoute?.children?.map((route) => route.data?.['swipePage'])).toEqual([
+      undefined,
+      ...SWIPE_PAGES
     ]);
   });
 
