@@ -1,11 +1,17 @@
+import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
 import { languageGuard } from '../../guards/language.guard';
+import { LanguageService } from '../../services/language';
+
+// Saved language first, then the browser's language, then English.
+export const redirectToPreferredLanguage = (): string =>
+  inject(LanguageService).getLanguage();
 
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'en'
+    redirectTo: redirectToPreferredLanguage
   },
   {
     path: ':lang',
@@ -48,6 +54,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'en'
+    redirectTo: redirectToPreferredLanguage
   }
 ];

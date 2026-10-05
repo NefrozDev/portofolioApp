@@ -1,4 +1,4 @@
-import { Injectable, effect, inject } from '@angular/core';
+import { DOCUMENT, Injectable, effect, inject } from '@angular/core';
 import {
   TranslateService,
   type InterpolationParameters,
@@ -18,6 +18,7 @@ import { LanguageService } from './language';
 export class I18nService {
   private readonly translateService = inject(TranslateService);
   private readonly languageService = inject(LanguageService);
+  private readonly document = inject(DOCUMENT);
 
   readonly currentLanguage = this.languageService.currentLanguage;
   readonly isLoading = this.translateService.isLoading;
@@ -68,6 +69,8 @@ export class I18nService {
   }
 
   private activateLanguage(language: AppLanguage): void {
+    this.document.documentElement.lang = language;
+
     if (this.translateService.getCurrentLang() === language) {
       return;
     }

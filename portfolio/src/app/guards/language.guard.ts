@@ -18,18 +18,20 @@ export const languageGuard: CanActivateFn = (
 
   const langParam = route.paramMap.get('lang');
 
+  const preferredLanguage = languageService.getLanguage();
+
   if (!langParam) {
     console.warn('languageGuard: missing lang parameter.');
-    return router.createUrlTree(['/en']);
+    return router.createUrlTree([`/${preferredLanguage}`]);
   }
 
   const supportedLanguages = Object.values(AppLanguage);
 
   if (!supportedLanguages.includes(langParam as AppLanguage)) {
-    console.warn('languageGuard: unsupported language detected, redirecting to EN.');
+    console.warn('languageGuard: unsupported language detected, redirecting to the preferred language.');
 
     const sanitizedUrl = sanitizeUrlWithoutInvalidLang(state.url);
-    return router.createUrlTree(['/en', ...sanitizedUrl]);
+    return router.createUrlTree([`/${preferredLanguage}`, ...sanitizedUrl]);
   }
 
   languageService.setLanguage(langParam as AppLanguage);

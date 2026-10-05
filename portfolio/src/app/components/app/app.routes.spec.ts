@@ -1,15 +1,35 @@
+import { TestBed } from '@angular/core/testing';
+
+import { AppLanguage } from '@common/enums/app-language.enum';
 import { languageGuard } from '../../guards/language.guard';
-import { routes } from './app.routes';
+import { LanguageService } from '../../services/language';
+import { redirectToPreferredLanguage, routes } from './app.routes';
 
 describe('routes', () => {
-  it('should redirect the empty path to English', () => {
+  it('should redirect the empty path and unknown paths to the preferred language', () => {
     expect(routes[0]).toEqual(
       jasmine.objectContaining({
         path: '',
         pathMatch: 'full',
-        redirectTo: 'en'
+        redirectTo: redirectToPreferredLanguage
       })
     );
+    expect(routes[routes.length - 1]).toEqual(
+      jasmine.objectContaining({
+        path: '**',
+        redirectTo: redirectToPreferredLanguage
+      })
+    );
+  });
+
+  it('should resolve the preferred language from the language service', () => {
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: LanguageService, useValue: { getLanguage: () => AppLanguage.NL } }
+      ]
+    });
+
+    expect(TestBed.runInInjectionContext(redirectToPreferredLanguage)).toBe(AppLanguage.NL);
   });
 
   it('should protect language-prefixed routes with the language guard', () => {
@@ -56,14 +76,5 @@ describe('routes', () => {
       'app-projects-page',
       'app-contact-page'
     ]);
-  });
-
-  it('should redirect unknown paths to English', () => {
-    expect(routes.at(-1)).toEqual(
-      jasmine.objectContaining({
-        path: '**',
-        redirectTo: 'en'
-      })
-    );
   });
 });

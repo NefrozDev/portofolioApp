@@ -43,6 +43,12 @@ describe('I18nService', () => {
     ]);
   });
 
+  it('should keep the document language in sync with the selected language', () => {
+    service.useLanguage(AppLanguage.DE);
+
+    expect(document.documentElement.lang).toBe(AppLanguage.DE);
+  });
+
   it('should keep ngx-translate in sync when changing language through the i18n service', () => {
     service.useLanguage(AppLanguage.FR);
 

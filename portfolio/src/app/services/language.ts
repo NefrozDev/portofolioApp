@@ -36,18 +36,22 @@ export class LanguageService {
   }
 
   private getInitialLanguage(): AppLanguage {
+    return this.getStoredLanguage() ?? this.getBrowserLanguage() ?? AppLanguage.EN;
+  }
+
+  private getStoredLanguage(): AppLanguage | undefined {
     try {
-      const storedLanguage = localStorage.getItem(this.storageKey) as AppLanguage | null;
+      const storedLanguage = localStorage.getItem(this.storageKey);
 
       if (!storedLanguage) {
-        return AppLanguage.EN;
+        return undefined;
       }
 
       if (!this.isSupportedLanguage(storedLanguage)) {
         console.warn(
-          'LanguageService: unsupported stored language, falling back to EN.'
+          'LanguageService: unsupported stored language ignored.'
         );
-        return AppLanguage.EN;
+        return undefined;
       }
 
       return storedLanguage;
@@ -56,8 +60,17 @@ export class LanguageService {
         'LanguageService: failed to read from localStorage.',
         error
       );
-      return AppLanguage.EN;
+      return undefined;
     }
+  }
+
+  // Picks the first browser language we support, e.g. "fr-BE" gives "fr".
+  private getBrowserLanguage(): AppLanguage | undefined {
+    const browserLanguages = globalThis.navigator?.languages ?? [];
+
+    return browserLanguages
+      .map((language) => language.toLowerCase().split('-')[0])
+      .find((language): language is AppLanguage => this.isSupportedLanguage(language));
   }
 
   private isSupportedLanguage(language: string): language is AppLanguage {

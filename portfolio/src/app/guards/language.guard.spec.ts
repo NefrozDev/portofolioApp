@@ -11,7 +11,8 @@ describe('languageGuard', () => {
 
   beforeEach(() => {
     router = jasmine.createSpyObj<Router>('Router', ['createUrlTree']);
-    languageService = jasmine.createSpyObj<LanguageService>('LanguageService', ['setLanguage']);
+    languageService = jasmine.createSpyObj<LanguageService>('LanguageService', ['setLanguage', 'getLanguage']);
+    languageService.getLanguage.and.returnValue(AppLanguage.FR);
 
     TestBed.configureTestingModule({
       providers: [
@@ -29,7 +30,7 @@ describe('languageGuard', () => {
     expect(router.createUrlTree).not.toHaveBeenCalled();
   });
 
-  it('should redirect to English when the language parameter is missing', () => {
+  it('should redirect to the preferred language when the language parameter is missing', () => {
     const redirected = {} as UrlTree;
     router.createUrlTree.and.returnValue(redirected);
     spyOn(console, 'warn');
@@ -37,11 +38,11 @@ describe('languageGuard', () => {
     const result = runGuard(null, '/');
 
     expect(result).toBe(redirected);
-    expect(router.createUrlTree).toHaveBeenCalledOnceWith(['/en']);
+    expect(router.createUrlTree).toHaveBeenCalledOnceWith(['/fr']);
     expect(languageService.setLanguage).not.toHaveBeenCalled();
   });
 
-  it('should redirect invalid languages while preserving the rest of the URL', () => {
+  it('should redirect invalid languages to the preferred language while preserving the rest of the URL', () => {
     const redirected = {} as UrlTree;
     router.createUrlTree.and.returnValue(redirected);
     spyOn(console, 'warn');
@@ -49,7 +50,7 @@ describe('languageGuard', () => {
     const result = runGuard('xx', '/xx/projects');
 
     expect(result).toBe(redirected);
-    expect(router.createUrlTree).toHaveBeenCalledOnceWith(['/en', 'projects']);
+    expect(router.createUrlTree).toHaveBeenCalledOnceWith(['/fr', 'projects']);
     expect(languageService.setLanguage).not.toHaveBeenCalled();
   });
 });
