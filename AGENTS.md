@@ -63,6 +63,11 @@ When working inside a subproject directly:
 - Do not edit generated build output, dependency folders, or lockfiles unless the task requires it.
 - Be careful with shared code in `Common/`; changes there can affect both frontend and backend behavior.
 
+## Commits
+
+- Commit as soon as a task is finished, without waiting to be asked.
+- When the user reports that something in that work is off or needs to change, amend the commit that introduced it instead of adding a new commit. If that commit has already been pushed, add a new commit instead, unless the user explicitly asks to rewrite the pushed history.
+
 ## Commit Messages
 
 - Write commit titles as `Type: lowercase description`, for example `Impr: changed developer's mail address`. Types include `Feat`, `Impr`, `Refa`, `Chore`, and `Bugfix`.
