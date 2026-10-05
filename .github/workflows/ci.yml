@@ -18,6 +18,11 @@ jobs:
         with:
           node-version: 24
 
+      # SHARED CONTRACTS
+      - name: Install shared contracts deps
+        working-directory: Common
+        run: npm ci
+
       # FRONTEND
       - name: Install frontend deps
         working-directory: portfolio
@@ -36,6 +41,6 @@ jobs:
         working-directory: Backend
         run: npm run build
 
-      - name: Test backend
-        working-directory: Backend
-        run: npm run test
+      # TESTS (frontend with coverage thresholds, libraries, demos, backend)
+      - name: Test all projects
+        run: npm run test:coverage
