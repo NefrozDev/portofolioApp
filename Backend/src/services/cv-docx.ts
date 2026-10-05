@@ -167,7 +167,8 @@ function hero(translations: ReturnType<typeof getAppTranslations>, portrait: Buf
     children: [run(text, { size, color, bold, italics })]
   });
   const contacts = new Paragraph({
-    tabStops: [{ type: TabStopType.LEFT, position: pt(203) }],
+    // Matches the PDF: LinkedIn starts on the 8pt grid after the full email.
+    tabStops: [{ type: TabStopType.LEFT, position: pt(248) }],
     children: [
       run('✉  ', { font: 'Segoe UI Symbol', size: 36, color: 'A5B4FC' }),
       new ExternalHyperlink({ link: `mailto:${PORTFOLIO_PROFILE.email}`, children: [run(PORTFOLIO_PROFILE.email, { size: 24, bold: true, color: 'CBD5E1' })] }),

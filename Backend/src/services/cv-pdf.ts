@@ -139,6 +139,10 @@ function addContinuationHeader(
   document.y = 64;
 }
 
+function snapToGrid(value: number, gridUnit = 8): number {
+  return Math.ceil(value / gridUnit) * gridUnit;
+}
+
 function addEmailIcon(document: PDFKit.PDFDocument, x: number, y: number): void {
   const envelopeY = y + 1.5;
 
@@ -204,19 +208,33 @@ function addHero(
 
   const contactY = 156;
   const contactLabelY = contactY + 3.2;
+  // Contact items sit on an 8pt grid: icon, 24pt to its label, and the
+  // LinkedIn item starts 24pt after the email, rounded up to the grid.
+  const contactIconToLabel = 24;
+  const contactItemGap = 24;
+  const emailLabelX = copyX + contactIconToLabel;
+
+  document.font('Helvetica-Bold').fontSize(12);
+
+  const emailLabelWidth = snapToGrid(document.widthOfString(PORTFOLIO_PROFILE.email));
+  const linkedInX = emailLabelX + emailLabelWidth + contactItemGap;
+  const linkedInLabelX = linkedInX + contactIconToLabel;
+
   addEmailIcon(document, copyX, contactY);
-  addLinkedInIcon(document, copyX + 203, contactY);
+  addLinkedInIcon(document, linkedInX, contactY);
   document
     .font('Helvetica-Bold')
     .fontSize(12)
     .fillColor('#cbd5e1')
-    .text(PORTFOLIO_PROFILE.email, copyX + 24, contactLabelY, {
+    .text(PORTFOLIO_PROFILE.email, emailLabelX, contactLabelY, {
       link: `mailto:${PORTFOLIO_PROFILE.email}`,
-      width: 174
+      width: emailLabelWidth,
+      lineBreak: false
     })
-    .text(linkedInLabel, copyX + 227, contactLabelY, {
+    .text(linkedInLabel, linkedInLabelX, contactLabelY, {
       link: PORTFOLIO_PROFILE.linkedInUrl,
-      width: 80
+      width: copyX + copyWidth - linkedInLabelX,
+      lineBreak: false
     });
 
   if (heroImage) {
