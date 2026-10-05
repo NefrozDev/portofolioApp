@@ -19,7 +19,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        data: { showSiteHeader: false },
+        data: { showSiteHeader: false, description: 'app.seo.home' },
         loadComponent: () =>
           import('../../components/pages/home-page/home-page').then(
             (m) => m.HomePage
@@ -28,6 +28,7 @@ export const routes: Routes = [
       },
       {
         path: 'experiences',
+        data: { description: 'app.seo.experiences' },
         loadComponent: () =>
           import('../../components/pages/experiences-page/experiences-page').then(
             (m) => m.ExperiencesPage
@@ -36,6 +37,7 @@ export const routes: Routes = [
       },
       {
         path: 'projects',
+        data: { description: 'app.seo.projects' },
         loadComponent: () =>
           import('../../components/pages/projects-page/projects-page').then(
             (m) => m.ProjectsPage
@@ -44,6 +46,7 @@ export const routes: Routes = [
       },
       {
         path: 'contact',
+        data: { description: 'app.seo.contact' },
         loadComponent: () =>
           import('../../components/pages/contact-page/contact-page').then(
             (m) => m.ContactPage

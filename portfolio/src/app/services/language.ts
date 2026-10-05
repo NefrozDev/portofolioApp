@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { AppLanguage } from '../../../../Common/enums/app-language.enum';
 
 @Injectable({
@@ -6,6 +7,8 @@ import { AppLanguage } from '../../../../Common/enums/app-language.enum';
 })
 export class LanguageService {
   private readonly storageKey = 'portfolio-language';
+  // During prerendering there is no saved or browser language to read.
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   readonly currentLanguage = signal<AppLanguage>(this.getInitialLanguage());
 
@@ -20,6 +23,10 @@ export class LanguageService {
     }
 
     this.currentLanguage.set(language);
+
+    if (!this.isBrowser) {
+      return;
+    }
 
     try {
       localStorage.setItem(this.storageKey, language);
@@ -36,6 +43,10 @@ export class LanguageService {
   }
 
   private getInitialLanguage(): AppLanguage {
+    if (!this.isBrowser) {
+      return AppLanguage.EN;
+    }
+
     return this.getStoredLanguage() ?? this.getBrowserLanguage() ?? AppLanguage.EN;
   }
 

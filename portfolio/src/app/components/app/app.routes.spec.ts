@@ -55,6 +55,17 @@ describe('routes', () => {
     ]);
   });
 
+  it('should give every page a localized description for search engines', () => {
+    const languageRoute = routes.find((route) => route.path === ':lang');
+
+    expect(languageRoute?.children?.map((route) => route.data?.['description'])).toEqual([
+      'app.seo.home',
+      'app.seo.experiences',
+      'app.seo.projects',
+      'app.seo.contact'
+    ]);
+  });
+
   it('should lazy-load every page component', async () => {
     const languageRoute = routes.find((route) => route.path === ':lang');
     const loadedComponents = await Promise.all(

@@ -10,6 +10,12 @@
     },
     "language": "Language",
     "pageUnderConstruction": "Page en construction",
+    "seo": {
+      "home": "Portfolio de {{ name }}, {{ position }} : expériences professionnelles, projets et coordonnées.",
+      "experiences": "Expériences professionnelles de {{ name }}, {{ position }} : postes, missions et technologies utilisées.",
+      "projects": "Projets de {{ name }}, {{ position }}, avec les technologies utilisées pour chacun.",
+      "contact": "Contactez {{ name }}, {{ position }}, pour un projet, une mission ou une opportunité d'emploi."
+    },
     "scrollFiltersLeft": "Faire défiler les filtres vers la gauche",
     "scrollFiltersRight": "Faire défiler les filtres vers la droite",
     "glossaryInfoLabel": "Plus d’informations sur {{ term }}",

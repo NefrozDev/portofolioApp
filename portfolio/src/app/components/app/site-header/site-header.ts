@@ -6,11 +6,13 @@ import {
   HostListener,
   QueryList,
   ViewChild,
+  PLATFORM_ID,
   ViewChildren,
   computed,
   inject,
   signal
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import {
   NavigationEnd,
   Router,
@@ -43,6 +45,7 @@ export class SiteHeader implements AfterViewInit {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly appState = inject(AppStateService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private attentionAnimation?: Animation;
   private scheduledAnimationFrame?: number;
   private hasCompletedInitialNavigation = false;
@@ -64,6 +67,11 @@ export class SiteHeader implements AfterViewInit {
   );
 
   ngAfterViewInit(): void {
+    // The attention dot is positioned with browser animation APIs.
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.currentNavigationIndex = this.getActiveNavigationIndex();
     this.hasCompletedInitialNavigation = this.router.navigated;
 

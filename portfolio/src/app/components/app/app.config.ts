@@ -5,8 +5,9 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection
 } from '@angular/core';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter, TitleStrategy } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideTranslateService } from '@ngx-translate/core';
 
 import { AppLanguage } from '@common/enums/app-language.enum';
@@ -19,7 +20,9 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(),
+    // Reuses the prerendered page and the API data it was built with.
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(withFetch()),
     ...provideTranslateService({
       fallbackLang: AppLanguage.EN,
       lang: AppLanguage.EN

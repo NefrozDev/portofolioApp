@@ -3,12 +3,14 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  PLATFORM_ID,
   ViewChild,
   inject,
   input,
   output,
   signal
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InfoTerm } from '../info-term/info-term';
 
@@ -28,6 +30,7 @@ export interface FilterRailOption {
 })
 export class FilterRail implements AfterViewInit {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   @ViewChild('scrollRail', { static: true })
   private readonly scrollRail!: ElementRef<HTMLElement>;
@@ -51,6 +54,11 @@ export class FilterRail implements AfterViewInit {
   private suppressNextClick = false;
 
   ngAfterViewInit(): void {
+    // Scroll state needs layout measurements, which only exist in the browser.
+    if (!this.isBrowser) {
+      return;
+    }
+
     const rail = this.scrollRail.nativeElement;
     const animationFrame = requestAnimationFrame(() => {
       this.updateScrollState(rail);

@@ -10,6 +10,12 @@
     },
     "language": "Language",
     "pageUnderConstruction": "Pagina in aanbouw",
+    "seo": {
+      "home": "Portfolio van {{ name }}, {{ position }}: werkervaring, projecten en contactgegevens.",
+      "experiences": "Werkervaring van {{ name }}, {{ position }}: functies, opdrachten en gebruikte technologieën.",
+      "projects": "Projecten van {{ name }}, {{ position }}, met de technologieën die voor elk project gebruikt zijn.",
+      "contact": "Neem contact op met {{ name }}, {{ position }}, voor een project, een opdracht of een vacature."
+    },
     "scrollFiltersLeft": "Filters naar links scrollen",
     "scrollFiltersRight": "Filters naar rechts scrollen",
     "glossaryInfoLabel": "Meer informatie over {{ term }}",
